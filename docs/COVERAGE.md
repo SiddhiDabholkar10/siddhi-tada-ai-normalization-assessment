@@ -6,7 +6,7 @@ the assumptions and decisions file.
 
 ## What this document proves, and what it does not
 
-- **It proves** that every item the brief lists (README "Data to normalize") has a named
+- **It proves** that every item the brief lists (Provider_README.md, "Data to normalize") has a named
   canonical home or a documented gap per provider, and that every field a provider requires to
   create an employee has a home or a documented rule (section 6).
 - **It does not prove** source-field completeness. Whether every field returned by the selected
