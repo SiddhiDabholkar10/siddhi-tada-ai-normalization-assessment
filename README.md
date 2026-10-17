@@ -21,6 +21,76 @@ It can be used in four ways:
 Assumptions, decisions and limitations, with the reasons for each, are in
 [ASSUMPTIONS_DECISIONS_LIMITATIONS.md](ASSUMPTIONS_DECISIONS_LIMITATIONS.md).
 
+## Demo
+
+### Overview
+
+![Overview page: record counts, companies and run health](images/pic1.png)
+
+The Overview of the full PrismHR demo tenant, imported from a live run: 25 companies, 668
+employees, 392 direct deposits, 1,710 deductions, 6,836 benefit enrollments, 601 payroll runs and
+14,583 paychecks. Below are the companies with their status, where a `reference only` badge marks
+a company holding an entry built from the records that name it (here, a pay group missing from the
+client's code list), and the run health: 2 link problems, no responses set aside and no list left
+unnormalized. The "Show sensitive values" switch is off, so sensitive values are masked.
+
+---
+
+### Employees and an employee's record
+
+![Employees page: every employee with status, hire date and flags](images/pic2.png)
+
+![An employee's paychecks with gross and net pay](images/pic3.png)
+
+The Employees page of the same PrismHR run lists all 668 employees, searchable by name, number or
+id and filterable by company, each with job, company, flagged diagnostics, status and hire date.
+Opening one shows the full record in tabs (profile, direct deposits, deductions, benefits,
+paychecks, diagnostics); here, the paychecks, each with pay date, period, status, and gross and
+net pay.
+
+---
+
+### Sync: fetching live data from the app
+
+![Sync page: choose a demo tenant, start a sync, follow its progress](images/pic4.png)
+
+Sync brings live data into the app without the command line. You pick a demo tenant (PrismHR,
+isolved or UKG Ready), optionally narrow it to some companies, and start the sync. In the
+background, the app signs in with the organizer's key, fetches every company and employee and the
+12 months of payroll ending on each company's latest pay date, normalizes everything through the
+same pipeline as `fetch`, and stores the result as a new dataset. The progress panel shows call
+counts per stage, never ids or values; when the sync finishes, "Open dataset" shows it. One sync
+runs at a time, the raw responses are not kept, and without `DEMO_SIGNIN_API_KEY` the button stays
+disabled with a message saying how to set it.
+
+---
+
+### Write employee: creating an employee in UKG Ready
+
+![Write employee page: a new UKG Ready employee ready to create](images/pic5.png)
+
+The write path in the app: a new employee filled in for UKG Ready. The top card holds what UKG
+needs beyond the employee record (the company id, a username unique in UKG, and a start date,
+which is not the hire date); below it are only the fields UKG accepts for a create, with required
+ones starred and every edited field marked with a dot. The `ready` badge means nothing required
+is missing, so **Create Employee** is enabled; before anything is sent, a review section shows
+the exact request, and a confirmation is required. The same form for isolved or PrismHR builds
+and shows the request as a dry run and never sends it.
+
+---
+
+### Write employee: updating an employee in UKG Ready
+
+![Updating an employee in UKG Ready](images/pic6.png)
+
+![Updating an employee in UKG Ready, continued](images/pic7.png)
+
+Opened from an employee's record, the Write employee page updates that employee in UKG Ready. The
+company and account default to the employee's own, so the settings can stay empty. Only the
+fields you change are sent, as a JSON Patch; values hidden by the masking switch (such as the
+personal email and phones) stay as stored unless you type a new one. After the send, `Updated`
+confirms that UKG accepted the change, and the next sync shows it on the record.
+
 ## Quick start
 
 ### Requirements
@@ -477,7 +547,7 @@ A synthetic test employee (reserved `example.com` addresses and 555-01xx phone n
 was created in the UKG demo company (HTTP 201) and then updated (HTTP 204). Reading it back
 matched every field sent: 23 of 23 after the create, and after the update the 9 changed fields
 changed while the others stayed as they were. The first attempts showed what the UKG reference
-does not say: a create also requires a start date and a national id, and an update must be sent
+does not say: a create also requires a start date, a birth date and a national id, and an update must be sent
 as a JSON Patch.
 
 ### What the live runs uncovered

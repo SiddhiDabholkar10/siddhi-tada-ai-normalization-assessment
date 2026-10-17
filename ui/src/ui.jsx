@@ -32,8 +32,13 @@ export function personName(employee) {
 }
 
 export function companyName(company) {
-  return company?.display_name || company?.legal_name || shortId(company?.id);
+  if (company?.display_name || company?.legal_name) return company.display_name || company.legal_name;
+  // No name from the provider (UKG Ready has no company resource, D-029): say whose id it is, never invent one.
+  const key = Object.values(company?.source_ids || {})[0] || shortId(company?.id);
+  return `Company ID: ${key}`;
 }
+
+export const hasCompanyName = (company) => Boolean(company?.display_name || company?.legal_name);
 
 export function money(value, currency = "USD") {
   if (value === null || value === undefined) return null;

@@ -155,6 +155,8 @@ class Sending(unittest.TestCase):
             sent = edited["calls"][0]["body"]
             self.assertEqual((sent["first_name"], sent["phones"]["cell_phone"], sent["last_name"]), ("Robin", "***", "Moreau"))
             self.assertEqual(client.post("/api/write/preview", json=dict(body, changes={"ssn": "***1101"})).status_code, 400)
+            names = client.post("/api/write/preview", json=dict(body, changes={"state": "Illinois", "country": "United States"})).json()
+            self.assertEqual([r["field"] for r in names["refusals"]], ["state", "country"], "UKG takes codes (IL, USA), refused before sending")
             new = dict(body, employee_id=None, changes={"first_name": "New", "last_name": "Hire", "hire_date": "2026-10-01"})
             missing = client.post("/api/write/preview", json=new).json()
             self.assertEqual([r["field"] for r in missing["refusals"]], ["start_date", "birth_date"], "both required by UKG (live 400s)")

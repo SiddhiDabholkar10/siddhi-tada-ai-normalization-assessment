@@ -40,9 +40,21 @@ def _started(b: Builder) -> str | None:
     return None
 
 
+def _address_codes(b: Builder) -> None:
+    """UKG's address takes codes, not names: a state of at most 3 letters (its State Code list) and an
+    ISO 3166-1 alpha-3 country. A name ('Illinois', 'United States') is refused here, before sending."""
+    home = b.home_address() or {}
+    state, country = home.get("state"), home.get("country")
+    if state and len(str(state)) > 3:
+        b.refuse("state", f"UKG takes a state code of up to 3 letters (e.g. IL), not {state!r}")
+    if country and not (len(str(country)) == 3 and str(country).isalpha() and str(country).isupper()):
+        b.refuse("country", f"UKG takes a 3-letter country code (e.g. USA), not {country!r}")
+
+
 def build(request: WriteRequest) -> Plan:
     b = Builder(request)
     cid = b.required("company", b.company_id, "give input 'company' (the UKG company id)")
+    _address_codes(b)
     if request.operation == "create":
         first = b.required("first_name", b.value("name", "first"))
         last = b.required("last_name", b.value("name", "last"))
@@ -66,7 +78,7 @@ def build(request: WriteRequest) -> Plan:
         put(body, sensitive, "address.city", home.get("city"))
         put(body, sensitive, "address.state", home.get("state"))
         put(body, sensitive, "address.zip", home.get("postal_code"), sensitive=True)
-        put(body, sensitive, "address.country", home.get("country") if len(str(home.get("country") or "")) == 3 else None)
+        put(body, sensitive, "address.country", home.get("country"))
         put(body, sensitive, "phones.cell_phone", b.phone("mobile"), sensitive=True)
         put(body, sensitive, "phones.home_phone", b.phone("home"), sensitive=True)
         put(body, sensitive, "phones.work_phone", b.value("work_contact", "phone"))

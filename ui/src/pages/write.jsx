@@ -32,7 +32,16 @@ const LABELS = {
   suffix: "Suffix", employee_number: "Employee number", hire_date: "Hire date", original_hire_date: "Original hire date",
   ssn: "SSN", birth_date: "Birth date", work_email: "Email", work_phone: "Phone", personal_email: "Email",
   mobile_phone: "Mobile phone", home_phone: "Home phone", address_line1: "Line 1", address_line2: "Line 2", city: "City",
-  state: "State", postal_code: "Postal code", country: "Country (3 letters)",
+  state: "State", postal_code: "Postal code", country: "Country",
+};
+// What each field expects, shown inside the empty box.
+const HINTS = {
+  first_name: "e.g. Jordan", middle_name: "optional", last_name: "e.g. Lee", preferred_name: "optional", prefix: "e.g. Ms., Mr., Mx.",
+  suffix: "e.g. Jr., III", employee_number: "e.g. TADA-0004", hire_date: "YYYY-MM-DD", original_hire_date: "YYYY-MM-DD",
+  ssn: "9 digits, e.g. 123-45-6789; empty sends 'no id needed'", birth_date: "YYYY-MM-DD", work_email: "name@company.com",
+  work_phone: "e.g. 312-555-0100", personal_email: "name@example.com", mobile_phone: "e.g. 312-555-0101",
+  home_phone: "e.g. 312-555-0102", address_line1: "e.g. 100 Main Street", address_line2: "optional, e.g. Suite 2",
+  city: "e.g. Chicago", state: "2-letter code, e.g. IL", postal_code: "e.g. 60601", country: "3-letter code, e.g. USA",
 };
 const CARDS = [
   ["Name and ids", ["first_name", "middle_name", "last_name", "preferred_name", "prefix", "suffix", "employee_number"]],
@@ -178,7 +187,10 @@ export function WriteEmployee({ id }) {
   const setField = (name, value) => {
     const original = readField(item, name);
     const next = { ...changes };
-    if (!isMasked(original) && (value === (original ?? "") )) delete next[name];
+    // Back to the stored value means unchanged. For a hidden (masked) value, an empty box also means
+    // unchanged: the viewer never saw it, so clearing the box must not delete it.
+    const unchanged = isMasked(original) ? value === "" : value === (original ?? "");
+    if (unchanged) delete next[name];
     else next[name] = value;
     setChanges(next);
   };
@@ -253,6 +265,12 @@ export function WriteEmployee({ id }) {
                 onClick={() => setConfirming(true)}>
                 {operation === "create" ? "Create Employee" : "Update Employee"}
               </button>
+              {!ready && plan && !result?.ok && (
+                <div className="muted" style={{ fontSize: 13, textAlign: "center" }}>
+                  {destination !== "ukg-ready" ? `Dry run only: ${PROVIDERS[destination]} is never sent`
+                    : `${plan.refusals.length} missing: see Review below`}
+                </div>
+              )}
               {confirming && (
                 <div className="action-confirm">
                   <div>Send to the UKG demo tenant? It cannot be undone.</div>
@@ -301,7 +319,7 @@ export function WriteEmployee({ id }) {
                         <div className="k">{LABELS[name]}{required.has(name) && " *"}{name in changes && <span title="changed" style={{ color: "var(--accent)", marginLeft: 6 }}>&#9679;</span>}</div>
                         <div className="v">
                           <input className="input" style={{ width: "100%", borderRadius: 10, padding: "6px 10px" }} value={value}
-                            placeholder={hidden ? "Hidden: unchanged unless you type" : blank ? "" : "empty"}
+                            placeholder={hidden ? "Hidden: unchanged unless you type" : HINTS[name] || ""}
                             onChange={(e) => setField(name, e.target.value)} />
                         </div>
                       </div>

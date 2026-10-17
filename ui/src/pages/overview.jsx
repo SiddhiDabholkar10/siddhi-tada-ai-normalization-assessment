@@ -3,7 +3,7 @@ import { useApi, useApp } from "../api.js";
 import { go } from "../App.jsx";
 import {
   DiagnosticRow, Empty, ErrorBox, Group, KINDS, LISTS, Loading, PROVIDERS, Pager, SeverityIcon, StatusBadge, Val,
-  coded, companyName, humanize, initials, money, personName, shortId,
+  coded, companyName, hasCompanyName, humanize, initials, money, personName, shortId,
 } from "../ui.jsx";
 
 export const CODE_HELP = {
@@ -94,10 +94,14 @@ export function Overview() {
                 <span className="avatar">{initials(companyName(c))}</span>
                 <div className="grow">
                   <div className="name">{companyName(c)}</div>
-                  <div className="sub">{[c.legal_name !== companyName(c) && c.legal_name, c.company_code, shortId(c.id)].filter(Boolean).join(" / ")}</div>
+                  <div className="sub">
+                    {hasCompanyName(c)
+                      ? [c.legal_name !== companyName(c) && c.legal_name, c.company_code, shortId(c.id)].filter(Boolean).join(" / ")
+                      : `No company name: ${PROVIDERS[c.provider] || "the provider"} does not send one`}
+                  </div>
                 </div>
                 <div className="right">
-                  {c.diagnostics?.some((d) => d.code === "reference_only") && <span className="badge soft">reference only</span>}
+                  {c.diagnostics?.some((d) => d.code === "reference_only" && !d.field) && <span className="badge soft">reference only</span>}
                   <StatusBadge value={c.status} />
                 </div>
               </div>

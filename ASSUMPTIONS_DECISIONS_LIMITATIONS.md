@@ -268,6 +268,35 @@ Each assumption is either flagged on the records it affects or stated in the map
 - **Create and update employee only.** The brief's optional extension is about employee
   data; deposits, deductions and payroll are not written, so no financial record is written to
   a demo tenant.
+- **Operations and fields supported.** Create and update employee, from any canonical employee to
+  any of the three providers. The fields are the employee's identity and contact data, which all
+  three create routes accept:
+
+  | Canonical field | UKG Ready (create, update) | isolved (create, update) | PrismHR (create, update) |
+  | --- | --- | --- | --- |
+  | First, middle, last name | `first_name`, `middle_name`, `last_name` | `nameAddress.firstName`, `middleName`, `lastName` | `firstName`, `middleInitial`, `lastName` |
+  | Preferred name, prefix, suffix | `nickname`, `salutation`, `suffix` | `nameAddress.preferredName`, `prefix`, `suffix` | not sent (no field on the create) |
+  | Employee number | `employee_id` | `employeeNumber` | `employeeNumber` |
+  | SSN | `social_security`, or UKG's "no id needed" type | `ssn` with `idType` | `ssn` |
+  | Birth date | `dates.birthday` | `birthDate` | `birthDate` |
+  | Hire dates | `dates.hired`, `dates.re_hired`, `dates.seniority`, plus `dates.started` (an input) | `hireDate` | `origHireDate`, `lastHireDate`, plus `peoStartDate` (an input) |
+  | Work email and phone | `primary_email`, `phones.work_phone` | `emailAddress` | `emailAddress`, `workPhone` |
+  | Personal email and phones | `secondary_email`, `phones.cell_phone`, `phones.home_phone` | `emailAddress` (when no work email) | `homePhone` |
+  | Home address | `address.*` (lines, city, state, ZIP, country) | `nameAddress.address1`, `address2`, `city`, `state`, `zipCode` | `addressLine1`, `addressLine2`, `city`, `stateCode`, `zipCode` |
+  | Employment and pay codes | not required | employment status and category, pay type, pay frequency, pay group, work location, legal code, job | status, type, work location, job, pay group, standard hours |
+  | Username | `username` (an input) | not used | not used |
+
+  Payroll, compensation amounts, deposits, deductions, tax withholding and benefits are not
+  written. UKG's other employee sections (pay info, demographics, profiles, tax info) have their
+  own routes and are not written either.
+- **How provider differences are handled.** Each provider has its own request builder that
+  follows its contract: UKG takes one JSON body and updates with a JSON Patch; isolved takes its
+  whole employee model for both create and update; PrismHR asks for the client's own required
+  fields, then imports and commits the new hire in two calls, and updates with a field list that
+  must name the manager. What one provider requires and another does not (a username, a start
+  date, a PEO start date, client codes, an integer pay frequency) is never derived from a
+  different fact: it is either the record's own value from the same provider, or an input of the
+  write, or the write is refused with the reason.
 - **A write is a plan, built on the server from the stored record.** The plan lists the
   provider calls in order, every refusal with its field and reason, and notes. A plan with a
   refusal is never sent, and a plan sent by a client is never trusted.
@@ -345,6 +374,7 @@ differences and surprises that changed a mapping.
 | UKG | Amount keys omitted on some lines | 6 check payments, 19 employee tax sides | Null, never zero; net pay derived only when every payment amount is present |
 | UKG | Every payroll is OPEN | 67 of 67 payrolls | Status kept on every run and paycheck |
 | UKG | A create requires a start date, although the reference marks only username, first and last name as required | The first live create answered HTTP 400 "'Date started' is required"; nothing was created | The create sends the start date, from an input or the source's own start date, never the hire date |
+| UKG | A create also requires a birth date, not marked required either | HTTP 400 "'Birthday' is required" | The birth date is required in the plan; a create without one is refused before sending |
 | UKG | A create also requires a national id, also not marked required | The second create answered HTTP 400 "'Social security' is required" | The SSN when held, else UKG's own "no id needed" type; an SSN is never invented. The third create succeeded (HTTP 201) |
 | UKG | An update must be a JSON Patch, and `replace` fails on a field the employee does not have yet | HTTP 415 for `application/json`; then HTTP 400 'Missing field "suffix"', with nothing applied | Updates are sent as `application/json-patch+json` with `add` and `remove` operations; the next update succeeded (HTTP 204) |
 
