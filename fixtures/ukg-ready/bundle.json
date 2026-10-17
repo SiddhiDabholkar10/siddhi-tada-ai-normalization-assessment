@@ -1,0 +1,2985 @@
+{
+  "format": "normalization-bundle/1",
+  "provider": "ukg-ready",
+  "tenant_id": "900003",
+  "fixture": {
+    "synthetic": true,
+    "generator": "normalization.fixtures",
+    "seed": 20261016,
+    "note": "Synthetic data. Names, numbers and identifiers are invented; SSNs use area 666, which is never issued."
+  },
+  "responses": [
+    {
+      "route": "/v2/companies/{cid}/lookup/jobs",
+      "params": {
+        "cid": "7001"
+      },
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 501,
+            "name": "Line Cook",
+            "payroll_code": "COOK1",
+            "external_id": "J-501",
+            "visible": true
+          },
+          {
+            "id": 502,
+            "name": "Shift Manager",
+            "payroll_code": "",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/lookup/employee-types",
+      "params": {
+        "cid": "7001"
+      },
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 61,
+            "name": "FT Non-Exempt"
+          },
+          {
+            "id": 62,
+            "name": "Consultant"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/lookup/pay-types",
+      "params": {
+        "cid": "7001"
+      },
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 71,
+            "name": "Hourly",
+            "external_id": "H"
+          },
+          {
+            "id": 72,
+            "name": "Salaried"
+          },
+          {
+            "id": 73,
+            "name": "Commission"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/lookup/pay-period-profiles",
+      "params": {
+        "cid": "7001"
+      },
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 9001,
+            "name": "Biweekly",
+            "description": "Kitchen staff",
+            "active": true,
+            "effective_from": "1900-12-31",
+            "effective_to": "2099-12-31",
+            "is_user_profile": false,
+            "period_type": {
+              "type": "every_n_weeks",
+              "params": {
+                "num_weeks": 2,
+                "start_date": "2024-01-05"
+              }
+            }
+          },
+          {
+            "id": 9002,
+            "name": "Weekly",
+            "active": true,
+            "period_type": {
+              "type": "weekly",
+              "params": {
+                "week_day": "FRIDAY"
+              }
+            }
+          },
+          {
+            "id": 9003,
+            "name": "Three-weekly (retired)",
+            "active": false,
+            "effective_from": "2020-01-01",
+            "effective_to": "2022-12-31",
+            "is_user_profile": false,
+            "period_type": {
+              "type": "every_n_weeks",
+              "params": {
+                "num_weeks": 3,
+                "start_date": "2020-01-03"
+              }
+            }
+          },
+          {
+            "id": 9004,
+            "name": "Seasonal calendar",
+            "active": true,
+            "is_user_profile": true,
+            "period_type": {
+              "type": "user_defined",
+              "params": {}
+            }
+          },
+          {
+            "id": 9005,
+            "name": "Semi-monthly",
+            "active": true,
+            "period_type": {
+              "type": "semi_monthly",
+              "params": {
+                "starting_on_first": 1,
+                "starting_on_sec": 16
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/config/cost-centers",
+      "params": {
+        "cid": "7001",
+        "tree_index": "0"
+      },
+      "status": 200,
+      "body": {
+        "cost_centers": [
+          {
+            "id": 8100,
+            "name": "Kitchen",
+            "payroll_code": "KIT",
+            "description": "Back of house",
+            "parent_id": 8000
+          },
+          {
+            "id": 8101,
+            "name": "Front of house",
+            "payroll_code": ""
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/config/cost-centers",
+      "params": {
+        "cid": "7001",
+        "tree_index": "1"
+      },
+      "status": 400,
+      "body": {
+        "errors": [
+          {
+            "code": 19515,
+            "message": "Cost Center not used"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/config/cost-centers",
+      "params": {
+        "cid": "7001",
+        "tree_index": "2"
+      },
+      "status": 200,
+      "body": {
+        "cost_centers": [
+          {
+            "id": 8300,
+            "name": "Region West"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "username": "quinn.moreau",
+        "first_name": "Quinn",
+        "last_name": "Moreau",
+        "id": 1101,
+        "middle_name": "Ray",
+        "nickname": "Ray",
+        "salutation": "Mr.",
+        "suffix": "",
+        "employee_id": "U-1101",
+        "external_id": "EXT-1101",
+        "status": "Active",
+        "photo_href": "https://example.invalid/photo?ticket=SECRET",
+        "isPhotoUploaded": false,
+        "primary_account_id": 1101,
+        "ein": {
+          "id": 501
+        },
+        "ein_name": "Harbor Kitchens Inc",
+        "national_id_numbers": [
+          {
+            "type": "SSN",
+            "value": "666-45-1101",
+            "primary": true
+          }
+        ],
+        "social_security": "666-45-1101",
+        "address": {
+          "country": "USA",
+          "address_line_1": "9016 Harbor Rd",
+          "address_line_2": "Unit 5",
+          "address_line_3": "Rear door",
+          "city": "Denver",
+          "state": "CO",
+          "state_code": "CO",
+          "zip": "80202",
+          "number": "12",
+          "number_addition": "B"
+        },
+        "use_separate_mailing_address": true,
+        "mailing_address": {
+          "country": "USA",
+          "address_line_1": "PO Box 300",
+          "address_line_2": "Box B",
+          "city": "Denver",
+          "state_code": "CO",
+          "zip": "80201"
+        },
+        "phones": {
+          "cell_phone": "303-555-1182",
+          "cell_phone_country_id": "US",
+          "cell_phone_country_code": "1",
+          "home_phone": "303-555-1500",
+          "work_phone": "303-555-0400",
+          "preferred_phone": "CELL"
+        },
+        "primary_email": "ray.home@example.org",
+        "secondary_email": "ray.alt@example.org",
+        "managers": [
+          {
+            "index": 1,
+            "empl_ref": {
+              "account_id": 1999
+            }
+          },
+          {
+            "index": 0,
+            "empl_ref": {
+              "account_id": 1103
+            }
+          }
+        ],
+        "cost_centers_info": {
+          "defaults": [
+            {
+              "index": 0,
+              "value": {
+                "id": 8100
+              }
+            },
+            {
+              "index": 1,
+              "value": {
+                "id": 8200
+              }
+            }
+          ],
+          "limits": [
+            {
+              "index": 0,
+              "values": [
+                {
+                  "type": "LIST",
+                  "id": 8101,
+                  "effective_from": "2024-01-01"
+                }
+              ]
+            }
+          ]
+        },
+        "dates": {
+          "hired": "2019-06-03",
+          "started": "2019-06-03",
+          "seniority": "2019-06-03",
+          "birthday": "1992-12-01",
+          "review": "2025-06-03",
+          "custom_dates": [
+            {
+              "index": 0,
+              "date": "2025-01-01"
+            }
+          ]
+        },
+        "account_extra_fields": [
+          {
+            "index": 0,
+            "values": [
+              {
+                "value": "Blue",
+                "effective_from": "2024-01-01"
+              }
+            ]
+          }
+        ],
+        "hardware_settings": {
+          "in_touch": {
+            "pin": 4321,
+            "security_level": "EMPLOYEE"
+          }
+        },
+        "force_change_password": false,
+        "locked": false,
+        "timezone": "America/Denver",
+        "locale": {
+          "id": 1
+        },
+        "_links": {
+          "self": "/employees/1101"
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/demographics",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "gender": "MALE",
+        "ethnicity": "HISPANIC_OR_LATINO",
+        "citizenship": "PERMANENT_RESIDENT",
+        "seasonal": false,
+        "visa": {
+          "type": "H-1B",
+          "number": "V-77881",
+          "expiration_date": "2027-08-31"
+        },
+        "eye_color": "Brown",
+        "height": "180cm",
+        "full_time_student": false,
+        "referral": {
+          "id": 3
+        },
+        "recruiter": {
+          "account_id": 1999,
+          "display_name": "Recruiter One"
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/pay-info",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "default_job": {
+          "id": 501
+        },
+        "job_last_changed": "2023-04-01",
+        "job_change_reason_code": {
+          "display_name": "Promotion"
+        },
+        "standard_work_day": 28800000,
+        "employee_type": {
+          "id": 61
+        },
+        "pay_type": {
+          "id": 71
+        },
+        "eeo_classification": "SERVICE_WORKERS",
+        "workers_comp_code": {
+          "external_id": "9079"
+        },
+        "union": {
+          "id": 44
+        },
+        "payroll_classification": "REGULAR",
+        "medical_eligibility": "ELIGIBLE",
+        "bank_account_number": "",
+        "pay_grade": {
+          "id": 5,
+          "parent": {
+            "id": 1,
+            "code": 2,
+            "name": "Kitchen"
+          }
+        },
+        "gl_codes": [
+          {
+            "index": 0,
+            "value": "5100"
+          }
+        ],
+        "shift_premium": {
+          "id": 9
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/profiles",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "pay_period": [
+          {
+            "id": 9001,
+            "name": "Biweekly",
+            "effective_from": "2023-01-01"
+          }
+        ],
+        "security": [
+          {
+            "id": 3,
+            "effective_from": "2019-06-03"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/history",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "compensations": [
+          {
+            "id": 1,
+            "employee": {
+              "account_id": 1101
+            },
+            "effective_from": "1900-12-31",
+            "amount": 15.0,
+            "hourly_pay": 15.0,
+            "currency": "USD",
+            "amount_period": "HOUR",
+            "time": 288000000,
+            "time_period": "PAY_PERIOD",
+            "num_pp_in_year": 26,
+            "_links": {
+              "self": "/compensation/1"
+            }
+          },
+          {
+            "id": 2,
+            "employee": {
+              "account_id": 1101
+            },
+            "effective_from": "2023-04-01",
+            "amount": 19.5,
+            "hourly_pay": 19.5,
+            "currency": "USD",
+            "amount_period": "HOUR",
+            "time": 271800000,
+            "time_period": "PAY_PERIOD",
+            "num_pp_in_year": 26,
+            "_links": {
+              "self": "/compensation/2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/total",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "total_compensations": [
+          {
+            "account": {
+              "id": 1101
+            },
+            "amount": 40560.0,
+            "effective_from": "2023-04-01",
+            "currency": "USD"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/additional",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "additional_compensations": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/contacts",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "contacts": [
+          {
+            "id": 31,
+            "account_id": null,
+            "employee": {
+              "account_id": 1101
+            },
+            "primary": true,
+            "emergency": true,
+            "dependent": true,
+            "beneficiary": false,
+            "emergency_notif": null,
+            "salutation": "Ms.",
+            "first_name": "Lena",
+            "middle_name": "",
+            "last_name": "Moreau",
+            "name_suffix": "",
+            "relationship": "Spouse",
+            "birthdate": "1993-03-03",
+            "active": true,
+            "comments": "Call after 6pm",
+            "cell_phone": {
+              "code": 1,
+              "number": "303-555-1908",
+              "primary": true
+            },
+            "work_phone": {
+              "code": 1,
+              "number": "303-555-0450",
+              "primary": false
+            },
+            "is_in_any_benefit_plan": true,
+            "has_delete_permission": true,
+            "_links": {
+              "self": "/contacts/31"
+            }
+          },
+          {
+            "id": 32,
+            "employee": {
+              "account_id": 1101
+            },
+            "emergency": true,
+            "dependent": false,
+            "beneficiary": true,
+            "first_name": "Omar",
+            "middle_name": "Ann",
+            "last_name": "Ruiz",
+            "name_suffix": "II",
+            "relationship": "Uncle",
+            "active": false,
+            "home_phone": {
+              "code": 1,
+              "number": "719-555-1861",
+              "primary": true
+            }
+          }
+        ],
+        "_total_count": 2,
+        "_sub_count": {
+          "all": 2,
+          "emergency": 2
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/tax-info",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "employee-tax-type": {
+          "W2": true,
+          "_1099": false,
+          "DRAW": false
+        },
+        "fein": "12-3456789",
+        "pension-box-type": "SYSTEM_RULES",
+        "dba-company-name": "Harbor Kitchens"
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/skills",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "employee_skills": [
+          {
+            "skill": {
+              "id": 1201
+            },
+            "level": 4,
+            "years": 6,
+            "primary": true
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/training/certifications",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "employee_training_course_history": [
+          {
+            "course": "Food Handler",
+            "description": "<p>State certificate</p>",
+            "is_schedulable": true,
+            "current_completed_date": "2024-02-10",
+            "expires_on": "2027-02-10",
+            "is_expired": false
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/badges",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "badges": [
+          {
+            "badge_number": "B-1101",
+            "badge_type": "SIMPLE_1",
+            "pin": "9999",
+            "short_id": "S11",
+            "effective_from": "2019-06-03"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/hr-custom-fields",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "hr_custom_fields": [
+          {
+            "index": 0,
+            "value": "Night shift"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/accrual/1/balances",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "accrual_balances": [
+          {
+            "time_off": {
+              "id": 41,
+              "name": "PTO"
+            },
+            "accrual_year": {
+              "start_date": "2026-01-01",
+              "end_date": "2026-12-31"
+            },
+            "accrued": 172800000,
+            "accrued_to": "2026-09-30",
+            "carry_over": 28800000,
+            "taken": 57600000,
+            "remaining": 144000000,
+            "regular_day_time": 28800000,
+            "scheduled": 0,
+            "pending_approval": 14400000
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/accrual/2/balances",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "accrual_balances": [
+          {
+            "category": {
+              "id": 51,
+              "category_name": "Sick",
+              "type": "ACCRUAL_CATEGORY",
+              "color": "#00ff00"
+            },
+            "current_balance": {
+              "hours": 45000000,
+              "days": 1.5625
+            },
+            "previous_carry_over": {
+              "hours": 14400000,
+              "days": 0.5
+            },
+            "current_accrued": {
+              "hours": 7200000
+            },
+            "taken": {
+              "hours": 0
+            },
+            "projected_balance": {
+              "hours": 50400000
+            },
+            "period": {
+              "start": "2026-09-01",
+              "end": "2026-09-30"
+            },
+            "expiring_date": {
+              "date": "2026-12-31"
+            },
+            "_precision": {
+              "day_precision": 2,
+              "hour_precision": 2
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "username": "ray.second",
+        "first_name": "Ray",
+        "last_name": "Account",
+        "id": 1102,
+        "suffix": "Sr.",
+        "employee_id": "U-1102",
+        "status": "Active",
+        "primary_account_id": 1101,
+        "ein": {
+          "id": 502
+        },
+        "ein_name": "Harbor Catering LLC",
+        "national_id_numbers": [
+          {
+            "type": "SSN",
+            "value": "666-45-1101",
+            "primary": true
+          }
+        ],
+        "address": {
+          "country": "USA",
+          "address_line_1": "9041 Juniper Way",
+          "city": "Denver",
+          "state_code": "CO",
+          "zip": "80202"
+        },
+        "use_separate_mailing_address": false,
+        "mailing_address": {
+          "country": "USA",
+          "address_line_1": "Ignored when not separate",
+          "city": "Denver"
+        },
+        "phones": {
+          "home_phone": "",
+          "cell_phone": "303-555-1821",
+          "preferred_phone": "WORK"
+        },
+        "dates": {
+          "hired": "2015-02-01",
+          "re_hired": "2024-03-04",
+          "terminated": "2020-10-31",
+          "seniority": "2015-02-01"
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/demographics",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "gender": "MALE",
+        "seasonal": null
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/pay-info",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "default_job": {
+          "id": 502
+        },
+        "job_last_changed": "2024-03-04",
+        "employee_type": {
+          "id": 61
+        },
+        "pay_type": {
+          "id": 72
+        },
+        "payroll_classification": "REGULAR",
+        "standard_work_day": 0
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/profiles",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "pay_period": [
+          {
+            "id": 9001,
+            "name": "Biweekly",
+            "effective_from": "2024-03-04"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/history",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "compensations": [
+          {
+            "id": 3,
+            "employee": {
+              "account_id": 1102
+            },
+            "effective_from": "2024-03-04",
+            "amount": 58000.0,
+            "hourly_pay": 27.8846,
+            "currency": "USD",
+            "amount_period": "YEAR",
+            "time": 144000000,
+            "time_period": "WEEK",
+            "num_pp_in_year": 26,
+            "_links": {
+              "self": "/compensation/3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/total",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "total_compensations": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/additional",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "additional_compensations": [
+          {
+            "id": 7,
+            "type": {
+              "id": 3
+            },
+            "account": {
+              "id": 1102
+            },
+            "effective_from": "2024-03-04",
+            "period": "YEAR",
+            "active": true,
+            "value": 5.0
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/contacts",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "contacts": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/tax-info",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "employee-tax-type": {
+          "W2": true,
+          "_1099": false
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/skills",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "employee_skills": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/training/certifications",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "employee_training_course_history": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/badges",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "badges": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/hr-custom-fields",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "hr_custom_fields": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/accrual/1/balances",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 403,
+      "body": {
+        "errors": [
+          {
+            "code": 403,
+            "message": "Forbidden"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/accrual/2/balances",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "accrual_balances": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "username": "riley.c",
+        "first_name": "Riley",
+        "last_name": "Brennan",
+        "id": 1103,
+        "employee_id": "U-1103",
+        "status": "Terminated",
+        "ein": {
+          "id": 501
+        },
+        "ein_name": "Harbor Kitchens Inc",
+        "national_id_numbers": [
+          {
+            "type": "NO_ID_NEEDED",
+            "primary": true
+          }
+        ],
+        "address": {
+          "country": "USA",
+          "address_line_1": "3513 Juniper Way",
+          "city": "Boulder",
+          "state_code": "CO",
+          "zip": "80301"
+        },
+        "phones": {
+          "cell_phone": "720-555-1371",
+          "home_phone": "720-555-1202",
+          "preferred_phone": "HOME"
+        },
+        "cost_centers_info": {
+          "defaults": [
+            {
+              "index": 2,
+              "value": {
+                "id": 8399
+              }
+            }
+          ]
+        },
+        "dates": {
+          "hired": "2022-05-02",
+          "terminated": "2025-08-15",
+          "deceased": "2025-08-20",
+          "birthday": "1980-01-31"
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/demographics",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "gender": "UNDEFINED"
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/pay-info",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "default_job": {
+          "id": 599
+        },
+        "employee_type": {
+          "id": 62
+        },
+        "pay_type": {
+          "id": 73
+        },
+        "payroll_classification": "REGULAR"
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/profiles",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "pay_period": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/history",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "compensations": [
+          {
+            "id": 4,
+            "employee": {
+              "account_id": 1103
+            },
+            "effective_from": "2022-05-02",
+            "amount": 4000.0,
+            "hourly_pay": 23.0769,
+            "currency": "USD",
+            "amount_period": "MONTH",
+            "time": 0,
+            "time_period": "MONTH",
+            "num_pp_in_year": 26,
+            "_links": {
+              "self": "/compensation/4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/total",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "total_compensations": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/compensation/additional",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "additional_compensations": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/contacts",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "contacts": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/tax-info",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "employee-tax-type": {
+          "W2": false,
+          "_1099": true,
+          "DRAW": false
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/skills",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "employee_skills": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/training/certifications",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "employee_training_course_history": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/badges",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "badges": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/hr-custom-fields",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "hr_custom_fields": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/accrual/1/balances",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "accrual_balances": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/accrual/2/balances",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 400,
+      "body": {
+        "errors": [
+          {
+            "code": 17605,
+            "message": "No accruals profile"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees",
+      "params": {
+        "cid": "7001"
+      },
+      "status": 200,
+      "body": {
+        "employees": [
+          {
+            "id": 1101,
+            "username": "quinn.moreau",
+            "employee_id": "U-1101",
+            "first_name": "Quinn",
+            "last_name": "Moreau",
+            "status": "Active",
+            "primary_account_id": 1101,
+            "ein_name": "Harbor Kitchens Inc",
+            "dates": {
+              "hired": "2019-06-03",
+              "terminated": null
+            },
+            "_links": {
+              "self": "/employees/1101"
+            }
+          },
+          {
+            "id": 1102,
+            "username": "ray.second",
+            "employee_id": "U-1102",
+            "first_name": "Ray",
+            "last_name": "Account",
+            "status": "Active",
+            "primary_account_id": 1101,
+            "ein_name": "Harbor Catering LLC",
+            "dates": {
+              "hired": "2015-02-01",
+              "terminated": "2020-10-31"
+            },
+            "_links": {
+              "self": "/employees/1102"
+            }
+          },
+          {
+            "id": 1103,
+            "username": "riley.c",
+            "employee_id": "U-1103",
+            "first_name": "Riley",
+            "last_name": "Brennan",
+            "status": "Terminated",
+            "primary_account_id": null,
+            "ein_name": "Harbor Kitchens Inc",
+            "dates": {
+              "hired": "2022-05-02",
+              "terminated": "2025-08-15"
+            },
+            "_links": {
+              "self": "/employees/1103"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/lookup/eins",
+      "params": {
+        "cid": "7001"
+      },
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 501,
+            "ein_name": "Harbor Kitchens Inc",
+            "ein_tax_id": "84-2210457",
+            "ein_country_id": "USA",
+            "ein_currency_code": "USD"
+          },
+          {
+            "id": 502,
+            "ein_name": "Harbor Catering LLC",
+            "ein_tax_id": "84-2210458",
+            "ein_country_id": "USA",
+            "ein_currency_code": "USD"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/lookup/deduction-codes",
+      "params": {
+        "cid": "7001"
+      },
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 801,
+            "code": "401K",
+            "name": "401(k)",
+            "external_id": "D-401K"
+          },
+          {
+            "id": 802,
+            "code": "MED",
+            "name": "Medical",
+            "external_id": "D-MED"
+          },
+          {
+            "id": 803,
+            "code": "DEN",
+            "name": "Dental",
+            "external_id": "D-DEN"
+          },
+          {
+            "id": 804,
+            "code": "401KL1",
+            "name": "401K Loan 1",
+            "external_id": "D-401KL1"
+          },
+          {
+            "id": 805,
+            "code": "GARN",
+            "name": "Garnishment",
+            "external_id": ""
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/lookup/earning-codes",
+      "params": {
+        "cid": "7001"
+      },
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "id": 701,
+            "code": "REG",
+            "name": "Regular",
+            "external_id": "E-REG"
+          },
+          {
+            "id": 702,
+            "code": "OT",
+            "name": "Overtime",
+            "external_id": "E-OT"
+          },
+          {
+            "id": 703,
+            "code": "GTL",
+            "name": "Group Term Life"
+          },
+          {
+            "id": 704,
+            "code": "TIPS",
+            "name": "Tips"
+          },
+          {
+            "id": 705,
+            "code": "SAL",
+            "name": "Salary"
+          },
+          {
+            "id": 706,
+            "code": "FEE",
+            "name": "Contractor fee"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/direct-deposits",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "deposits": [
+          {
+            "name": "Rent",
+            "description": "",
+            "type": "DIRECT_DEPOSIT",
+            "active": true,
+            "active_from": "2023-01-01",
+            "active_to": "2099-12-31",
+            "calc_method": {
+              "type": "FLAT_AMOUNT",
+              "display_name": "Flat Amount"
+            },
+            "routing_type": "ABA",
+            "cancel_pre_note": false,
+            "payroll_frequency": {
+              "type": "EVERY_PAY"
+            },
+            "currency": "USD",
+            "used_in_pay_statement": true,
+            "visible": true,
+            "is_paypal": false,
+            "arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+            "_documents_count": 0,
+            "_notes_count": 0,
+            "_links": {
+              "self": "/direct-deposits/61"
+            },
+            "id": 61,
+            "sequence": 1,
+            "amount": 100.0,
+            "account_type": "CHECKING",
+            "routing_number": "604100018",
+            "account_number": "330011",
+            "pre_note_status": "COMPLETE_OK",
+            "pre_note_sent_date": "2023-01-03",
+            "last_payroll": 100.0,
+            "year_to_date": 100.0
+          },
+          {
+            "name": "",
+            "description": "",
+            "type": "DIRECT_DEPOSIT",
+            "active": true,
+            "active_from": "1900-12-31",
+            "active_to": "2099-12-31",
+            "calc_method": {
+              "type": "NET_PAY",
+              "display_name": "% of Net Pay"
+            },
+            "routing_type": "ABA",
+            "cancel_pre_note": false,
+            "payroll_frequency": {
+              "type": "EVERY_SCHEDULED_PAY"
+            },
+            "currency": "USD",
+            "used_in_pay_statement": true,
+            "visible": true,
+            "is_paypal": false,
+            "arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+            "_documents_count": 0,
+            "_notes_count": 0,
+            "_links": {
+              "self": "/direct-deposits/62"
+            },
+            "id": 62,
+            "sequence": 2,
+            "percentage": 15.0,
+            "account_type": "SAVINGS",
+            "routing_number": "604100021",
+            "account_number": "330012",
+            "pre_note_status": "READY_TO_SEND",
+            "pre_note_expiration_date": "2025-02-01"
+          },
+          {
+            "name": "",
+            "description": "",
+            "type": "DIRECT_DEPOSIT",
+            "active": true,
+            "active_from": "2023-01-01",
+            "active_to": "2099-12-31",
+            "calc_method": {
+              "type": "FULL",
+              "display_name": "Full"
+            },
+            "routing_type": "ABA",
+            "cancel_pre_note": false,
+            "payroll_frequency": {
+              "type": "EVERY_PAY"
+            },
+            "currency": "USD",
+            "used_in_pay_statement": true,
+            "visible": true,
+            "is_paypal": false,
+            "arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+            "_documents_count": 0,
+            "_notes_count": 0,
+            "_links": {
+              "self": "/direct-deposits/63"
+            },
+            "id": 63,
+            "sequence": 3,
+            "account_type": "CHECKING",
+            "routing_number": "604100034",
+            "account_number": "7",
+            "pre_note_status": "COMPLETE_OK"
+          }
+        ],
+        "_total_count": 3,
+        "_routing_type": "ABA",
+        "is_eligible_for_paypal": false,
+        "_links": {
+          "add": "/employees/1101/direct-deposits"
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/direct-deposits",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "deposits": [
+          {
+            "name": "",
+            "description": "",
+            "type": "DIRECT_DEPOSIT",
+            "active": false,
+            "active_from": "2023-01-01",
+            "active_to": "2024-12-31",
+            "calc_method": {
+              "type": "GROSS_EARNING",
+              "display_name": "% of Gross Earnings"
+            },
+            "routing_type": "ABA",
+            "cancel_pre_note": false,
+            "payroll_frequency": {
+              "type": "MONTHLY"
+            },
+            "currency": "USD",
+            "used_in_pay_statement": true,
+            "visible": true,
+            "is_paypal": false,
+            "arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+            "_documents_count": 0,
+            "_notes_count": 0,
+            "_links": {
+              "self": "/direct-deposits/64"
+            },
+            "id": 64,
+            "sequence": 1,
+            "percentage": 10.0,
+            "account_type": "CHECKING",
+            "routing_number": "604100047",
+            "account_number": "990041",
+            "pre_note_status": "CANCELED"
+          },
+          {
+            "name": "",
+            "description": "",
+            "type": "DIRECT_DEPOSIT",
+            "active": true,
+            "active_from": "2023-01-01",
+            "active_to": "2099-12-31",
+            "calc_method": {
+              "type": "DIRECT_DEPOSIT_PER_OF_REMAINDER",
+              "display_name": "% of Remainder"
+            },
+            "routing_type": "ABA",
+            "cancel_pre_note": false,
+            "payroll_frequency": {
+              "type": "HOLIDAY_TABLE",
+              "holiday_type": "SPECIFIC_HOLIDAY_PROFILE",
+              "holiday_profile": {
+                "id": 12,
+                "display_name": "Company holidays"
+              }
+            },
+            "currency": "USD",
+            "used_in_pay_statement": true,
+            "visible": true,
+            "is_paypal": false,
+            "arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+            "_documents_count": 0,
+            "_notes_count": 0,
+            "_links": {
+              "self": "/direct-deposits/65"
+            },
+            "id": 65,
+            "sequence": 2,
+            "percentage": 50.0,
+            "account_type": "SAVINGS",
+            "routing_number": "604100050",
+            "account_number": "990042",
+            "pre_note_status": "NA"
+          },
+          {
+            "name": "",
+            "description": "",
+            "type": "DIRECT_DEPOSIT",
+            "active": true,
+            "active_from": "2023-01-01",
+            "active_to": "2099-12-31",
+            "calc_method": {
+              "type": "FULL",
+              "display_name": "Full"
+            },
+            "routing_type": "ABA",
+            "cancel_pre_note": false,
+            "payroll_frequency": {
+              "type": "EVERY_PAY"
+            },
+            "currency": "USD",
+            "used_in_pay_statement": true,
+            "visible": true,
+            "is_paypal": false,
+            "arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+            "_documents_count": 0,
+            "_notes_count": 0,
+            "_links": {
+              "self": "/direct-deposits/66"
+            },
+            "id": 66,
+            "sequence": 3,
+            "account_type": "CHECKING",
+            "routing_number": "604100063",
+            "account_number": "990043",
+            "pre_note_status": "SENT",
+            "pre_note_sent_date": "2025-01-02"
+          }
+        ],
+        "_total_count": 3,
+        "_routing_type": "ABA",
+        "is_eligible_for_paypal": false,
+        "_links": {
+          "add": "/employees/1102/direct-deposits"
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/direct-deposits",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "deposits": [],
+        "_total_count": 0,
+        "_routing_type": "ABA",
+        "is_eligible_for_paypal": false,
+        "_links": {
+          "add": "/employees/1103/direct-deposits"
+        }
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/benefits",
+      "params": {
+        "cid": "7001",
+        "aid": "1101"
+      },
+      "status": 200,
+      "body": {
+        "benefits": [
+          {
+            "employee": {
+              "account_id": 1101
+            },
+            "coverage_effective_to": "2099-12-31",
+            "id": 71,
+            "name": "Medical PPO",
+            "coverage_level": "Employee",
+            "benefit_plan": {
+              "id": 91,
+              "currency": "USD"
+            },
+            "coverage_effective_from": "2025-01-01"
+          },
+          {
+            "employee": {
+              "account_id": 1101
+            },
+            "coverage_effective_to": "2025-12-31",
+            "id": 72,
+            "name": "Dental",
+            "coverage_level": "Waived",
+            "benefit_plan": {
+              "id": 92,
+              "currency": "USD"
+            },
+            "coverage_effective_from": "2025-01-01"
+          },
+          {
+            "employee": {
+              "account_id": 1101
+            },
+            "coverage_effective_to": "2099-12-31",
+            "id": 73,
+            "name": "401k",
+            "coverage_level": "Enter total annual contribution",
+            "benefit_plan": {
+              "id": 93
+            },
+            "coverage_effective_from": "2023-01-01"
+          },
+          {
+            "employee": {
+              "account_id": 1101
+            },
+            "coverage_effective_to": "2099-12-31",
+            "id": 74,
+            "name": "Vision",
+            "coverage_level": "Employee + Family",
+            "benefit_plan": {
+              "id": 94,
+              "currency": "USD"
+            },
+            "coverage_effective_from": "2025-01-01"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/benefits",
+      "params": {
+        "cid": "7001",
+        "aid": "1102"
+      },
+      "status": 200,
+      "body": {
+        "benefits": [
+          {
+            "employee": {
+              "account_id": 1102
+            },
+            "coverage_effective_to": "2099-12-31",
+            "id": 75,
+            "name": "Life",
+            "coverage_level": "75% Option",
+            "benefit_plan": {
+              "id": 95,
+              "currency": "USD"
+            },
+            "coverage_effective_from": "2024-03-04"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/employees/{aid}/benefits",
+      "params": {
+        "cid": "7001",
+        "aid": "1103"
+      },
+      "status": 200,
+      "body": {
+        "benefits": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls",
+      "params": {
+        "cid": "7001",
+        "pay_date_from": "2024-01-17",
+        "pay_date_to": "2025-01-15"
+      },
+      "status": 200,
+      "body": {
+        "payrolls": [
+          {
+            "id": 3001,
+            "name": "Biweekly 2025-01",
+            "start_date": "2024-12-22",
+            "end_date": "2025-01-04",
+            "pay_date": "2025-01-10",
+            "type": {
+              "id": 1,
+              "display_name": "Regular"
+            },
+            "status": "OPEN",
+            "ein": {
+              "id": 501,
+              "ein_name": "Harbor Kitchens Inc",
+              "ein_tax_id": "84-2210457",
+              "ein_country_id": "USA"
+            },
+            "billable": true,
+            "direct_deposit_date": "2025-01-10",
+            "dflt_pay_statement_type_id": 18432,
+            "dflt_pay_stub_note": "",
+            "_links": {
+              "self": "/payrolls/3001"
+            }
+          },
+          {
+            "id": 3002,
+            "name": "Biweekly 2024-26",
+            "start_date": "2024-12-08",
+            "end_date": "2024-12-21",
+            "pay_date": "2024-12-27",
+            "type": {
+              "id": 1,
+              "display_name": "Regular"
+            },
+            "status": "FINALIZED",
+            "ein": {
+              "id": 501,
+              "ein_name": "Harbor Kitchens Inc",
+              "ein_tax_id": "84-2210457",
+              "ein_country_id": "USA"
+            },
+            "billable": true,
+            "direct_deposit_date": "2024-12-27",
+            "dflt_pay_statement_type_id": 18432,
+            "dflt_pay_stub_note": "",
+            "_links": {
+              "self": "/payrolls/3002"
+            }
+          },
+          {
+            "id": 3003,
+            "name": "Catering 2025-01",
+            "start_date": "2024-12-22",
+            "end_date": "2025-01-04",
+            "pay_date": "2025-01-10",
+            "type": {
+              "id": 1,
+              "display_name": "Regular"
+            },
+            "status": "OPEN_FAILED",
+            "ein": {
+              "id": 502,
+              "ein_name": "Harbor Catering LLC",
+              "ein_tax_id": "84-2210458",
+              "ein_country_id": "USA"
+            },
+            "billable": true,
+            "direct_deposit_date": "2025-01-10",
+            "dflt_pay_statement_type_id": 18432,
+            "dflt_pay_stub_note": "",
+            "_links": {
+              "self": "/payrolls/3003"
+            }
+          },
+          {
+            "id": 3004,
+            "name": "Year-end bonus",
+            "start_date": "2024-12-01",
+            "end_date": "2024-12-31",
+            "pay_date": "2025-01-15",
+            "type": {
+              "id": 4,
+              "display_name": "Bonus"
+            },
+            "status": "NEW",
+            "ein": {
+              "id": 502,
+              "ein_name": "Harbor Catering LLC",
+              "ein_tax_id": "84-2210458",
+              "ein_country_id": "USA"
+            },
+            "billable": true,
+            "direct_deposit_date": "2025-01-15",
+            "dflt_pay_statement_type_id": 18432,
+            "dflt_pay_stub_note": "",
+            "_links": {
+              "self": "/payrolls/3004"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}",
+      "params": {
+        "cid": "7001",
+        "id": "3001"
+      },
+      "status": 200,
+      "body": {
+        "id": 3001,
+        "name": "Biweekly 2025-01",
+        "start_date": "2024-12-22",
+        "end_date": "2025-01-04",
+        "pay_date": "2025-01-10",
+        "type": {
+          "id": 1,
+          "display_name": "Regular"
+        },
+        "status": "OPEN",
+        "ein": {
+          "id": 501,
+          "ein_name": "Harbor Kitchens Inc",
+          "ein_tax_id": "84-2210457",
+          "ein_country_id": "USA"
+        },
+        "billable": true
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}",
+      "params": {
+        "cid": "7001",
+        "id": "3002"
+      },
+      "status": 200,
+      "body": {
+        "id": 3002,
+        "name": "Biweekly 2024-26",
+        "start_date": "2024-12-08",
+        "end_date": "2024-12-21",
+        "pay_date": "2024-12-27",
+        "type": {
+          "id": 1,
+          "display_name": "Regular"
+        },
+        "status": "FINALIZED",
+        "ein": {
+          "id": 501,
+          "ein_name": "Harbor Kitchens Inc",
+          "ein_tax_id": "84-2210457",
+          "ein_country_id": "USA"
+        },
+        "billable": true,
+        "date_finalized": "2024-12-26"
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}",
+      "params": {
+        "cid": "7001",
+        "id": "3003"
+      },
+      "status": 200,
+      "body": {
+        "id": 3003,
+        "name": "Catering 2025-01",
+        "start_date": "2024-12-22",
+        "end_date": "2025-01-04",
+        "pay_date": "2025-01-10",
+        "type": {
+          "id": 1,
+          "display_name": "Regular"
+        },
+        "status": "OPEN_FAILED",
+        "ein": {
+          "id": 502,
+          "ein_name": "Harbor Catering LLC",
+          "ein_tax_id": "84-2210458",
+          "ein_country_id": "USA"
+        },
+        "billable": true
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/batches",
+      "params": {
+        "cid": "7001",
+        "id": "3001"
+      },
+      "status": 200,
+      "body": {
+        "batches": [
+          {
+            "id": 4001,
+            "display_name": "Main batch",
+            "status": "OPEN",
+            "master": true,
+            "type": {
+              "id": 1,
+              "display_name": "Regular",
+              "active": true
+            }
+          },
+          {
+            "id": 4002,
+            "display_name": "Tips import",
+            "status": "CLOSED",
+            "master": false,
+            "type": {
+              "id": 3,
+              "display_name": "Import",
+              "active": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/pay-statements",
+      "params": {
+        "cid": "7001",
+        "id": "3001"
+      },
+      "status": 200,
+      "body": {
+        "pay_statements": [
+          {
+            "id": 5001,
+            "employee": {
+              "account_id": 1101
+            },
+            "pay_date": "2025-01-10",
+            "status": "OPEN",
+            "type": {
+              "id": 18432,
+              "display_name": "Regular"
+            },
+            "pay_period_start": "2024-12-22",
+            "pay_period_end": "2025-01-04",
+            "calcUpto": "NET",
+            "emptyEarning": false,
+            "_links": {
+              "self": "/payrolls/3001/pay-statements/5001"
+            }
+          },
+          {
+            "id": 5002,
+            "employee": {
+              "account_id": 1103
+            },
+            "pay_date": "2025-01-10",
+            "status": "OPEN",
+            "type": {
+              "id": 18432,
+              "display_name": "Regular"
+            },
+            "pay_period_start": "2024-12-22",
+            "pay_period_end": "2025-01-04",
+            "calcUpto": "NET",
+            "emptyEarning": false,
+            "_links": {
+              "self": "/payrolls/3001/pay-statements/5002"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}",
+      "params": {
+        "cid": "7001",
+        "payroll_id": "3001",
+        "id": "5001"
+      },
+      "status": 200,
+      "body": {
+        "id": 5001,
+        "employee": {
+          "account_id": 1101
+        },
+        "pay_date": "2025-01-10",
+        "status": "OPEN",
+        "type": {
+          "id": 18432,
+          "display_name": "Regular"
+        },
+        "pay_period_start": "2024-12-22",
+        "pay_period_end": "2025-01-04",
+        "calcUpto": "NET",
+        "emptyEarning": false,
+        "earnings": [
+          {
+            "id": 1,
+            "type_name": "Earning",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "earning": {
+              "id": 701,
+              "code": "REG",
+              "name": "Regular"
+            },
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "shift": {
+              "id": 1,
+              "name": "Day"
+            },
+            "cost_centers": [
+              {
+                "index": 0,
+                "value": {
+                  "id": 8100
+                }
+              }
+            ],
+            "hours": 288000000,
+            "quantity": 0,
+            "base_rate": 19.5,
+            "ee_amount": 1560.0
+          },
+          {
+            "id": 2,
+            "type_name": "Earning (Auto)",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "earning": {
+              "id": 702,
+              "code": "OT",
+              "name": "Overtime"
+            },
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "shift": {
+              "id": 1,
+              "name": "Day"
+            },
+            "cost_centers": [
+              {
+                "index": 0,
+                "value": {
+                  "id": 8100
+                }
+              }
+            ],
+            "hours": 7200000,
+            "quantity": 0,
+            "base_rate": 29.25,
+            "ee_amount": 58.5
+          },
+          {
+            "id": 3,
+            "type_name": "Earning (Fringe, Auto)",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "earning": {
+              "id": 703,
+              "code": "GTL",
+              "name": "Group Term Life"
+            },
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "shift": {
+              "id": 1,
+              "name": "Day"
+            },
+            "cost_centers": [
+              {
+                "index": 0,
+                "value": {
+                  "id": 8100
+                }
+              }
+            ],
+            "ee_amount": 3.1
+          },
+          {
+            "id": 4,
+            "type_name": "Earning (Auto Reduce)",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "earning": {
+              "id": 704,
+              "code": "TIPS",
+              "name": "Tips"
+            },
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "shift": {
+              "id": 1,
+              "name": "Day"
+            },
+            "cost_centers": [
+              {
+                "index": 0,
+                "value": {
+                  "id": 8100
+                }
+              }
+            ],
+            "hours": 0,
+            "quantity": 0
+          }
+        ],
+        "deductions": [
+          {
+            "id": 11,
+            "type_name": "Deduction",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "deduction": {
+              "id": 801,
+              "code": "401K",
+              "name": "401(k)"
+            },
+            "cost_centers": [],
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "ee_amount": 97.11,
+            "quantity": 0,
+            "base_rate": 0,
+            "er_amount": 48.56,
+            "vendor": {
+              "id": 7,
+              "name": "Harbor 401k Trust"
+            }
+          },
+          {
+            "id": 12,
+            "type_name": "Deduction",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "deduction": {
+              "id": 802,
+              "code": "MED",
+              "name": "Medical"
+            },
+            "cost_centers": [],
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "ee_amount": 45.0,
+            "quantity": 0,
+            "base_rate": 0,
+            "er_amount": 150.0
+          },
+          {
+            "id": 13,
+            "type_name": "Deduction",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "deduction": {
+              "id": 804,
+              "code": "401KL1",
+              "name": "401K Loan 1"
+            },
+            "cost_centers": [],
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "ee_amount": 25.0,
+            "quantity": 0,
+            "base_rate": 0
+          },
+          {
+            "id": 14,
+            "type_name": "Garnishment",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "deduction": {
+              "id": 805,
+              "code": "GARN",
+              "name": "Garnishment"
+            },
+            "cost_centers": [],
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "ee_amount": 50.0,
+            "quantity": 0,
+            "base_rate": 0
+          }
+        ],
+        "taxes": [
+          {
+            "id": 21,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 601,
+              "code": "FIT",
+              "name": "Federal Income Tax",
+              "abbrev": "FIT",
+              "external_id": "T-FIT"
+            },
+            "ee_amount": 120.0,
+            "ee_subject_wage": 1476.39,
+            "ee_gross_wage": 1476.39,
+            "ee_gross_subject_wage": 1476.39
+          },
+          {
+            "id": 22,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 602,
+              "code": "SS",
+              "name": "Social Security",
+              "abbrev": "SS",
+              "external_id": "T-SS"
+            },
+            "ee_amount": 97.56,
+            "ee_subject_wage": 1573.5,
+            "ee_gross_wage": 1573.5,
+            "ee_gross_subject_wage": 1573.5,
+            "er_amount": 97.56,
+            "er_subject_wage": 1573.5,
+            "er_gross_wage": 1573.5,
+            "er_gross_subject_wage": 1573.5
+          },
+          {
+            "id": 23,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 603,
+              "code": "MED",
+              "name": "Medicare",
+              "abbrev": "MED",
+              "external_id": "T-MED"
+            },
+            "ee_amount": 22.82,
+            "ee_subject_wage": 1573.5,
+            "ee_gross_wage": 1573.5,
+            "ee_gross_subject_wage": 1573.5,
+            "er_amount": 22.82,
+            "er_subject_wage": 1573.5,
+            "er_gross_wage": 1573.5,
+            "er_gross_subject_wage": 1573.5
+          },
+          {
+            "id": 24,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 604,
+              "code": "AMED",
+              "name": "Additional Medicare",
+              "abbrev": "AMED",
+              "external_id": "T-AMED"
+            },
+            "ee_subject_wage": 1573.5,
+            "ee_gross_wage": 1573.5,
+            "ee_gross_subject_wage": 1573.5
+          },
+          {
+            "id": 25,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 605,
+              "code": "FUTA",
+              "name": "Federal Unemployment Tax",
+              "abbrev": "FUTA",
+              "external_id": "T-FUTA"
+            },
+            "er_amount": 9.44,
+            "er_subject_wage": 1573.5,
+            "er_gross_wage": 1573.5,
+            "er_gross_subject_wage": 1573.5
+          },
+          {
+            "id": 26,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 606,
+              "code": "WI",
+              "name": "Wisconsin",
+              "abbrev": "WI",
+              "external_id": "T-WI"
+            },
+            "ee_amount": 78.25,
+            "ee_subject_wage": 1476.39,
+            "ee_gross_wage": 1476.39,
+            "ee_gross_subject_wage": 1476.39
+          },
+          {
+            "id": 27,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 607,
+              "code": "WISUI",
+              "name": "ER SUTA Wisconsin",
+              "abbrev": "WISUI",
+              "external_id": "T-WISUI"
+            },
+            "er_amount": 48.78,
+            "er_subject_wage": 1573.5,
+            "er_gross_wage": 1573.5,
+            "er_gross_subject_wage": 1573.5
+          }
+        ],
+        "payments": [
+          {
+            "id": 31,
+            "type_name": "Direct Deposit",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "hours": 0,
+            "quantity": 0,
+            "ee_amount": 100.0
+          },
+          {
+            "id": 32,
+            "type_name": "Direct Deposit",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "hours": 0,
+            "quantity": 0,
+            "ee_amount": 982.76
+          },
+          {
+            "id": 33,
+            "type_name": "Fringe",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "hours": 0,
+            "quantity": 0,
+            "ee_amount": 3.1
+          }
+        ],
+        "messages": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}",
+      "params": {
+        "cid": "7001",
+        "payroll_id": "3001",
+        "id": "5002"
+      },
+      "status": 200,
+      "body": {
+        "id": 5002,
+        "employee": {
+          "account_id": 1103
+        },
+        "pay_date": "2025-01-10",
+        "status": "OPEN",
+        "type": {
+          "id": 18432,
+          "display_name": "Regular"
+        },
+        "pay_period_start": "2024-12-22",
+        "pay_period_end": "2025-01-04",
+        "calcUpto": "NET",
+        "emptyEarning": false,
+        "earnings": [
+          {
+            "id": 1,
+            "type_name": "Earning",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "earning": {
+              "id": 706,
+              "code": "FEE",
+              "name": "Contractor fee"
+            },
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "shift": {
+              "id": 1,
+              "name": "Day"
+            },
+            "cost_centers": [
+              {
+                "index": 0,
+                "value": {
+                  "id": 8100
+                }
+              }
+            ],
+            "ee_amount": 1000.0
+          }
+        ],
+        "deductions": [],
+        "taxes": [],
+        "payments": [
+          {
+            "id": 31,
+            "type_name": "Check",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "hours": 0,
+            "quantity": 0
+          }
+        ],
+        "messages": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/pay-statements",
+      "params": {
+        "cid": "7001",
+        "id": "3002"
+      },
+      "status": 200,
+      "body": {
+        "pay_statements": [
+          {
+            "id": 5003,
+            "employee": {
+              "account_id": 1101
+            },
+            "pay_date": "2024-12-27",
+            "status": "FINALIZED",
+            "type": {
+              "id": 18433,
+              "display_name": "Manual"
+            },
+            "pay_period_start": "2024-12-08",
+            "pay_period_end": "2024-12-21",
+            "calcUpto": "NET",
+            "emptyEarning": false,
+            "_links": {
+              "self": "/payrolls/3002/pay-statements/5003"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}",
+      "params": {
+        "cid": "7001",
+        "payroll_id": "3002",
+        "id": "5003"
+      },
+      "status": 200,
+      "body": {
+        "id": 5003,
+        "employee": {
+          "account_id": 1101
+        },
+        "pay_date": "2024-12-27",
+        "status": "FINALIZED",
+        "type": {
+          "id": 18433,
+          "display_name": "Manual"
+        },
+        "pay_period_start": "2024-12-08",
+        "pay_period_end": "2024-12-21",
+        "calcUpto": "NET",
+        "emptyEarning": false,
+        "earnings": [
+          {
+            "id": 1,
+            "type_name": "Earning",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "earning": {
+              "id": 701,
+              "code": "REG",
+              "name": "Regular"
+            },
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "shift": {
+              "id": 1,
+              "name": "Day"
+            },
+            "cost_centers": [
+              {
+                "index": 0,
+                "value": {
+                  "id": 8100
+                }
+              }
+            ],
+            "hours": 273600000,
+            "quantity": 0,
+            "base_rate": 19.5,
+            "ee_amount": 1482.0
+          }
+        ],
+        "deductions": [],
+        "taxes": [
+          {
+            "id": 21,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 601,
+              "code": "FIT",
+              "name": "Federal Income Tax",
+              "abbrev": "FIT",
+              "external_id": "T-FIT"
+            },
+            "ee_amount": 110.0,
+            "ee_subject_wage": 1482.0,
+            "ee_gross_wage": 1482.0,
+            "ee_gross_subject_wage": 1482.0
+          },
+          {
+            "id": 22,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 608,
+              "code": "OASDI",
+              "name": "OASDI",
+              "abbrev": "OASDI",
+              "external_id": "T-OASDI"
+            },
+            "ee_amount": 91.88,
+            "ee_subject_wage": 1482.0,
+            "ee_gross_wage": 1482.0,
+            "ee_gross_subject_wage": 1482.0,
+            "er_amount": 91.88,
+            "er_subject_wage": 1482.0,
+            "er_gross_wage": 1482.0,
+            "er_gross_subject_wage": 1482.0
+          },
+          {
+            "id": 23,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 603,
+              "code": "MED",
+              "name": "Medicare",
+              "abbrev": "MED",
+              "external_id": "T-MED"
+            },
+            "ee_amount": 21.49,
+            "ee_subject_wage": 1482.0,
+            "ee_gross_wage": 1482.0,
+            "ee_gross_subject_wage": 1482.0,
+            "er_amount": 21.49,
+            "er_subject_wage": 1482.0,
+            "er_gross_wage": 1482.0,
+            "er_gross_subject_wage": 1482.0
+          }
+        ],
+        "payments": [
+          {
+            "id": 31,
+            "type_name": "Direct Deposit",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "hours": 0,
+            "quantity": 0,
+            "ee_amount": 1258.63
+          }
+        ],
+        "messages": []
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/pay-statements",
+      "params": {
+        "cid": "7001",
+        "id": "3003"
+      },
+      "status": 200,
+      "body": {
+        "pay_statements": [
+          {
+            "id": 5004,
+            "employee": {
+              "account_id": 1102
+            },
+            "pay_date": "2025-01-10",
+            "status": "OPEN",
+            "type": {
+              "id": 18432,
+              "display_name": "Regular"
+            },
+            "pay_period_start": "2024-12-22",
+            "pay_period_end": "2025-01-04",
+            "calcUpto": "NET",
+            "emptyEarning": false,
+            "_links": {
+              "self": "/payrolls/3003/pay-statements/5004"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}",
+      "params": {
+        "cid": "7001",
+        "payroll_id": "3003",
+        "id": "5004"
+      },
+      "status": 200,
+      "body": {
+        "id": 5004,
+        "employee": {
+          "account_id": 1102
+        },
+        "pay_date": "2025-01-10",
+        "status": "OPEN",
+        "type": {
+          "id": 18432,
+          "display_name": "Regular"
+        },
+        "pay_period_start": "2024-12-22",
+        "pay_period_end": "2025-01-04",
+        "calcUpto": "NET",
+        "emptyEarning": false,
+        "earnings": [
+          {
+            "id": 1,
+            "type_name": "Earning",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "earning": {
+              "id": 705,
+              "code": "SAL",
+              "name": "Salary"
+            },
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "shift": {
+              "id": 1,
+              "name": "Day"
+            },
+            "cost_centers": [
+              {
+                "index": 0,
+                "value": {
+                  "id": 8100
+                }
+              }
+            ],
+            "base_rate": 1846.15,
+            "ee_amount": 1846.15
+          }
+        ],
+        "deductions": [
+          {
+            "id": 11,
+            "type_name": "Deduction",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "deduction": {
+              "id": 803,
+              "code": "DEN",
+              "name": "Dental"
+            },
+            "cost_centers": [],
+            "workers_comp_code": {
+              "external_id": "9079"
+            },
+            "ee_amount": 12.5,
+            "quantity": 0,
+            "base_rate": 0
+          }
+        ],
+        "taxes": [
+          {
+            "id": 21,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 601,
+              "code": "FIT",
+              "name": "Federal Income Tax",
+              "abbrev": "FIT",
+              "external_id": "T-FIT"
+            },
+            "ee_amount": 190.0,
+            "ee_subject_wage": 1833.65,
+            "ee_gross_wage": 1833.65,
+            "ee_gross_subject_wage": 1833.65
+          },
+          {
+            "id": 22,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 602,
+              "code": "SS",
+              "name": "Social Security",
+              "abbrev": "SS",
+              "external_id": "T-SS"
+            },
+            "ee_amount": 113.69,
+            "ee_subject_wage": 1833.65,
+            "ee_gross_wage": 1833.65,
+            "ee_gross_subject_wage": 1833.65,
+            "er_amount": 113.69,
+            "er_subject_wage": 1833.65,
+            "er_gross_wage": 1833.65,
+            "er_gross_subject_wage": 1833.65
+          },
+          {
+            "id": 23,
+            "type_name": "Tax",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "company_tax": {
+              "id": 603,
+              "code": "MED",
+              "name": "Medicare",
+              "abbrev": "MED",
+              "external_id": "T-MED"
+            },
+            "ee_amount": 26.59,
+            "ee_subject_wage": 1833.65,
+            "ee_gross_wage": 1833.65,
+            "ee_gross_subject_wage": 1833.65,
+            "er_amount": 26.59,
+            "er_subject_wage": 1833.65,
+            "er_gross_wage": 1833.65,
+            "er_gross_subject_wage": 1833.65
+          }
+        ],
+        "payments": [
+          {
+            "id": 31,
+            "type_name": "Direct Deposit",
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            },
+            "hours": 0,
+            "quantity": 0,
+            "ee_amount": 1503.37
+          }
+        ],
+        "messages": [
+          {
+            "id": 1,
+            "type_name": "Warning",
+            "message": {
+              "text": "Payroll failed to open for one EIN",
+              "severity": "WARNING"
+            },
+            "batch": {
+              "id": 4001,
+              "display_name": "Main batch"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/v2/companies/{cid}/payrolls/{id}/pay-statements",
+      "params": {
+        "cid": "7001",
+        "id": "3004"
+      },
+      "status": 200,
+      "body": {
+        "pay_statements": []
+      }
+    }
+  ]
+}

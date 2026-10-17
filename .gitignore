@@ -13,3 +13,5 @@ htmlcov/
 node_modules/
 dist/
 build/
+# Live demo output and raw bundles: personal data, never committed (D-009, D-092)
+live_data/

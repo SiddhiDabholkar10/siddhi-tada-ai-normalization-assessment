@@ -1,0 +1,5693 @@
+{
+  "format": "normalization-bundle/1",
+  "provider": "prismhr",
+  "tenant_id": "900001",
+  "fixture": {
+    "synthetic": true,
+    "generator": "normalization.fixtures",
+    "seed": 20261016,
+    "note": "Synthetic data. Names, numbers and identifiers are invented; SSNs use area 666, which is never issued."
+  },
+  "responses": [
+    {
+      "route": "/employee/v1/getEmployeeList",
+      "params": {
+        "clientId": "1001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "employeeList": {
+          "employeeId": [
+            "P00001",
+            "P00002",
+            "P00003"
+          ]
+        }
+      }
+    },
+    {
+      "route": "/clientMaster/v1/getClientCodes",
+      "params": {
+        "clientId": "1001",
+        "options": "Deduction,Pay,Status,Type,PGroups,Department,Division,Location,Job,Reason,Union,Workgroup,BenefitGroup,RetirementPlan,Ethnic,Relation,PositionClass,Shift"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "clientCodes": {
+          "clientId": "1001",
+          "statusCode": [
+            {
+              "description": "Active",
+              "id": "A",
+              "statusClass": "A"
+            },
+            {
+              "description": "Leave of absence",
+              "id": "LOA",
+              "statusClass": "L"
+            },
+            {
+              "description": "Terminated",
+              "id": "T",
+              "statusClass": "T"
+            }
+          ],
+          "typeCode": [
+            {
+              "abbrDescription": "FT",
+              "description": "Full time",
+              "id": "FT",
+              "typeClass": "F",
+              "seasonal": false
+            },
+            {
+              "abbrDescription": "PTS",
+              "description": "Part time seasonal",
+              "id": "PTS",
+              "typeClass": "P",
+              "seasonal": true
+            },
+            {
+              "abbrDescription": "IC",
+              "description": "Independent contractor",
+              "id": "IC",
+              "typeClass": "C",
+              "seasonal": false
+            }
+          ],
+          "jobCode": [
+            {
+              "alaskaJobCode": "",
+              "glSegmentCode": "",
+              "id": "ACCT",
+              "jobClass": "PROF",
+              "jobDescription": "Accounting",
+              "jobTitle": "Staff Accountant",
+              "payGrade": "",
+              "perDiemPct": "",
+              "prevailWage": "",
+              "priceCode": "",
+              "probationDays": "",
+              "unionCodeOverride": ""
+            },
+            {
+              "alaskaJobCode": "",
+              "glSegmentCode": "",
+              "id": "WHSE",
+              "jobClass": "LABR",
+              "jobDescription": "Warehouse",
+              "jobTitle": "Warehouse Associate",
+              "payGrade": "",
+              "perDiemPct": "",
+              "prevailWage": "",
+              "priceCode": "",
+              "probationDays": "",
+              "unionCodeOverride": ""
+            }
+          ],
+          "positionClass": [
+            {
+              "description": "Professional",
+              "eeoJobClass": "PROFESS",
+              "eeoJobGroup": "2",
+              "id": "PROF"
+            },
+            {
+              "description": "Laborer",
+              "eeoJobClass": "LABOR",
+              "eeoJobGroup": "9",
+              "id": "LABR"
+            }
+          ],
+          "departmentCode": [
+            {
+              "deptName": "Finance",
+              "glCode": "",
+              "glSegment2": "",
+              "id": "FIN",
+              "perDiemPct": ""
+            },
+            {
+              "deptName": "Operations",
+              "glCode": "",
+              "glSegment2": "",
+              "id": "OPS",
+              "perDiemPct": ""
+            }
+          ],
+          "divisionCode": [
+            {
+              "divTransferAcct": "",
+              "divisionName": "Eastern Division",
+              "glCode": "",
+              "glSegment2": "",
+              "glSegment3": "",
+              "id": "EAST"
+            }
+          ],
+          "projectCode": [
+            {
+              "certPayrollRptFmt": "",
+              "description": "Warehouse expansion",
+              "id": "PRJ1",
+              "projectCity": "",
+              "projectClass": "",
+              "projectClassDescription": "",
+              "projectState": "",
+              "unionCode": "",
+              "wageDecisionNumber": ""
+            }
+          ],
+          "reasonCode": [
+            {
+              "description": "Voluntary quit",
+              "id": "VQ",
+              "validActions": "T",
+              "terminationType": "V"
+            },
+            {
+              "description": "Deceased",
+              "id": "DEC",
+              "validActions": "T",
+              "terminationType": "N"
+            }
+          ],
+          "ethnicCode": [
+            {
+              "description": "White",
+              "id": "W1",
+              "reportCode": "C"
+            },
+            {
+              "description": "Hispanic or Latino",
+              "id": "HL",
+              "reportCode": "H"
+            },
+            {
+              "description": "Not specified",
+              "id": "NS",
+              "reportCode": "X"
+            }
+          ],
+          "citizenshipStatusCodes": [
+            {
+              "code": "Z01",
+              "description": "A citizen of the United States"
+            },
+            {
+              "code": "Z03",
+              "description": "A lawful permanent resident"
+            }
+          ],
+          "relationCodes": [
+            {
+              "code": "S",
+              "description": "Spouse"
+            },
+            {
+              "code": "C",
+              "description": "Child"
+            },
+            {
+              "code": "F",
+              "description": "Friend"
+            }
+          ],
+          "skillCodes": [
+            {
+              "code": "FORK",
+              "description": "Forklift operation"
+            }
+          ],
+          "payGroups": [
+            {
+              "description": "Biweekly",
+              "payGroupCode": "BW"
+            },
+            {
+              "description": "Monthly (no schedule)",
+              "payGroupCode": "MO"
+            }
+          ],
+          "locationCode": [
+            {
+              "addressLine1": "400 Quarry Ln",
+              "addressLine2": "Suite 210",
+              "city": "Salt Lake City",
+              "county": "Salt Lake",
+              "geoCode": "450351000",
+              "id": "SLC",
+              "locationName": "Salt Lake City",
+              "state": "UT",
+              "workCompState": "UT",
+              "zipCode": "84111",
+              "zipSuffix": "3302",
+              "locationObsolete": false,
+              "locationContacts": [
+                {
+                  "contactName": "Dana Reyes",
+                  "contactDescription": "Site manager",
+                  "emailAddress": "dana.site@example.org",
+                  "telephone": "801-555-1440",
+                  "fax": ""
+                }
+              ]
+            },
+            {
+              "addressLine1": "9 Harbor Rd",
+              "addressLine2": "",
+              "city": "Ogden",
+              "county": "Weber",
+              "geoCode": "450571000",
+              "id": "OGD",
+              "locationName": "Ogden (closed)",
+              "state": "UT",
+              "workCompState": "UT",
+              "zipCode": "84401",
+              "zipSuffix": "",
+              "obsoleteDate": "2022-12-31",
+              "locationObsolete": true,
+              "locationContacts": []
+            }
+          ],
+          "payCode": [
+            {
+              "calcMethod": "H",
+              "compensationType": "C",
+              "id": "REG",
+              "payClass": "E",
+              "payDescription": "Regular",
+              "payReason": "H",
+              "payType": "R",
+              "w2FormBox": "",
+              "w2FormCode": "",
+              "workCompTaxable": "Y",
+              "flag401k": true,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": "S"
+            },
+            {
+              "calcMethod": "H",
+              "compensationType": "C",
+              "id": "OT",
+              "payClass": "E",
+              "payDescription": "Overtime",
+              "payReason": "H",
+              "payType": "R",
+              "w2FormBox": "",
+              "w2FormCode": "",
+              "workCompTaxable": "Y",
+              "flag401k": true,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": "P"
+            },
+            {
+              "calcMethod": "H",
+              "compensationType": "C",
+              "id": "VAC",
+              "payClass": "E",
+              "payDescription": "Vacation",
+              "payReason": "H",
+              "payType": "R",
+              "w2FormBox": "",
+              "w2FormCode": "",
+              "workCompTaxable": "Y",
+              "flag401k": true,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": "S"
+            },
+            {
+              "calcMethod": "H",
+              "compensationType": "C",
+              "id": "PIECE",
+              "payClass": "E",
+              "payDescription": "Piece rate",
+              "payReason": "U",
+              "payType": "R",
+              "w2FormBox": "",
+              "w2FormCode": "",
+              "workCompTaxable": "Y",
+              "flag401k": true,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": "O"
+            },
+            {
+              "calcMethod": "H",
+              "compensationType": "C",
+              "id": "CONTR",
+              "payClass": "E",
+              "payDescription": "Contract fee",
+              "payReason": "U",
+              "payType": "R",
+              "w2FormBox": "",
+              "w2FormCode": "",
+              "workCompTaxable": "Y",
+              "flag401k": false,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": "S"
+            },
+            {
+              "calcMethod": "H",
+              "compensationType": "N",
+              "id": "TIPS",
+              "payClass": "RT",
+              "payDescription": "Reported tips",
+              "payReason": "U",
+              "payType": "R",
+              "w2FormBox": "",
+              "w2FormCode": "",
+              "workCompTaxable": "Y",
+              "flag401k": true,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": "S"
+            },
+            {
+              "calcMethod": "H",
+              "compensationType": "C",
+              "id": "MILE",
+              "payClass": "R",
+              "payDescription": "Mileage",
+              "payReason": "U",
+              "payType": "R",
+              "w2FormBox": "",
+              "w2FormCode": "",
+              "workCompTaxable": "Y",
+              "flag401k": true,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": "D",
+              "obsoleteDate": "2024-12-31"
+            },
+            {
+              "calcMethod": "H",
+              "compensationType": "N",
+              "id": "FRINGE",
+              "payClass": "F",
+              "payDescription": "Group term life",
+              "payReason": "U",
+              "payType": "R",
+              "w2FormBox": "12",
+              "w2FormCode": "C",
+              "workCompTaxable": "Y",
+              "flag401k": false,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": ""
+            },
+            {
+              "calcMethod": "H",
+              "compensationType": "N",
+              "id": "MEMO",
+              "payClass": "M",
+              "payDescription": "Memo",
+              "payReason": "U",
+              "payType": "R",
+              "w2FormBox": "",
+              "w2FormCode": "",
+              "workCompTaxable": "Y",
+              "flag401k": false,
+              "productiveWork": true,
+              "excludeACACalc": false,
+              "rateClass": "S"
+            }
+          ],
+          "deductionCode": [
+            {
+              "id": "401K",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "401(k)",
+              "type": "K",
+              "calculationMethod": "K",
+              "client401K": true,
+              "formW2Box": "12",
+              "formW2Code": "D",
+              "maximum": "23500.00",
+              "matchPercent": "50"
+            },
+            {
+              "id": "401KC",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "401(k) catch-up",
+              "type": "KC",
+              "calculationMethod": "K",
+              "client401K": true,
+              "client401kCatchUp": true
+            },
+            {
+              "id": "ROTH",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Roth 401(k)",
+              "type": "KR",
+              "calculationMethod": "PG",
+              "formW2Box": "12",
+              "formW2Code": "AA"
+            },
+            {
+              "id": "MED",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Medical",
+              "type": "C",
+              "calculationMethod": "F",
+              "clientSection125": true,
+              "clientMedicalPlan": true
+            },
+            {
+              "id": "DEN",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Dental",
+              "type": "C",
+              "calculationMethod": "F",
+              "clientSection125": true
+            },
+            {
+              "id": "LTD",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Long-term disability",
+              "type": "P",
+              "calculationMethod": "F",
+              "toArrears": "Y"
+            },
+            {
+              "id": "FSA",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Health FSA",
+              "type": "F",
+              "calculationMethod": "F",
+              "clientFSADependentCare": false
+            },
+            {
+              "id": "GARN",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Child support",
+              "type": "G",
+              "calculationMethod": "G"
+            },
+            {
+              "id": "SPOUSE",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Spousal support",
+              "type": "G",
+              "calculationMethod": "G"
+            },
+            {
+              "id": "IRS",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "IRS Levy",
+              "type": "VG",
+              "calculationMethod": "G"
+            },
+            {
+              "id": "LOAN",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Payroll advance",
+              "type": "L",
+              "calculationMethod": "F"
+            },
+            {
+              "id": "401KL",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "401(k) loan",
+              "type": "KL",
+              "calculationMethod": "F"
+            },
+            {
+              "id": "CHAR",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Charity",
+              "type": "V",
+              "calculationMethod": "PE"
+            },
+            {
+              "id": "ADJ",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Memo offset",
+              "type": "V",
+              "calculationMethod": "F"
+            },
+            {
+              "id": "UNION",
+              "mandatory": false,
+              "printOnPaystub": "Y",
+              "description": "Union dues",
+              "type": "V",
+              "calculationMethod": "U",
+              "unionRelated": "Y",
+              "obsoleteDate": "2023-06-30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/clientMaster/v1/getPayrollSchedule",
+      "params": {
+        "clientId": "1001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "clientPayrollSchedule": [
+          {
+            "callInDays": "",
+            "deliverDays": "",
+            "groupDesc": "Biweekly",
+            "groupId": "BW",
+            "payDay": "",
+            "payPeriod": "B",
+            "payPeriodDesc": "Bi-Weekly",
+            "payPeriodEnd": "",
+            "periodEndType": "",
+            "periodEndType2": "",
+            "periodEndType2Desc": "",
+            "periodEndTypeDesc": "",
+            "scheduleDesc": "",
+            "scheduleId": "",
+            "thirdPartyCode": "",
+            "weekEndOnDay": ""
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getEmployee",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001",
+        "options": "Person,Client,Compensation,DirectDeposit,EmployeeEvents,Health,Skills,AbsenceJournal,BenefitEnrollStatus,ScheduledDeductions,NewHireQuestions,EnrollmentInprogress,ContactInformation,HSA"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "employee": [
+          {
+            "firstName": "Riley",
+            "id": "P00001",
+            "lastName": "Okafor",
+            "middleInitial": "J",
+            "preferredName": "Jo",
+            "person": {
+              "activeDutyBadgeVet": "N",
+              "birthDate": "1988-04-12",
+              "blind": "N",
+              "cobraSSN": "",
+              "deceasedDate": "",
+              "disabledVet": "N",
+              "driverLicenseClass": "D",
+              "driverLicenseExpireDate": "2028-04-12",
+              "driverLicenseId": "D7654321",
+              "driverState": "UT",
+              "ethnicCode": "W1",
+              "gender": "F",
+              "geoCode": "450351000",
+              "handicapped": "N",
+              "hrpCitizenshipCountry": "USA",
+              "legacyEmployeeId": "L-0001",
+              "maritalStatus": "M",
+              "marriedDate": "2014-06-01",
+              "nickname": "Jojo",
+              "otherProtectedVet": "N",
+              "overrideGeoCode": "",
+              "overrideGeoEndDate": "",
+              "peoStartDate": "2016-03-01",
+              "personChecksum": "",
+              "preferredLanguage": "EN",
+              "recentlySeparatedVet": "N",
+              "serviceMedalVet": "N",
+              "smoker": "N",
+              "taxZipCode": "84101",
+              "veteran": "D",
+              "vietnamVet": "",
+              "w2AddressLine1": "",
+              "w2AddressLine2": "",
+              "w2City": "",
+              "w2ElecFormDate": "",
+              "w2PostalCode": "",
+              "w2State": "",
+              "deceased": false,
+              "hispanic": false,
+              "employerIds": [
+                "PEO1"
+              ],
+              "highlyCompensated": false,
+              "keyEmployee": false,
+              "emergencyContact": [
+                {
+                  "contactName": "Sam Okafor",
+                  "contactInfo": "801-555-1428",
+                  "contactRelationship": "Husband",
+                  "contactType": "PHONE",
+                  "contactIfDetained": ""
+                },
+                {
+                  "contactName": "Alex Okafor",
+                  "contactInfo": "alex.contact@example.org",
+                  "contactRelationship": "Brother",
+                  "contactType": "EMAIL"
+                },
+                {
+                  "contactName": "Pat Lee",
+                  "contactInfo": "12 Elm St",
+                  "contactRelationship": "",
+                  "contactType": "ADDRESS"
+                }
+              ]
+            },
+            "contactInformation": {
+              "addressLine1": "100 Maple Ave",
+              "addressLine2": "",
+              "city": "Salt Lake City",
+              "county": "",
+              "emailAddress": "jo.personal@example.net",
+              "homePhone": "801-555-1287",
+              "mobilePhone": "801-555-1047",
+              "schoolDistrict": "SD4",
+              "state": "UT",
+              "zipSuffix": "",
+              "zipcode": "84101"
+            },
+            "client": {
+              "addressLine1": "",
+              "addressLine2": "",
+              "city": "",
+              "clientChecksum": "c1",
+              "clientEmployeeId": "1001-17",
+              "clockNum": "4411",
+              "electronic1095C": "",
+              "electronicOnboardDate": "",
+              "employeeStatus": "A",
+              "employeeType": "FT",
+              "firstHireDate": "2016-03-01",
+              "handbookMailDate": "",
+              "handbookRecvDate": "",
+              "hawaiiMedWaivers": [],
+              "jobCode": "ACCT",
+              "jobStartDate": "2016-03-01",
+              "lastHireDate": "2016-03-01",
+              "manager": "P00002",
+              "newHireReportDate": "",
+              "probationDate": "",
+              "property": [],
+              "rehireOk": "Y",
+              "reportsTo": "",
+              "returnDate": "",
+              "seniorityDate": "2016-03-01",
+              "state": "",
+              "statusClass": "A",
+              "statusDate": "2016-03-01",
+              "subCostCenter": "SC9",
+              "termExplanation": "",
+              "termReasonCode": "",
+              "typeClass": "F",
+              "typeDate": "2016-03-01",
+              "unionCode": "U12",
+              "unionDate": "",
+              "workPhone": "801-555-0120",
+              "workPhoneExt": "12",
+              "zip": "",
+              "zipSuffix": "",
+              "flsaExempt": true,
+              "employee1099": false,
+              "lastJobChangeDate": "2021-07-01",
+              "homeDepartment": "FIN",
+              "homeDivision": "EAST",
+              "projCostCenter": "PRJ1",
+              "homeLocation": "SLC",
+              "workEmail": "jo.work@corp.example",
+              "preferredPronoun": "she/her",
+              "genderDesignation": "",
+              "selfIdDisabilityForm": "N",
+              "benefitEmail": "jo.benefits@example.net",
+              "workShift": "1",
+              "benefitGroup": "STD",
+              "officer": false,
+              "courtOrderMedical": false,
+              "childSpouseSupport": false,
+              "childSpouseArrears": false,
+              "transferInfo": [
+                {
+                  "transferClientId": "1000",
+                  "transferEmployeeId": "X9",
+                  "transferDate": "2016-02-29",
+                  "transferStatus": "C"
+                }
+              ],
+              "cafeteriaPlan": [
+                {
+                  "planAmt": "50.00",
+                  "planEffectiveDate": "2024-01-01"
+                }
+              ]
+            },
+            "compensation": {
+              "alienRegExpDate": "",
+              "annualPay": "75000.00",
+              "autoPayCode": "",
+              "benefitSalary": "",
+              "benefitsBasePay": "",
+              "benefitsPerHour": "",
+              "compReviewNextDate": "",
+              "compaRatio": "",
+              "compensationChecksum": "k1",
+              "defaultHours": "",
+              "effectiveDate": "2024-01-01",
+              "eicFileStatus": "",
+              "familyMemberMI": "",
+              "fedDeductions": 150.5,
+              "fedDependents": 2000.0,
+              "fedFilingStatus": "M",
+              "fedOtherIncome": 0,
+              "fedOverrideAmt": "25.00",
+              "fedOverrideType": "A",
+              "fedTaxCalc": "A",
+              "fedW4Year": "2024",
+              "fedW5Year": "",
+              "fedWithholdAllowance": "2",
+              "formI9RenewDate": "2027-01-01",
+              "hourlyPay": "36.0577",
+              "hourlyPayPeriod": "Y",
+              "hourlyPayRate": "75000.00",
+              "irsLockInDate": "",
+              "lastChangeAmt": "2184.47",
+              "lastChangePct": "3.00",
+              "lastWorkedDate": "",
+              "longBasisDate": "",
+              "longPayTable": "",
+              "notes": "Relocation package agreed",
+              "overrideWorkGeocode": "",
+              "paidThruDate": "",
+              "payChangeLastDate": "",
+              "payGroup": "BW",
+              "payMethod": "S",
+              "payPeriod": "B",
+              "payRate2": "41.00",
+              "payRate3": "",
+              "payRate4": "",
+              "pensionStatus": "",
+              "perDiemPay": "",
+              "perfReviewLastDate": "",
+              "perfReviewLastRating": "4",
+              "perfReviewLastTitle": "",
+              "perfReviewNextDate": "",
+              "probationCodeMO": "",
+              "profitSharing": "",
+              "quartile": "",
+              "salary": "2884.62",
+              "ssn": "***-**-****",
+              "standardHours": "80.00",
+              "workShift": "1",
+              "citizenshipStatus": "Z01",
+              "fedMultipleJobs": false,
+              "fedW4Filed": true,
+              "stateTax": [
+                {
+                  "deductions": 0,
+                  "dependents": 0,
+                  "nonResCertYear": "",
+                  "otherIncome": 0,
+                  "stateCode": "UT",
+                  "filingStatus": "H",
+                  "primaryAllowance": "1",
+                  "secondaryAllowance": "0",
+                  "multipleJobs": false,
+                  "overrideType": "F",
+                  "overrideAmount": "40.00",
+                  "stateW4Filed": "Y",
+                  "stateW4Year": "2024"
+                }
+              ],
+              "localTax": [
+                {
+                  "authId": "SLC01",
+                  "filingStatus": "S",
+                  "primaryAllowance": "0",
+                  "nonResCert": "N",
+                  "addlWithheld": "5.00"
+                }
+              ],
+              "formI9Filed": true,
+              "nonResAlien": false,
+              "deliverCheckHome": false,
+              "electronicPayStub": true,
+              "ficaExempt": false,
+              "payPeriodsPerWeek": "0.5"
+            },
+            "skillsAndEducation": {
+              "skillChecksum": "x1",
+              "osha10Certified": true,
+              "skill": [
+                {
+                  "skillCode": "FORK",
+                  "competencyLevel": "80",
+                  "certifyDate": "2023-05-01",
+                  "renewDate": "2026-05-01",
+                  "skillComment": "Certified on site"
+                }
+              ],
+              "school": [
+                {
+                  "schoolName": "Wasatch State University",
+                  "degreeEarned": "BS Accounting",
+                  "gradYear": "2010",
+                  "graduated": true,
+                  "schoolYear": "",
+                  "schoolComment": ""
+                }
+              ]
+            },
+            "health": {
+              "audioTestDateLast": "",
+              "audioTestDateNext": "",
+              "audioTestResult": "",
+              "bloodRh": "",
+              "bloodType": "O",
+              "donateDateLast": "",
+              "donateDateNext": "",
+              "drugTestDateLast": "",
+              "drugTestDateNext": "",
+              "drugTestResult": "",
+              "height": "",
+              "physExamDateLast": "",
+              "physExamDateNext": "",
+              "physExamResult": "",
+              "weight": "",
+              "bloodDonor": true
+            },
+            "directDeposit": {
+              "achStatus": "A",
+              "achVoucher": [
+                {
+                  "accountNum": "****",
+                  "accountType": "S",
+                  "amount": 200,
+                  "bankName": "Canyon Savings",
+                  "limit": 200,
+                  "method": "F",
+                  "status": "D",
+                  "transitNum": "602100010",
+                  "voucherTypeOverride": "R"
+                },
+                {
+                  "accountNum": "****6789",
+                  "accountType": "C",
+                  "amount": 25,
+                  "bankName": "Canyon Credit Union",
+                  "limit": 0,
+                  "method": "PN",
+                  "status": "D",
+                  "transitNum": "602100023",
+                  "voucherTypeOverride": ""
+                },
+                {
+                  "accountNum": "****1234",
+                  "accountType": "C",
+                  "amount": 0,
+                  "bankName": "Canyon Credit Union",
+                  "limit": 0,
+                  "method": "B",
+                  "status": "D",
+                  "transitNum": "602100036",
+                  "voucherTypeOverride": "RV"
+                },
+                {
+                  "accountNum": "****5150",
+                  "accountType": "IP",
+                  "amount": 10,
+                  "bankName": "Instant Pay Card",
+                  "limit": 0,
+                  "method": "P",
+                  "status": "P",
+                  "transitNum": "602100049",
+                  "voucherTypeOverride": ""
+                }
+              ],
+              "directDepositChecksum": "dd-P00001",
+              "voucherType": "RVS",
+              "suppressAccountPrint": false
+            },
+            "hsa": {
+              "achChecksum": "h1",
+              "hsaDepositSettings": [
+                {
+                  "accountNum": "****4321",
+                  "accountType": "HE",
+                  "amount": 50,
+                  "bankName": "Sample HSA Bank",
+                  "method": "F",
+                  "status": "D",
+                  "transitNum": "602100094",
+                  "voucherTypeOverride": "R"
+                }
+              ]
+            },
+            "scheduledDeduction": [
+              {
+                "amount": 25,
+                "checkStubDescription": "Uniform",
+                "deductionCode": "ADJ",
+                "status": "A"
+              }
+            ],
+            "enrollmentInProgress": {
+              "enrollmentInProgress": true,
+              "enrollmentType": "BE"
+            },
+            "benefitEnrollmentCompleted": true,
+            "absenceJournalId": [
+              "J-1001",
+              "J-1002"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getAddressInfo",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "addressInfo": {
+          "checksum": "a1",
+          "homeGeoCode": "450351000",
+          "homeAddress": {
+            "addressLine1": "100 Maple Ave",
+            "addressLine2": "Unit 2",
+            "city": "Salt Lake City",
+            "county": "Salt Lake",
+            "stateAbbr": "UT",
+            "zipCode": "84101",
+            "zipSuffix": "2201",
+            "unincorporatedResidence": false
+          },
+          "w2Address": {
+            "addressLine1": "",
+            "addressLine2": "",
+            "city": "",
+            "county": "",
+            "stateAbbr": "",
+            "zipCode": "",
+            "zipSuffix": ""
+          },
+          "altAddress": {
+            "addressLine1": "45 Lakeshore Rd",
+            "addressLine2": "Floor 3",
+            "city": "Toronto",
+            "county": "York",
+            "stateAbbr": "ON",
+            "zipCode": "M5V2T6",
+            "zipSuffix": "",
+            "internationalAddress": true,
+            "mailAddressCountry": "CAN"
+          }
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getHistory",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "historyRecord": [
+          {
+            "type": "Position",
+            "effectiveDate": "2021-07-01",
+            "newPositionCode": "ACCT"
+          },
+          {
+            "type": "Department",
+            "effectiveDate": "2021-07-01",
+            "departmentChange": {
+              "departmentCode": "FIN"
+            }
+          },
+          {
+            "type": "Division",
+            "effectiveDate": "2019-01-01",
+            "divisionChange": {
+              "divisionCode": "EAST"
+            }
+          },
+          {
+            "type": "Location",
+            "effectiveDate": "2016-03-01",
+            "locationChange": {
+              "locationCode": "SLC"
+            }
+          },
+          {
+            "type": "Leave",
+            "effectiveDate": "2022-05-01",
+            "leave": {
+              "employeeStatusCode": "LOA",
+              "employeeTypeCode": "FT",
+              "expectedReturnDate": "2022-07-01",
+              "reason": "Family leave"
+            }
+          },
+          {
+            "type": "Status",
+            "effectiveDate": "2022-07-01",
+            "statusChange": {
+              "employeeStatusCode": "A",
+              "employeeTypeCode": "FT",
+              "reason": "Return from leave"
+            }
+          },
+          {
+            "type": "Benefit Group",
+            "effectiveDate": "2016-03-01",
+            "benefitGroupChange": {
+              "benefitGroupCode": "STD"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getPayRateHistory",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payRateHistory": {
+          "clientId": "1001",
+          "employeeId": "P00001",
+          "payRate": [
+            {
+              "annualPay": "65000.00",
+              "changePercent": "0.00",
+              "effectiveDate": "2016-03-01",
+              "payPeriod": "A",
+              "payRate": "65000.00",
+              "reason": "Hire",
+              "standardHours": "80.00",
+              "payMethod": "S",
+              "hourlyRate": "31.25",
+              "changeAmount": "0.00",
+              "percentMidpoint": ""
+            },
+            {
+              "annualPay": "75000.00",
+              "changePercent": "15.38",
+              "effectiveDate": "2024-01-01",
+              "payPeriod": "A",
+              "payRate": "75000.00",
+              "reason": "Promo",
+              "standardHours": "80.00",
+              "payMethod": "S",
+              "hourlyRate": "36.0577",
+              "changeAmount": "10000.00",
+              "percentMidpoint": "98.5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getStatusHistoryForAdjustment",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "statusTypeHistory": [
+          {
+            "checksum": "s1",
+            "dateUpdated": "2016-03-01",
+            "effectiveDate": "2016-03-01",
+            "employeeType": "FT",
+            "status": "A",
+            "statusDesc": "Active",
+            "typeDesc": "Full time"
+          },
+          {
+            "checksum": "s1",
+            "dateUpdated": "2022-05-01",
+            "effectiveDate": "2022-05-01",
+            "employeeType": "FT",
+            "status": "LOA",
+            "statusDesc": "Leave of absence",
+            "typeDesc": "Full time"
+          },
+          {
+            "checksum": "s1",
+            "dateUpdated": "2022-07-01",
+            "effectiveDate": "2022-07-01",
+            "employeeType": "FT",
+            "status": "A",
+            "statusDesc": "Active",
+            "typeDesc": "Full time"
+          }
+        ],
+        "hireDates": {
+          "employerStartDate": "",
+          "lastHireDate": "2016-03-01",
+          "origHireDate": "",
+          "seniorityDate": ""
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getPositionRate",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "positionRate": [
+          {
+            "checksum": "p1",
+            "positionCode": "ACCT",
+            "standardPayRate": 36.0577,
+            "payCodeRate": [
+              {
+                "payCode": "REG",
+                "payRate": 36.0577,
+                "billRate": 50.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "/benefits/v1/getPaidTimeOff",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "paidTimeOff": [
+          {
+            "accruedHoursYTD": "61.54",
+            "accruedThru": "2026-09-30",
+            "benefitStart": "2016-03-01",
+            "carryOverExpires": "",
+            "carryOverHours": "16.00",
+            "lastCarryOver": "2026-01-01",
+            "ptoPlanId": "VAC",
+            "registerType": "VAC",
+            "registerTypeDescription": "Vacation",
+            "usedHoursYTD": "24.00",
+            "yearEndDate": "2026-12-31",
+            "carryOverExpireFlag": false,
+            "accruedFlag": true,
+            "stopPTOAccruals": false,
+            "journalId": [
+              "J-1001"
+            ],
+            "priorYear": [
+              {
+                "yearEndDate": "2025-12-31",
+                "yearCarryOverHours": "8.00",
+                "yearAccruedHours": "80.00",
+                "yearUsedHours": "72.00"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "/benefits/v1/getDependents",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "clientId": "1001",
+        "employeeId": "P00001",
+        "dependent": [
+          {
+            "checksum": "d1",
+            "dependentId": "D1",
+            "lastName": "Okafor",
+            "relationType": "D",
+            "spouse": "Y",
+            "status": "A",
+            "relation": "S",
+            "relationshipCodeType": "SP",
+            "beneficiaryType": "P",
+            "benefitPercent": "100",
+            "statusDate": "2016-03-01",
+            "firstName": "Sam",
+            "middleInitial": "Q",
+            "email": "sam.dep@example.org",
+            "gender": "M",
+            "birthdate": "1987-02-02",
+            "ssn": "***-**-5555",
+            "ssnAppliedFor": false,
+            "address": "100 Maple Ave",
+            "addressLine2": "Unit 2",
+            "city": "Salt Lake City",
+            "state": "UT",
+            "zip": "84101",
+            "zipSuffix": "2201",
+            "country": "USA",
+            "homePhone": "801-555-1012",
+            "workPhone": "801-555-1166",
+            "tobaccoUser": false
+          },
+          {
+            "checksum": "d2",
+            "dependentId": "D2",
+            "lastName": "Okafor",
+            "relationType": "D",
+            "spouse": "N",
+            "status": "P",
+            "relation": "C",
+            "relationshipCodeType": "CH",
+            "beneficiaryType": "",
+            "firstName": "Riley",
+            "gender": "X",
+            "birthdate": "2019-09-09",
+            "ssn": "",
+            "fullTimeStudent": false
+          },
+          {
+            "checksum": "d3",
+            "dependentId": "D3",
+            "lastName": "Hale",
+            "relationType": "B",
+            "spouse": "N",
+            "status": "I",
+            "relation": "F",
+            "relationshipCodeType": "",
+            "firstName": "Morgan",
+            "birthdate": "1970-01-15",
+            "ssn": "666-40-1234",
+            "beneficiaryIsATrust": false
+          }
+        ]
+      }
+    },
+    {
+      "route": "/payroll/v1/getEmployeeOverrideRates",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "overrideRate": {
+          "checksum": "c1",
+          "clientId": "1001",
+          "employeeId": "P00001",
+          "sessionId": "",
+          "payCodeRate": [
+            {
+              "payCode": "OT",
+              "payCodeDesc": "Overtime",
+              "payRate": 54.0866
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getEmployee",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002",
+        "options": "Person,Client,Compensation,DirectDeposit,EmployeeEvents,Health,Skills,AbsenceJournal,BenefitEnrollStatus,ScheduledDeductions,NewHireQuestions,EnrollmentInprogress,ContactInformation,HSA"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "employee": [
+          {
+            "firstName": "Casey",
+            "id": "P00002",
+            "lastName": "Iyer",
+            "middleInitial": "",
+            "preferredName": "",
+            "person": {
+              "activeDutyBadgeVet": "",
+              "birthDate": "1979-11-30",
+              "blind": "",
+              "cobraSSN": "",
+              "deceasedDate": "",
+              "disabledVet": "",
+              "driverLicenseClass": "",
+              "driverLicenseExpireDate": "",
+              "driverLicenseId": "",
+              "driverState": "",
+              "ethnicCode": "HL",
+              "gender": "M",
+              "geoCode": "",
+              "handicapped": "D",
+              "hrpCitizenshipCountry": "",
+              "legacyEmployeeId": "",
+              "maritalStatus": "C",
+              "marriedDate": "",
+              "nickname": "",
+              "otherProtectedVet": "",
+              "overrideGeoCode": "",
+              "overrideGeoEndDate": "",
+              "peoStartDate": "",
+              "personChecksum": "",
+              "preferredLanguage": "",
+              "recentlySeparatedVet": "",
+              "serviceMedalVet": "",
+              "smoker": "Y",
+              "taxZipCode": "",
+              "veteran": "N",
+              "vietnamVet": "",
+              "w2AddressLine1": "",
+              "w2AddressLine2": "",
+              "w2City": "",
+              "w2ElecFormDate": "",
+              "w2PostalCode": "",
+              "w2State": "",
+              "deceased": false,
+              "emergencyContact": []
+            },
+            "contactInformation": {
+              "addressLine1": "",
+              "addressLine2": "",
+              "city": "",
+              "county": "",
+              "emailAddress": "",
+              "homePhone": "801-555-1520",
+              "mobilePhone": "",
+              "schoolDistrict": "",
+              "state": "",
+              "zipSuffix": "",
+              "zipcode": ""
+            },
+            "client": {
+              "addressLine1": "",
+              "addressLine2": "",
+              "city": "",
+              "clientChecksum": "",
+              "clientEmployeeId": "1001-04",
+              "clockNum": "",
+              "electronic1095C": "",
+              "electronicOnboardDate": "",
+              "employeeStatus": "A",
+              "employeeType": "PTS",
+              "firstHireDate": "2012-05-14",
+              "handbookMailDate": "",
+              "handbookRecvDate": "",
+              "hawaiiMedWaivers": [],
+              "jobCode": "WHSE",
+              "jobStartDate": "",
+              "lastHireDate": "2020-02-03",
+              "manager": "",
+              "newHireReportDate": "",
+              "probationDate": "",
+              "property": [],
+              "rehireOk": "",
+              "reportsTo": "",
+              "returnDate": "",
+              "seniorityDate": "2012-05-14",
+              "state": "",
+              "statusClass": "A",
+              "statusDate": "2020-02-03",
+              "subCostCenter": "",
+              "termExplanation": "",
+              "termReasonCode": "",
+              "typeClass": "P",
+              "typeDate": "",
+              "unionCode": "",
+              "unionDate": "",
+              "workPhone": "",
+              "workPhoneExt": "",
+              "zip": "",
+              "zipSuffix": "",
+              "flsaExempt": false,
+              "employee1099": false,
+              "lastJobChangeDate": "2020-02-03",
+              "homeDepartment": "OPS",
+              "homeDivision": "",
+              "projCostCenter": "",
+              "homeLocation": "SLC",
+              "workEmail": ""
+            },
+            "compensation": {
+              "alienRegExpDate": "",
+              "annualPay": "46800.00",
+              "autoPayCode": "",
+              "benefitSalary": "",
+              "benefitsBasePay": "",
+              "benefitsPerHour": "",
+              "compReviewNextDate": "",
+              "compaRatio": "",
+              "compensationChecksum": "",
+              "defaultHours": "",
+              "effectiveDate": "2020-02-03",
+              "eicFileStatus": "",
+              "familyMemberMI": "",
+              "fedDeductions": 0,
+              "fedDependents": 0,
+              "fedFilingStatus": "SS",
+              "fedOtherIncome": 1250.0,
+              "fedOverrideAmt": "",
+              "fedOverrideType": "",
+              "fedTaxCalc": "",
+              "fedW4Year": "",
+              "fedW5Year": "",
+              "fedWithholdAllowance": "0",
+              "formI9RenewDate": "",
+              "hourlyPay": "22.50",
+              "hourlyPayPeriod": "A",
+              "hourlyPayRate": "22.50",
+              "irsLockInDate": "",
+              "lastChangeAmt": "",
+              "lastChangePct": "",
+              "lastWorkedDate": "",
+              "longBasisDate": "",
+              "longPayTable": "",
+              "notes": "",
+              "overrideWorkGeocode": "",
+              "paidThruDate": "",
+              "payChangeLastDate": "",
+              "payGroup": "BW",
+              "payMethod": "H",
+              "payPeriod": "B",
+              "payRate2": "",
+              "payRate3": "19.00",
+              "payRate4": "20.00",
+              "pensionStatus": "",
+              "perDiemPay": "",
+              "perfReviewLastDate": "",
+              "perfReviewLastRating": "",
+              "perfReviewLastTitle": "",
+              "perfReviewNextDate": "",
+              "probationCodeMO": "",
+              "profitSharing": "",
+              "quartile": "",
+              "salary": "",
+              "ssn": "***-**-4321",
+              "standardHours": "80",
+              "workShift": "",
+              "citizenshipStatus": "",
+              "fedMultipleJobs": true,
+              "stateTax": [
+                {
+                  "deductions": 0,
+                  "dependents": 0,
+                  "nonResCertYear": "",
+                  "otherIncome": 0,
+                  "stateCode": "UT",
+                  "filingStatus": "O",
+                  "primaryAllowance": "0",
+                  "multipleJobs": true,
+                  "overrideType": "B",
+                  "overrideAmount": ""
+                }
+              ],
+              "localTax": [],
+              "formI9Filed": true,
+              "nonResAlien": false
+            },
+            "directDeposit": {
+              "achStatus": "A",
+              "achVoucher": [
+                {
+                  "accountNum": "****0042",
+                  "accountType": "C",
+                  "amount": 150,
+                  "bankName": "Wasatch Bank",
+                  "limit": 0,
+                  "method": "FS",
+                  "status": "I",
+                  "transitNum": "602100052",
+                  "voucherTypeOverride": ""
+                },
+                {
+                  "accountNum": "****0043",
+                  "accountType": "S",
+                  "amount": 0,
+                  "bankName": "Wasatch Bank",
+                  "limit": 0,
+                  "method": "B",
+                  "status": "P",
+                  "transitNum": "602100065",
+                  "voucherTypeOverride": ""
+                }
+              ],
+              "directDepositChecksum": "dd-P00002",
+              "voucherType": "R",
+              "suppressAccountPrint": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getAddressInfo",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "addressInfo": {
+          "checksum": "a1",
+          "homeGeoCode": "450351000",
+          "homeAddress": {
+            "addressLine1": "8225 Juniper Way",
+            "addressLine2": "",
+            "city": "Ogden",
+            "county": "Weber",
+            "stateAbbr": "UT",
+            "zipCode": "84401",
+            "zipSuffix": ""
+          },
+          "w2Address": {
+            "addressLine1": "",
+            "addressLine2": "",
+            "city": "",
+            "county": "",
+            "stateAbbr": "",
+            "zipCode": "",
+            "zipSuffix": ""
+          },
+          "altAddress": {
+            "addressLine1": "",
+            "addressLine2": "",
+            "city": "",
+            "county": "",
+            "stateAbbr": "",
+            "zipCode": "",
+            "zipSuffix": ""
+          }
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getHistory",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "historyRecord": [
+          {
+            "type": "Termination",
+            "effectiveDate": "2018-08-31",
+            "termination": {
+              "employeeStatusCode": "T",
+              "employeeTypeCode": "PTS",
+              "reason": "Moved away",
+              "rehireOK": "Y",
+              "explanation": "Relocated to another state"
+            }
+          },
+          {
+            "type": "Status",
+            "effectiveDate": "2020-02-03",
+            "statusChange": {
+              "employeeStatusCode": "A",
+              "employeeTypeCode": "PTS",
+              "reason": "Rehire"
+            }
+          },
+          {
+            "type": "Position",
+            "effectiveDate": "2020-02-03",
+            "newPositionCode": "WHSE"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getPayRateHistory",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payRateHistory": {
+          "clientId": "1001",
+          "employeeId": "P00002",
+          "payRate": [
+            {
+              "annualPay": "31200.00",
+              "changePercent": "0.00",
+              "effectiveDate": "2012-05-14",
+              "payPeriod": "H",
+              "payRate": "15.00",
+              "reason": "Hire",
+              "standardHours": "80.00",
+              "payMethod": "H",
+              "hourlyRate": "15.00",
+              "changeAmount": "0.00",
+              "percentMidpoint": ""
+            },
+            {
+              "annualPay": "35880.00",
+              "changePercent": "0.00",
+              "effectiveDate": "9999-12-31",
+              "payPeriod": "H",
+              "payRate": "17.25",
+              "reason": "Promo",
+              "standardHours": "80.00",
+              "payMethod": "H",
+              "hourlyRate": "17.25",
+              "changeAmount": "0.00",
+              "percentMidpoint": ""
+            },
+            {
+              "annualPay": "37440.00",
+              "changePercent": "0.00",
+              "effectiveDate": "0000-01-01",
+              "payPeriod": "H",
+              "payRate": "18.00",
+              "reason": "Promo",
+              "standardHours": "80.00",
+              "payMethod": "H",
+              "hourlyRate": "18.00",
+              "changeAmount": "0.00",
+              "percentMidpoint": ""
+            },
+            {
+              "annualPay": "46800.00",
+              "changePercent": "25.00",
+              "effectiveDate": "2020-02-03",
+              "payPeriod": "H",
+              "payRate": "22.50",
+              "reason": "Rehire",
+              "standardHours": "80.00",
+              "payMethod": "H",
+              "hourlyRate": "22.50",
+              "changeAmount": "9360.00",
+              "percentMidpoint": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getStatusHistoryForAdjustment",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "statusTypeHistory": [
+          {
+            "checksum": "s1",
+            "dateUpdated": "2012-05-14",
+            "effectiveDate": "2012-05-14",
+            "employeeType": "PTS",
+            "status": "A",
+            "statusDesc": "Active",
+            "typeDesc": "Part time seasonal"
+          },
+          {
+            "checksum": "s1",
+            "dateUpdated": "2018-08-31",
+            "effectiveDate": "2018-08-31",
+            "employeeType": "PTS",
+            "status": "T",
+            "statusDesc": "Terminated",
+            "typeDesc": "Part time seasonal"
+          },
+          {
+            "checksum": "s1",
+            "dateUpdated": "2020-02-03",
+            "effectiveDate": "2020-02-03",
+            "employeeType": "PTS",
+            "status": "A",
+            "statusDesc": "Active",
+            "typeDesc": "Part time seasonal"
+          }
+        ],
+        "hireDates": {
+          "employerStartDate": "",
+          "lastHireDate": "2020-02-03",
+          "origHireDate": "",
+          "seniorityDate": ""
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getPositionRate",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "positionRate": []
+      }
+    },
+    {
+      "route": "/benefits/v1/getPaidTimeOff",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "paidTimeOff": []
+      }
+    },
+    {
+      "route": "/benefits/v1/getDependents",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "clientId": "1001",
+        "employeeId": "P00002",
+        "dependent": []
+      }
+    },
+    {
+      "route": "/payroll/v1/getEmployeeOverrideRates",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "overrideRate": {
+          "checksum": "c1",
+          "clientId": "1001",
+          "employeeId": "P00002",
+          "sessionId": "",
+          "payCodeRate": []
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getEmployee",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003",
+        "options": "Person,Client,Compensation,DirectDeposit,EmployeeEvents,Health,Skills,AbsenceJournal,BenefitEnrollStatus,ScheduledDeductions,NewHireQuestions,EnrollmentInprogress,ContactInformation,HSA"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "employee": [
+          {
+            "firstName": "Harper",
+            "id": "P00003",
+            "lastName": "Moreau",
+            "middleInitial": "",
+            "preferredName": "",
+            "person": {
+              "activeDutyBadgeVet": "Y",
+              "birthDate": "",
+              "blind": "",
+              "cobraSSN": "",
+              "deceasedDate": "2025-06-28",
+              "disabledVet": "Y",
+              "driverLicenseClass": "",
+              "driverLicenseExpireDate": "",
+              "driverLicenseId": "",
+              "driverState": "",
+              "ethnicCode": "NS",
+              "gender": "U",
+              "geoCode": "",
+              "handicapped": "Y",
+              "hrpCitizenshipCountry": "",
+              "legacyEmployeeId": "",
+              "maritalStatus": "",
+              "marriedDate": "",
+              "nickname": "",
+              "otherProtectedVet": "Y",
+              "overrideGeoCode": "",
+              "overrideGeoEndDate": "",
+              "peoStartDate": "",
+              "personChecksum": "",
+              "preferredLanguage": "",
+              "recentlySeparatedVet": "Y",
+              "serviceMedalVet": "Y",
+              "smoker": "",
+              "taxZipCode": "",
+              "veteran": "Y",
+              "vietnamVet": "",
+              "w2AddressLine1": "",
+              "w2AddressLine2": "",
+              "w2City": "",
+              "w2ElecFormDate": "",
+              "w2PostalCode": "",
+              "w2State": "",
+              "deceased": true,
+              "emergencyContact": [
+                {
+                  "contactName": "Lee Park",
+                  "contactInfo": "",
+                  "contactRelationship": "Friend",
+                  "contactType": "OTHER"
+                }
+              ]
+            },
+            "contactInformation": {
+              "addressLine1": "",
+              "addressLine2": "",
+              "city": "",
+              "county": "",
+              "emailAddress": "",
+              "homePhone": "",
+              "mobilePhone": "",
+              "schoolDistrict": "",
+              "state": "",
+              "zipSuffix": "",
+              "zipcode": ""
+            },
+            "client": {
+              "addressLine1": "",
+              "addressLine2": "",
+              "city": "",
+              "clientChecksum": "",
+              "clientEmployeeId": "",
+              "clockNum": "",
+              "electronic1095C": "",
+              "electronicOnboardDate": "",
+              "employeeStatus": "T",
+              "employeeType": "IC",
+              "firstHireDate": "2023-01-09",
+              "handbookMailDate": "",
+              "handbookRecvDate": "",
+              "hawaiiMedWaivers": [],
+              "jobCode": "WHSE",
+              "jobStartDate": "",
+              "lastHireDate": "2023-01-09",
+              "manager": "P00001",
+              "newHireReportDate": "",
+              "probationDate": "",
+              "property": [],
+              "rehireOk": "N",
+              "reportsTo": "",
+              "returnDate": "",
+              "seniorityDate": "",
+              "state": "",
+              "statusClass": "T",
+              "statusDate": "2025-06-30",
+              "subCostCenter": "",
+              "termExplanation": "Estate notified",
+              "termReasonCode": "DEC",
+              "typeClass": "C",
+              "typeDate": "",
+              "unionCode": "",
+              "unionDate": "",
+              "workPhone": "",
+              "workPhoneExt": "",
+              "zip": "",
+              "zipSuffix": "",
+              "flsaExempt": false,
+              "employee1099": true,
+              "homeDepartment": "OPS",
+              "homeLocation": "",
+              "lastJobChangeDate": ""
+            },
+            "compensation": {
+              "alienRegExpDate": "2026-12-31",
+              "annualPay": "",
+              "autoPayCode": "",
+              "benefitSalary": "",
+              "benefitsBasePay": "",
+              "benefitsPerHour": "",
+              "compReviewNextDate": "",
+              "compaRatio": "",
+              "compensationChecksum": "",
+              "defaultHours": "",
+              "effectiveDate": "",
+              "eicFileStatus": "",
+              "familyMemberMI": "",
+              "fedDeductions": 0,
+              "fedDependents": 0,
+              "fedFilingStatus": "H",
+              "fedOtherIncome": 0,
+              "fedOverrideAmt": "10.00",
+              "fedOverrideType": "P",
+              "fedTaxCalc": "",
+              "fedW4Year": "",
+              "fedW5Year": "",
+              "fedWithholdAllowance": "",
+              "formI9RenewDate": "",
+              "hourlyPay": "",
+              "hourlyPayPeriod": "",
+              "hourlyPayRate": "",
+              "irsLockInDate": "",
+              "lastChangeAmt": "",
+              "lastChangePct": "",
+              "lastWorkedDate": "",
+              "longBasisDate": "",
+              "longPayTable": "",
+              "notes": "",
+              "overrideWorkGeocode": "",
+              "paidThruDate": "",
+              "payChangeLastDate": "",
+              "payGroup": "MO",
+              "payMethod": "C",
+              "payPeriod": "M",
+              "payRate2": "",
+              "payRate3": "",
+              "payRate4": "",
+              "pensionStatus": "",
+              "perDiemPay": "",
+              "perfReviewLastDate": "",
+              "perfReviewLastRating": "",
+              "perfReviewLastTitle": "",
+              "perfReviewNextDate": "",
+              "probationCodeMO": "",
+              "profitSharing": "",
+              "quartile": "",
+              "salary": "",
+              "ssn": "",
+              "standardHours": "",
+              "workShift": "",
+              "citizenshipStatus": "Z03",
+              "stateTax": [],
+              "localTax": [],
+              "formI9Filed": false,
+              "nonResAlien": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getAddressInfo",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "addressInfo": {
+          "checksum": "a1",
+          "homeGeoCode": "450351000",
+          "homeAddress": {
+            "addressLine1": "9294 Quarry Ln",
+            "addressLine2": "",
+            "city": "Provo",
+            "county": "Utah",
+            "stateAbbr": "UT",
+            "zipCode": "84601",
+            "zipSuffix": ""
+          },
+          "w2Address": {
+            "addressLine1": "PO Box 77",
+            "addressLine2": "Suite 5",
+            "city": "Provo",
+            "county": "Utah",
+            "stateAbbr": "UT",
+            "zipCode": "84603",
+            "zipSuffix": ""
+          },
+          "altAddress": {
+            "addressLine1": "",
+            "addressLine2": "",
+            "city": "",
+            "county": "",
+            "stateAbbr": "",
+            "zipCode": "",
+            "zipSuffix": ""
+          }
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getHistory",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "historyRecord": [
+          {
+            "type": "Termination",
+            "effectiveDate": "2025-06-30",
+            "termination": {
+              "employeeStatusCode": "T",
+              "employeeTypeCode": "IC",
+              "reason": "Deceased",
+              "rehireOK": "N"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getPayRateHistory",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payRateHistory": {
+          "clientId": "1001",
+          "employeeId": "P00003",
+          "payRate": [
+            {
+              "annualPay": "18000.00",
+              "changePercent": "0.00",
+              "effectiveDate": "2023-01-09",
+              "payPeriod": "M",
+              "payRate": "1500.00",
+              "reason": "Contract",
+              "standardHours": "80.00",
+              "payMethod": "C",
+              "hourlyRate": "",
+              "changeAmount": "0.00",
+              "percentMidpoint": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getStatusHistoryForAdjustment",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "statusTypeHistory": [
+          {
+            "checksum": "s1",
+            "dateUpdated": "2023-01-09",
+            "effectiveDate": "2023-01-09",
+            "employeeType": "IC",
+            "status": "A",
+            "statusDesc": "Active",
+            "typeDesc": "Independent contractor"
+          },
+          {
+            "checksum": "s1",
+            "dateUpdated": "2025-06-30",
+            "effectiveDate": "2025-06-30",
+            "employeeType": "IC",
+            "status": "T",
+            "statusDesc": "Terminated",
+            "typeDesc": "Independent contractor"
+          }
+        ],
+        "hireDates": {
+          "employerStartDate": "",
+          "lastHireDate": "2023-01-09",
+          "origHireDate": "",
+          "seniorityDate": ""
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getPositionRate",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "positionRate": []
+      }
+    },
+    {
+      "route": "/benefits/v1/getPaidTimeOff",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "paidTimeOff": []
+      }
+    },
+    {
+      "route": "/benefits/v1/getDependents",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "clientId": "1001",
+        "employeeId": "P00003",
+        "dependent": []
+      }
+    },
+    {
+      "route": "/payroll/v1/getEmployeeOverrideRates",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "overrideRate": {
+          "checksum": "c1",
+          "clientId": "1001",
+          "employeeId": "P00003",
+          "sessionId": "",
+          "payCodeRate": []
+        }
+      }
+    },
+    {
+      "route": "/clientMaster/v1/getClientList",
+      "params": {},
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "clientListResult": {
+          "clientList": [
+            {
+              "clientId": "1001",
+              "clientName": "Wasatch Outfitters",
+              "legalName": "Wasatch Outfitters Inc",
+              "status": "ACT"
+            },
+            {
+              "clientId": "1002",
+              "clientName": "Bonneville Labs",
+              "legalName": "Bonneville Labs LLC",
+              "status": "PEND"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/clientMaster/v1/getClientMaster",
+      "params": {
+        "clientId": "1001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "clientMaster": {
+          "abbrvName": "",
+          "achHoldThreshold": "",
+          "addressLine1": "400 Quarry Ln",
+          "addressLine2": "Suite 210",
+          "adjAchDays": "",
+          "aftPostPreMailThreshold": "",
+          "annualHours": "",
+          "arClientNumber": "",
+          "benefitRep": "",
+          "billAddressLine1": "",
+          "billAddressLine2": "",
+          "billBySort": "",
+          "billCity": "",
+          "billFormat": "",
+          "billInvBreakField": "",
+          "billStateCode": "",
+          "billTemplate": "",
+          "billZipCode": "",
+          "billZipSuffix": "",
+          "broker": "",
+          "businessDescription": "",
+          "cafeteriaPlan": "",
+          "categoryCode": "",
+          "checkIssueAcct": "",
+          "checkPrintStyle": "",
+          "checksum": "",
+          "city": "Salt Lake City",
+          "clientAccountingCode": "",
+          "clientAgrmtRecvDate": "",
+          "clientName": "Wasatch Outfitters",
+          "clientStatusChecksum": "",
+          "consultant": "",
+          "contractDate": "2015-07-01",
+          "contractorsAllowed1099": false,
+          "controlGroupCompany": "",
+          "corporationType": "C",
+          "costCenter": "",
+          "cutbackCheckAcct": "",
+          "deduct401kOnSupp": "",
+          "definitionId": "",
+          "deliverChecks": "",
+          "deliveryMethod": "",
+          "depositAmt": "",
+          "depositDate": "",
+          "depositType": "",
+          "directDepositAccount": "",
+          "emailAddress": "payroll@wasatch.example",
+          "employerId": "",
+          "extraHeading1": "",
+          "extraHeading2": "",
+          "fax": "",
+          "federalIdNumber": "*********",
+          "flatType1": "",
+          "flatType2": "",
+          "flsaRuleset": "",
+          "garnCheckIssueAcct": "",
+          "garnEftIssueAcct": "",
+          "glClientNo": "",
+          "glTemplateCode": "",
+          "groupCode": "",
+          "handbookId": "",
+          "hoursType1": "",
+          "hoursType2": "",
+          "hoursType3": "",
+          "hoursType4": "",
+          "hoursType5": "",
+          "hoursType6": "",
+          "hoursType9": "",
+          "hsaPlanId": "",
+          "id": "1001",
+          "invoiceCopies": "",
+          "legalName": "Wasatch Outfitters Inc",
+          "mainPhone": "801-555-1140",
+          "mainPhoneExt": "",
+          "manualAccount": "",
+          "maxCheckAmt": "",
+          "minCheckAmt": "",
+          "mySupportTeamDashboard": [],
+          "naicsCode": "451110",
+          "nesOffset": "",
+          "newHireAlert": "",
+          "nyMctOvrRate": "",
+          "nySdiEmployerRate": "",
+          "onDemandChecksAccount": "",
+          "onboardStatus": "",
+          "payCardAccount": "PC-77120",
+          "payrollDate": "2025-01-10",
+          "payrollRep": "",
+          "rateOrMarkup": "",
+          "receiptCheckAcct": "",
+          "remitCopies": "",
+          "riskManager": "",
+          "salesperson": "",
+          "satPayBefAft": "",
+          "satPayOnDay": "",
+          "serviceTermReason": "",
+          "serviceType": "PEO",
+          "sicCode": "5941",
+          "sortField1": "",
+          "sortField2": "",
+          "sortField3": "",
+          "stateCode": "UT",
+          "status": "ACT",
+          "statusDate": "2015-07-01",
+          "subCostCenter": "",
+          "sunPayBefAft": "",
+          "sunPayOnDay": "",
+          "taxCalcOptions": "",
+          "taxLimitBasis": "",
+          "wcPolicy": "",
+          "wcPolicyEffDate": "",
+          "wcPolicySubId": "",
+          "zipCode": "84111",
+          "zipSuffix": "3302",
+          "statusClass": "A",
+          "instantPayAccount": "IP-55301",
+          "reverseWireAccount": "RW-90012",
+          "clientTax": [
+            {
+              "ctrEndDate": "",
+              "ctrStartDate": "2015-07-01",
+              "miscTaxCode": "",
+              "miscTaxId": "",
+              "stateTaxId": "UT-WH-9031",
+              "suiSecondaryId": "",
+              "suiState": "UT",
+              "suiStateEmpId": "UT-4471-22"
+            }
+          ],
+          "altEmployer": [
+            {
+              "altEmployerId": "ALT1",
+              "altDisplayName": "Wasatch Retail",
+              "altAchAcct": "ACH-3301",
+              "altCheckingAcct": "CHK-3302"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/clientMaster/v1/getClientMaster",
+      "params": {
+        "clientId": "1002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "clientMaster": {
+          "abbrvName": "",
+          "achHoldThreshold": "",
+          "addressLine1": "9 Harbor Rd",
+          "addressLine2": "",
+          "adjAchDays": "",
+          "aftPostPreMailThreshold": "",
+          "annualHours": "",
+          "arClientNumber": "",
+          "benefitRep": "",
+          "billAddressLine1": "",
+          "billAddressLine2": "",
+          "billBySort": "",
+          "billCity": "",
+          "billFormat": "",
+          "billInvBreakField": "",
+          "billStateCode": "",
+          "billTemplate": "",
+          "billZipCode": "",
+          "billZipSuffix": "",
+          "broker": "",
+          "businessDescription": "",
+          "cafeteriaPlan": "",
+          "categoryCode": "",
+          "checkIssueAcct": "",
+          "checkPrintStyle": "",
+          "checksum": "",
+          "city": "Ogden",
+          "clientAccountingCode": "",
+          "clientAgrmtRecvDate": "",
+          "clientName": "Bonneville Labs",
+          "clientStatusChecksum": "",
+          "consultant": "",
+          "contractDate": "",
+          "contractorsAllowed1099": false,
+          "controlGroupCompany": "",
+          "corporationType": "",
+          "costCenter": "",
+          "cutbackCheckAcct": "",
+          "deduct401kOnSupp": "",
+          "definitionId": "",
+          "deliverChecks": "",
+          "deliveryMethod": "",
+          "depositAmt": "",
+          "depositDate": "",
+          "depositType": "",
+          "directDepositAccount": "",
+          "emailAddress": "",
+          "employerId": "",
+          "extraHeading1": "",
+          "extraHeading2": "",
+          "fax": "",
+          "federalIdNumber": "",
+          "flatType1": "",
+          "flatType2": "",
+          "flsaRuleset": "",
+          "garnCheckIssueAcct": "",
+          "garnEftIssueAcct": "",
+          "glClientNo": "",
+          "glTemplateCode": "",
+          "groupCode": "",
+          "handbookId": "",
+          "hoursType1": "",
+          "hoursType2": "",
+          "hoursType3": "",
+          "hoursType4": "",
+          "hoursType5": "",
+          "hoursType6": "",
+          "hoursType9": "",
+          "hsaPlanId": "",
+          "id": "1002",
+          "invoiceCopies": "",
+          "legalName": "Bonneville Labs LLC",
+          "mainPhone": "",
+          "mainPhoneExt": "",
+          "manualAccount": "",
+          "maxCheckAmt": "",
+          "minCheckAmt": "",
+          "mySupportTeamDashboard": [],
+          "naicsCode": "",
+          "nesOffset": "",
+          "newHireAlert": "",
+          "nyMctOvrRate": "",
+          "nySdiEmployerRate": "",
+          "onDemandChecksAccount": "",
+          "onboardStatus": "",
+          "payCardAccount": "",
+          "payrollDate": "",
+          "payrollRep": "",
+          "rateOrMarkup": "",
+          "receiptCheckAcct": "",
+          "remitCopies": "",
+          "riskManager": "",
+          "salesperson": "",
+          "satPayBefAft": "",
+          "satPayOnDay": "",
+          "serviceTermReason": "",
+          "serviceType": "",
+          "sicCode": "",
+          "sortField1": "",
+          "sortField2": "",
+          "sortField3": "",
+          "stateCode": "UT",
+          "status": "PEND",
+          "statusDate": "2025-03-01",
+          "subCostCenter": "",
+          "sunPayBefAft": "",
+          "sunPayOnDay": "",
+          "taxCalcOptions": "",
+          "taxLimitBasis": "",
+          "wcPolicy": "",
+          "wcPolicyEffDate": "",
+          "wcPolicySubId": "",
+          "zipCode": "84401",
+          "zipSuffix": "",
+          "statusClass": "P"
+        }
+      }
+    },
+    {
+      "route": "/deductions/v1/getDeductions",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001",
+        "options": ""
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "employeeDeductions": {
+          "deduction": [
+            {
+              "amount": 6,
+              "deductionCode": "401K",
+              "period": "12",
+              "usePercent": true,
+              "loanOrGarnishId": "",
+              "benefitPlanId": "",
+              "lastDedPerAdj": 0,
+              "limit": 0,
+              "maximum": 23500,
+              "basis": "A",
+              "trackArrears": false,
+              "stopDate": "",
+              "glOverrideAcct": "",
+              "mandatory": false,
+              "matchMethod": "P",
+              "matchAmount": 50,
+              "matchDescription": "50% of the first 6%",
+              "cutbackPayeeCode": "",
+              "rateTableId": "",
+              "rateTier": "",
+              "achOption": "",
+              "description": "401(k)",
+              "deductionType": "K",
+              "deductionMethod": "K",
+              "startDate": "2016-03-01",
+              "detailsChecksum": "k1"
+            },
+            {
+              "amount": 85.4,
+              "deductionCode": "MED",
+              "period": "12",
+              "usePercent": false,
+              "loanOrGarnishId": "",
+              "benefitPlanId": "MED1",
+              "lastDedPerAdj": 0,
+              "limit": 0,
+              "maximum": 0,
+              "basis": "",
+              "trackArrears": false,
+              "stopDate": "",
+              "glOverrideAcct": "",
+              "mandatory": false,
+              "matchMethod": "F",
+              "matchAmount": 334.6,
+              "matchDescription": "Employer medical share",
+              "cutbackPayeeCode": "",
+              "rateTableId": "",
+              "rateTier": "",
+              "achOption": "",
+              "description": "Medical",
+              "deductionType": "C",
+              "deductionMethod": "F",
+              "startDate": "2024-01-01",
+              "detailsChecksum": "k2"
+            },
+            {
+              "amount": 12,
+              "deductionCode": "DEN",
+              "period": "12",
+              "usePercent": false,
+              "loanOrGarnishId": "",
+              "benefitPlanId": "DEN1",
+              "lastDedPerAdj": 0,
+              "limit": 0,
+              "maximum": 0,
+              "basis": "",
+              "trackArrears": false,
+              "stopDate": "",
+              "glOverrideAcct": "",
+              "mandatory": false,
+              "matchMethod": "",
+              "matchAmount": 0,
+              "matchDescription": "",
+              "cutbackPayeeCode": "",
+              "rateTableId": "",
+              "rateTier": "",
+              "achOption": "",
+              "description": "Dental",
+              "deductionType": "C",
+              "deductionMethod": "F",
+              "startDate": "2024-01-01",
+              "detailsChecksum": "k3"
+            },
+            {
+              "amount": 9.38,
+              "deductionCode": "LTD",
+              "period": "1",
+              "usePercent": false,
+              "loanOrGarnishId": "",
+              "benefitPlanId": "LTD1",
+              "lastDedPerAdj": 0,
+              "limit": 0,
+              "maximum": 0,
+              "basis": "",
+              "trackArrears": true,
+              "stopDate": "",
+              "glOverrideAcct": "",
+              "mandatory": false,
+              "matchMethod": "",
+              "matchAmount": 0,
+              "matchDescription": "",
+              "cutbackPayeeCode": "",
+              "rateTableId": "",
+              "rateTier": "",
+              "achOption": "",
+              "description": "Long-term disability",
+              "deductionType": "P",
+              "deductionMethod": "F",
+              "startDate": "2024-01-01",
+              "detailsChecksum": "k4"
+            },
+            {
+              "amount": 50,
+              "deductionCode": "LOAN",
+              "period": "12",
+              "usePercent": false,
+              "loanOrGarnishId": "LN-1",
+              "benefitPlanId": "",
+              "lastDedPerAdj": 1,
+              "limit": 50,
+              "maximum": 0,
+              "basis": "",
+              "trackArrears": false,
+              "stopDate": "2025-10-31",
+              "glOverrideAcct": "",
+              "mandatory": false,
+              "matchMethod": "",
+              "matchAmount": 0,
+              "matchDescription": "",
+              "cutbackPayeeCode": "",
+              "rateTableId": "",
+              "rateTier": "",
+              "achOption": "",
+              "description": "Payroll advance",
+              "deductionType": "L",
+              "deductionMethod": "F",
+              "startDate": "2024-11-01",
+              "detailsChecksum": "k5"
+            },
+            {
+              "amount": 0,
+              "deductionCode": "GARN",
+              "period": "12",
+              "usePercent": false,
+              "loanOrGarnishId": "",
+              "benefitPlanId": "",
+              "lastDedPerAdj": 0,
+              "limit": 0,
+              "maximum": 0,
+              "basis": "",
+              "trackArrears": false,
+              "stopDate": "",
+              "glOverrideAcct": "",
+              "mandatory": true,
+              "matchMethod": "",
+              "matchAmount": 0,
+              "matchDescription": "",
+              "cutbackPayeeCode": "UT-ORS",
+              "rateTableId": "",
+              "rateTier": "",
+              "achOption": "",
+              "description": "Child support",
+              "deductionType": "G",
+              "deductionMethod": "G",
+              "startDate": "2024-06-01",
+              "detailsChecksum": "k6"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/deductions/v1/getDeductions",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002",
+        "options": ""
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "employeeDeductions": {
+          "deduction": [
+            {
+              "amount": 10,
+              "deductionCode": "CHAR",
+              "period": "1",
+              "usePercent": false,
+              "loanOrGarnishId": "",
+              "benefitPlanId": "",
+              "lastDedPerAdj": 0,
+              "limit": 0,
+              "maximum": 0,
+              "basis": "",
+              "trackArrears": false,
+              "stopDate": "2024-12-31",
+              "glOverrideAcct": "",
+              "mandatory": false,
+              "matchMethod": "",
+              "matchAmount": 0,
+              "matchDescription": "",
+              "cutbackPayeeCode": "",
+              "rateTableId": "RT1",
+              "rateTier": "A",
+              "achOption": "N",
+              "description": "Charity",
+              "deductionType": "V",
+              "deductionMethod": "PE",
+              "startDate": "2020-02-03",
+              "detailsChecksum": "k7"
+            },
+            {
+              "amount": 10,
+              "deductionCode": "CHAR",
+              "period": "1",
+              "usePercent": false,
+              "loanOrGarnishId": "",
+              "benefitPlanId": "",
+              "lastDedPerAdj": 0,
+              "limit": 0,
+              "maximum": 0,
+              "basis": "",
+              "trackArrears": false,
+              "stopDate": "",
+              "glOverrideAcct": "6100",
+              "mandatory": false,
+              "matchMethod": "",
+              "matchAmount": 0,
+              "matchDescription": "",
+              "cutbackPayeeCode": "",
+              "rateTableId": "",
+              "rateTier": "",
+              "achOption": "",
+              "description": "Charity",
+              "deductionType": "V",
+              "deductionMethod": "PE",
+              "startDate": "2025-01-01",
+              "detailsChecksum": "k8"
+            },
+            {
+              "amount": 150,
+              "deductionCode": "IRS",
+              "period": "12",
+              "usePercent": false,
+              "loanOrGarnishId": "",
+              "benefitPlanId": "",
+              "lastDedPerAdj": 0,
+              "limit": 0,
+              "maximum": 5000,
+              "basis": "L",
+              "trackArrears": false,
+              "stopDate": "",
+              "glOverrideAcct": "",
+              "mandatory": true,
+              "matchMethod": "",
+              "matchAmount": 0,
+              "matchDescription": "",
+              "cutbackPayeeCode": "",
+              "rateTableId": "",
+              "rateTier": "",
+              "achOption": "",
+              "description": "IRS Levy",
+              "deductionType": "VG",
+              "deductionMethod": "G",
+              "startDate": "2024-09-01",
+              "detailsChecksum": "k9"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "route": "/deductions/v1/getDeductions",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003",
+        "options": ""
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "employeeDeductions": {
+          "deduction": []
+        }
+      }
+    },
+    {
+      "route": "/employee/v1/getScheduledDeductions",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "sessionId": "",
+        "clientId": "1001",
+        "employeeId": "P00001",
+        "checksum": "s-P00001",
+        "scheduledDeduction": [
+          {
+            "amount": 45,
+            "checkStubDescription": "Uniform",
+            "deductionCode": "ADJ",
+            "status": "O",
+            "cutbackPayeeCode": "",
+            "startDate": "2025-01-24",
+            "stopDate": "2025-01-24"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getScheduledDeductions",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "sessionId": "",
+        "clientId": "1001",
+        "employeeId": "P00002",
+        "checksum": "s-P00002",
+        "scheduledDeduction": [
+          {
+            "amount": 5,
+            "checkStubDescription": "Food drive",
+            "deductionCode": "CHAR",
+            "status": "A",
+            "cutbackPayeeCode": "UWAY",
+            "startDate": "2025-01-01",
+            "stopDate": "2025-03-31"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/employee/v1/getScheduledDeductions",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "sessionId": "",
+        "clientId": "1001",
+        "employeeId": "P00003",
+        "checksum": "s-P00003",
+        "scheduledDeduction": []
+      }
+    },
+    {
+      "route": "/deductions/v1/getEmployeeLoans",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "sessionId": "",
+        "clientId": "1001",
+        "employeeId": "P00001",
+        "employeeLoanDetail": [
+          {
+            "checksum": "l1",
+            "deductionCode": "LOAN",
+            "loanAmount": 600,
+            "loanId": "LN-1",
+            "paybackAmount": 600,
+            "paymentAmount": 50,
+            "paymentFreq": "E",
+            "glOverrideAccount": "",
+            "paidAmount": 150,
+            "loanDate": "2024-10-15",
+            "startDate": "2024-11-01",
+            "stopDate": "2025-10-31",
+            "loanReason": "Moving costs",
+            "paymentHistory": [
+              {
+                "paymentAmount": 50,
+                "paymentDate": "2024-11-08",
+                "paymentVoucherId": "000091"
+              },
+              {
+                "paymentAmount": 50,
+                "paymentDate": "2024-11-22",
+                "paymentVoucherId": "000095"
+              },
+              {
+                "paymentAmount": 50,
+                "paymentDate": "2024-12-06",
+                "paymentVoucherId": "000098"
+              }
+            ]
+          },
+          {
+            "checksum": "l2",
+            "deductionCode": "LOAN",
+            "loanAmount": 300,
+            "loanId": "LN-2",
+            "paybackAmount": 300,
+            "paymentAmount": 25,
+            "paymentFreq": "E",
+            "glOverrideAccount": "",
+            "paidAmount": 0,
+            "loanDate": "2024-31-01",
+            "startDate": "2025-01-24",
+            "stopDate": "2025-12-12",
+            "loanReason": "",
+            "paymentHistory": []
+          }
+        ]
+      }
+    },
+    {
+      "route": "/deductions/v1/getEmployeeLoans",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "sessionId": "",
+        "clientId": "1001",
+        "employeeId": "P00002",
+        "employeeLoanDetail": []
+      }
+    },
+    {
+      "route": "/deductions/v1/getEmployeeLoans",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "sessionId": "",
+        "clientId": "1001",
+        "employeeId": "P00003",
+        "employeeLoanDetail": []
+      }
+    },
+    {
+      "route": "/benefits/v1/getRetirementLoans",
+      "params": {
+        "clientId": "1001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "retirementLoan": [
+          {
+            "employeeId": "P00001",
+            "loanAmount": 5000,
+            "loanDate": "2023-04-03",
+            "paybackAmount": 5625.0,
+            "paymentAmount": 104.17,
+            "planId401k": "401K1",
+            "loanId": "RL-7",
+            "interestRate": "8.5",
+            "loanReason": "Home repair",
+            "amtPaidBackToDate": 1979.23,
+            "tpaLoanId": "TPA-5521",
+            "deductionStarts": "2023-04-14",
+            "checksum": "r1",
+            "paidbackAdjust": [
+              {
+                "adjustedByWhom": "admin",
+                "adjustedAmount": 104.17,
+                "adjustedAt": "2024-02-01T10:15:00"
+              }
+            ]
+          },
+          {
+            "employeeId": "P00001",
+            "loanAmount": 1200,
+            "loanDate": "2025-01-06",
+            "paybackAmount": 1300,
+            "paymentAmount": 50,
+            "planId401k": "401K1",
+            "loanId": "RL-9",
+            "amtPaidBackToDate": 0,
+            "overridePaymentAmt": 75,
+            "overridePayFrom": "2025-03-01",
+            "overridePayTo": "2025-06-30",
+            "deductionStarts": "2025-01-24",
+            "checksum": "r2",
+            "paidbackAdjust": []
+          }
+        ]
+      }
+    },
+    {
+      "route": "/deductions/v1/getDeductionArrears",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001",
+        "options": ""
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "deductionArrears": [
+          {
+            "amount": "9.38",
+            "unionId": "",
+            "arrearsDate": "2024-12-20",
+            "dedCode": "LTD",
+            "dedDescription": "Long-term disability",
+            "transaction": "TO",
+            "benefitPlan": "LTD1",
+            "planDescription": "Long-term disability",
+            "coveragePeriod": "202412",
+            "batchNumber": "20241220-01",
+            "voucherNumber": "000099",
+            "checksum": "a1"
+          },
+          {
+            "amount": "4.10",
+            "unionId": "",
+            "arrearsDate": "2024-12-20",
+            "dedCode": "VIS",
+            "dedDescription": "Vision",
+            "transaction": "TO",
+            "benefitPlan": "VIS1",
+            "planDescription": "Vision",
+            "coveragePeriod": "202412",
+            "batchNumber": "20241220-01",
+            "voucherNumber": "000099",
+            "checksum": "a2"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/deductions/v1/getDeductionArrears",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002",
+        "options": ""
+      },
+      "status": 404,
+      "body": {
+        "errorCode": "DE-0040",
+        "errorMessage": "No deduction arrears found for this employee."
+      }
+    },
+    {
+      "route": "/deductions/v1/getDeductionArrears",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003",
+        "options": ""
+      },
+      "status": 404,
+      "body": {
+        "errorCode": "DE-0040",
+        "errorMessage": "No deduction arrears found for this employee."
+      }
+    },
+    {
+      "route": "/deductions/v1/getGarnishmentDetails",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "garnishmentDetails": [
+          {
+            "category": "C",
+            "deductionCode": "GARN",
+            "docketNumber": "UT-CS-2024-0912",
+            "payee": "UT-ORS",
+            "receiptDate": "2024-05-20",
+            "issuingAuthority": "Utah Office of Recovery Services",
+            "stateId": "CS-55120",
+            "startDate": "2024-06-01",
+            "stopDate": "",
+            "totalGarnishmentAmount": "100.00",
+            "flatAmount": "100.00",
+            "withholdAmt": "",
+            "percentNet": "",
+            "percentOf": "",
+            "garnishmentFee": "2.00",
+            "exemptAmt": "",
+            "payPeriodLimit": "250.00",
+            "maxPercent": "50",
+            "annotation1": "Case worker 14",
+            "annotation2": "",
+            "monthlyLimit": "500.00",
+            "headOfHousehold": "N"
+          },
+          {
+            "category": "SP",
+            "deductionCode": "SPOUSE",
+            "docketNumber": "UT-SS-2025-0007",
+            "payee": "COURT3",
+            "receiptDate": "2025-01-02",
+            "issuingAuthority": "Third District Court",
+            "stateId": "",
+            "startDate": "2025-01-10",
+            "stopDate": "2026-01-09",
+            "totalGarnishmentAmount": "",
+            "percentNet": "15",
+            "percentOf": "S",
+            "garnishmentFee": "",
+            "exemptAmt": "",
+            "payPeriodLimit": "",
+            "maxPercent": "",
+            "annotation1": "",
+            "annotation2": ""
+          }
+        ]
+      }
+    },
+    {
+      "route": "/deductions/v1/getGarnishmentDetails",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 403,
+      "body": {
+        "errorCode": "403",
+        "errorMessage": "User is not authorized for the method getGarnishmentDetails."
+      }
+    },
+    {
+      "route": "/deductions/v1/getGarnishmentDetails",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 403,
+      "body": {
+        "errorCode": "403",
+        "errorMessage": "User is not authorized for the method getGarnishmentDetails."
+      }
+    },
+    {
+      "route": "/employee/v1/checkForGarnishments",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "enrolled": true,
+        "active": true
+      }
+    },
+    {
+      "route": "/employee/v1/checkForGarnishments",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "enrolled": true,
+        "active": true
+      }
+    },
+    {
+      "route": "/employee/v1/checkForGarnishments",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "enrolled": false,
+        "active": false
+      }
+    },
+    {
+      "route": "/benefits/v1/getBenefitPlans",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "benefitPlan": [
+          {
+            "cobraStart": "",
+            "coverageEnd": "",
+            "coverageStart": "2024-01-01",
+            "deductionEnd": "",
+            "deductionStart": "2024-01-01",
+            "planId": "MED1",
+            "status": "A",
+            "overrideCoverageEnd": "",
+            "rateGuaranty": [
+              {
+                "rateGuarantyStart": "2024-01-01",
+                "rateGuarantyEnd": "2025-12-31"
+              }
+            ],
+            "groupTermLife": [],
+            "description": "Medical PPO",
+            "insClass": "M",
+            "section125": true,
+            "carrierPlanId": "PPO-500",
+            "networkId": "NW1",
+            "carrierEmployeeId": "CAR-88120",
+            "doctorId": "DR-4410",
+            "seenByDoctor": true,
+            "providerId": "PRV-1",
+            "planDetail": [
+              {
+                "effectiveDate": "2024-01-01",
+                "dependent": [],
+                "beneficiary": [],
+                "planType": "EE",
+                "coverage": "0",
+                "employeePremium": "410.00",
+                "employeeContrib": "75.40",
+                "eePremiumContrib": "75.40",
+                "peoPremium": "0.00",
+                "dependentPremium": "0.00",
+                "cobraFee": "8.20"
+              },
+              {
+                "effectiveDate": "2025-01-01",
+                "dependent": [
+                  {
+                    "dependentId": "D1",
+                    "coverageStart": "2025-01-01",
+                    "coverageEnd": "",
+                    "doctorId": "DR-4411",
+                    "seenByDoctor": false
+                  }
+                ],
+                "beneficiary": [],
+                "planType": "ES",
+                "coverage": "0",
+                "employeePremium": "420.00",
+                "employeeContrib": "85.40",
+                "eePremiumContrib": "85.40",
+                "peoPremium": "0.00",
+                "dependentPremium": "180.00",
+                "cobraFee": "8.40"
+              }
+            ]
+          },
+          {
+            "cobraStart": "",
+            "coverageEnd": "",
+            "coverageStart": "2024-01-01",
+            "deductionEnd": "",
+            "deductionStart": "2024-01-01",
+            "planId": "DEN1",
+            "status": "A",
+            "overrideCoverageEnd": "",
+            "rateGuaranty": [],
+            "groupTermLife": [],
+            "description": "Dental",
+            "insClass": "N",
+            "section125": true,
+            "planDetail": [
+              {
+                "effectiveDate": "2024-01-01",
+                "dependent": [],
+                "beneficiary": [],
+                "planType": "E1",
+                "coverage": "0",
+                "employeePremium": "38.00",
+                "employeeContrib": "12.00",
+                "eePremiumContrib": "12.00",
+                "peoPremium": "0.00",
+                "dependentPremium": "0.00"
+              }
+            ]
+          },
+          {
+            "cobraStart": "",
+            "coverageEnd": "",
+            "coverageStart": "2024-01-01",
+            "deductionEnd": "",
+            "deductionStart": "2024-01-01",
+            "planId": "LTD1",
+            "status": "A",
+            "overrideCoverageEnd": "",
+            "rateGuaranty": [],
+            "groupTermLife": [],
+            "description": "Long-term disability",
+            "insClass": "D",
+            "section125": false,
+            "planDetail": [
+              {
+                "effectiveDate": "2024-01-01",
+                "dependent": [],
+                "beneficiary": [
+                  {
+                    "benefId": "D1",
+                    "benefType": "P",
+                    "benefPercent": "100",
+                    "benefPrecedence": "1"
+                  }
+                ],
+                "planType": "EE",
+                "coverage": "4500.00",
+                "coverageBasis": "75000.00",
+                "employeePremium": "37.50",
+                "employeeContrib": "9.38",
+                "eePremiumContrib": "9.38",
+                "peoPremium": "28.12",
+                "dependentPremium": "0.00"
+              }
+            ]
+          },
+          {
+            "cobraStart": "",
+            "coverageEnd": "2024-01-01",
+            "coverageStart": "2024-01-01",
+            "deductionEnd": "",
+            "deductionStart": "",
+            "planId": "VIS1",
+            "status": "W",
+            "overrideCoverageEnd": "",
+            "rateGuaranty": [],
+            "groupTermLife": [],
+            "description": "Vision",
+            "insClass": "V",
+            "section125": true,
+            "waiveReason": "Covered by spouse",
+            "waiveReasonCode": "SP",
+            "planDetail": []
+          },
+          {
+            "cobraStart": "2024-01-01",
+            "coverageEnd": "2023-12-31",
+            "coverageStart": "2022-01-01",
+            "deductionEnd": "2023-12-31",
+            "deductionStart": "2022-01-01",
+            "planId": "LIFE1",
+            "status": "C",
+            "overrideCoverageEnd": "",
+            "rateGuaranty": [],
+            "groupTermLife": [
+              {
+                "gtlTaxYear": "2023",
+                "gtlAccruedYTD": "64.80"
+              }
+            ],
+            "description": "Basic life",
+            "insClass": "L",
+            "cobraTermFlag": "N",
+            "gtlVoucherNumber": [
+              "000077"
+            ],
+            "planDetail": [
+              {
+                "effectiveDate": "2022-01-01",
+                "dependent": [],
+                "beneficiary": [],
+                "planType": "EE",
+                "coverage": "50000.00",
+                "employeePremium": "5.40",
+                "employeeContrib": "0.00",
+                "eePremiumContrib": "0.00",
+                "peoPremium": "5.40",
+                "dependentPremium": "0.00"
+              }
+            ]
+          },
+          {
+            "cobraStart": "",
+            "coverageEnd": "",
+            "coverageStart": "2024-01-01",
+            "deductionEnd": "",
+            "deductionStart": "",
+            "planId": "EAP1",
+            "status": "E",
+            "overrideCoverageEnd": "",
+            "rateGuaranty": [],
+            "groupTermLife": [],
+            "description": "Employee assistance",
+            "insClass": "O",
+            "planDetail": []
+          }
+        ]
+      }
+    },
+    {
+      "route": "/benefits/v1/getBenefitPlans",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00002"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "benefitPlan": [
+          {
+            "cobraStart": "",
+            "coverageEnd": "",
+            "coverageStart": "",
+            "deductionEnd": "",
+            "deductionStart": "",
+            "planId": "MED1",
+            "status": "E",
+            "overrideCoverageEnd": "",
+            "rateGuaranty": [],
+            "groupTermLife": [],
+            "description": "Medical PPO",
+            "insClass": "M",
+            "section125": true,
+            "planDetail": []
+          },
+          {
+            "cobraStart": "",
+            "coverageEnd": "2024-12-31",
+            "coverageStart": "2020-03-01",
+            "deductionEnd": "2024-12-31",
+            "deductionStart": "2020-03-01",
+            "planId": "DEN1",
+            "status": "T",
+            "overrideCoverageEnd": "",
+            "rateGuaranty": [],
+            "groupTermLife": [],
+            "description": "Dental",
+            "insClass": "N",
+            "section125": true,
+            "planDetail": [
+              {
+                "effectiveDate": "2020-03-01",
+                "dependent": [],
+                "beneficiary": [],
+                "planType": "EE",
+                "coverage": "0",
+                "employeePremium": "38.00",
+                "employeeContrib": "12.00",
+                "eePremiumContrib": "12.00",
+                "peoPremium": "0.00",
+                "dependentPremium": "0.00"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "/benefits/v1/getBenefitPlans",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00003"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "benefitPlan": []
+      }
+    },
+    {
+      "route": "/benefits/v1/getEmployeePremium",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001",
+        "effectiveDate": "2026-10-16",
+        "planId": "MED1"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "billingRates": {
+          "totalAmount": 420.0,
+          "employeeAmount": 420.0,
+          "dependentsAmount": 0.0
+        },
+        "premiumRates": {
+          "totalAmount": 420.0,
+          "employeeAmount": 420.0,
+          "dependentsAmount": 0.0
+        },
+        "contributionRates": {
+          "contribAmount": 85.4,
+          "employeePremiumContribAmount": 85.4,
+          "hawaiiMax15Amount": 0.0
+        }
+      }
+    },
+    {
+      "route": "/benefits/v1/getEmployeePremium",
+      "params": {
+        "clientId": "1001",
+        "employeeId": "P00001",
+        "effectiveDate": "2026-10-16",
+        "planId": "LTD1"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "billingRates": {
+          "totalAmount": 37.5,
+          "employeeAmount": 37.5,
+          "dependentsAmount": 0.0
+        },
+        "premiumRates": {
+          "totalAmount": 37.5,
+          "employeeAmount": 37.5,
+          "dependentsAmount": 0.0
+        },
+        "contributionRates": {
+          "contribAmount": 9.38,
+          "employeePremiumContribAmount": 9.38,
+          "hawaiiMax15Amount": 0.0
+        }
+      }
+    },
+    {
+      "route": "/payroll/v1/getBatchListByDate",
+      "params": {
+        "clientId": "1001",
+        "startDate": "2024-02-02",
+        "endDate": "2025-01-31",
+        "dateType": "PAY"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "batchList": [
+          {
+            "batchId": "20250110-01",
+            "payDate": "2025-01-10",
+            "batchType": "R",
+            "batchStatus": "COMP",
+            "payGroup": [
+              {
+                "payGroupId": "BW",
+                "payPeriodStartDate": "2024-12-22",
+                "payPeriodEndDate": "2025-01-04",
+                "weeksWorked": "2",
+                "deductPeriod": "1"
+              },
+              {
+                "payGroupId": "MO",
+                "payPeriodStartDate": "2024-12-01",
+                "payPeriodEndDate": "2024-12-31",
+                "weeksWorked": "4",
+                "deductPeriod": "1"
+              }
+            ]
+          },
+          {
+            "batchId": "20250124-01",
+            "payDate": "2025-01-24",
+            "batchType": "R",
+            "batchStatus": "COMP",
+            "payGroup": [
+              {
+                "payGroupId": "BW",
+                "payPeriodStartDate": "2025-01-05",
+                "payPeriodEndDate": "2025-01-18",
+                "weeksWorked": "2",
+                "deductPeriod": "2"
+              }
+            ]
+          },
+          {
+            "batchId": "20250128-V1",
+            "payDate": "2025-01-28",
+            "batchType": "V",
+            "batchStatus": "COMP",
+            "payGroup": [
+              {
+                "payGroupId": "BW",
+                "payPeriodStartDate": "2024-12-22",
+                "payPeriodEndDate": "2025-01-04",
+                "weeksWorked": "2",
+                "deductPeriod": "1"
+              }
+            ]
+          },
+          {
+            "batchId": "20250131-J1",
+            "payDate": "2025-01-31",
+            "batchType": "J",
+            "batchStatus": "COMP",
+            "payGroup": [
+              {
+                "payGroupId": "BW",
+                "payPeriodStartDate": "2025-01-05",
+                "payPeriodEndDate": "2025-01-18",
+                "weeksWorked": "2",
+                "deductPeriod": "2"
+              }
+            ]
+          },
+          {
+            "batchId": "20250207-S1",
+            "payDate": "2025-02-07",
+            "batchType": "S",
+            "batchStatus": "INITFAIL",
+            "payGroup": [
+              {
+                "payGroupId": "BW",
+                "payPeriodStartDate": "2025-01-19",
+                "payPeriodEndDate": "2025-02-01",
+                "weeksWorked": "2",
+                "deductPeriod": "3"
+              }
+            ]
+          },
+          {
+            "batchId": "20250214-S2",
+            "payDate": "2025-02-14",
+            "batchType": "S",
+            "batchStatus": "TS.READY",
+            "payGroup": [
+              {
+                "payGroupId": "BW",
+                "payPeriodStartDate": "2025-02-02",
+                "payPeriodEndDate": "2025-02-15",
+                "weeksWorked": "2",
+                "deductPeriod": "4"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "/payroll/v1/getBatchInfo",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250110-01"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "batchControl": {
+          "batchId": "20250110-01",
+          "batchStatus": "COMP",
+          "payDate": "2025-01-10",
+          "voucher": [
+            {
+              "payGroupId": "BW",
+              "periodStart": "2024-12-22",
+              "periodEnd": "2025-01-04",
+              "weeksWorked": 2,
+              "deductPeriod": "1",
+              "payPeriod": "1"
+            },
+            {
+              "payGroupId": "MO",
+              "periodStart": "2024-12-01",
+              "periodEnd": "2024-12-31",
+              "weeksWorked": 4,
+              "deductPeriod": "1",
+              "payPeriod": "1"
+            }
+          ],
+          "batchDescription": "Biweekly 1 and December monthly",
+          "batchType": "R",
+          "processor": "pr.ops",
+          "deliveryDate": "2025-01-10",
+          "deliveryMethod": "UPS",
+          "actualShipMethod": "UPS Ground",
+          "actualShipDate": "2025-01-10"
+        }
+      }
+    },
+    {
+      "route": "/payroll/v1/getBatchInfo",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250124-01"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "batchControl": {
+          "batchId": "20250124-01",
+          "batchStatus": "COMP",
+          "payDate": "2025-01-24",
+          "voucher": [
+            {
+              "payGroupId": "BW",
+              "periodStart": "2025-01-05",
+              "periodEnd": "2025-01-18",
+              "weeksWorked": 2,
+              "deductPeriod": "2",
+              "payPeriod": "2"
+            }
+          ],
+          "batchDescription": "Biweekly 2",
+          "batchType": "R",
+          "processor": "pr.ops",
+          "deliveryDate": "2025-01-24",
+          "deliveryMethod": "UPS",
+          "actualShipMethod": "UPS Ground",
+          "actualShipDate": "2025-01-24"
+        }
+      }
+    },
+    {
+      "route": "/payroll/v1/getBatchInfo",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250128-V1"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "batchControl": {
+          "batchId": "20250128-V1",
+          "batchStatus": "COMP",
+          "payDate": "2025-01-28",
+          "voucher": [
+            {
+              "payGroupId": "BW",
+              "periodStart": "2024-12-22",
+              "periodEnd": "2025-01-04",
+              "weeksWorked": 2,
+              "deductPeriod": "1",
+              "payPeriod": "1"
+            }
+          ],
+          "batchDescription": "Reverse voucher 000102",
+          "batchType": "",
+          "processor": "pr.ops",
+          "deliveryDate": "2025-01-28",
+          "deliveryMethod": "UPS",
+          "actualShipMethod": "UPS Ground",
+          "actualShipDate": "2025-01-28"
+        }
+      }
+    },
+    {
+      "route": "/payroll/v1/getBatchInfo",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250131-J1"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "batchControl": {
+          "batchId": "20250131-J1",
+          "batchStatus": "COMP",
+          "payDate": "2025-01-31",
+          "voucher": [
+            {
+              "payGroupId": "BW",
+              "periodStart": "2025-01-05",
+              "periodEnd": "2025-01-18",
+              "weeksWorked": 2,
+              "deductPeriod": "2",
+              "payPeriod": "2"
+            }
+          ],
+          "batchDescription": "Memo adjustment",
+          "batchType": "J",
+          "processor": "pr.ops",
+          "deliveryDate": "2025-01-31",
+          "deliveryMethod": "UPS",
+          "actualShipMethod": "UPS Ground",
+          "actualShipDate": "2025-01-31"
+        }
+      }
+    },
+    {
+      "route": "/payroll/v1/getBatchInfo",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250214-S2"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "batchControl": {
+          "batchId": "20250214-S2",
+          "batchStatus": "TS.READY",
+          "payDate": "2025-02-14",
+          "voucher": [
+            {
+              "payGroupId": "BW",
+              "periodStart": "2025-02-02",
+              "periodEnd": "2025-02-15",
+              "weeksWorked": 2,
+              "deductPeriod": "4",
+              "payPeriod": "4"
+            }
+          ],
+          "batchDescription": "Vacation payout",
+          "batchType": "S",
+          "processor": "pr.ops",
+          "deliveryDate": "2025-02-14",
+          "deliveryMethod": "UPS",
+          "actualShipMethod": "UPS Ground",
+          "actualShipDate": "2025-02-14"
+        }
+      }
+    },
+    {
+      "route": "/payroll/v1/getPayrollVoucherForBatch",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250110-01",
+        "count": "2",
+        "startpage": "0",
+        "options": "EmployerContribution,Retirement"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payrollVoucher": [
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250110-01",
+            "checkNumber": "900101",
+            "earnAmount": 2884.62,
+            "employeeId": "P00001",
+            "fitTaxableAmount": 2614.14,
+            "netPay": 1872.6,
+            "otherEarnAmount": 0,
+            "payDate": "2025-01-10",
+            "payPeriod": "1",
+            "payPeriodEnd": "2025-01-04",
+            "payPeriodStart": "2024-12-22",
+            "totalEarnings": 2897.12,
+            "voidVoucherId": "",
+            "voucherId": "000101",
+            "wcHomeClass": "8810",
+            "wcState": "UT",
+            "status": "PRNT",
+            "type": "R",
+            "voidDate": "",
+            "payGroup": "BW",
+            "checkNum": "",
+            "payStubType": "E",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [
+              {
+                "wcClass": "8810",
+                "wcTaxablePay": 2884.62,
+                "wcPremAmount": 5.77,
+                "wcBillAmount": 7.21,
+                "wcPremBill": 7.21
+              }
+            ],
+            "earning": [
+              {
+                "payCode": "REG",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "chargeDate": "2025-01-04",
+                "hoursUnits": 80,
+                "hoursWorked": 80,
+                "unitRate": 36.0577,
+                "payAmount": 2884.62,
+                "division": "EAST",
+                "jobCode": "ACCT",
+                "shift": "1",
+                "department": "FIN",
+                "location": "SLC",
+                "glCode": "5000",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": ""
+              }
+            ],
+            "otherEarningsDetail": [
+              {
+                "otherEarnCode": "FRINGE",
+                "otherEarnsDesc": "Group term life",
+                "otherEarnAmount": 12.5
+              }
+            ],
+            "fsaMatch": [],
+            "companyTax": [
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-21",
+                "comTaxDeductCodeDesc": "Soc Security - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 2787.22,
+                "comTaxType": "FICA",
+                "comTaxAmount": 172.81,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.062,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-22",
+                "comTaxDeductCodeDesc": "Medicare - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 2787.22,
+                "comTaxType": "MEDI",
+                "comTaxAmount": 40.41,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.0145,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-23",
+                "comTaxDeductCodeDesc": "Fed Unemployment",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 2787.22,
+                "comTaxType": "FUTA",
+                "comTaxAmount": 16.72,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.006,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "45-30",
+                "comTaxDeductCodeDesc": "UT Unemployment",
+                "comExemptAmount": 97.4,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 2787.22,
+                "comTaxType": "SUI",
+                "comTaxAmount": 33.45,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.012,
+                "comClientSutaRpt": "Y"
+              }
+            ],
+            "employeeTax": [
+              {
+                "empTaxDeductCode": "00-10",
+                "empTaxDeductCodeDesc": "Federal Income Tax",
+                "empTaxableAmount": 2614.14,
+                "empTaxAmount": 250.0,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-11",
+                "empTaxDeductCodeDesc": "Soc Security - Employee",
+                "empTaxableAmount": 2787.22,
+                "empTaxAmount": 172.81,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-12",
+                "empTaxDeductCodeDesc": "Medicare - Employee",
+                "empTaxableAmount": 2787.22,
+                "empTaxAmount": 40.41,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "45-10",
+                "empTaxDeductCodeDesc": "UT Income Tax",
+                "empTaxableAmount": 2614.14,
+                "empTaxAmount": 118.94,
+                "empOverLimitAmount": 0.0
+              }
+            ],
+            "deduction": [
+              {
+                "deductCode": "401K",
+                "deductDescription": "401(k)",
+                "deductAmount": 173.08,
+                "deductType": "K",
+                "deductUnionId": "",
+                "planId": ""
+              },
+              {
+                "deductCode": "MED",
+                "deductDescription": "Medical",
+                "deductAmount": 85.4,
+                "deductType": "C",
+                "deductUnionId": "",
+                "planId": "MED1"
+              },
+              {
+                "deductCode": "DEN",
+                "deductDescription": "Dental",
+                "deductAmount": 12.0,
+                "deductType": "C",
+                "deductUnionId": "",
+                "planId": "DEN1"
+              },
+              {
+                "deductCode": "LTD",
+                "deductDescription": "Long-term disability",
+                "deductAmount": 9.38,
+                "deductType": "P",
+                "deductUnionId": "",
+                "planId": "LTD1"
+              },
+              {
+                "deductCode": "LOAN",
+                "deductDescription": "Payroll advance",
+                "deductAmount": 50.0,
+                "deductType": "L",
+                "deductUnionId": "",
+                "planId": ""
+              },
+              {
+                "deductCode": "GARN",
+                "deductDescription": "Child support",
+                "deductAmount": 100.0,
+                "deductType": "G",
+                "deductUnionId": "",
+                "planId": ""
+              }
+            ],
+            "otherDeduction": [],
+            "benefit": [
+              {
+                "planId": "MED1",
+                "premiumAmt": 420.0,
+                "premiumCost": 410.0,
+                "empContrib": 85.4,
+                "empDeduct": 85.4,
+                "coveragePeriod": "202501",
+                "adjRef": ""
+              },
+              {
+                "planId": "LTD1",
+                "premiumAmt": 37.5,
+                "premiumCost": 37.5,
+                "empContrib": 9.38,
+                "empDeduct": 9.38,
+                "coveragePeriod": "202501",
+                "adjRef": ""
+              }
+            ],
+            "directDeposit": [
+              {
+                "transitNum": "602100010",
+                "accountNum": "****",
+                "status": "D*S",
+                "amount": 200.0
+              },
+              {
+                "transitNum": "602100023",
+                "accountNum": "****6789",
+                "status": "D*C",
+                "amount": 418.15
+              },
+              {
+                "transitNum": "602100036",
+                "accountNum": "****1234",
+                "status": "D*C",
+                "amount": 1254.45
+              }
+            ],
+            "employerContributions": [
+              {
+                "code": "MED1",
+                "description": "Medical employer share",
+                "amount": 334.6
+              },
+              {
+                "code": "401K",
+                "description": "401(k) match",
+                "amount": 86.54
+              }
+            ],
+            "taxFilingStatus": [
+              {
+                "taxAuthId": "00-10",
+                "taxAuthName": "Federal",
+                "filingStatus": "M",
+                "allowances": "2",
+                "overrideType": "A",
+                "overrideAmount": "25.00"
+              },
+              {
+                "taxAuthId": "45-10",
+                "taxAuthName": "Utah",
+                "filingStatus": "H",
+                "allowances": "1",
+                "overrideType": "F",
+                "overrideAmount": "40.00"
+              }
+            ],
+            "fromArrears": [],
+            "toArrears": [],
+            "checkAmt": 0,
+            "bankAccount": "****4455",
+            "checkAccountACH": "A",
+            "dateProcessed": "2025-01-10",
+            "retirement": {
+              "planId": "401K1",
+              "planYearPeriod": "2025-01",
+              "baseEarnings": 2884.62,
+              "electiveContributionsPreTax": 173.08,
+              "catchUpContributionsPreTax": 0.0,
+              "rothContributionsPostTax": 0.0,
+              "rothCatchUpContributionsPostTax": 0.0,
+              "employeeContributionsPostTax": 0.0,
+              "employerMatchingContributions": 86.54,
+              "employerNonElectiveContributions": 0.0,
+              "employerSafeHarborMatchType1": 0.0,
+              "employerSafeHarborMatchType2": 0.0,
+              "peoMatchingContribution": 0.0,
+              "employeeRetirementLoanPayments": 0.0
+            }
+          },
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250110-01",
+            "checkNumber": "4410",
+            "earnAmount": 1998.75,
+            "employeeId": "P00002",
+            "fitTaxableAmount": 1998.75,
+            "netPay": 1434.91,
+            "otherEarnAmount": 0,
+            "payDate": "2025-01-10",
+            "payPeriod": "1",
+            "payPeriodEnd": "2025-01-04",
+            "payPeriodStart": "2024-12-22",
+            "totalEarnings": 1998.75,
+            "voidVoucherId": "",
+            "voucherId": "000102",
+            "wcHomeClass": "8810",
+            "wcState": "UT",
+            "status": "PRNT",
+            "type": "R",
+            "voidDate": "",
+            "payGroup": "BW",
+            "checkNum": "",
+            "payStubType": "P",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [
+              {
+                "wcClass": "8810",
+                "wcTaxablePay": 1998.75,
+                "wcPremAmount": 3.99,
+                "wcBillAmount": 5.0,
+                "wcPremBill": 5.0
+              }
+            ],
+            "earning": [
+              {
+                "chargeDate": "2025-01-04",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "REG",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": 80,
+                "hoursWorked": 80,
+                "unitRate": 22.5,
+                "payAmount": 1800.0
+              },
+              {
+                "chargeDate": "2025-01-04",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "OT",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": 5,
+                "hoursWorked": 5,
+                "unitRate": 33.75,
+                "payAmount": 168.75
+              },
+              {
+                "chargeDate": "2025-01-04",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "PIECE",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": 120,
+                "hoursWorked": 0,
+                "unitRate": 0.25,
+                "payAmount": 30.0
+              }
+            ],
+            "otherEarningsDetail": [],
+            "fsaMatch": [],
+            "companyTax": [
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-21",
+                "comTaxDeductCodeDesc": "Soc Security - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 1998.75,
+                "comTaxType": "FICA",
+                "comTaxAmount": 123.92,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.062,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-22",
+                "comTaxDeductCodeDesc": "Medicare - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 1998.75,
+                "comTaxType": "MEDI",
+                "comTaxAmount": 28.98,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.0145,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-23",
+                "comTaxDeductCodeDesc": "Fed Unemployment",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 1998.75,
+                "comTaxType": "FUTA",
+                "comTaxAmount": 11.99,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.006,
+                "comClientSutaRpt": ""
+              }
+            ],
+            "employeeTax": [
+              {
+                "empTaxDeductCode": "00-10",
+                "empTaxDeductCodeDesc": "Federal Income Tax",
+                "empTaxableAmount": 1998.75,
+                "empTaxAmount": 160.0,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-11",
+                "empTaxDeductCodeDesc": "Soc Security - Employee",
+                "empTaxableAmount": 1998.75,
+                "empTaxAmount": 123.92,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-12",
+                "empTaxDeductCodeDesc": "Medicare - Employee",
+                "empTaxableAmount": 1998.75,
+                "empTaxAmount": 28.98,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "45-10",
+                "empTaxDeductCodeDesc": "UT Income Tax",
+                "empTaxableAmount": 1998.75,
+                "empTaxAmount": 90.94,
+                "empOverLimitAmount": 0.0
+              }
+            ],
+            "deduction": [
+              {
+                "deductCode": "CHAR",
+                "deductDescription": "Charity",
+                "deductAmount": 10.0,
+                "deductType": "V",
+                "deductUnionId": "",
+                "planId": ""
+              },
+              {
+                "deductCode": "IRS",
+                "deductDescription": "IRS Levy",
+                "deductAmount": 150.0,
+                "deductType": "VG",
+                "deductUnionId": "",
+                "planId": ""
+              }
+            ],
+            "otherDeduction": [],
+            "benefit": [],
+            "directDeposit": [],
+            "employerContributions": [],
+            "taxFilingStatus": [
+              {
+                "taxAuthId": "00-10",
+                "taxAuthName": "Federal",
+                "filingStatus": "SS",
+                "allowances": "0",
+                "overrideType": "",
+                "overrideAmount": ""
+              }
+            ],
+            "fromArrears": [],
+            "toArrears": [],
+            "checkAmt": 1434.91,
+            "bankAccount": "****8812",
+            "checkAccountACH": "A",
+            "dateProcessed": "2025-01-10",
+            "retirement": {
+              "planId": "401K1",
+              "planYearPeriod": "2025-01",
+              "baseEarnings": 0.0,
+              "electiveContributionsPreTax": 0.0,
+              "catchUpContributionsPreTax": 0.0,
+              "rothContributionsPostTax": 0.0,
+              "rothCatchUpContributionsPostTax": 0.0,
+              "employeeContributionsPostTax": 0.0,
+              "employerMatchingContributions": 0.0,
+              "employerNonElectiveContributions": 0.0,
+              "employerSafeHarborMatchType1": 0.0,
+              "employerSafeHarborMatchType2": 0.0,
+              "peoMatchingContribution": 0.0,
+              "employeeRetirementLoanPayments": 0.0
+            }
+          }
+        ],
+        "total": 3,
+        "startpage": 0,
+        "count": 2
+      }
+    },
+    {
+      "route": "/payroll/v1/getPayrollVoucherForBatch",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250110-01",
+        "count": "2",
+        "startpage": "1",
+        "options": "EmployerContribution,Retirement"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payrollVoucher": [
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250110-01",
+            "checkNumber": "4409",
+            "earnAmount": 1500.0,
+            "employeeId": "P00003",
+            "fitTaxableAmount": 0,
+            "netPay": 1500.0,
+            "otherEarnAmount": 0,
+            "payDate": "2025-01-10",
+            "payPeriod": "1",
+            "payPeriodEnd": "2024-12-31",
+            "payPeriodStart": "2024-12-01",
+            "totalEarnings": 1500.0,
+            "voidVoucherId": "",
+            "voucherId": "000103",
+            "wcHomeClass": "",
+            "wcState": "UT",
+            "status": "PRNT",
+            "type": "R",
+            "voidDate": "",
+            "payGroup": "MO",
+            "checkNum": "",
+            "payStubType": "P",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [],
+            "earning": [
+              {
+                "payCode": "CONTR",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "chargeDate": "2024-12-31",
+                "hoursUnits": 1,
+                "hoursWorked": 0,
+                "unitRate": 1500.0,
+                "payAmount": 1500.0,
+                "department": "OPS"
+              }
+            ],
+            "otherEarningsDetail": [],
+            "fsaMatch": [],
+            "companyTax": [],
+            "employeeTax": [],
+            "deduction": [],
+            "otherDeduction": [],
+            "benefit": [],
+            "directDeposit": [],
+            "employerContributions": [],
+            "taxFilingStatus": [],
+            "fromArrears": [],
+            "toArrears": [],
+            "checkAmt": 1500.0,
+            "bankAccount": "****4455",
+            "checkAccountACH": "A",
+            "dateProcessed": "2025-01-10",
+            "retirement": {
+              "planId": "401K1",
+              "planYearPeriod": "2025-01",
+              "baseEarnings": 0.0,
+              "electiveContributionsPreTax": 0.0,
+              "catchUpContributionsPreTax": 0.0,
+              "rothContributionsPostTax": 0.0,
+              "rothCatchUpContributionsPostTax": 0.0,
+              "employeeContributionsPostTax": 0.0,
+              "employerMatchingContributions": 0.0,
+              "employerNonElectiveContributions": 0.0,
+              "employerSafeHarborMatchType1": 0.0,
+              "employerSafeHarborMatchType2": 0.0,
+              "peoMatchingContribution": 0.0,
+              "employeeRetirementLoanPayments": 0.0
+            }
+          }
+        ],
+        "total": 3,
+        "startpage": 1,
+        "count": 2
+      }
+    },
+    {
+      "route": "/payroll/v1/getPayrollVoucherForBatch",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250124-01",
+        "count": "2",
+        "startpage": "0",
+        "options": "EmployerContribution,Retirement"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payrollVoucher": [
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250124-01",
+            "checkNumber": "900104",
+            "earnAmount": 2884.62,
+            "employeeId": "P00001",
+            "fitTaxableAmount": 2614.14,
+            "netPay": 1872.6,
+            "otherEarnAmount": 0,
+            "payDate": "2025-01-24",
+            "payPeriod": "2",
+            "payPeriodEnd": "2025-01-18",
+            "payPeriodStart": "2025-01-05",
+            "totalEarnings": 2897.12,
+            "voidVoucherId": "",
+            "voucherId": "000104",
+            "wcHomeClass": "8810",
+            "wcState": "UT",
+            "status": "PRNT",
+            "type": "R",
+            "voidDate": "",
+            "payGroup": "BW",
+            "checkNum": "",
+            "payStubType": "E",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [
+              {
+                "wcClass": "8810",
+                "wcTaxablePay": 2884.62,
+                "wcPremAmount": 5.77,
+                "wcBillAmount": 7.21,
+                "wcPremBill": 7.21
+              }
+            ],
+            "earning": [
+              {
+                "payCode": "REG",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "chargeDate": "2025-01-18",
+                "hoursUnits": 80,
+                "hoursWorked": 80,
+                "unitRate": 36.0577,
+                "payAmount": 2884.62,
+                "division": "EAST",
+                "jobCode": "ACCT",
+                "shift": "1",
+                "department": "FIN",
+                "location": "SLC",
+                "glCode": "5000",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": ""
+              }
+            ],
+            "otherEarningsDetail": [
+              {
+                "otherEarnCode": "FRINGE",
+                "otherEarnsDesc": "Group term life",
+                "otherEarnAmount": 12.5
+              }
+            ],
+            "fsaMatch": [],
+            "companyTax": [
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-21",
+                "comTaxDeductCodeDesc": "Soc Security - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 2787.22,
+                "comTaxType": "FICA",
+                "comTaxAmount": 172.81,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.062,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-22",
+                "comTaxDeductCodeDesc": "Medicare - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 2787.22,
+                "comTaxType": "MEDI",
+                "comTaxAmount": 40.41,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.0145,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-23",
+                "comTaxDeductCodeDesc": "Fed Unemployment",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 2787.22,
+                "comTaxType": "FUTA",
+                "comTaxAmount": 16.72,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.006,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "45-30",
+                "comTaxDeductCodeDesc": "UT Unemployment",
+                "comExemptAmount": 97.4,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 2787.22,
+                "comTaxType": "SUI",
+                "comTaxAmount": 33.45,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.012,
+                "comClientSutaRpt": "Y"
+              }
+            ],
+            "employeeTax": [
+              {
+                "empTaxDeductCode": "00-10",
+                "empTaxDeductCodeDesc": "Federal Income Tax",
+                "empTaxableAmount": 2614.14,
+                "empTaxAmount": 250.0,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-11",
+                "empTaxDeductCodeDesc": "Soc Security - Employee",
+                "empTaxableAmount": 2787.22,
+                "empTaxAmount": 172.81,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-12",
+                "empTaxDeductCodeDesc": "Medicare - Employee",
+                "empTaxableAmount": 2787.22,
+                "empTaxAmount": 40.41,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "45-10",
+                "empTaxDeductCodeDesc": "UT Income Tax",
+                "empTaxableAmount": 2614.14,
+                "empTaxAmount": 118.94,
+                "empOverLimitAmount": 0.0
+              }
+            ],
+            "deduction": [
+              {
+                "deductCode": "401K",
+                "deductDescription": "401(k)",
+                "deductAmount": 173.08,
+                "deductType": "K",
+                "deductUnionId": "",
+                "planId": ""
+              },
+              {
+                "deductCode": "MED",
+                "deductDescription": "Medical",
+                "deductAmount": 85.4,
+                "deductType": "C",
+                "deductUnionId": "",
+                "planId": "MED1"
+              },
+              {
+                "deductCode": "DEN",
+                "deductDescription": "Dental",
+                "deductAmount": 12.0,
+                "deductType": "C",
+                "deductUnionId": "",
+                "planId": "DEN1"
+              },
+              {
+                "deductCode": "LTD",
+                "deductDescription": "Long-term disability",
+                "deductAmount": 9.38,
+                "deductType": "P",
+                "deductUnionId": "",
+                "planId": "LTD1"
+              },
+              {
+                "deductCode": "LOAN",
+                "deductDescription": "Payroll advance",
+                "deductAmount": 50.0,
+                "deductType": "L",
+                "deductUnionId": "",
+                "planId": ""
+              },
+              {
+                "deductCode": "GARN",
+                "deductDescription": "Child support",
+                "deductAmount": 100.0,
+                "deductType": "G",
+                "deductUnionId": "",
+                "planId": ""
+              }
+            ],
+            "otherDeduction": [],
+            "benefit": [
+              {
+                "planId": "MED1",
+                "premiumAmt": 420.0,
+                "premiumCost": 410.0,
+                "empContrib": 85.4,
+                "empDeduct": 85.4,
+                "coveragePeriod": "202501",
+                "adjRef": ""
+              },
+              {
+                "planId": "LTD1",
+                "premiumAmt": 37.5,
+                "premiumCost": 37.5,
+                "empContrib": 9.38,
+                "empDeduct": 9.38,
+                "coveragePeriod": "202501",
+                "adjRef": ""
+              }
+            ],
+            "directDeposit": [
+              {
+                "transitNum": "602100010",
+                "accountNum": "****",
+                "status": "D*S",
+                "amount": 200.0
+              },
+              {
+                "transitNum": "602100023",
+                "accountNum": "****6789",
+                "status": "D*C",
+                "amount": 418.15
+              },
+              {
+                "transitNum": "602100036",
+                "accountNum": "****1234",
+                "status": "D*C",
+                "amount": 1254.45
+              }
+            ],
+            "employerContributions": [
+              {
+                "code": "MED1",
+                "description": "Medical employer share",
+                "amount": 334.6
+              },
+              {
+                "code": "401K",
+                "description": "401(k) match",
+                "amount": 86.54
+              }
+            ],
+            "taxFilingStatus": [
+              {
+                "taxAuthId": "00-10",
+                "taxAuthName": "Federal",
+                "filingStatus": "M",
+                "allowances": "2",
+                "overrideType": "A",
+                "overrideAmount": "25.00"
+              },
+              {
+                "taxAuthId": "45-10",
+                "taxAuthName": "Utah",
+                "filingStatus": "H",
+                "allowances": "1",
+                "overrideType": "F",
+                "overrideAmount": "40.00"
+              }
+            ],
+            "fromArrears": [
+              {
+                "dedCode": "LTD",
+                "dedDescription": "Long-term disability",
+                "arrearsAmt": "9.38",
+                "arrearsDate": "2024-12-20",
+                "arrearsRefNo": "AR-1",
+                "coveragePeriod": "202412",
+                "planId": "LTD1",
+                "unionId": "",
+                "loanNo": ""
+              }
+            ],
+            "toArrears": [],
+            "checkAmt": 0,
+            "bankAccount": "****4455",
+            "checkAccountACH": "A",
+            "dateProcessed": "2025-01-24",
+            "retirement": {
+              "planId": "401K1",
+              "planYearPeriod": "2025-02",
+              "baseEarnings": 2884.62,
+              "electiveContributionsPreTax": 173.08,
+              "catchUpContributionsPreTax": 0.0,
+              "rothContributionsPostTax": 0.0,
+              "rothCatchUpContributionsPostTax": 0.0,
+              "employeeContributionsPostTax": 0.0,
+              "employerMatchingContributions": 86.54,
+              "employerNonElectiveContributions": 0.0,
+              "employerSafeHarborMatchType1": 0.0,
+              "employerSafeHarborMatchType2": 0.0,
+              "peoMatchingContribution": 0.0,
+              "employeeRetirementLoanPayments": 0.0
+            }
+          },
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250124-01",
+            "checkNumber": "",
+            "earnAmount": 0,
+            "employeeId": "P00001",
+            "fitTaxableAmount": 0,
+            "netPay": 0,
+            "otherEarnAmount": 0,
+            "payDate": "2025-01-24",
+            "payPeriod": "2",
+            "payPeriodEnd": "2025-01-18",
+            "payPeriodStart": "2025-01-05",
+            "totalEarnings": 0,
+            "voidVoucherId": "",
+            "voucherId": "000105",
+            "wcHomeClass": "",
+            "wcState": "UT",
+            "status": "PRNT",
+            "type": "A",
+            "voidDate": "",
+            "payGroup": "BW",
+            "checkNum": "",
+            "payStubType": "E",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [],
+            "earning": [],
+            "otherEarningsDetail": [],
+            "fsaMatch": [],
+            "companyTax": [],
+            "employeeTax": [],
+            "deduction": [],
+            "otherDeduction": [],
+            "benefit": [
+              {
+                "planId": "LTD1",
+                "premiumAmt": 37.5,
+                "premiumCost": 37.5,
+                "empContrib": 9.38,
+                "empDeduct": 0,
+                "coveragePeriod": "202412",
+                "adjRef": "ARR-1"
+              }
+            ],
+            "directDeposit": [],
+            "employerContributions": [
+              {
+                "code": "LTD1",
+                "description": "LTD employer share",
+                "amount": 28.12
+              }
+            ],
+            "taxFilingStatus": [],
+            "fromArrears": [],
+            "toArrears": [
+              {
+                "dedCode": "LTD",
+                "dedDescription": "Long-term disability",
+                "arrearsAmt": "9.38",
+                "coveragePeriod": "202412",
+                "planId": "LTD1",
+                "unionId": "",
+                "loanNo": ""
+              }
+            ],
+            "checkAmt": 0,
+            "bankAccount": "",
+            "checkAccountACH": "A",
+            "dateProcessed": "2025-01-23",
+            "retirement": {
+              "planId": "",
+              "planYearPeriod": "",
+              "baseEarnings": null,
+              "electiveContributionsPreTax": null,
+              "catchUpContributionsPreTax": null,
+              "rothContributionsPostTax": null,
+              "rothCatchUpContributionsPostTax": null,
+              "employeeContributionsPostTax": null,
+              "employerMatchingContributions": null,
+              "employerNonElectiveContributions": null,
+              "employerSafeHarborMatchType1": null,
+              "employerSafeHarborMatchType2": null,
+              "peoMatchingContribution": null,
+              "employeeRetirementLoanPayments": null
+            }
+          }
+        ],
+        "total": 3,
+        "startpage": 0,
+        "count": 2
+      }
+    },
+    {
+      "route": "/payroll/v1/getPayrollVoucherForBatch",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250124-01",
+        "count": "2",
+        "startpage": "1",
+        "options": "EmployerContribution,Retirement"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payrollVoucher": [
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250124-01",
+            "checkNumber": "4411",
+            "earnAmount": 1998.75,
+            "employeeId": "P00002",
+            "fitTaxableAmount": 1998.75,
+            "netPay": 1434.91,
+            "otherEarnAmount": 0,
+            "payDate": "2025-01-24",
+            "payPeriod": "2",
+            "payPeriodEnd": "2025-01-18",
+            "payPeriodStart": "2025-01-05",
+            "totalEarnings": 1998.75,
+            "voidVoucherId": "",
+            "voucherId": "000106",
+            "wcHomeClass": "8810",
+            "wcState": "UT",
+            "status": "PRNT",
+            "type": "R",
+            "voidDate": "",
+            "payGroup": "BW",
+            "checkNum": "",
+            "payStubType": "P",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [
+              {
+                "wcClass": "8810",
+                "wcTaxablePay": 1998.75,
+                "wcPremAmount": 3.99,
+                "wcBillAmount": 5.0,
+                "wcPremBill": 5.0
+              }
+            ],
+            "earning": [
+              {
+                "chargeDate": "2025-01-18",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "REG",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": 80,
+                "hoursWorked": 80,
+                "unitRate": 22.5,
+                "payAmount": 1800.0
+              },
+              {
+                "chargeDate": "2025-01-18",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "OT",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": 5,
+                "hoursWorked": 5,
+                "unitRate": 33.75,
+                "payAmount": 168.75
+              },
+              {
+                "chargeDate": "2025-01-18",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "PIECE",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": 120,
+                "hoursWorked": 0,
+                "unitRate": 0.25,
+                "payAmount": 30.0
+              }
+            ],
+            "otherEarningsDetail": [],
+            "fsaMatch": [],
+            "companyTax": [
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-21",
+                "comTaxDeductCodeDesc": "Soc Security - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 1998.75,
+                "comTaxType": "FICA",
+                "comTaxAmount": 123.92,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.062,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-22",
+                "comTaxDeductCodeDesc": "Medicare - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 1998.75,
+                "comTaxType": "MEDI",
+                "comTaxAmount": 28.98,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.0145,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-23",
+                "comTaxDeductCodeDesc": "Fed Unemployment",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 1998.75,
+                "comTaxType": "FUTA",
+                "comTaxAmount": 11.99,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.006,
+                "comClientSutaRpt": ""
+              }
+            ],
+            "employeeTax": [
+              {
+                "empTaxDeductCode": "00-10",
+                "empTaxDeductCodeDesc": "Federal Income Tax",
+                "empTaxableAmount": 1998.75,
+                "empTaxAmount": 160.0,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-11",
+                "empTaxDeductCodeDesc": "Soc Security - Employee",
+                "empTaxableAmount": 1998.75,
+                "empTaxAmount": 123.92,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-12",
+                "empTaxDeductCodeDesc": "Medicare - Employee",
+                "empTaxableAmount": 1998.75,
+                "empTaxAmount": 28.98,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "45-10",
+                "empTaxDeductCodeDesc": "UT Income Tax",
+                "empTaxableAmount": 1998.75,
+                "empTaxAmount": 90.94,
+                "empOverLimitAmount": 0.0
+              }
+            ],
+            "deduction": [
+              {
+                "deductCode": "CHAR",
+                "deductDescription": "Charity",
+                "deductAmount": 10.0,
+                "deductType": "V",
+                "deductUnionId": "",
+                "planId": ""
+              },
+              {
+                "deductCode": "IRS",
+                "deductDescription": "IRS Levy",
+                "deductAmount": 150.0,
+                "deductType": "VG",
+                "deductUnionId": "",
+                "planId": ""
+              }
+            ],
+            "otherDeduction": [],
+            "benefit": [],
+            "directDeposit": [],
+            "employerContributions": [],
+            "taxFilingStatus": [
+              {
+                "taxAuthId": "00-10",
+                "taxAuthName": "Federal",
+                "filingStatus": "SS",
+                "allowances": "0",
+                "overrideType": "",
+                "overrideAmount": ""
+              }
+            ],
+            "fromArrears": [],
+            "toArrears": [],
+            "checkAmt": 1434.91,
+            "bankAccount": "****8812",
+            "checkAccountACH": "A",
+            "dateProcessed": "2025-01-24",
+            "retirement": {
+              "planId": "401K1",
+              "planYearPeriod": "2025-02",
+              "baseEarnings": 0.0,
+              "electiveContributionsPreTax": 0.0,
+              "catchUpContributionsPreTax": 0.0,
+              "rothContributionsPostTax": 0.0,
+              "rothCatchUpContributionsPostTax": 0.0,
+              "employeeContributionsPostTax": 0.0,
+              "employerMatchingContributions": 0.0,
+              "employerNonElectiveContributions": 0.0,
+              "employerSafeHarborMatchType1": 0.0,
+              "employerSafeHarborMatchType2": 0.0,
+              "peoMatchingContribution": 0.0,
+              "employeeRetirementLoanPayments": 0.0
+            }
+          }
+        ],
+        "total": 3,
+        "startpage": 1,
+        "count": 2
+      }
+    },
+    {
+      "route": "/payroll/v1/getPayrollVoucherForBatch",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250128-V1",
+        "count": "2",
+        "startpage": "0",
+        "options": "EmployerContribution,Retirement"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payrollVoucher": [
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250128-V1",
+            "checkNumber": "4410",
+            "earnAmount": -1998.75,
+            "employeeId": "P00002",
+            "fitTaxableAmount": -1998.75,
+            "netPay": -1434.91,
+            "otherEarnAmount": 0,
+            "payDate": "2025-01-28",
+            "payPeriod": "1",
+            "payPeriodEnd": "2025-01-04",
+            "payPeriodStart": "2024-12-22",
+            "totalEarnings": -1998.75,
+            "voidVoucherId": "000102",
+            "voucherId": "000107",
+            "wcHomeClass": "8810",
+            "wcState": "UT",
+            "status": "PRNT",
+            "type": "R",
+            "voidDate": "2025-01-28",
+            "payGroup": "BW",
+            "checkNum": "",
+            "payStubType": "P",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [
+              {
+                "wcClass": "8810",
+                "wcTaxablePay": -1998.75,
+                "wcPremAmount": -3.99,
+                "wcBillAmount": -5.0,
+                "wcPremBill": -5.0
+              }
+            ],
+            "earning": [
+              {
+                "chargeDate": "2025-01-04",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "REG",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": -80,
+                "hoursWorked": -80,
+                "unitRate": 22.5,
+                "payAmount": -1800.0
+              },
+              {
+                "chargeDate": "2025-01-04",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "OT",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": -5,
+                "hoursWorked": -5,
+                "unitRate": 33.75,
+                "payAmount": -168.75
+              },
+              {
+                "chargeDate": "2025-01-04",
+                "division": "",
+                "jobCode": "WHSE",
+                "shift": "2",
+                "department": "OPS",
+                "location": "SLC",
+                "glCode": "5100",
+                "workComp": "8810",
+                "projWork": "",
+                "projPhase": "",
+                "payCode": "PIECE",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "hoursUnits": -120,
+                "hoursWorked": 0,
+                "unitRate": 0.25,
+                "payAmount": -30.0
+              }
+            ],
+            "otherEarningsDetail": [],
+            "fsaMatch": [],
+            "companyTax": [
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-21",
+                "comTaxDeductCodeDesc": "Soc Security - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": -1998.75,
+                "comTaxType": "FICA",
+                "comTaxAmount": -123.92,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.062,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-22",
+                "comTaxDeductCodeDesc": "Medicare - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": -1998.75,
+                "comTaxType": "MEDI",
+                "comTaxAmount": -28.98,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.0145,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-23",
+                "comTaxDeductCodeDesc": "Fed Unemployment",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": -1998.75,
+                "comTaxType": "FUTA",
+                "comTaxAmount": -11.99,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.006,
+                "comClientSutaRpt": ""
+              }
+            ],
+            "employeeTax": [
+              {
+                "empTaxDeductCode": "00-10",
+                "empTaxDeductCodeDesc": "Federal Income Tax",
+                "empTaxableAmount": -1998.75,
+                "empTaxAmount": -160.0,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-11",
+                "empTaxDeductCodeDesc": "Soc Security - Employee",
+                "empTaxableAmount": -1998.75,
+                "empTaxAmount": -123.92,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-12",
+                "empTaxDeductCodeDesc": "Medicare - Employee",
+                "empTaxableAmount": -1998.75,
+                "empTaxAmount": -28.98,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "45-10",
+                "empTaxDeductCodeDesc": "UT Income Tax",
+                "empTaxableAmount": -1998.75,
+                "empTaxAmount": -90.94,
+                "empOverLimitAmount": 0.0
+              }
+            ],
+            "deduction": [
+              {
+                "deductCode": "CHAR",
+                "deductDescription": "Charity",
+                "deductAmount": -10.0,
+                "deductType": "V",
+                "deductUnionId": "",
+                "planId": ""
+              },
+              {
+                "deductCode": "IRS",
+                "deductDescription": "IRS Levy",
+                "deductAmount": -150.0,
+                "deductType": "VG",
+                "deductUnionId": "",
+                "planId": ""
+              }
+            ],
+            "otherDeduction": [],
+            "benefit": [],
+            "directDeposit": [],
+            "employerContributions": [],
+            "taxFilingStatus": [
+              {
+                "taxAuthId": "00-10",
+                "taxAuthName": "Federal",
+                "filingStatus": "SS",
+                "allowances": "0",
+                "overrideType": "",
+                "overrideAmount": ""
+              }
+            ],
+            "fromArrears": [],
+            "toArrears": [],
+            "checkAmt": -1434.91,
+            "bankAccount": "****8812",
+            "checkAccountACH": "A",
+            "dateProcessed": "2025-01-28",
+            "retirement": {
+              "planId": "401K1",
+              "planYearPeriod": "2025-01",
+              "baseEarnings": 0.0,
+              "electiveContributionsPreTax": 0.0,
+              "catchUpContributionsPreTax": 0.0,
+              "rothContributionsPostTax": 0.0,
+              "rothCatchUpContributionsPostTax": 0.0,
+              "employeeContributionsPostTax": 0.0,
+              "employerMatchingContributions": 0.0,
+              "employerNonElectiveContributions": 0.0,
+              "employerSafeHarborMatchType1": 0.0,
+              "employerSafeHarborMatchType2": 0.0,
+              "peoMatchingContribution": 0.0,
+              "employeeRetirementLoanPayments": 0.0
+            }
+          }
+        ],
+        "total": 1,
+        "startpage": 0,
+        "count": 2
+      }
+    },
+    {
+      "route": "/payroll/v1/getPayrollVoucherForBatch",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250131-J1",
+        "count": "2",
+        "startpage": "0",
+        "options": "EmployerContribution,Retirement"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payrollVoucher": [
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250131-J1",
+            "checkNumber": "",
+            "earnAmount": 0,
+            "employeeId": "P00002",
+            "fitTaxableAmount": 0,
+            "netPay": 0,
+            "otherEarnAmount": 0,
+            "payDate": "2025-01-31",
+            "payPeriod": "2",
+            "payPeriodEnd": "2025-01-18",
+            "payPeriodStart": "2025-01-05",
+            "totalEarnings": 25.0,
+            "voidVoucherId": "",
+            "voucherId": "000108",
+            "wcHomeClass": "8810",
+            "wcState": "UT",
+            "status": "PRNT",
+            "type": "J",
+            "voidDate": "",
+            "payGroup": "BW",
+            "checkNum": "",
+            "payStubType": "P",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [],
+            "earning": [],
+            "otherEarningsDetail": [
+              {
+                "otherEarnCode": "MEMO",
+                "otherEarnsDesc": "Memo",
+                "otherEarnAmount": 25.0
+              }
+            ],
+            "fsaMatch": [],
+            "companyTax": [],
+            "employeeTax": [],
+            "deduction": [
+              {
+                "deductCode": "ADJ",
+                "deductDescription": "Memo offset",
+                "deductAmount": 25.0,
+                "deductType": "V",
+                "deductUnionId": "",
+                "planId": ""
+              }
+            ],
+            "otherDeduction": [
+              {
+                "otherDeductCode": "ADJ",
+                "otherDeductDescription": "Memo offset (one time)",
+                "otherDeductAmount": 0,
+                "otherDeductOneTimeSwitch": "Y"
+              }
+            ],
+            "benefit": [],
+            "directDeposit": [],
+            "employerContributions": [],
+            "taxFilingStatus": [],
+            "fromArrears": [],
+            "toArrears": [],
+            "checkAmt": 0,
+            "bankAccount": "",
+            "checkAccountACH": "A",
+            "dateProcessed": "2025-01-30",
+            "retirement": {
+              "planId": "401K1",
+              "planYearPeriod": "2025-02",
+              "baseEarnings": 0.0,
+              "electiveContributionsPreTax": 0.0,
+              "catchUpContributionsPreTax": 0.0,
+              "rothContributionsPostTax": 0.0,
+              "rothCatchUpContributionsPostTax": 0.0,
+              "employeeContributionsPostTax": 0.0,
+              "employerMatchingContributions": 0.0,
+              "employerNonElectiveContributions": 0.0,
+              "employerSafeHarborMatchType1": 0.0,
+              "employerSafeHarborMatchType2": 0.0,
+              "peoMatchingContribution": 0.0,
+              "employeeRetirementLoanPayments": 0.0
+            }
+          }
+        ],
+        "total": 1,
+        "startpage": 0,
+        "count": 2
+      }
+    },
+    {
+      "route": "/payroll/v1/getPayrollVoucherForBatch",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250207-S1",
+        "count": "2",
+        "startpage": "0",
+        "options": "EmployerContribution,Retirement"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payrollVoucher": [],
+        "total": 0,
+        "startpage": 0,
+        "count": 2
+      }
+    },
+    {
+      "route": "/payroll/v1/getPayrollVoucherForBatch",
+      "params": {
+        "clientId": "1001",
+        "batchId": "20250214-S2",
+        "count": "2",
+        "startpage": "0",
+        "options": "EmployerContribution,Retirement"
+      },
+      "status": 200,
+      "body": {
+        "errorCode": "0",
+        "errorMessage": "",
+        "payrollVoucher": [
+          {
+            "asoClientGLAcctDistribution": {},
+            "batchId": "20250214-S2",
+            "checkNumber": "900109",
+            "earnAmount": 576.92,
+            "employeeId": "P00001",
+            "fitTaxableAmount": 576.92,
+            "netPay": 475.09,
+            "otherEarnAmount": 0,
+            "payDate": "2025-02-14",
+            "payPeriod": "4",
+            "payPeriodEnd": "2025-02-15",
+            "payPeriodStart": "2025-02-02",
+            "totalEarnings": 576.92,
+            "voidVoucherId": "",
+            "voucherId": "000109",
+            "wcHomeClass": "8810",
+            "wcState": "UT",
+            "status": "",
+            "type": "V",
+            "voidDate": "",
+            "payGroup": "BW",
+            "checkNum": "",
+            "payStubType": "E",
+            "isManualCheck": false,
+            "hsaPeoMatch": 0,
+            "importBatchNo": "",
+            "workerComp": [],
+            "earning": [
+              {
+                "payCode": "VAC",
+                "payClass": "E",
+                "payClassDescription": "Earnings",
+                "chargeDate": "2025-02-14",
+                "hoursUnits": 16,
+                "hoursWorked": 0,
+                "unitRate": 36.0577,
+                "payAmount": 576.92,
+                "department": "FIN",
+                "location": "SLC"
+              }
+            ],
+            "otherEarningsDetail": [],
+            "fsaMatch": [],
+            "companyTax": [
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-21",
+                "comTaxDeductCodeDesc": "Soc Security - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 576.92,
+                "comTaxType": "FICA",
+                "comTaxAmount": 35.77,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.062,
+                "comClientSutaRpt": ""
+              },
+              {
+                "comTaxEntity": "1001",
+                "comTaxDeductCode": "00-22",
+                "comTaxDeductCodeDesc": "Medicare - Employer",
+                "comExemptAmount": 0.0,
+                "comShelteredAmount": 0,
+                "comTaxableAmount": 576.92,
+                "comTaxType": "MEDI",
+                "comTaxAmount": 8.37,
+                "comOvrLimit": 0,
+                "comTaxRate": 0.0145,
+                "comClientSutaRpt": ""
+              }
+            ],
+            "employeeTax": [
+              {
+                "empTaxDeductCode": "00-10",
+                "empTaxDeductCodeDesc": "Federal Income Tax",
+                "empTaxableAmount": 576.92,
+                "empTaxAmount": 57.69,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-11",
+                "empTaxDeductCodeDesc": "Soc Security - Employee",
+                "empTaxableAmount": 576.92,
+                "empTaxAmount": 35.77,
+                "empOverLimitAmount": 0.0
+              },
+              {
+                "empTaxDeductCode": "00-12",
+                "empTaxDeductCodeDesc": "Medicare - Employee",
+                "empTaxableAmount": 576.92,
+                "empTaxAmount": 8.37,
+                "empOverLimitAmount": 0.0
+              }
+            ],
+            "deduction": [],
+            "otherDeduction": [],
+            "benefit": [],
+            "directDeposit": [
+              {
+                "transitNum": "602100036",
+                "accountNum": "****1234",
+                "status": "D*C",
+                "amount": 475.09
+              }
+            ],
+            "employerContributions": [],
+            "taxFilingStatus": [],
+            "fromArrears": [],
+            "toArrears": [],
+            "checkAmt": 0,
+            "bankAccount": "****4455",
+            "checkAccountACH": "A",
+            "dateProcessed": "",
+            "retirement": {
+              "planId": "401K1",
+              "planYearPeriod": "2025-04",
+              "baseEarnings": 576.92,
+              "electiveContributionsPreTax": 0.0,
+              "catchUpContributionsPreTax": 0.0,
+              "rothContributionsPostTax": 0.0,
+              "rothCatchUpContributionsPostTax": 0.0,
+              "employeeContributionsPostTax": 0.0,
+              "employerMatchingContributions": 0.0,
+              "employerNonElectiveContributions": 0.0,
+              "employerSafeHarborMatchType1": 0.0,
+              "employerSafeHarborMatchType2": 0.0,
+              "peoMatchingContribution": 0.0,
+              "employeeRetirementLoanPayments": 0.0
+            }
+          }
+        ],
+        "total": 1,
+        "startpage": 0,
+        "count": 2
+      }
+    }
+  ]
+}

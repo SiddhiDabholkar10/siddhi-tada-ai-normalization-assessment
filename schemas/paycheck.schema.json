@@ -1,0 +1,1947 @@
+{
+  "$defs": {
+    "BenefitLine": {
+      "additionalProperties": false,
+      "description": "A benefit plan row as the provider reports it for this paycheck (PrismHR benefit[],\nisolved benefits[]). Informational and not additive: its amounts repeat deduction and\nemployer contribution lines, and isolved also lists non-contribution rows here (D-051).",
+      "properties": {
+        "adjustment_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Adjustment Ref"
+        },
+        "catch_up_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Catch Up Amount"
+        },
+        "coverage_period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Coverage period as sent (PrismHR '202508').",
+          "title": "Coverage Period"
+        },
+        "eligible_wages": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Eligible Wages"
+        },
+        "employee_contribution": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employee Contribution"
+        },
+        "employee_deduction": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employee Deduction"
+        },
+        "employer_contribution": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employer Contribution"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "match_eligible_wages": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Match Eligible Wages"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "premium_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Premium Amount"
+        },
+        "premium_cost": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Premium Cost"
+        }
+      },
+      "title": "BenefitLine",
+      "type": "object"
+    },
+    "Coded_DeductionCategory_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/DeductionCategory"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[DeductionCategory]",
+      "type": "object"
+    },
+    "Coded_EarningClass_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/EarningClass"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[EarningClass]",
+      "type": "object"
+    },
+    "Coded_PaycheckKind_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PaycheckKind"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PaycheckKind]",
+      "type": "object"
+    },
+    "Coded_PaycheckStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PaycheckStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PaycheckStatus]",
+      "type": "object"
+    },
+    "Coded_PaymentMethod_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PaymentMethod"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PaymentMethod]",
+      "type": "object"
+    },
+    "Coded_RateClass_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/RateClass"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[RateClass]",
+      "type": "object"
+    },
+    "Coded_TaxJurisdictionLevel_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/TaxJurisdictionLevel"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[TaxJurisdictionLevel]",
+      "type": "object"
+    },
+    "Coded_TaxTreatment_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/TaxTreatment"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[TaxTreatment]",
+      "type": "object"
+    },
+    "Coded_TaxType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/TaxType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[TaxType]",
+      "type": "object"
+    },
+    "DeductionCategory": {
+      "description": "Purpose of a deduction. Tax treatment is a separate dimension (TaxTreatment).",
+      "enum": [
+        "benefit",
+        "retirement",
+        "retirement_loan",
+        "loan",
+        "garnishment",
+        "flexible_spending",
+        "health_savings",
+        "voluntary",
+        "unknown"
+      ],
+      "title": "DeductionCategory",
+      "type": "string"
+    },
+    "DeductionLine": {
+      "additionalProperties": false,
+      "description": "An employee deduction taken in this payroll. Classification is inherited from the\ncompany deduction code (D-047). Garnishments are deduction lines with category garnishment.",
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "category": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_DeductionCategory_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "deduction_code": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider's code, id and name as sent."
+        },
+        "deduction_code_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deduction Code Id"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "is_catch_up": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Catch Up"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Benefit plan the deduction is for (PrismHR planId)."
+        },
+        "source_line_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider's id for the line, as sent (isolved, UKG). A UKG tax line split into employee and employer sides keeps the same id on both.",
+          "title": "Source Line Id"
+        },
+        "tax_treatment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_TaxTreatment_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "DeductionLine",
+      "type": "object"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "description": "One finding about a record.\n\n``field`` is a path within the record (``deductions[2].category``); null means the finding\nis about the whole record. ``evidence`` cites a decision id or spec pointer; null means\nnone applies. These nulls are part of the type's meaning, so Diagnostic is a value type\nand is not subject to the field_status rule.",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/DiagnosticCode"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "Diagnostic",
+      "type": "object"
+    },
+    "DiagnosticCode": {
+      "enum": [
+        "unknown_code",
+        "inferred_mapping",
+        "value_redacted_in_source",
+        "sentinel_date",
+        "empty_via_404",
+        "source_unavailable",
+        "unparseable_value",
+        "reconciliation_mismatch",
+        "reconciliation_incomplete",
+        "conflicting_sources",
+        "unit_unverified",
+        "deprecated_source",
+        "unvalidated_source",
+        "unstable_id",
+        "reference_only"
+      ],
+      "title": "DiagnosticCode",
+      "type": "string"
+    },
+    "EarningClass": {
+      "description": "What an earning is (PrismHR payClass). Cash vs non-cash is a separate flag (is_cash),\nbecause class alone does not decide it (PrismHR TAXREF is memo and cash, D-023).",
+      "enum": [
+        "wages",
+        "reimbursement",
+        "non_cash_fringe",
+        "reported_tips",
+        "memo",
+        "unknown"
+      ],
+      "title": "EarningClass",
+      "type": "string"
+    },
+    "EarningLine": {
+      "additionalProperties": false,
+      "description": "One earning. ``hours`` holds a quantity only when it is documented or verified as hours\n(PrismHR pay codes with payReason H, UKG milliseconds per D-028); a unit count goes in\n``units``. ``amount`` is the line total (PrismHR payAmount, despite its spec description,\nD-051).",
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "earning_code": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider's code, id and name as sent."
+        },
+        "earning_code_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Earning Code Id"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "hours": {
+          "anyOf": [
+            {
+              "description": "Duration in decimal hours.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Hours paid.",
+          "title": "Hours"
+        },
+        "hours_worked": {
+          "anyOf": [
+            {
+              "description": "Duration in decimal hours.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hours Worked"
+        },
+        "is_cash": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Cash"
+        },
+        "pay_class": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_EarningClass_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "rate": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Rate per hour or unit.",
+          "title": "Rate"
+        },
+        "rate_class": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_RateClass_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_line_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider's id for the line, as sent (isolved, UKG). A UKG tax line split into employee and employer sides keeps the same id on both.",
+          "title": "Source Line Id"
+        },
+        "units": {
+          "anyOf": [
+            {
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Units paid, for unit-based pay codes.",
+          "title": "Units"
+        }
+      },
+      "title": "EarningLine",
+      "type": "object"
+    },
+    "EmployerContributionLine": {
+      "additionalProperties": false,
+      "description": "An amount the employer pays toward a plan. Sources: PrismHR employerContributions, UKG\ndeduction er_amount (linked to that deduction code), isolved memo earnings whose label is\nin the mapping table (inferred, D-055). Retirement employer amounts are not repeated here:\nthey stay in the non-additive retirement breakdown.",
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "deduction_code_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deduction Code Id"
+        },
+        "earning_code_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "isolved: the memo earning code it came from.",
+          "title": "Earning Code Id"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Plan or code the contribution is for, as sent."
+        },
+        "source_line_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider's id for the line, as sent (isolved, UKG). A UKG tax line split into employee and employer sides keeps the same id on both.",
+          "title": "Source Line Id"
+        }
+      },
+      "title": "EmployerContributionLine",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "MappingBasis": {
+      "description": "What a canonical code value rests on.",
+      "enum": [
+        "documented",
+        "evidenced",
+        "inferred",
+        "configured",
+        "unmapped"
+      ],
+      "title": "MappingBasis",
+      "type": "string"
+    },
+    "PaidBy": {
+      "description": "Who bears a tax line. Comes from the source structure (PrismHR employeeTax vs companyTax,\nisolved isEmployeeTax, UKG ee_amount vs er_amount), not from a code.",
+      "enum": [
+        "employee",
+        "employer",
+        "unknown"
+      ],
+      "title": "PaidBy",
+      "type": "string"
+    },
+    "PaycheckKind": {
+      "description": "Kind of paycheck (PrismHR voucher type, isolved check type). Reversal is not a kind: it is\nmarked on the paycheck (D-033).",
+      "enum": [
+        "regular",
+        "supplemental",
+        "vacation",
+        "adjustment",
+        "arrears",
+        "manual",
+        "unknown"
+      ],
+      "title": "PaycheckKind",
+      "type": "string"
+    },
+    "PaycheckStatus": {
+      "enum": [
+        "printed",
+        "new",
+        "open",
+        "closed",
+        "finalized",
+        "invalid",
+        "unknown"
+      ],
+      "title": "PaycheckStatus",
+      "type": "string"
+    },
+    "PaymentLine": {
+      "additionalProperties": false,
+      "description": "How net pay was delivered. ``method`` keeps the provider's label (UKG type_name) or, where\nthe method comes from the source structure, the source field name. Non-cash lines (UKG\n\"Fringe\") are kept as information and are not part of net pay.",
+      "properties": {
+        "account_last4": {
+          "anyOf": [
+            {
+              "description": "Visible last characters of a masked value (D-020).",
+              "pattern": "^.{1,4}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Account Last4"
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "direct_deposit_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The direct deposit record, when the source identifies it.",
+          "title": "Direct Deposit Id"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "method": {
+          "$ref": "#/$defs/Coded_PaymentMethod_"
+        },
+        "routing_last4": {
+          "anyOf": [
+            {
+              "description": "Visible last characters of a masked value (D-020).",
+              "pattern": "^.{1,4}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Routing Last4"
+        },
+        "source_line_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider's id for the line, as sent (isolved, UKG). A UKG tax line split into employee and employer sides keeps the same id on both.",
+          "title": "Source Line Id"
+        }
+      },
+      "required": [
+        "method"
+      ],
+      "title": "PaymentLine",
+      "type": "object"
+    },
+    "PaymentMethod": {
+      "enum": [
+        "check",
+        "direct_deposit",
+        "non_cash",
+        "unknown"
+      ],
+      "title": "PaymentMethod",
+      "type": "string"
+    },
+    "Provider": {
+      "enum": [
+        "prismhr",
+        "isolved",
+        "ukg-ready"
+      ],
+      "title": "Provider",
+      "type": "string"
+    },
+    "RateClass": {
+      "description": "PrismHR pay code rateClass: S straight, P premium, D doubletime, O other.",
+      "enum": [
+        "straight",
+        "premium",
+        "doubletime",
+        "other",
+        "unknown"
+      ],
+      "title": "RateClass",
+      "type": "string"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "description": "A provider code-table entry referred to by a record (a job, a pay code, a parent\norganization): the provider's id, code and name, whichever the source gives.",
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        }
+      },
+      "title": "Reference",
+      "type": "object"
+    },
+    "RetirementBreakdown": {
+      "additionalProperties": false,
+      "description": "PrismHR voucher retirement block, employer side. Not additive: on 16 of 85 sampled\nvouchers the non-elective and both safe harbor fields are non-zero and equal, and how they\nrelate is undocumented (D-051). Employee-side fields match the deduction lines of their\ntype (repetition evidenced only for pre-tax elective and Roth; the other four are zero\nthroughout the sample) and stay in provider_extensions as source evidence.",
+      "properties": {
+        "base_earnings": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Base Earnings"
+        },
+        "employer_matching": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employer Matching"
+        },
+        "employer_non_elective": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employer Non Elective"
+        },
+        "employer_safe_harbor_1": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employer Safe Harbor 1"
+        },
+        "employer_safe_harbor_2": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employer Safe Harbor 2"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "peo_matching": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Peo Matching"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "plan_year_period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Plan Year Period"
+        }
+      },
+      "title": "RetirementBreakdown",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "description": "Where a record's data came from.\n\n``endpoint`` is the method and route template as documented by the provider, e.g.\n``GET /api/clients/{clientId}/legals/{legalId}/employees/{employeeId}``. ``locator`` is a\nJSON Pointer to the record inside that response body (\"\" means the whole body). Together\nwith the run's input (the source file, or a retained response) it locates the raw value;\non its own it does not hold the value.",
+      "properties": {
+        "endpoint": {
+          "minLength": 1,
+          "title": "Endpoint",
+          "type": "string"
+        },
+        "locator": {
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "endpoint",
+        "locator"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "TaxJurisdictionLevel": {
+      "enum": [
+        "federal",
+        "state",
+        "local",
+        "unknown"
+      ],
+      "title": "TaxJurisdictionLevel",
+      "type": "string"
+    },
+    "TaxLine": {
+      "additionalProperties": false,
+      "description": "One tax for one payer. Each line has a single ``paid_by``: UKG lines that hold employee\nand employer amounts together are split in two (D-051). A side with wage figures but no\namount keeps the wages, with amount null.",
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "exempt_wages": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exempt Wages"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "gross_wages": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gross Wages"
+        },
+        "jurisdiction": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Jurisdiction the provider names: 'US', a state code or a locality name.",
+          "title": "Jurisdiction"
+        },
+        "jurisdiction_level": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_TaxJurisdictionLevel_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "over_limit_wages": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Over Limit Wages"
+        },
+        "paid_by": {
+          "$ref": "#/$defs/PaidBy"
+        },
+        "rate": {
+          "anyOf": [
+            {
+              "description": "Ratio as a fraction: 0.062 means 6.2%.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string",
+              "x-scale": "fraction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Tax rate as a fraction (PrismHR comTaxRate 0.0145).",
+          "title": "Rate"
+        },
+        "source_line_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider's id for the line, as sent (isolved, UKG). A UKG tax line split into employee and employer sides keeps the same id on both.",
+          "title": "Source Line Id"
+        },
+        "tax_code": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider's tax code and label as sent."
+        },
+        "tax_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_TaxType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "taxable_wages": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Taxable Wages"
+        }
+      },
+      "required": [
+        "paid_by"
+      ],
+      "title": "TaxLine",
+      "type": "object"
+    },
+    "TaxTreatment": {
+      "enum": [
+        "pre_tax",
+        "post_tax",
+        "roth",
+        "unknown"
+      ],
+      "title": "TaxTreatment",
+      "type": "string"
+    },
+    "TaxType": {
+      "description": "Statutory tax on a paycheck line. No provider documents a tax type; mappings come from\nexact provider labels and are inferred (D-056). OTHER is a tax the label names clearly that\nhas no category of its own here (e.g. a state workforce fund).",
+      "enum": [
+        "federal_income",
+        "social_security",
+        "medicare",
+        "additional_medicare",
+        "federal_unemployment",
+        "state_income",
+        "state_unemployment",
+        "state_disability",
+        "paid_family_leave",
+        "local_income",
+        "other",
+        "unknown"
+      ],
+      "title": "TaxType",
+      "type": "string"
+    },
+    "ValueStatus": {
+      "description": "Why a field is null. A field holding a value is \"present\" and is not listed.",
+      "enum": [
+        "hidden_by_source",
+        "not_provided",
+        "not_applicable"
+      ],
+      "title": "ValueStatus",
+      "type": "string"
+    }
+  },
+  "$id": "paycheck.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "benefit_lines": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/BenefitLine"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Benefit Lines"
+    },
+    "check_number": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Check Number"
+    },
+    "company_id": {
+      "title": "Company Id",
+      "type": "string"
+    },
+    "currency": {
+      "anyOf": [
+        {
+          "description": "ISO 4217 currency code.",
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Currency"
+    },
+    "deductions": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/DeductionLine"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Deductions"
+    },
+    "derived_totals": {
+      "description": "Totals the adapter computed from lines instead of reading from the provider.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Derived Totals",
+      "type": "array"
+    },
+    "diagnostics": {
+      "items": {
+        "$ref": "#/$defs/Diagnostic"
+      },
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "earnings": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/EarningLine"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Earnings"
+    },
+    "employee_id": {
+      "title": "Employee Id",
+      "type": "string"
+    },
+    "employer_contributions": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/EmployerContributionLine"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Employer Contributions"
+    },
+    "field_status": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ValueStatus"
+      },
+      "description": "Why each null field in this object is null. Lists null fields only.",
+      "title": "Field Status",
+      "type": "object"
+    },
+    "gross_pay": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Cash earnings before taxes and deductions (PrismHR earnAmount, isolved grossPay).",
+      "title": "Gross Pay"
+    },
+    "gross_wages": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "isolved grossWages: gross pay plus imputed income (GTL). Not the same total as total_earnings.",
+      "title": "Gross Wages"
+    },
+    "id": {
+      "description": "Canonical id: provider:tenant:entity:source ids (see ids.py).",
+      "title": "Id",
+      "type": "string"
+    },
+    "is_manual_check": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Is Manual Check"
+    },
+    "kind": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_PaycheckKind_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "net_pay": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Amount paid to the employee by check and direct deposit.",
+      "title": "Net Pay"
+    },
+    "pay_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pay Date"
+    },
+    "pay_group_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pay Group Id"
+    },
+    "payments": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/PaymentLine"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Payments"
+    },
+    "payroll_run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Null when the source does not identify the run (isolved checks are joined, D-050).",
+      "title": "Payroll Run Id"
+    },
+    "period_end": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Period End"
+    },
+    "period_start": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Period Start"
+    },
+    "processed_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Processed Date"
+    },
+    "provider": {
+      "$ref": "#/$defs/Provider"
+    },
+    "provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Provider-specific fields with no canonical meaning, keyed by source field path. Never used for anything the brief lists for the four data types (D-037).",
+      "title": "Provider Extensions",
+      "type": "object"
+    },
+    "retirement": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RetirementBreakdown"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "reverses_paycheck_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "The paycheck this one reverses (PrismHR voidVoucherId). It may be outside the synced set.",
+      "title": "Reverses Paycheck Id"
+    },
+    "sensitive_provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Like provider_extensions, for provider-specific data that is sensitive (e.g. PrismHR health screening results). Masked as a whole by default in output (D-036).",
+      "title": "Sensitive Provider Extensions",
+      "type": "object",
+      "x-sensitive": true
+    },
+    "source_ids": {
+      "additionalProperties": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "description": "The provider's own identifiers needed to address this record, by provider field name.",
+      "minProperties": 1,
+      "title": "Source Ids",
+      "type": "object"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceRef"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_PaycheckStatus_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "tax_entity_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tax Entity Id"
+    },
+    "taxes": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/TaxLine"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Taxes"
+    },
+    "tenant_id": {
+      "minLength": 1,
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "total_earnings": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "PrismHR totalEarnings: earnAmount plus other earnings (fringe, memo, other codes).",
+      "title": "Total Earnings"
+    },
+    "void_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Void Date"
+    }
+  },
+  "required": [
+    "id",
+    "provider",
+    "tenant_id",
+    "source_ids",
+    "sources",
+    "company_id",
+    "employee_id"
+  ],
+  "title": "Paycheck",
+  "type": "object"
+}

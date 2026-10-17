@@ -1,0 +1,785 @@
+{
+  "$defs": {
+    "AccountType": {
+      "enum": [
+        "checking",
+        "savings",
+        "checking_or_pay_card",
+        "pay_card",
+        "instant_pay",
+        "unknown"
+      ],
+      "title": "AccountType",
+      "type": "string"
+    },
+    "AllocationType": {
+      "enum": [
+        "fixed_amount",
+        "percent",
+        "remainder",
+        "unknown"
+      ],
+      "title": "AllocationType",
+      "type": "string"
+    },
+    "Coded_AccountType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/AccountType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[AccountType]",
+      "type": "object"
+    },
+    "Coded_AllocationType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/AllocationType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[AllocationType]",
+      "type": "object"
+    },
+    "Coded_DepositFrequency_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/DepositFrequency"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[DepositFrequency]",
+      "type": "object"
+    },
+    "Coded_DepositStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/DepositStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[DepositStatus]",
+      "type": "object"
+    },
+    "Coded_PaycheckKind_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PaycheckKind"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PaycheckKind]",
+      "type": "object"
+    },
+    "Coded_PercentBasis_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PercentBasis"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PercentBasis]",
+      "type": "object"
+    },
+    "Coded_PrenoteStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PrenoteStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PrenoteStatus]",
+      "type": "object"
+    },
+    "DepositFrequency": {
+      "enum": [
+        "every_pay",
+        "every_scheduled_pay",
+        "every_other_scheduled_pay",
+        "monthly",
+        "quarterly",
+        "annual",
+        "manual",
+        "unknown"
+      ],
+      "title": "DepositFrequency",
+      "type": "string"
+    },
+    "DepositStatus": {
+      "enum": [
+        "active",
+        "inactive",
+        "prenote",
+        "unknown"
+      ],
+      "title": "DepositStatus",
+      "type": "string"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "description": "One finding about a record.\n\n``field`` is a path within the record (``deductions[2].category``); null means the finding\nis about the whole record. ``evidence`` cites a decision id or spec pointer; null means\nnone applies. These nulls are part of the type's meaning, so Diagnostic is a value type\nand is not subject to the field_status rule.",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/DiagnosticCode"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "Diagnostic",
+      "type": "object"
+    },
+    "DiagnosticCode": {
+      "enum": [
+        "unknown_code",
+        "inferred_mapping",
+        "value_redacted_in_source",
+        "sentinel_date",
+        "empty_via_404",
+        "source_unavailable",
+        "unparseable_value",
+        "reconciliation_mismatch",
+        "reconciliation_incomplete",
+        "conflicting_sources",
+        "unit_unverified",
+        "deprecated_source",
+        "unvalidated_source",
+        "unstable_id",
+        "reference_only"
+      ],
+      "title": "DiagnosticCode",
+      "type": "string"
+    },
+    "JsonValue": {},
+    "MappingBasis": {
+      "description": "What a canonical code value rests on.",
+      "enum": [
+        "documented",
+        "evidenced",
+        "inferred",
+        "configured",
+        "unmapped"
+      ],
+      "title": "MappingBasis",
+      "type": "string"
+    },
+    "PaycheckKind": {
+      "description": "Kind of paycheck (PrismHR voucher type, isolved check type). Reversal is not a kind: it is\nmarked on the paycheck (D-033).",
+      "enum": [
+        "regular",
+        "supplemental",
+        "vacation",
+        "adjustment",
+        "arrears",
+        "manual",
+        "unknown"
+      ],
+      "title": "PaycheckKind",
+      "type": "string"
+    },
+    "PercentBasis": {
+      "enum": [
+        "net_pay",
+        "gross_pay",
+        "remainder_after_fixed",
+        "unknown"
+      ],
+      "title": "PercentBasis",
+      "type": "string"
+    },
+    "PrenoteStatus": {
+      "enum": [
+        "pending",
+        "sent",
+        "verified",
+        "expired",
+        "canceled",
+        "invalid",
+        "unknown"
+      ],
+      "title": "PrenoteStatus",
+      "type": "string"
+    },
+    "Provider": {
+      "enum": [
+        "prismhr",
+        "isolved",
+        "ukg-ready"
+      ],
+      "title": "Provider",
+      "type": "string"
+    },
+    "Severity": {
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "description": "Where a record's data came from.\n\n``endpoint`` is the method and route template as documented by the provider, e.g.\n``GET /api/clients/{clientId}/legals/{legalId}/employees/{employeeId}``. ``locator`` is a\nJSON Pointer to the record inside that response body (\"\" means the whole body). Together\nwith the run's input (the source file, or a retained response) it locates the raw value;\non its own it does not hold the value.",
+      "properties": {
+        "endpoint": {
+          "minLength": 1,
+          "title": "Endpoint",
+          "type": "string"
+        },
+        "locator": {
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "endpoint",
+        "locator"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "ValueStatus": {
+      "description": "Why a field is null. A field holding a value is \"present\" and is not listed.",
+      "enum": [
+        "hidden_by_source",
+        "not_provided",
+        "not_applicable"
+      ],
+      "title": "ValueStatus",
+      "type": "string"
+    }
+  },
+  "$id": "direct_deposit.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "account_last4": {
+      "anyOf": [
+        {
+          "description": "Visible last characters of a masked value (D-020).",
+          "pattern": "^.{1,4}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Account Last4"
+    },
+    "account_number": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Account Number",
+      "x-sensitive": true
+    },
+    "account_type": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_AccountType_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "allocation_type": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_AllocationType_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "amount": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Amount"
+    },
+    "applies_to_paycheck_kinds": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Coded_PaycheckKind_"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Paycheck kinds the deposit applies to (PrismHR voucherType, e.g. R, S, V).",
+      "title": "Applies To Paycheck Kinds"
+    },
+    "bank_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Bank Name"
+    },
+    "company_id": {
+      "title": "Company Id",
+      "type": "string"
+    },
+    "currency": {
+      "anyOf": [
+        {
+          "description": "ISO 4217 currency code.",
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Currency"
+    },
+    "diagnostics": {
+      "items": {
+        "$ref": "#/$defs/Diagnostic"
+      },
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "effective_from": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Effective From"
+    },
+    "effective_to": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Effective To"
+    },
+    "employee_id": {
+      "title": "Employee Id",
+      "type": "string"
+    },
+    "field_status": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ValueStatus"
+      },
+      "description": "Why each null field in this object is null. Lists null fields only.",
+      "title": "Field Status",
+      "type": "object"
+    },
+    "frequency": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_DepositFrequency_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "id": {
+      "description": "Canonical id: provider:tenant:entity:source ids (see ids.py).",
+      "title": "Id",
+      "type": "string"
+    },
+    "percent": {
+      "anyOf": [
+        {
+          "description": "Percentage on a 0 to 100 scale: 1.5 means 1.5%.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string",
+          "x-scale": "percent"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Percent"
+    },
+    "percent_basis": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_PercentBasis_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "prenote_status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_PrenoteStatus_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "provider": {
+      "$ref": "#/$defs/Provider"
+    },
+    "provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Provider-specific fields with no canonical meaning, keyed by source field path. Never used for anything the brief lists for the four data types (D-037).",
+      "title": "Provider Extensions",
+      "type": "object"
+    },
+    "routing_last4": {
+      "anyOf": [
+        {
+          "description": "Visible last characters of a masked value (D-020).",
+          "pattern": "^.{1,4}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Routing Last4"
+    },
+    "routing_number": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Routing Number",
+      "x-sensitive": true
+    },
+    "sensitive_provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Like provider_extensions, for provider-specific data that is sensitive (e.g. PrismHR health screening results). Masked as a whole by default in output (D-036).",
+      "title": "Sensitive Provider Extensions",
+      "type": "object",
+      "x-sensitive": true
+    },
+    "sequence": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Provider's sequence number as sent (isolved 0 = net pay, UKG 1..n). Null for PrismHR, which has none.",
+      "title": "Sequence"
+    },
+    "skip_if_insufficient": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Skip the deposit when the full fixed amount cannot be taken (PrismHR method FS).",
+      "title": "Skip If Insufficient"
+    },
+    "source_ids": {
+      "additionalProperties": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "description": "The provider's own identifiers needed to address this record, by provider field name.",
+      "minProperties": 1,
+      "title": "Source Ids",
+      "type": "object"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceRef"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_DepositStatus_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "tenant_id": {
+      "minLength": 1,
+      "title": "Tenant Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "provider",
+    "tenant_id",
+    "source_ids",
+    "sources",
+    "company_id",
+    "employee_id"
+  ],
+  "title": "DirectDeposit",
+  "type": "object"
+}

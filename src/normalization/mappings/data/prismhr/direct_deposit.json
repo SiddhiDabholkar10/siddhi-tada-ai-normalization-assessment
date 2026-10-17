@@ -1,0 +1,70 @@
+{
+  "provider": "prismhr",
+  "entity": "direct_deposit",
+  "notes": [
+    "One DirectDeposit per getEmployee employee[].directDeposit.achVoucher[] item (D-046). PrismHR sends no id or sequence: the canonical id is built from (client, employee, position in the list), sequence is null with not_provided, and every record carries an unstable_id diagnostic. The position is never read as a payment priority.",
+    "company_id from the client; employee_id from (client, employee id), as the employee adapter builds them (D-080).",
+    "applies_to_paycheck_kinds: one coded value per letter of the item's voucherTypeOverride when it is filled (documented as a subset of the block's voucherType), else of the block's voucherType. Live: block RVS and override RVS on the 1 sampled deposit.",
+    "Last 4 (CANONICAL_MODEL 1.4): routing_last4 and account_last4 are filled only from a masked value that shows its last characters; next to a full value they are null with not_applicable, and next to a mask that shows nothing (accountNum '****') null with hidden_by_source.",
+    "Step 4 (D-081): the hsa block (HSA contribution transfers) and getACHDeductions (deduction transfers, deselected) are not deposits; the hsa block stays on the employee (employee.json)."
+  ],
+  "fields": [
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].transitNum", "use": "mapped", "target": "DirectDeposit.routing_number", "transform": "copy", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/transitNum", "D-024"], "note": "Returned in full (D-024); sensitive, masked in output by default."},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].accountNum", "use": "mapped", "target": "DirectDeposit.account_number", "transform": "masked", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/accountNum", "D-024", "live: '****' on 1 of 1"], "note": "Provider-masked: account_number null with hidden_by_source and value_redacted_in_source; account_last4 from the visible last characters when the mask shows them (transform last4), else null with hidden_by_source."},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].accountType", "use": "mapped", "target": "DirectDeposit.account_type", "transform": "code:prismhr.deposit_account_type", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/accountType"], "note": "C stays checking_or_pay_card; never resolved to one of the two."},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].method", "use": "mapped", "target": "DirectDeposit.allocation_type", "transform": "code:prismhr.deposit_method", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/method", "D-032"], "note": "Also sets percent_basis: PN remainder_after_fixed (documented 'percentage of net after fixed'), P unknown with raw code P (no basis stated); not_applicable for F, FS and B. skip_if_insufficient: true for FS, false for F, not_applicable otherwise."},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].amount", "use": "mapped", "target": "DirectDeposit.amount", "transform": "number", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/amount", "D-032"], "note": "Fills amount for F and FS, percent for P and PN (scale 0 to 100, provisional, D-032); not sent for B ('must not be specified'), so amount and percent are not_applicable there."},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].limit", "use": "extension", "target": "DirectDeposit.provider_extensions", "reason": "Documented only as 'permissible only when method is P'; it does not say what it limits (CANONICAL_MODEL 5).", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/limit"]},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].status", "use": "mapped", "target": "DirectDeposit.status", "transform": "code:prismhr.deposit_status", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/status", "live: D on 1 of 1"], "note": "prenote_status is null with not_provided: PrismHR sends only the P status."},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].bankName", "use": "mapped", "target": "DirectDeposit.bank_name", "transform": "copy", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/bankName"]},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achVoucher[].voucherTypeOverride", "use": "mapped", "target": "DirectDeposit.applies_to_paycheck_kinds", "transform": "code:prismhr.deposit_voucher_type", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/voucherTypeOverride", "live: RVS on 1 of 1"], "note": "Used when filled (see notes)."},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.voucherType", "use": "mapped", "target": "DirectDeposit.applies_to_paycheck_kinds", "transform": "code:prismhr.deposit_voucher_type", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/EmployeeDirectDeposit/properties/voucherType", "live: RVS on 2 of 6 sampled employees"], "note": "Used when the item's voucherTypeOverride is empty."},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.achStatus", "use": "extension", "target": "DirectDeposit.provider_extensions", "reason": "Employee-level ACH switch (A active, I inactive): kept on each deposit, not combined into its status, since no precedence between the two is documented. Live: A on the 1 employee with a deposit, blank on 5.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/EmployeeDirectDeposit/properties/achStatus"]},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.suppressAccountPrint", "use": "extension", "target": "DirectDeposit.provider_extensions", "reason": "Deposit advice print setting.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/EmployeeDirectDeposit/properties/suppressAccountPrint"]},
+    {"route": "/employee/v1/getEmployee", "field": "employee[].directDeposit.directDepositChecksum", "use": "excluded", "reason": "Checksum for updates (write concurrency), not data.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/EmployeeDirectDeposit/properties/directDepositChecksum"]}
+  ],
+  "code_tables": [
+    {
+      "id": "prismhr.deposit_account_type",
+      "source": "getEmployee directDeposit achVoucher[].accountType (documented values)",
+      "columns": {"value": "AccountType"},
+      "codes": [
+        {"raw": "C", "label": "checking account or pay card", "value": {"value": "checking_or_pay_card", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/accountType", "live: 1 of 1"]},
+        {"raw": "S", "label": "savings account", "value": {"value": "savings", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/accountType"]},
+        {"raw": "IP", "label": "instant pay", "value": {"value": "instant_pay", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/accountType"]}
+      ]
+    },
+    {
+      "id": "prismhr.deposit_method",
+      "source": "getEmployee directDeposit achVoucher[].method (documented values)",
+      "columns": {"value": "AllocationType"},
+      "codes": [
+        {"raw": "F", "label": "fixed", "value": {"value": "fixed_amount", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/method"]},
+        {"raw": "FS", "label": "fixed, skip if can't take full amount", "value": {"value": "fixed_amount", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/method"], "note": "skip_if_insufficient true."},
+        {"raw": "P", "label": "percentage", "value": {"value": "percent", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/method"], "note": "percent_basis unknown with raw code P."},
+        {"raw": "PN", "label": "percentage of net after fixed", "value": {"value": "percent", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/method"], "note": "percent_basis remainder_after_fixed."},
+        {"raw": "B", "label": "remaining balance", "value": {"value": "remainder", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/method", "live: 1 of 1"]}
+      ]
+    },
+    {
+      "id": "prismhr.deposit_status",
+      "source": "getEmployee directDeposit achVoucher[].status (documented values)",
+      "columns": {"value": "DepositStatus"},
+      "codes": [
+        {"raw": "P", "label": "Pre-notification", "value": {"value": "prenote", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/status"]},
+        {"raw": "D", "label": "Deposit Active", "value": {"value": "active", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/status", "live: 1 of 1"]},
+        {"raw": "I", "label": "Deposit Inactive", "value": {"value": "inactive", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/AchVoucher/properties/status"]}
+      ]
+    },
+    {
+      "id": "prismhr.deposit_voucher_type",
+      "source": "getEmployee directDeposit voucherType and achVoucher[].voucherTypeOverride letters (documented)",
+      "columns": {"value": "PaycheckKind"},
+      "codes": [
+        {"raw": "R", "label": "Regular", "value": {"value": "regular", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/EmployeeDirectDeposit/properties/voucherType"]},
+        {"raw": "S", "label": "Supplemental", "value": {"value": "supplemental", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/EmployeeDirectDeposit/properties/voucherType"]},
+        {"raw": "V", "label": "Vacation", "value": {"value": "vacation", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/EmployeeDirectDeposit/properties/voucherType"]}
+      ]
+    }
+  ]
+}

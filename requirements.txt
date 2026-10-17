@@ -1,0 +1,28 @@
+# Exact pins so a clean clone installs the same versions.
+# Direct dependencies: pydantic (canonical models, D-035) and jsonschema (validating output
+# against the exported schemas, D-058). The rest are their requirements.
+pydantic==2.14.1
+pydantic_core==2.50.1
+annotated-types==0.8.0
+typing-inspection==0.4.4
+typing_extensions==4.16.0
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+referencing==0.37.0
+rpds-py==2026.9.1
+attrs==26.1.0
+# App (Phase 7b): fastapi (API), uvicorn (server), httpx2 (the API test client); the rest are
+# their requirements.
+fastapi==0.143.3
+starlette==1.8.0
+annotated-doc==0.0.5
+anyio==4.15.1
+idna==3.20
+opentelemetry-api==1.45.1
+uvicorn==0.54.0
+click==8.5.0
+h11==0.16.0
+httpx2==2.13.1
+httpcore2==2.13.1
+certifi==2026.7.22
+truststore==0.10.5

@@ -1,0 +1,3778 @@
+{
+  "$defs": {
+    "AdditionalRate": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_RatePeriod_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "AdditionalRate",
+      "type": "object"
+    },
+    "AddressType": {
+      "enum": [
+        "home",
+        "mailing",
+        "tax_form",
+        "work",
+        "unknown"
+      ],
+      "title": "AddressType",
+      "type": "string"
+    },
+    "CitizenshipStatus": {
+      "description": "Form I-9 attestation categories.",
+      "enum": [
+        "citizen",
+        "noncitizen_national",
+        "permanent_resident",
+        "authorized_alien",
+        "unknown"
+      ],
+      "title": "CitizenshipStatus",
+      "type": "string"
+    },
+    "Coded_CitizenshipStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/CitizenshipStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[CitizenshipStatus]",
+      "type": "object"
+    },
+    "Coded_EeoJobCategory_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/EeoJobCategory"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[EeoJobCategory]",
+      "type": "object"
+    },
+    "Coded_EmploymentStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/EmploymentStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[EmploymentStatus]",
+      "type": "object"
+    },
+    "Coded_EmploymentType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/EmploymentType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[EmploymentType]",
+      "type": "object"
+    },
+    "Coded_Ethnicity_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/Ethnicity"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[Ethnicity]",
+      "type": "object"
+    },
+    "Coded_FilingStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/FilingStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[FilingStatus]",
+      "type": "object"
+    },
+    "Coded_FlsaStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/FlsaStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[FlsaStatus]",
+      "type": "object"
+    },
+    "Coded_Gender_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/Gender"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[Gender]",
+      "type": "object"
+    },
+    "Coded_MaritalStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/MaritalStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[MaritalStatus]",
+      "type": "object"
+    },
+    "Coded_NationalIdType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/NationalIdType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[NationalIdType]",
+      "type": "object"
+    },
+    "Coded_OrgUnitType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/OrgUnitType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[OrgUnitType]",
+      "type": "object"
+    },
+    "Coded_PayFrequency_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PayFrequency"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PayFrequency]",
+      "type": "object"
+    },
+    "Coded_PayType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PayType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PayType]",
+      "type": "object"
+    },
+    "Coded_RatePeriod_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/RatePeriod"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[RatePeriod]",
+      "type": "object"
+    },
+    "Coded_Relationship_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/Relationship"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[Relationship]",
+      "type": "object"
+    },
+    "Coded_TerminationType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/TerminationType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[TerminationType]",
+      "type": "object"
+    },
+    "Coded_WorkerType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/WorkerType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[WorkerType]",
+      "type": "object"
+    },
+    "Compensation": {
+      "additionalProperties": false,
+      "description": "Current pay. Amounts are in the employee's ``currency``. Pay frequency comes only from\nlabeled or documented sources (D-018, D-041).",
+      "properties": {
+        "additional_rates": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/AdditionalRate"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Additional Rates"
+        },
+        "annual_salary": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Annual Salary"
+        },
+        "base_rate": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Base Rate"
+        },
+        "base_rate_period": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_RatePeriod_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "effective_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective Date"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "hourly_rate": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hourly Rate"
+        },
+        "pay_frequency": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_PayFrequency_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "pay_group_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pay Group Id"
+        },
+        "pay_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_PayType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "per_period_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Per Period Amount"
+        },
+        "standard_hours": {
+          "anyOf": [
+            {
+              "description": "Duration in decimal hours.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Standard Hours"
+        },
+        "standard_hours_period": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_RatePeriod_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "Compensation",
+      "type": "object"
+    },
+    "CompensationChange": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "amount_period": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_RatePeriod_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "annual_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Annual Amount"
+        },
+        "change_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Change Amount"
+        },
+        "change_percent": {
+          "anyOf": [
+            {
+              "description": "Percentage on a 0 to 100 scale: 1.5 means 1.5%.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string",
+              "x-scale": "percent"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Change Percent"
+        },
+        "effective_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective Date"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "hourly_rate": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hourly Rate"
+        },
+        "pay_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_PayType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        }
+      },
+      "title": "CompensationChange",
+      "type": "object"
+    },
+    "Demographics": {
+      "additionalProperties": false,
+      "description": "Protected personal characteristics. Every field is sensitive.",
+      "properties": {
+        "birth_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Birth Date",
+          "x-sensitive": true
+        },
+        "citizenship": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_CitizenshipStatus_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "x-sensitive": true
+        },
+        "deceased_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deceased Date",
+          "x-sensitive": true
+        },
+        "disability": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Disability"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "x-sensitive": true
+        },
+        "ethnicity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_Ethnicity_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "x-sensitive": true
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "gender": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_Gender_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "x-sensitive": true
+        },
+        "is_deceased": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Deceased",
+          "x-sensitive": true
+        },
+        "marital_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_MaritalStatus_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "x-sensitive": true
+        },
+        "preferred_pronouns": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Preferred Pronouns",
+          "x-sensitive": true
+        },
+        "tobacco_user": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tobacco User",
+          "x-sensitive": true
+        },
+        "veteran": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/VeteranStatus"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "x-sensitive": true
+        }
+      },
+      "title": "Demographics",
+      "type": "object"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "description": "One finding about a record.\n\n``field`` is a path within the record (``deductions[2].category``); null means the finding\nis about the whole record. ``evidence`` cites a decision id or spec pointer; null means\nnone applies. These nulls are part of the type's meaning, so Diagnostic is a value type\nand is not subject to the field_status rule.",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/DiagnosticCode"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "Diagnostic",
+      "type": "object"
+    },
+    "DiagnosticCode": {
+      "enum": [
+        "unknown_code",
+        "inferred_mapping",
+        "value_redacted_in_source",
+        "sentinel_date",
+        "empty_via_404",
+        "source_unavailable",
+        "unparseable_value",
+        "reconciliation_mismatch",
+        "reconciliation_incomplete",
+        "conflicting_sources",
+        "unit_unverified",
+        "deprecated_source",
+        "unvalidated_source",
+        "unstable_id",
+        "reference_only"
+      ],
+      "title": "DiagnosticCode",
+      "type": "string"
+    },
+    "Disability": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "effective_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective Date"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "has_disability": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Has Disability"
+        },
+        "requires_accommodation": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Requires Accommodation"
+        }
+      },
+      "title": "Disability",
+      "type": "object"
+    },
+    "EeoJobCategory": {
+      "description": "EEO-1 job categories.",
+      "enum": [
+        "executives_senior_officials",
+        "first_mid_level_managers",
+        "professionals",
+        "technicians",
+        "sales_workers",
+        "administrative_support",
+        "craft_workers",
+        "operatives",
+        "laborers_helpers",
+        "service_workers",
+        "unknown"
+      ],
+      "title": "EeoJobCategory",
+      "type": "string"
+    },
+    "Email": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address",
+          "x-sensitive": true
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "is_primary": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Primary"
+        },
+        "type": {
+          "$ref": "#/$defs/EmailType"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Email",
+      "type": "object"
+    },
+    "EmailType": {
+      "enum": [
+        "work",
+        "personal",
+        "unknown"
+      ],
+      "title": "EmailType",
+      "type": "string"
+    },
+    "Employment": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_for_rehire": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Eligible For Rehire"
+        },
+        "employment_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_EmploymentType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "flsa_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_FlsaStatus_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "hire_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Start of the current (latest) employment.",
+          "title": "Hire Date"
+        },
+        "is_seasonal": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Seasonal"
+        },
+        "original_hire_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Original Hire Date"
+        },
+        "rehire_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rehire Date"
+        },
+        "seniority_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seniority Date"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_EmploymentStatus_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "status_effective_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Status Effective Date"
+        },
+        "termination_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Termination Date"
+        },
+        "termination_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Provider's reason text or code, as sent.",
+          "title": "Termination Reason"
+        },
+        "termination_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_TerminationType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "worker_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_WorkerType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "Employment",
+      "type": "object"
+    },
+    "EmploymentPeriod": {
+      "additionalProperties": false,
+      "description": "One entry of status history. ``employment_id`` keeps the provider's employment id\n(isolved holds several per employee); a second id does not mean the first is past.",
+      "properties": {
+        "effective_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective Date"
+        },
+        "employment_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employment Id"
+        },
+        "employment_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_EmploymentType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "end_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Date"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_EmploymentStatus_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "EmploymentPeriod",
+      "type": "object"
+    },
+    "EmploymentStatus": {
+      "enum": [
+        "active",
+        "leave",
+        "inactive",
+        "terminated",
+        "unknown"
+      ],
+      "title": "EmploymentStatus",
+      "type": "string"
+    },
+    "EmploymentType": {
+      "enum": [
+        "full_time",
+        "part_time",
+        "temporary",
+        "unknown"
+      ],
+      "title": "EmploymentType",
+      "type": "string"
+    },
+    "Ethnicity": {
+      "description": "EEO-1 race/ethnicity categories.",
+      "enum": [
+        "hispanic_or_latino",
+        "white",
+        "black_or_african_american",
+        "asian",
+        "native_hawaiian_or_pacific_islander",
+        "american_indian_or_alaska_native",
+        "two_or_more_races",
+        "not_disclosed",
+        "unknown"
+      ],
+      "title": "Ethnicity",
+      "type": "string"
+    },
+    "FilingStatus": {
+      "enum": [
+        "single",
+        "married",
+        "married_filing_jointly",
+        "married_filing_separately",
+        "head_of_household",
+        "unknown"
+      ],
+      "title": "FilingStatus",
+      "type": "string"
+    },
+    "FlsaStatus": {
+      "enum": [
+        "exempt",
+        "non_exempt",
+        "unknown"
+      ],
+      "title": "FlsaStatus",
+      "type": "string"
+    },
+    "Gender": {
+      "enum": [
+        "female",
+        "male",
+        "non_binary",
+        "not_disclosed",
+        "unknown"
+      ],
+      "title": "Gender",
+      "type": "string"
+    },
+    "JobAssignment": {
+      "additionalProperties": false,
+      "description": "The current job (``Employee.job``) or one dated entry of job history\n(``Employee.job_history``). A history entry may change one thing only (a PrismHR department\nchange carries only the department); its other fields are null with not_provided.",
+      "properties": {
+        "eeo_category": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_EeoJobCategory_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "effective_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective Date"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "job": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Reference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "manager_employee_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Manager Employee Id"
+        },
+        "org_units": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/OrgUnit"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Org Units"
+        },
+        "supervisor_employee_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supervisor Employee Id"
+        },
+        "union_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Union Code"
+        },
+        "work_location_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Work Location Id"
+        },
+        "workers_comp_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Workers Comp Code"
+        }
+      },
+      "title": "JobAssignment",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "MappingBasis": {
+      "description": "What a canonical code value rests on.",
+      "enum": [
+        "documented",
+        "evidenced",
+        "inferred",
+        "configured",
+        "unmapped"
+      ],
+      "title": "MappingBasis",
+      "type": "string"
+    },
+    "MaritalStatus": {
+      "enum": [
+        "single",
+        "married",
+        "domestic_partner",
+        "separated",
+        "divorced",
+        "widowed",
+        "unknown"
+      ],
+      "title": "MaritalStatus",
+      "type": "string"
+    },
+    "NationalId": {
+      "additionalProperties": false,
+      "properties": {
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "is_primary": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Primary"
+        },
+        "type": {
+          "$ref": "#/$defs/Coded_NationalIdType_"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value",
+          "x-sensitive": true
+        },
+        "value_last4": {
+          "anyOf": [
+            {
+              "description": "Visible last characters of a masked value (D-020).",
+              "pattern": "^.{1,4}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value Last4"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "NationalId",
+      "type": "object"
+    },
+    "NationalIdType": {
+      "enum": [
+        "ssn",
+        "itin",
+        "ein",
+        "sin",
+        "not_required",
+        "unknown"
+      ],
+      "title": "NationalIdType",
+      "type": "string"
+    },
+    "OrgUnit": {
+      "additionalProperties": false,
+      "description": "An organization unit the employee belongs to. ``source_id`` is the provider's own id for\nthe unit when it sends one (UKG cost center id); it is never used as ``code`` (D-076).",
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "type": {
+          "$ref": "#/$defs/Coded_OrgUnitType_"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "OrgUnit",
+      "type": "object"
+    },
+    "OrgUnitType": {
+      "enum": [
+        "department",
+        "division",
+        "location",
+        "cost_center",
+        "project",
+        "unknown"
+      ],
+      "title": "OrgUnitType",
+      "type": "string"
+    },
+    "PayFrequency": {
+      "enum": [
+        "daily",
+        "weekly",
+        "biweekly",
+        "semimonthly",
+        "monthly",
+        "quarterly",
+        "semiannual",
+        "annual",
+        "unknown"
+      ],
+      "title": "PayFrequency",
+      "type": "string"
+    },
+    "PayType": {
+      "enum": [
+        "hourly",
+        "salary",
+        "unknown"
+      ],
+      "title": "PayType",
+      "type": "string"
+    },
+    "PersonName": {
+      "additionalProperties": false,
+      "properties": {
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "first": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "First"
+        },
+        "last": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last"
+        },
+        "middle": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Middle"
+        },
+        "preferred_first": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Preferred First"
+        },
+        "prefix": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Prefix"
+        },
+        "suffix": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suffix"
+        }
+      },
+      "title": "PersonName",
+      "type": "object"
+    },
+    "PersonalAddress": {
+      "additionalProperties": false,
+      "description": "A person's address. Street lines and postal code are sensitive; city and state are not,\nbecause they are needed for tax and work-location context and identify little alone.",
+      "properties": {
+        "city": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "City"
+        },
+        "country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Country as sent, e.g. 'USA'.",
+          "title": "Country"
+        },
+        "county": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "County"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "line1": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line1",
+          "x-sensitive": true
+        },
+        "line2": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line2",
+          "x-sensitive": true
+        },
+        "postal_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Postal Code",
+          "x-sensitive": true
+        },
+        "state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "State or province code as sent, e.g. 'UT'.",
+          "title": "State"
+        },
+        "type": {
+          "$ref": "#/$defs/AddressType"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "PersonalAddress",
+      "type": "object"
+    },
+    "PersonalContact": {
+      "additionalProperties": false,
+      "description": "Home and personal contact details. Street, postal code, numbers and addresses are\nsensitive (marked on the nested parts).",
+      "properties": {
+        "addresses": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/PersonalAddress"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Addresses"
+        },
+        "emails": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Email"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Emails"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "phones": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Phone"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phones"
+        }
+      },
+      "title": "PersonalContact",
+      "type": "object"
+    },
+    "Phone": {
+      "additionalProperties": false,
+      "properties": {
+        "extension": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Extension"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "is_preferred": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Preferred"
+        },
+        "number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Number",
+          "x-sensitive": true
+        },
+        "type": {
+          "$ref": "#/$defs/PhoneType"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Phone",
+      "type": "object"
+    },
+    "PhoneType": {
+      "enum": [
+        "home",
+        "mobile",
+        "work",
+        "fax",
+        "unknown"
+      ],
+      "title": "PhoneType",
+      "type": "string"
+    },
+    "Provider": {
+      "enum": [
+        "prismhr",
+        "isolved",
+        "ukg-ready"
+      ],
+      "title": "Provider",
+      "type": "string"
+    },
+    "PtoBalance": {
+      "additionalProperties": false,
+      "description": "One time-off plan's balance (D-027). Hours fields hold only values whose unit is documented\nor verified (CANONICAL_MODEL 1.5). ``period_start`` and ``period_end`` bound the plan year the\nyear-to-date amounts cover, when the provider sends them.",
+      "properties": {
+        "accrued_ytd": {
+          "anyOf": [
+            {
+              "description": "Duration in decimal hours.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Accrued Ytd"
+        },
+        "as_of_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "As Of Date"
+        },
+        "balance": {
+          "anyOf": [
+            {
+              "description": "Duration in decimal hours.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Balance"
+        },
+        "carryover": {
+          "anyOf": [
+            {
+              "description": "Duration in decimal hours.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Carryover"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "period_end": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period End"
+        },
+        "period_start": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period Start"
+        },
+        "plan_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Plan Code"
+        },
+        "plan_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Plan Name"
+        },
+        "plan_source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Plan Source Id"
+        },
+        "used_ytd": {
+          "anyOf": [
+            {
+              "description": "Duration in decimal hours.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Used Ytd"
+        }
+      },
+      "title": "PtoBalance",
+      "type": "object"
+    },
+    "Qualification": {
+      "additionalProperties": false,
+      "description": "A skill, education, certification, training or license. ``source_id`` is the provider's id\nfor the entry or the item it names (UKG skill id, the only identity it sends); ``code`` is the\nprovider's code for it (PrismHR skillCode).",
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "completed_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Completed Date"
+        },
+        "expiration_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expiration Date"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "institution": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Institution"
+        },
+        "level": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Level"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "type": {
+          "$ref": "#/$defs/QualificationType"
+        },
+        "years_experience": {
+          "anyOf": [
+            {
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Years Experience"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Qualification",
+      "type": "object"
+    },
+    "QualificationType": {
+      "enum": [
+        "skill",
+        "education",
+        "certification",
+        "training",
+        "license",
+        "unknown"
+      ],
+      "title": "QualificationType",
+      "type": "string"
+    },
+    "RatePeriod": {
+      "description": "The period an amount or a number of hours refers to (per hour, per year, ...).",
+      "enum": [
+        "hour",
+        "day",
+        "week",
+        "pay_period",
+        "month",
+        "year",
+        "unknown"
+      ],
+      "title": "RatePeriod",
+      "type": "string"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "description": "A provider code-table entry referred to by a record (a job, a pay code, a parent\norganization): the provider's id, code and name, whichever the source gives.",
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        }
+      },
+      "title": "Reference",
+      "type": "object"
+    },
+    "RelatedPerson": {
+      "additionalProperties": false,
+      "description": "A dependent, emergency contact or beneficiary: one entry per source item, never merged by\nname. ``source_id`` is the provider's id for the person (PrismHR dependentId, isolved\ncontactId), used to join benefit dependents and beneficiaries (step 4). Identifying fields\nare sensitive (street lines, postal code, phone numbers and the id value on the nested parts).",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PersonalAddress"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "birth_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Birth Date",
+          "x-sensitive": true
+        },
+        "email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Email",
+          "x-sensitive": true
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "full_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The name as sent when the provider sends it as one string (PrismHR emergency contacts); never split.",
+          "title": "Full Name",
+          "x-sensitive": true
+        },
+        "gender": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_Gender_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "x-sensitive": true
+        },
+        "is_active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Active"
+        },
+        "is_beneficiary": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Beneficiary"
+        },
+        "is_dependent": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Dependent"
+        },
+        "is_emergency_contact": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Emergency Contact"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PersonName"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "x-sensitive": true
+        },
+        "national_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NationalId"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "phones": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Phone"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phones"
+        },
+        "relationship": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_Relationship_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        }
+      },
+      "title": "RelatedPerson",
+      "type": "object"
+    },
+    "Relationship": {
+      "enum": [
+        "spouse",
+        "domestic_partner",
+        "child",
+        "domestic_partner_child",
+        "parent",
+        "sibling",
+        "unknown"
+      ],
+      "title": "Relationship",
+      "type": "string"
+    },
+    "Severity": {
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "description": "Where a record's data came from.\n\n``endpoint`` is the method and route template as documented by the provider, e.g.\n``GET /api/clients/{clientId}/legals/{legalId}/employees/{employeeId}``. ``locator`` is a\nJSON Pointer to the record inside that response body (\"\" means the whole body). Together\nwith the run's input (the source file, or a retained response) it locates the raw value;\non its own it does not hold the value.",
+      "properties": {
+        "endpoint": {
+          "minLength": 1,
+          "title": "Endpoint",
+          "type": "string"
+        },
+        "locator": {
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "endpoint",
+        "locator"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "TaxJurisdictionLevel": {
+      "enum": [
+        "federal",
+        "state",
+        "local",
+        "unknown"
+      ],
+      "title": "TaxJurisdictionLevel",
+      "type": "string"
+    },
+    "TaxResidency": {
+      "enum": [
+        "resident",
+        "non_resident",
+        "unknown"
+      ],
+      "title": "TaxResidency",
+      "type": "string"
+    },
+    "TaxWithholding": {
+      "additionalProperties": false,
+      "properties": {
+        "federal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TaxWithholdingSetting"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "locals": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/TaxWithholdingSetting"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Locals"
+        },
+        "states": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/TaxWithholdingSetting"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "States"
+        }
+      },
+      "title": "TaxWithholding",
+      "type": "object"
+    },
+    "TaxWithholdingSetting": {
+      "additionalProperties": false,
+      "description": "One withholding setting. W-4 amounts (dependents, other income, deductions) are the\nemployee's claims; ``is_blocked`` is a provider override that withholds nothing, which is not\nthe same fact as an exempt claim (``is_exempt``).",
+      "properties": {
+        "additional_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Additional Amount"
+        },
+        "additional_percent": {
+          "anyOf": [
+            {
+              "description": "Percentage on a 0 to 100 scale: 1.5 means 1.5%.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string",
+              "x-scale": "percent"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Additional Percent"
+        },
+        "allowances": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allowances"
+        },
+        "deductions_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Deductions beyond the standard deduction (Form W-4 step 4b).",
+          "title": "Deductions Amount"
+        },
+        "dependents_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Credit amount claimed for dependents (Form W-4 step 3).",
+          "title": "Dependents Amount"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "filing_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_FilingStatus_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "is_blocked": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The provider blocks withholding for this tax (nothing is withheld).",
+          "title": "Is Blocked"
+        },
+        "is_exempt": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Exempt"
+        },
+        "jurisdiction": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "'US', a state code, or a locality code, as sent.",
+          "title": "Jurisdiction"
+        },
+        "level": {
+          "$ref": "#/$defs/TaxJurisdictionLevel"
+        },
+        "multiple_jobs": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Multiple Jobs"
+        },
+        "other_income_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Other income not from jobs (Form W-4 step 4a).",
+          "title": "Other Income Amount"
+        },
+        "residency": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TaxResidency"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Resident or non-resident of the jurisdiction; not_applicable for federal settings."
+        }
+      },
+      "required": [
+        "level"
+      ],
+      "title": "TaxWithholdingSetting",
+      "type": "object"
+    },
+    "TerminationType": {
+      "enum": [
+        "voluntary",
+        "involuntary",
+        "unknown"
+      ],
+      "title": "TerminationType",
+      "type": "string"
+    },
+    "ValueStatus": {
+      "description": "Why a field is null. A field holding a value is \"present\" and is not listed.",
+      "enum": [
+        "hidden_by_source",
+        "not_provided",
+        "not_applicable"
+      ],
+      "title": "ValueStatus",
+      "type": "string"
+    },
+    "VeteranStatus": {
+      "additionalProperties": false,
+      "description": "VEVRAA categories as flags; a provider may set several.",
+      "properties": {
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "is_active_duty_wartime_or_campaign_badge_veteran": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Active Duty Wartime Or Campaign Badge Veteran"
+        },
+        "is_armed_forces_service_medal_veteran": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Armed Forces Service Medal Veteran"
+        },
+        "is_disabled_veteran": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Disabled Veteran"
+        },
+        "is_protected_veteran": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Protected Veteran"
+        },
+        "is_recently_separated_veteran": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Recently Separated Veteran"
+        },
+        "is_veteran": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Veteran"
+        },
+        "not_disclosed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Not Disclosed"
+        }
+      },
+      "title": "VeteranStatus",
+      "type": "object"
+    },
+    "WorkAuthorization": {
+      "additionalProperties": false,
+      "description": "Form I-9 and immigration-related facts. Every field is sensitive. ``i9_on_file`` (a form is\non file) and ``i9_completed`` are different facts; one never fills the other.",
+      "properties": {
+        "document_expiration_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Expiration Date",
+          "x-sensitive": true
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "i9_completed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "I9 Completed",
+          "x-sensitive": true
+        },
+        "i9_completed_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "I9 Completed Date",
+          "x-sensitive": true
+        },
+        "i9_on_file": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "I9 On File",
+          "x-sensitive": true
+        },
+        "is_nonresident_alien": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Nonresident Alien",
+          "x-sensitive": true
+        },
+        "visa_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Visa Type",
+          "x-sensitive": true
+        }
+      },
+      "title": "WorkAuthorization",
+      "type": "object"
+    },
+    "WorkContact": {
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Email"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "phone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phone"
+        },
+        "phone_extension": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phone Extension"
+        }
+      },
+      "title": "WorkContact",
+      "type": "object"
+    },
+    "WorkerType": {
+      "enum": [
+        "employee",
+        "contractor",
+        "unknown"
+      ],
+      "title": "WorkerType",
+      "type": "string"
+    }
+  },
+  "$id": "employee.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "company_id": {
+      "title": "Company Id",
+      "type": "string"
+    },
+    "compensation": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Compensation"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "compensation_history": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CompensationChange"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Compensation History"
+    },
+    "currency": {
+      "anyOf": [
+        {
+          "description": "ISO 4217 currency code.",
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Currency"
+    },
+    "demographics": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Demographics"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "diagnostics": {
+      "items": {
+        "$ref": "#/$defs/Diagnostic"
+      },
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "employee_number": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Employee Number"
+    },
+    "employment": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Employment"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "employment_history": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/EmploymentPeriod"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Employment History"
+    },
+    "field_status": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ValueStatus"
+      },
+      "description": "Why each null field in this object is null. Lists null fields only.",
+      "title": "Field Status",
+      "type": "object"
+    },
+    "id": {
+      "description": "Canonical id: provider:tenant:entity:source ids (see ids.py).",
+      "title": "Id",
+      "type": "string"
+    },
+    "job": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/JobAssignment"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "job_history": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/JobAssignment"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Dated job, organization and location changes, each with its effective_date (D-069).",
+      "title": "Job History"
+    },
+    "name": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PersonName"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "national_ids": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/NationalId"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "National Ids"
+    },
+    "person_ref": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Provider's own key grouping several employee records of one person within this tenant (UKG primary_account_id). Not a cross-provider identity match.",
+      "title": "Person Ref"
+    },
+    "personal_contact": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PersonalContact"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "provider": {
+      "$ref": "#/$defs/Provider"
+    },
+    "provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Provider-specific fields with no canonical meaning, keyed by source field path. Never used for anything the brief lists for the four data types (D-037).",
+      "title": "Provider Extensions",
+      "type": "object"
+    },
+    "pto_balances": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/PtoBalance"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pto Balances"
+    },
+    "qualifications": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Qualification"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Qualifications"
+    },
+    "related_people": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/RelatedPerson"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Related People"
+    },
+    "sensitive_provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Like provider_extensions, for provider-specific data that is sensitive (e.g. PrismHR health screening results). Masked as a whole by default in output (D-036).",
+      "title": "Sensitive Provider Extensions",
+      "type": "object",
+      "x-sensitive": true
+    },
+    "source_ids": {
+      "additionalProperties": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "description": "The provider's own identifiers needed to address this record, by provider field name.",
+      "minProperties": 1,
+      "title": "Source Ids",
+      "type": "object"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceRef"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "tax_entity_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tax Entity Id"
+    },
+    "tax_withholding": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TaxWithholding"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "x-sensitive": true
+    },
+    "tenant_id": {
+      "minLength": 1,
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "work_authorization": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/WorkAuthorization"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "work_contact": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/WorkContact"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "id",
+    "provider",
+    "tenant_id",
+    "source_ids",
+    "sources",
+    "company_id"
+  ],
+  "title": "Employee",
+  "type": "object"
+}

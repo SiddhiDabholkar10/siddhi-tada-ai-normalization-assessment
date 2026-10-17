@@ -1,0 +1,31 @@
+{
+  "provider": "ukg-ready",
+  "entity": "benefit_enrollment",
+  "notes": [
+    "One BenefitEnrollment per benefits[] item (company, enrollment id) (D-049). No amounts are sent: plan_details is null with not_provided. benefit_type is null with not_provided: lookup/benefit/types was not called (D-081).",
+    "coverage_level labels are company-defined: 'Employee' reads as employee_only and 'Waived' as status waived (inferred); other labels are unknown. status is otherwise null with not_provided."
+  ],
+  "fields": [
+    {"route": "/v2/companies/{cid}/employees/{aid}/benefits", "field": "benefits[].id", "use": "mapped", "target": "BenefitEnrollment.source_ids", "transform": "source_id", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/benefits", "field": "benefits[].employee.account_id", "use": "mapped", "target": "BenefitEnrollment.employee_id", "transform": "reference", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/benefits", "field": "benefits[].benefit_plan.id", "use": "mapped", "target": "BenefitEnrollment.plan.source_id", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/benefits", "field": "benefits[].name", "use": "mapped", "target": "BenefitEnrollment.plan.name", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html", "live: 11 enrollments of 1 of 3 employees"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/benefits", "field": "benefits[].coverage_level", "use": "mapped", "target": "BenefitEnrollment.coverage_level", "transform": "code:ukg-ready.coverage_level", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html", "live: Waived 5, Employee 4, 2 other labels"], "note": "Also sets status (code table)."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/benefits", "field": "benefits[].coverage_effective_from", "use": "mapped", "target": "BenefitEnrollment.coverage_start", "transform": "date:period_start", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/benefits", "field": "benefits[].coverage_effective_to", "use": "mapped", "target": "BenefitEnrollment.coverage_end", "transform": "date:period_end", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/benefits", "field": "benefits[].benefit_plan.currency", "use": "mapped", "target": "BenefitEnrollment.currency", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html"]}
+  ],
+  "code_tables": [
+    {
+      "id": "ukg-ready.coverage_level",
+      "source": "benefits coverage_level (company-defined labels)",
+      "columns": {"coverage_level": "CoverageLevel", "status": "EnrollmentStatus"},
+      "codes": [
+        {"raw": "Employee", "coverage_level": {"value": "employee_only", "basis": "inferred"}, "status": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 4"]},
+        {"raw": "Waived", "coverage_level": {"value": "unknown", "basis": "unmapped"}, "status": {"value": "waived", "basis": "inferred"}, "evidence": ["live: 5"]},
+        {"raw": "Enter total annual contribution", "coverage_level": {"value": "unknown", "basis": "unmapped"}, "status": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 1"]},
+        {"raw": "75% Option", "coverage_level": {"value": "unknown", "basis": "unmapped"}, "status": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 1"]}
+      ]
+    }
+  ]
+}

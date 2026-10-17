@@ -1,0 +1,51 @@
+{
+  "provider": "isolved",
+  "entity": "direct_deposit",
+  "notes": [
+    "One DirectDeposit per item of the per-employee directdeposits route (id from legal and deposit id). A 404 with an empty body means no deposits (D-011). The employee list's directDeposits[] is excluded: never sent live (138 of 138) while this route returned 10 accounts for 6 of those employees (D-081).",
+    "allocation_type: amount filled is fixed_amount; percent filled is percent with percent_basis unknown (no basis stated); an active account with sequence 0 ('0 = Net Pay') is the remainder account (D-015, inferred from the label), with amount and percent not_applicable. An inactive sequence 0 account is unknown.",
+    "Numbers are returned in full (D-024 for comparison: isolved does not mask them); routing_last4 and account_last4 are null with not_applicable next to a full value (CANONICAL_MODEL 1.4). effective_from and effective_to are null with not_provided (no date field, COVERAGE section 2)."
+  ],
+  "fields": [
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].id", "use": "mapped", "target": "DirectDeposit.source_ids", "transform": "source_id", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/id"]},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].sequenceNumber", "use": "mapped", "target": "DirectDeposit.sequence", "transform": "number", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/sequenceNumber", "D-015", "live: null on 2 inactive accounts"], "note": "Also decides the remainder account (notes)."},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].amount", "use": "mapped", "target": "DirectDeposit.amount", "transform": "number", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/amount"], "note": "Filled means fixed_amount (notes)."},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].percent", "use": "mapped", "target": "DirectDeposit.percent", "transform": "number", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/percent", "D-015"], "note": "0 to 100 (spec maximum 100 and a live split); filled means percent."},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].accountType", "use": "mapped", "target": "DirectDeposit.account_type", "transform": "code:isolved.deposit_account_type", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/accountType", "live: Checking 9, Savings 1"]},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].status", "use": "mapped", "target": "DirectDeposit.status", "transform": "code:isolved.deposit_status", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/status", "live: Active 8, Inactive 2"]},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].frequency", "use": "mapped", "target": "DirectDeposit.frequency", "transform": "code:isolved.deposit_frequency", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/frequency", "live: Every Pay 10"]},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].bankName", "use": "mapped", "target": "DirectDeposit.bank_name", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/bankName"]},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].routingNumber", "use": "mapped", "target": "DirectDeposit.routing_number", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/routingNumber"], "note": "Full value; sensitive, masked in output by default."},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].accountNumber", "use": "mapped", "target": "DirectDeposit.account_number", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/accountNumber"], "note": "Full value; sensitive, masked in output by default."},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].description", "use": "extension", "target": "DirectDeposit.provider_extensions", "reason": "Free-text description (null on 10 of 10).", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.EmployeeDirectDepositModel/properties/description"]},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits", "field": "[].links[].*", "use": "excluded", "reason": "Hypermedia links (API navigation), not data."}
+  ],
+  "code_tables": [
+    {
+      "id": "isolved.deposit_account_type",
+      "source": "directdeposits accountType (provider labels; no documented list)",
+      "columns": {"value": "AccountType"},
+      "codes": [
+        {"raw": "Checking", "label": "Checking", "value": {"value": "checking", "basis": "inferred"}, "evidence": ["live: 9 of 10"], "note": "Provider label with no documented list: read from the label, so inferred (CANONICAL_MODEL 1.7, D-081); other labels are unknown with unknown_code."},
+        {"raw": "Savings", "label": "Savings", "value": {"value": "savings", "basis": "inferred"}, "evidence": ["live: 1 of 10"]}
+      ]
+    },
+    {
+      "id": "isolved.deposit_status",
+      "source": "directdeposits status (provider labels)",
+      "columns": {"value": "DepositStatus"},
+      "codes": [
+        {"raw": "Active", "label": "Active", "value": {"value": "active", "basis": "inferred"}, "evidence": ["live: 8 of 10"]},
+        {"raw": "Inactive", "label": "Inactive", "value": {"value": "inactive", "basis": "inferred"}, "evidence": ["live: 2 of 10"]}
+      ]
+    },
+    {
+      "id": "isolved.deposit_frequency",
+      "source": "directdeposits frequency (provider labels)",
+      "columns": {"value": "DepositFrequency"},
+      "codes": [
+        {"raw": "Every Pay", "label": "Every Pay", "value": {"value": "every_pay", "basis": "inferred"}, "evidence": ["live: 10 of 10"]}
+      ]
+    }
+  ]
+}

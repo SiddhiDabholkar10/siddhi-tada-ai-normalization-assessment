@@ -1,0 +1,5190 @@
+{
+  "format": "normalization-bundle/1",
+  "provider": "isolved",
+  "tenant_id": "900002",
+  "fixture": {
+    "synthetic": true,
+    "generator": "normalization.fixtures",
+    "seed": 20261016,
+    "note": "Synthetic data. Names, numbers and identifiers are invented; SSNs use area 666, which is never issued."
+  },
+  "responses": [
+    {
+      "route": "/api/clients/{clientId}/legals",
+      "params": {
+        "clientId": "5001",
+        "includeDetails": "true"
+      },
+      "status": 200,
+      "body": [
+        {
+          "id": 6001,
+          "legalName": "Harbor Supply LLC",
+          "dbaName": "Harbor Supply",
+          "legalCode": "HSL",
+          "status": "Active",
+          "federalEIN": "98-7654321",
+          "naicsCode": "423840",
+          "allowRemoteWorkers": true,
+          "forceDirectDepositPrenote": false,
+          "iSolvedTimeEnabled": false,
+          "logoData": null,
+          "legalAddress": {
+            "addressDescription": "Head office",
+            "streetAddress1": "77 Juniper Way",
+            "streetAddress2": "Floor 2",
+            "city": "Portland",
+            "state": "OR",
+            "zipCode": "97204",
+            "phoneNumber": "503-555-1200"
+          },
+          "client": {
+            "id": 5001,
+            "clientCode": "HSG",
+            "clientName": "Harbor Supply Group"
+          },
+          "services": [
+            {
+              "code": "PAYROLL",
+              "startDate": "2018-01-01T00:00:00",
+              "endDate": null
+            }
+          ],
+          "compensationPlans": [
+            {
+              "id": 1,
+              "code": "STD",
+              "description": "Standard plan"
+            }
+          ],
+          "workersComps": [
+            {
+              "workersCompId": 4,
+              "workersCompCode": "8810",
+              "workersCompDescription": "Clerical",
+              "state": "OR",
+              "isInactive": false
+            }
+          ],
+          "workLocations": [
+            {
+              "id": 410,
+              "workLocationCode": "HQ",
+              "workLocationDescription": "Head office",
+              "address1": "77 Juniper Way",
+              "address2": "Floor 2",
+              "city": "Portland",
+              "state": "OR",
+              "zipCode": "97204",
+              "isInactive": false,
+              "geoCode": "380510000",
+              "timeZone": "Pacific",
+              "isRemoteWorkersOnly": false,
+              "includeWorkSiteTaxFiling": true
+            },
+            {
+              "id": 411,
+              "workLocationCode": "WH2",
+              "workLocationDescription": "Old warehouse",
+              "address1": "5 Quarry Ln",
+              "address2": "",
+              "city": "Salem",
+              "state": "OR",
+              "zipCode": "97301",
+              "isInactive": true
+            }
+          ],
+          "payGroups": [
+            {
+              "enableiSolvedPayroll": true,
+              "enableiSolvedTime": false,
+              "inputMethod": "Manual",
+              "payrollType": "Regular",
+              "id": 7625,
+              "payGroupName": "Biweekly",
+              "payFrequency": 26,
+              "isInactive": false,
+              "normalHours": 80.0
+            },
+            {
+              "enableiSolvedPayroll": true,
+              "enableiSolvedTime": false,
+              "inputMethod": "Manual",
+              "payrollType": "Regular",
+              "id": 7626,
+              "payGroupName": "Weekly",
+              "payFrequency": 52,
+              "isInactive": true,
+              "normalHours": 40.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/statuses",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "statusId": 1,
+          "employeeEmploymentId": 801,
+          "clientEmploymentStatusId": 1,
+          "clientEmploymentStatusDescription": "Active",
+          "effectiveDate": "2019-04-01T00:00:00",
+          "endDate": null,
+          "changeReason": "New hire",
+          "statusBeginNotes": "Started in finance",
+          "isImpliedStatus": false
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/categories",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "id": 1,
+          "employmentId": 801,
+          "effectiveDate": "2019-04-01T00:00:00",
+          "employmentCategory": {
+            "id": 2,
+            "code": "FT",
+            "description": "Full Time",
+            "acaEmploymentStatus": "ACA Full Time",
+            "isInactive": false
+          },
+          "changeReason": {
+            "id": 3,
+            "code": "NH",
+            "description": "New hire",
+            "changeReasonType": {
+              "id": "C",
+              "description": "Category"
+            }
+          },
+          "employmentPeriod": "Permanent",
+          "fullTimeEquivalent": 1.0,
+          "corporateOfficer": false
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/jobs",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "id": 11,
+          "effectiveDate": "2019-04-01T00:00:00",
+          "clientJob": {
+            "id": 299,
+            "jobCode": "TRN",
+            "jobTitle": "Trainee",
+            "eeoCategory": "Service Workers",
+            "isFLSAExempt": false
+          },
+          "manager": {
+            "id": 70002,
+            "firstName": "Sup",
+            "lastName": "Visor"
+          },
+          "supervisor": {
+            "id": 70099,
+            "firstName": "Gone",
+            "lastName": "Person"
+          },
+          "organizations": [
+            {
+              "organizationValue": "OPS",
+              "clientOrganizationField": {
+                "id": 10,
+                "title": "Department",
+                "lookups": [
+                  {
+                    "code": "FIN",
+                    "description": "Finance"
+                  },
+                  {
+                    "code": "OPS",
+                    "description": "Operations"
+                  }
+                ]
+              }
+            }
+          ],
+          "workersComp": {
+            "id": 4,
+            "code": "8810",
+            "description": "Clerical"
+          },
+          "comments": "Probation period",
+          "changeReason": {
+            "id": 7,
+            "code": "NH",
+            "description": "New hire",
+            "changeReasonType": {
+              "id": "J",
+              "description": "Job"
+            }
+          },
+          "compaRatio": "0.95",
+          "shiftNumber": "1"
+        },
+        {
+          "id": 12,
+          "effectiveDate": "2021-03-01T00:00:00",
+          "clientJob": {
+            "id": 300,
+            "jobCode": "CLK",
+            "jobTitle": "Clerk",
+            "eeoCategory": "Administrative Support Workers"
+          },
+          "organizations": [],
+          "workersComp": {
+            "id": 4,
+            "code": "8810"
+          },
+          "comments": "",
+          "changeReason": {
+            "id": 8,
+            "code": "PR",
+            "description": "Promotion"
+          }
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/payRates",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "id": 1,
+          "payRateId": 2,
+          "rateDescription": "Rate 2",
+          "rateValue": 30.0,
+          "laborRates": [
+            {
+              "id": 1,
+              "defaultRate": 31.0,
+              "laborValue": "L1",
+              "title": "Labor"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "payRateId": 3,
+          "rateDescription": "Rate 3",
+          "rateValue": null,
+          "laborRates": []
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/salaries",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "effectiveDate": "2019-04-01T00:00:00",
+          "frequency": {
+            "id": 24,
+            "description": "Semi-Monthly"
+          },
+          "payGroup": {
+            "id": 7624,
+            "description": "Semimonthly"
+          },
+          "payType": {
+            "id": "1",
+            "description": "Hourly"
+          },
+          "id": 1,
+          "perPaySalary": 1600.0,
+          "hourlyRate": 20.0,
+          "changeReason": {
+            "id": 1,
+            "description": "Hire"
+          },
+          "isInactive": false,
+          "lifeEvent": false,
+          "normalHours": 80.0,
+          "comments": "Starting rate"
+        },
+        {
+          "effectiveDate": "2024-01-01T00:00:00",
+          "frequency": {
+            "id": 26,
+            "description": "Bi-Weekly"
+          },
+          "payGroup": {
+            "id": 7625,
+            "description": "Biweekly"
+          },
+          "payType": {
+            "id": "1",
+            "description": "Hourly"
+          },
+          "id": 2,
+          "perPaySalary": 1900.0,
+          "hourlyRate": 23.75,
+          "changeReason": {
+            "id": 2,
+            "description": "Annual increase"
+          },
+          "isInactive": false,
+          "lifeEvent": false,
+          "normalHours": 80.0,
+          "comments": ""
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/veteranStatus",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": {
+        "activeWartimeOrCampaignBadgeVeteran": false,
+        "disabledVeteran": false,
+        "serviceMedalVeteran": true,
+        "veteranStatus": "Veteran",
+        "activeDutySeparationDate": null
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/contacts",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "firstName": "Noah",
+          "lastName": "Haddad",
+          "relationshipCode": "SP",
+          "id": 9001,
+          "middleName": "",
+          "prefix": "Mr.",
+          "suffix": "Jr.",
+          "genderCode": "M",
+          "birthDate": "**/**/1988",
+          "birthDateUnmasked": "1988-07-20T00:00:00",
+          "ssn": "*****6789",
+          "ssnUnmasked": "666-22-6789",
+          "ssnAppliedFor": false,
+          "isDependent": true,
+          "isBeneficiary": true,
+          "isEmergencyContact": true,
+          "address1": "9 Pine St",
+          "address2": "Apt 2",
+          "city": "Portland",
+          "state": "OR",
+          "zipCode": "97202",
+          "useEmployeeAddress": false,
+          "homePhone": "503-555-1075",
+          "mobilePhone": "503-555-1165",
+          "workPhone": "503-555-0330",
+          "emailAddress": "noah@example.com",
+          "maritalStatusCode": "M",
+          "isDeceased": false,
+          "isDisabled": false,
+          "isStudent": false,
+          "notifyIfArrestedDetained": true,
+          "emergencyCallOrder": 1,
+          "hideForSelfService": false,
+          "isChanged": false,
+          "nayyaSyncAuditBatchId": 0
+        },
+        {
+          "firstName": "Ivy",
+          "lastName": "Haddad",
+          "relationshipCode": "CH",
+          "id": 9002,
+          "middleName": "Rae",
+          "genderCode": "F",
+          "birthDate": "**/**/2018",
+          "birthDateUnmasked": "2018-03-03T00:00:00",
+          "ssn": "*****4444",
+          "ssnUnmasked": "*****4444",
+          "isDependent": true,
+          "isBeneficiary": false,
+          "isEmergencyContact": false,
+          "useEmployeeAddress": true,
+          "isStudent": true
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/accruals",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "id": 77,
+          "planId": 55,
+          "planDescription": "Vacation Salary",
+          "accrualName": "Vacation",
+          "currentBalance": 40.0,
+          "availableBalance": "40.00",
+          "carryoverBalance": 8.0,
+          "ytdAccrued": 32.0,
+          "ytdTaken": 0.0,
+          "currentAccrued": 1.54,
+          "currentTaken": 0.0,
+          "accrualMethod": "Per Pay",
+          "planBalanceLimit": 120.0,
+          "serviceDate": "2019-04-01T00:00:00"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/skills",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "skill": "Spanish",
+          "id": 1,
+          "proficiency": "Fluent",
+          "dateAttained": "2019-06-01T00:00:00",
+          "experience": "5 years",
+          "lastUsed": "2024",
+          "comments": "Interpreter",
+          "miscellaneous": "Medical terms"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/education",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "educationType": "College",
+          "id": 2,
+          "degree": "BA",
+          "school": "Lakeside College",
+          "completionDate": "2012-05-15T00:00:00",
+          "major": "History",
+          "minor": "Art",
+          "honors": "Cum laude",
+          "graduated": true,
+          "gpa": "3.4",
+          "comments": ""
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/certifications",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "certification": "CPR",
+          "id": 3,
+          "authority": "Red Cross",
+          "effectiveDate": "2024-01-10T00:00:00",
+          "expirationDate": "2026-01-10T00:00:00",
+          "licenseNumber": "CPR-55120",
+          "cost": 50.0,
+          "reimbursementAmount": 50.0,
+          "reimbursementApprovalDate": "2024-01-12T00:00:00",
+          "reimbursementDate": "2024-01-30T00:00:00",
+          "comments": "",
+          "miscellaneous": "Renew online"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/training",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "title": "Forklift safety",
+          "id": 4,
+          "className": "FS-101",
+          "startDate": "2024-03-01T00:00:00",
+          "endDate": "2024-03-02T00:00:00",
+          "expirationDate": "2027-03-01T00:00:00",
+          "isCompleted": true,
+          "isMandatory": true,
+          "duration": "4",
+          "creditsEarned": 0.5,
+          "instructor": "A. Smith",
+          "location": "Warehouse",
+          "cost": 120.0,
+          "comments": "Passed"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/priorEmployment",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "employer": "Acme Logistics",
+          "jobTitle": "Driver",
+          "startDate": "2015-01-05T00:00:00",
+          "id": 5,
+          "endDate": "2019-03-15T00:00:00",
+          "endingSalary": 41000.0,
+          "reference": "J. Doe",
+          "changeReason": "Moved"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/i9/status",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": {
+        "hasSignedI9Form": true,
+        "isComplete": true,
+        "isDocumentUploadComplete": null,
+        "uploadedDocuments": [
+          {
+            "id": 1,
+            "documentFileName": "i9-scan.pdf",
+            "documentUploadDate": "2019-04-03T00:00:00"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "id": "70001",
+        "includeI9Details": "true",
+        "includeMiscDataSets": "true"
+      },
+      "status": 200,
+      "body": {
+        "employmentCategoryCode": "FT",
+        "employmentStatus": "Active",
+        "hireDate": "2019-04-01T00:00:00",
+        "idType": "",
+        "legalCode": "HSL",
+        "payFrequency": 26,
+        "payGroup": "Biweekly",
+        "payType": "Hourly",
+        "ssn": "",
+        "workLocation": "HQ",
+        "id": 70001,
+        "employeeNumber": "E-1001",
+        "nameAddress": {
+          "id": 1,
+          "firstName": "Reese",
+          "middleName": "Lee",
+          "lastName": "Haddad",
+          "prefix": "Ms.",
+          "suffix": "",
+          "preferredName": "Mia",
+          "preferredPronouns": "she/her",
+          "address1": "8701 Maple Ave",
+          "address2": "Apt 3",
+          "city": "Portland",
+          "state": "OR",
+          "zipCode": "97201",
+          "residentGeoCode": "380510000",
+          "schoolDistrictCode": 12
+        },
+        "personal": {
+          "id": 2,
+          "homePhone": "503-555-1669",
+          "mobilePhone": "503-555-1607",
+          "faxNumber": "",
+          "officePhone": "503-555-0300",
+          "personalEmailAddress": "mia.home@example.com",
+          "preferredPronouns": ""
+        },
+        "emailAddress": "mia@example.com",
+        "birthDate": "1990-02-14T00:00:00",
+        "gender": "Female",
+        "ethnicOrigin": "Asian (Not Hispanic or Latino)",
+        "maritalStatus": "Married",
+        "citizenship": "Citizen of the United States",
+        "militaryStatus": "None",
+        "protectedVeteran": false,
+        "isRecentlySeparatedVeteran": false,
+        "veteranStatusNotSpecified": false,
+        "disabled": false,
+        "disabledEffectiveDate": null,
+        "disabledRequiresAccomodation": false,
+        "disabilityDescription": "",
+        "tobaccoUse": false,
+        "tobaccoUseEffectiveDate": "2020-01-01T00:00:00",
+        "uniqueId": "UQ-70001",
+        "timeclockId": "TC-11",
+        "statusDate": "2019-04-01T00:00:00",
+        "employmentCategoryEffectiveDate": "2019-04-01T00:00:00",
+        "employmentCategoryFullTimeEquivalent": 1.0,
+        "acaEmploymentStatus": "ACA Full Time",
+        "originalHireDate": "2019-04-01T00:00:00",
+        "rehireDate": null,
+        "adjustedServiceDate": "2019-04-01T00:00:00",
+        "terminationDate": null,
+        "terminationReason": "",
+        "terminationType": "",
+        "eligibleForRehire": true,
+        "isPending": false,
+        "enableSelfService": true,
+        "isManager": false,
+        "isSupervisor": false,
+        "isRemoteWorker": true,
+        "jobId": 300,
+        "jobCode": "CLK",
+        "jobTitle": "Clerk",
+        "jobEffectiveDate": "2021-03-01T00:00:00",
+        "jobEeoCategory": "Administrative Support Workers",
+        "jobFLSAExempt": false,
+        "jobIsSeasonal": false,
+        "jobIsUnion": false,
+        "jobGroup": "Office",
+        "socCode": "43-9061",
+        "workersCompCode": "8810",
+        "workLocationDashDescription": "HQ - Head office",
+        "organizations": [
+          {
+            "id": 1,
+            "organizationId": 10,
+            "displayOrder": 1,
+            "title": "Department",
+            "value": "FIN",
+            "valueDescription": "Finance"
+          }
+        ],
+        "assignedManager": {
+          "id": 70009,
+          "legalId": 6002,
+          "employeeName": "Other Legal Manager",
+          "employeeNumber": "E-9",
+          "jobTitle": "Lead",
+          "payrollEmploymentStatusCode": "A"
+        },
+        "assignedSupervisor": {
+          "id": 70002,
+          "legalId": 6001,
+          "employeeName": "Supervisor",
+          "employeeNumber": "E-1002"
+        },
+        "hourlyRate": 23.75,
+        "annualSalary": 49400.0,
+        "perPaySalary": 1900.0,
+        "normalHours": 80.0,
+        "salaryEffectiveDate": "2024-01-01T00:00:00",
+        "payRates": [
+          {
+            "payRateName": "Rate 2",
+            "rateValue": 30.0
+          }
+        ],
+        "taxes": {
+          "federal": {
+            "id": 101,
+            "taxCategoryId": "FEDWT",
+            "taxDescription": "Federal Withholding",
+            "additionalAmount": 15.0,
+            "additionalIncomeAmount": 100.0,
+            "additionalPercent": 0,
+            "deductionExemptionAmount": 50.0,
+            "dependantExemptionAmount": 500.0,
+            "exemptionAmount": 0,
+            "isBlocked": false,
+            "multipleJobsOrSpouseWorks": false,
+            "primaryExemptions": 1,
+            "secondaryExemptions": 0,
+            "alternateCalculation": "",
+            "filingStatus": "FDS",
+            "taxState": ""
+          },
+          "residentState": {
+            "id": 102,
+            "taxCategoryId": "STATEWT",
+            "taxDescription": "Utah Withholding",
+            "additionalAmount": 0,
+            "additionalIncomeAmount": 0,
+            "additionalPercent": 1.5,
+            "deductionExemptionAmount": 0,
+            "dependantExemptionAmount": 0,
+            "exemptionAmount": 0,
+            "isBlocked": false,
+            "multipleJobsOrSpouseWorks": false,
+            "primaryExemptions": 0,
+            "secondaryExemptions": 0,
+            "alternateCalculation": "",
+            "filingStatus": "UTS",
+            "taxState": "UT"
+          },
+          "nonResidentState": {
+            "id": 102,
+            "taxCategoryId": "STATEWT",
+            "taxDescription": "Oregon Withholding",
+            "additionalAmount": 0,
+            "additionalIncomeAmount": 0,
+            "additionalPercent": 0,
+            "deductionExemptionAmount": 0,
+            "dependantExemptionAmount": 0,
+            "exemptionAmount": 0,
+            "isBlocked": false,
+            "multipleJobsOrSpouseWorks": true,
+            "primaryExemptions": 0,
+            "secondaryExemptions": 0,
+            "alternateCalculation": "",
+            "filingStatus": "ORM",
+            "taxState": "OR"
+          },
+          "residentCity": {
+            "id": 103,
+            "taxCategoryId": "CITYWT",
+            "taxDescription": "Philadelphia Wage Tax",
+            "additionalAmount": 0,
+            "additionalIncomeAmount": 0,
+            "additionalPercent": 0,
+            "deductionExemptionAmount": 0,
+            "dependantExemptionAmount": 0,
+            "exemptionAmount": 6.0,
+            "isBlocked": false,
+            "multipleJobsOrSpouseWorks": false,
+            "primaryExemptions": 6,
+            "secondaryExemptions": 0,
+            "alternateCalculation": "",
+            "filingStatus": "",
+            "taxState": "PA"
+          }
+        },
+        "reciprocityRule": "UT-OR",
+        "i9Documents": {
+          "i9Completed": true,
+          "i9CompletedDate": "2019-04-03T13:45:00",
+          "documentA": {
+            "documentCode": "USP",
+            "documentDescription": "U.S. Passport",
+            "documentNumber": "P1234567",
+            "issuingAuthority": "US DOS",
+            "expirationDate": "2030-05-01T00:00:00",
+            "documentFileName": "passport.pdf",
+            "documentContent": "",
+            "allowEmployeeAccess": true
+          }
+        },
+        "directDeposits": [
+          {
+            "id": 1,
+            "accountNumber": "4400921387",
+            "accountType": "Checking",
+            "frequency": "Every Pay",
+            "routingNumber": "603100022",
+            "sequenceNumber": 1,
+            "status": "Active",
+            "bankName": "Cascade Bank",
+            "percent": 100
+          }
+        ],
+        "labors": [],
+        "miscFields": [
+          {
+            "title": "Shirt size",
+            "value": "M"
+          }
+        ],
+        "wotc": {
+          "applicationDate": "2019-04-01T00:00:00"
+        },
+        "taxExemptStatus": "Exempt from city tax",
+        "miscDataSets": [
+          {
+            "id": 1,
+            "isDeleted": false,
+            "miscFieldCategory": {
+              "id": 3,
+              "categoryTitle": "Uniform",
+              "isDataSet": true
+            },
+            "fields": [
+              {
+                "id": {
+                  "fieldCode": "SIZE",
+                  "fieldTitle": "Size",
+                  "dataType": "Text",
+                  "category": "Uniform"
+                },
+                "miscValue": "M"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/statuses",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": [
+        {
+          "statusId": 2,
+          "employeeEmploymentId": 811,
+          "clientEmploymentStatusDescription": "Active",
+          "effectiveDate": "2010-05-03T00:00:00",
+          "endDate": "2021-06-29T00:00:00",
+          "changeReason": "New hire",
+          "isImpliedStatus": false
+        },
+        {
+          "statusId": 3,
+          "employeeEmploymentId": 811,
+          "clientEmploymentStatusDescription": "Terminated",
+          "effectiveDate": "2021-06-30T00:00:00",
+          "endDate": "2022-01-09T00:00:00",
+          "changeReason": "Relocation",
+          "isImpliedStatus": false
+        },
+        {
+          "statusId": 4,
+          "employeeEmploymentId": 812,
+          "clientEmploymentStatusDescription": "Active",
+          "effectiveDate": "2022-01-10T00:00:00",
+          "endDate": null,
+          "changeReason": "Rehire",
+          "isImpliedStatus": true
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/categories",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": [
+        {
+          "id": 2,
+          "employmentId": 811,
+          "effectiveDate": "2010-05-03T00:00:00",
+          "employmentCategory": {
+            "id": 2,
+            "code": "FT",
+            "description": "Full Time"
+          }
+        },
+        {
+          "id": 3,
+          "employmentId": 812,
+          "effectiveDate": "2022-01-10T00:00:00",
+          "employmentCategory": {
+            "id": 4,
+            "code": "PT",
+            "description": "Part Time"
+          },
+          "changeReason": {
+            "id": 9,
+            "description": "Rehire"
+          }
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/jobs",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 404,
+      "body": null
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/payRates",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/salaries",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": [
+        {
+          "effectiveDate": "2022-01-10T00:00:00",
+          "frequency": {
+            "id": 26,
+            "description": "Bi-Weekly"
+          },
+          "payGroup": {
+            "id": 7625,
+            "description": "Biweekly"
+          },
+          "payType": {
+            "id": "2",
+            "description": "Salary"
+          },
+          "id": 3,
+          "perPaySalary": 2400.0,
+          "hourlyRate": 0,
+          "changeReason": {
+            "id": 3,
+            "description": "Rehire"
+          },
+          "isInactive": false
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/veteranStatus",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": {
+        "disabledVeteran": false
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/contacts",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 404,
+      "body": null
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/accruals",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/skills",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/education",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/certifications",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/training",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/priorEmployment",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/i9/status",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": {
+        "hasSignedI9Form": true,
+        "isComplete": true,
+        "uploadedDocuments": []
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "id": "70002",
+        "includeI9Details": "true",
+        "includeMiscDataSets": "true"
+      },
+      "status": 200,
+      "body": {
+        "employmentCategoryCode": "PT",
+        "employmentStatus": "Active",
+        "hireDate": "2022-01-10T00:00:00",
+        "idType": "",
+        "legalCode": "HSL",
+        "payFrequency": 26,
+        "payGroup": "Biweekly",
+        "payType": "Salary",
+        "ssn": "",
+        "workLocation": "ZZ",
+        "id": 70002,
+        "employeeNumber": "E-1002",
+        "nameAddress": {
+          "id": 3,
+          "firstName": "Harper",
+          "lastName": "Okafor",
+          "suffix": "Jr.",
+          "address1": "3550 Harbor Rd",
+          "city": "Salem",
+          "state": "OR",
+          "zipCode": "97301"
+        },
+        "personal": {
+          "id": 4,
+          "homePhone": "",
+          "mobilePhone": "503-555-1374"
+        },
+        "birthDate": "1975-09-09T00:00:00",
+        "gender": "Male",
+        "ethnicOrigin": "White (Not Hispanic or Latino)",
+        "maritalStatus": "Single",
+        "disabled": true,
+        "disabledEffectiveDate": "2020-06-01T00:00:00",
+        "disabledRequiresAccomodation": true,
+        "disabilityDescription": "Mobility",
+        "disabilityNotes": "Standing desk",
+        "tobaccoUse": null,
+        "statusDate": "2022-01-10T00:00:00",
+        "originalHireDate": "2010-05-03T00:00:00",
+        "rehireDate": "2022-01-10T00:00:00",
+        "adjustedServiceDate": "2014-02-01T00:00:00",
+        "terminationDate": "2021-06-30T00:00:00",
+        "terminationReason": "Relocation",
+        "terminationType": "Voluntary Termination",
+        "eligibleForRehire": true,
+        "jobId": 301,
+        "jobCode": "SUP",
+        "jobTitle": "Supervisor",
+        "jobEffectiveDate": "2022-01-10T00:00:00",
+        "jobEeoCategory": "First/Mid Level Officials and Managers",
+        "jobFLSAExempt": true,
+        "jobIsSeasonal": false,
+        "organizations": [],
+        "hourlyRate": 0,
+        "annualSalary": 62400.0,
+        "perPaySalary": 2400.0,
+        "normalHours": 80,
+        "salaryEffectiveDate": "2022-01-10T00:00:00",
+        "taxes": {
+          "federal": {
+            "id": 101,
+            "taxCategoryId": "FEDWT",
+            "taxDescription": "Federal Withholding",
+            "additionalAmount": 0,
+            "additionalIncomeAmount": 0,
+            "additionalPercent": 0,
+            "deductionExemptionAmount": 0,
+            "dependantExemptionAmount": 0,
+            "exemptionAmount": 0,
+            "isBlocked": false,
+            "multipleJobsOrSpouseWorks": true,
+            "primaryExemptions": 3,
+            "secondaryExemptions": 0,
+            "alternateCalculation": "",
+            "filingStatus": "FDM"
+          }
+        },
+        "i9Documents": {
+          "i9Completed": true,
+          "i9CompletedDate": "2022-01-12T00:00:00"
+        }
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/statuses",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": [
+        {
+          "statusId": 5,
+          "employeeEmploymentId": 821,
+          "clientEmploymentStatusDescription": "Leave of Absence",
+          "effectiveDate": "2025-02-01T00:00:00",
+          "endDate": null,
+          "changeReason": ""
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/categories",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/jobs",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/payRates",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/salaries",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": [
+        {
+          "effectiveDate": "2024-09-16T00:00:00",
+          "frequency": {
+            "id": 52,
+            "description": "Weekly"
+          },
+          "payGroup": {
+            "id": 7626,
+            "description": "Weekly"
+          },
+          "payType": {
+            "id": "1",
+            "description": "Hourly"
+          },
+          "id": 4,
+          "hourlyRate": 55.0,
+          "isInactive": true
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/veteranStatus",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": {}
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/contacts",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/accruals",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/skills",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/education",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/certifications",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/training",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/priorEmployment",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/i9/status",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": {
+        "hasSignedI9Form": false,
+        "isComplete": false,
+        "uploadedDocuments": []
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "id": "70003",
+        "includeI9Details": "true",
+        "includeMiscDataSets": "true"
+      },
+      "status": 200,
+      "body": {
+        "employmentCategoryCode": "PT",
+        "employmentStatus": "Leave of Absence",
+        "hireDate": "2024-09-16T00:00:00",
+        "idType": "",
+        "legalCode": "HSL",
+        "payFrequency": 26,
+        "payGroup": "Biweekly",
+        "payType": "1099",
+        "ssn": "",
+        "workLocation": "HQ",
+        "id": 70003,
+        "employeeNumber": "C-2001",
+        "nameAddress": {
+          "id": 5,
+          "firstName": "Morgan",
+          "lastName": "Moreau",
+          "address1": "",
+          "city": "",
+          "state": "",
+          "zipCode": "97035"
+        },
+        "overrideAddress": {
+          "address1": "PO Box 12",
+          "address2": "Unit 9",
+          "city": "Lake Oswego",
+          "state": "OR",
+          "zipCode": "97034",
+          "country": "USA",
+          "useForTaxForms": true,
+          "useForPaychecks": false,
+          "foreignPostalCode": "",
+          "militaryCity": ""
+        },
+        "personal": {
+          "id": 6,
+          "faxNumber": "503-555-0399"
+        },
+        "ethnicOrigin": "Prefer not to say",
+        "maritalStatus": "None",
+        "disabled": null,
+        "statusDate": "2025-02-01T00:00:00",
+        "originalHireDate": "2024-09-16T00:00:00",
+        "terminationDate": null,
+        "jobId": null,
+        "jobCode": "",
+        "organizations": [],
+        "hourlyRate": 55.0,
+        "salaryEffectiveDate": "2024-09-16T08:30:00",
+        "taxes": {
+          "federal": {
+            "id": 101,
+            "taxCategoryId": "FEDWT",
+            "taxDescription": "Federal Withholding",
+            "additionalAmount": 0,
+            "additionalIncomeAmount": 0,
+            "additionalPercent": 0,
+            "deductionExemptionAmount": 0,
+            "dependantExemptionAmount": 0,
+            "exemptionAmount": 0,
+            "isBlocked": true,
+            "multipleJobsOrSpouseWorks": false,
+            "primaryExemptions": 0,
+            "secondaryExemptions": 0,
+            "alternateCalculation": "",
+            "filingStatus": "FDM2"
+          },
+          "nonResidentCity": {
+            "id": 103,
+            "taxCategoryId": "CITYWT",
+            "taxDescription": "City tax",
+            "additionalAmount": 2.5,
+            "additionalIncomeAmount": 0,
+            "additionalPercent": 0,
+            "deductionExemptionAmount": 0,
+            "dependantExemptionAmount": 0,
+            "exemptionAmount": 0,
+            "isBlocked": false,
+            "multipleJobsOrSpouseWorks": false,
+            "primaryExemptions": 0,
+            "secondaryExemptions": 0,
+            "alternateCalculation": "",
+            "filingStatus": "",
+            "taxState": "PA"
+          }
+        },
+        "i9Documents": {
+          "i9Completed": false
+        }
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "page": "0",
+        "pageSize": "2",
+        "includeMiscFields": "true",
+        "includeLabors": "true",
+        "includeOrganizations": "true",
+        "includeAlternateRates": "true",
+        "includeTaxes": "true"
+      },
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "employmentCategoryCode": "FT",
+            "employmentStatus": "Active",
+            "hireDate": "2019-04-01T00:00:00",
+            "idType": "",
+            "legalCode": "HSL",
+            "payFrequency": 26,
+            "payGroup": "Biweekly",
+            "payType": "Hourly",
+            "ssn": "",
+            "workLocation": "HQ",
+            "id": 70001,
+            "employeeNumber": "E-1001",
+            "nameAddress": {
+              "id": 1,
+              "firstName": "Reese",
+              "middleName": "Lee",
+              "lastName": "Haddad",
+              "prefix": "Ms.",
+              "suffix": "",
+              "preferredName": "Mia",
+              "preferredPronouns": "she/her",
+              "address1": "8701 Maple Ave",
+              "address2": "Apt 3",
+              "city": "Portland",
+              "state": "OR",
+              "zipCode": "97201",
+              "residentGeoCode": "380510000",
+              "schoolDistrictCode": 12
+            },
+            "personal": {
+              "id": 2,
+              "homePhone": "503-555-1669",
+              "mobilePhone": "503-555-1607",
+              "faxNumber": "",
+              "officePhone": "503-555-0300",
+              "personalEmailAddress": "mia.home@example.com",
+              "preferredPronouns": ""
+            },
+            "emailAddress": "mia@example.com",
+            "birthDate": "1990-02-14T00:00:00",
+            "gender": "Female",
+            "ethnicOrigin": "Asian (Not Hispanic or Latino)",
+            "maritalStatus": "Married",
+            "citizenship": "Citizen of the United States",
+            "militaryStatus": "None",
+            "protectedVeteran": false,
+            "isRecentlySeparatedVeteran": false,
+            "veteranStatusNotSpecified": false,
+            "disabled": false,
+            "disabledEffectiveDate": null,
+            "disabledRequiresAccomodation": false,
+            "disabilityDescription": "",
+            "tobaccoUse": false,
+            "tobaccoUseEffectiveDate": "2020-01-01T00:00:00",
+            "uniqueId": "UQ-70001",
+            "timeclockId": "TC-11",
+            "statusDate": "2019-04-01T00:00:00",
+            "employmentCategoryEffectiveDate": "2019-04-01T00:00:00",
+            "employmentCategoryFullTimeEquivalent": 1.0,
+            "acaEmploymentStatus": "ACA Full Time",
+            "originalHireDate": "2019-04-01T00:00:00",
+            "rehireDate": null,
+            "adjustedServiceDate": "2019-04-01T00:00:00",
+            "terminationDate": null,
+            "terminationReason": "",
+            "terminationType": "",
+            "eligibleForRehire": true,
+            "isPending": false,
+            "enableSelfService": true,
+            "isManager": false,
+            "isSupervisor": false,
+            "isRemoteWorker": true,
+            "jobId": 300,
+            "jobCode": "CLK",
+            "jobTitle": "Clerk",
+            "jobEffectiveDate": "2021-03-01T00:00:00",
+            "jobEeoCategory": "Administrative Support Workers",
+            "jobFLSAExempt": false,
+            "jobIsSeasonal": false,
+            "jobIsUnion": false,
+            "jobGroup": "Office",
+            "socCode": "43-9061",
+            "workersCompCode": "8810",
+            "workLocationDashDescription": "HQ - Head office",
+            "organizations": [
+              {
+                "id": 1,
+                "organizationId": 10,
+                "displayOrder": 1,
+                "title": "Department",
+                "value": "FIN",
+                "valueDescription": "Finance"
+              }
+            ],
+            "assignedManager": {
+              "id": 70009,
+              "legalId": 6002,
+              "employeeName": "Other Legal Manager",
+              "employeeNumber": "E-9",
+              "jobTitle": "Lead",
+              "payrollEmploymentStatusCode": "A"
+            },
+            "assignedSupervisor": {
+              "id": 70002,
+              "legalId": 6001,
+              "employeeName": "Supervisor",
+              "employeeNumber": "E-1002"
+            },
+            "hourlyRate": 23.75,
+            "annualSalary": 49400.0,
+            "perPaySalary": 1900.0,
+            "normalHours": 80.0,
+            "salaryEffectiveDate": "2024-01-01T00:00:00",
+            "payRates": [
+              {
+                "payRateName": "Rate 2",
+                "rateValue": 30.0
+              }
+            ],
+            "taxes": {
+              "federal": {
+                "id": 101,
+                "taxCategoryId": "FEDWT",
+                "taxDescription": "Federal Withholding",
+                "additionalAmount": 15.0,
+                "additionalIncomeAmount": 100.0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 50.0,
+                "dependantExemptionAmount": 500.0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 1,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "FDS",
+                "taxState": ""
+              },
+              "residentState": {
+                "id": 102,
+                "taxCategoryId": "STATEWT",
+                "taxDescription": "Utah Withholding",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 1.5,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 0,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "UTS",
+                "taxState": "UT"
+              },
+              "nonResidentState": {
+                "id": 102,
+                "taxCategoryId": "STATEWT",
+                "taxDescription": "Oregon Withholding",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": true,
+                "primaryExemptions": 0,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "ORM",
+                "taxState": "OR"
+              },
+              "residentCity": {
+                "id": 103,
+                "taxCategoryId": "CITYWT",
+                "taxDescription": "Philadelphia Wage Tax",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 6.0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 6,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "",
+                "taxState": "PA"
+              }
+            },
+            "reciprocityRule": "UT-OR",
+            "i9Documents": {
+              "i9Completed": true,
+              "i9CompletedDate": "2019-04-03T13:45:00"
+            },
+            "directDeposits": [
+              {
+                "id": 1,
+                "accountNumber": "4400921387",
+                "accountType": "Checking",
+                "frequency": "Every Pay",
+                "routingNumber": "603100022",
+                "sequenceNumber": 1,
+                "status": "Active",
+                "bankName": "Cascade Bank",
+                "percent": 100
+              }
+            ],
+            "labors": [],
+            "miscFields": [
+              {
+                "title": "Shirt size",
+                "value": "M"
+              }
+            ],
+            "wotc": {
+              "applicationDate": "2019-04-01T00:00:00"
+            }
+          },
+          {
+            "employmentCategoryCode": "PT",
+            "employmentStatus": "Active",
+            "hireDate": "2022-01-10T00:00:00",
+            "idType": "",
+            "legalCode": "HSL",
+            "payFrequency": 26,
+            "payGroup": "Biweekly",
+            "payType": "Salary",
+            "ssn": "",
+            "workLocation": "ZZ",
+            "id": 70002,
+            "employeeNumber": "E-1002",
+            "nameAddress": {
+              "id": 3,
+              "firstName": "Harper",
+              "lastName": "Okafor",
+              "suffix": "Jr.",
+              "address1": "3550 Harbor Rd",
+              "city": "Salem",
+              "state": "OR",
+              "zipCode": "97301"
+            },
+            "personal": {
+              "id": 4,
+              "homePhone": "",
+              "mobilePhone": "503-555-1374"
+            },
+            "birthDate": "1975-09-09T00:00:00",
+            "gender": "Male",
+            "ethnicOrigin": "White (Not Hispanic or Latino)",
+            "maritalStatus": "Single",
+            "disabled": true,
+            "disabledEffectiveDate": "2020-06-01T00:00:00",
+            "disabledRequiresAccomodation": true,
+            "disabilityDescription": "Mobility",
+            "disabilityNotes": "Standing desk",
+            "tobaccoUse": null,
+            "statusDate": "2022-01-10T00:00:00",
+            "originalHireDate": "2010-05-03T00:00:00",
+            "rehireDate": "2022-01-10T00:00:00",
+            "adjustedServiceDate": "2014-02-01T00:00:00",
+            "terminationDate": "2021-06-30T00:00:00",
+            "terminationReason": "Relocation",
+            "terminationType": "Voluntary Termination",
+            "eligibleForRehire": true,
+            "jobId": 301,
+            "jobCode": "SUP",
+            "jobTitle": "Supervisor",
+            "jobEffectiveDate": "2022-01-10T00:00:00",
+            "jobEeoCategory": "First/Mid Level Officials and Managers",
+            "jobFLSAExempt": true,
+            "jobIsSeasonal": false,
+            "organizations": [],
+            "hourlyRate": 0,
+            "annualSalary": 62400.0,
+            "perPaySalary": 2400.0,
+            "normalHours": 80,
+            "salaryEffectiveDate": "2022-01-10T00:00:00",
+            "taxes": {
+              "federal": {
+                "id": 101,
+                "taxCategoryId": "FEDWT",
+                "taxDescription": "Federal Withholding",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": true,
+                "primaryExemptions": 3,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "FDM"
+              }
+            },
+            "i9Documents": {
+              "i9Completed": true,
+              "i9CompletedDate": "2022-01-12T00:00:00"
+            }
+          }
+        ],
+        "totalItems": 3,
+        "totalPages": 2,
+        "nextPageUrl": "page=1",
+        "previousPageUrl": null
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "page": "1",
+        "pageSize": "2",
+        "includeMiscFields": "true",
+        "includeLabors": "true",
+        "includeOrganizations": "true",
+        "includeAlternateRates": "true",
+        "includeTaxes": "true"
+      },
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "employmentCategoryCode": "PT",
+            "employmentStatus": "Leave of Absence",
+            "hireDate": "2024-09-16T00:00:00",
+            "idType": "",
+            "legalCode": "HSL",
+            "payFrequency": 26,
+            "payGroup": "Biweekly",
+            "payType": "1099",
+            "ssn": "",
+            "workLocation": "HQ",
+            "id": 70003,
+            "employeeNumber": "C-2001",
+            "nameAddress": {
+              "id": 5,
+              "firstName": "Morgan",
+              "lastName": "Moreau",
+              "address1": "",
+              "city": "",
+              "state": "",
+              "zipCode": "97035"
+            },
+            "overrideAddress": {
+              "address1": "PO Box 12",
+              "address2": "Unit 9",
+              "city": "Lake Oswego",
+              "state": "OR",
+              "zipCode": "97034",
+              "country": "USA",
+              "useForTaxForms": true,
+              "useForPaychecks": false,
+              "foreignPostalCode": "",
+              "militaryCity": ""
+            },
+            "personal": {
+              "id": 6,
+              "faxNumber": "503-555-0399"
+            },
+            "ethnicOrigin": "Prefer not to say",
+            "maritalStatus": "None",
+            "disabled": null,
+            "statusDate": "2025-02-01T00:00:00",
+            "originalHireDate": "2024-09-16T00:00:00",
+            "terminationDate": null,
+            "jobId": null,
+            "jobCode": "",
+            "organizations": [],
+            "hourlyRate": 55.0,
+            "salaryEffectiveDate": "2024-09-16T08:30:00",
+            "taxes": {
+              "federal": {
+                "id": 101,
+                "taxCategoryId": "FEDWT",
+                "taxDescription": "Federal Withholding",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": true,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 0,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "FDM2"
+              },
+              "nonResidentCity": {
+                "id": 103,
+                "taxCategoryId": "CITYWT",
+                "taxDescription": "City tax",
+                "additionalAmount": 2.5,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 0,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "",
+                "taxState": "PA"
+              }
+            },
+            "i9Documents": {
+              "i9Completed": false
+            }
+          }
+        ],
+        "totalItems": 3,
+        "totalPages": 2,
+        "nextPageUrl": null,
+        "previousPageUrl": "page=0"
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employeesWithSSN",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "page": "0",
+        "pageSize": "100"
+      },
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "employmentCategoryCode": "FT",
+            "employmentStatus": "Active",
+            "hireDate": "2019-04-01T00:00:00",
+            "idType": "SSN",
+            "legalCode": "HSL",
+            "payFrequency": 26,
+            "payGroup": "Biweekly",
+            "payType": "Hourly",
+            "ssn": "666-31-0001",
+            "workLocation": "HQ",
+            "id": 70001,
+            "employeeNumber": "E-1001",
+            "nameAddress": {
+              "id": 1,
+              "firstName": "Reese",
+              "middleName": "Lee",
+              "lastName": "Haddad",
+              "prefix": "Ms.",
+              "suffix": "",
+              "preferredName": "Mia",
+              "preferredPronouns": "she/her",
+              "address1": "8701 Maple Ave",
+              "address2": "Apt 3",
+              "city": "Portland",
+              "state": "OR",
+              "zipCode": "97201",
+              "residentGeoCode": "380510000",
+              "schoolDistrictCode": 12
+            },
+            "personal": {
+              "id": 2,
+              "homePhone": "503-555-1669",
+              "mobilePhone": "503-555-1607",
+              "faxNumber": "",
+              "officePhone": "503-555-0300",
+              "personalEmailAddress": "mia.home@example.com",
+              "preferredPronouns": ""
+            },
+            "emailAddress": "mia@example.com",
+            "birthDate": "1990-02-14T00:00:00",
+            "gender": "Female",
+            "ethnicOrigin": "Asian (Not Hispanic or Latino)",
+            "maritalStatus": "Married",
+            "citizenship": "Citizen of the United States",
+            "militaryStatus": "None",
+            "protectedVeteran": false,
+            "isRecentlySeparatedVeteran": false,
+            "veteranStatusNotSpecified": false,
+            "disabled": false,
+            "disabledEffectiveDate": null,
+            "disabledRequiresAccomodation": false,
+            "disabilityDescription": "",
+            "tobaccoUse": false,
+            "tobaccoUseEffectiveDate": "2020-01-01T00:00:00",
+            "uniqueId": "UQ-70001",
+            "timeclockId": "TC-11",
+            "statusDate": "2019-04-01T00:00:00",
+            "employmentCategoryEffectiveDate": "2019-04-01T00:00:00",
+            "employmentCategoryFullTimeEquivalent": 1.0,
+            "acaEmploymentStatus": "ACA Full Time",
+            "originalHireDate": "2019-04-01T00:00:00",
+            "rehireDate": null,
+            "adjustedServiceDate": "2019-04-01T00:00:00",
+            "terminationDate": null,
+            "terminationReason": "",
+            "terminationType": "",
+            "eligibleForRehire": true,
+            "isPending": false,
+            "enableSelfService": true,
+            "isManager": false,
+            "isSupervisor": false,
+            "isRemoteWorker": true,
+            "jobId": 300,
+            "jobCode": "CLK",
+            "jobTitle": "Clerk",
+            "jobEffectiveDate": "2021-03-01T00:00:00",
+            "jobEeoCategory": "Administrative Support Workers",
+            "jobFLSAExempt": false,
+            "jobIsSeasonal": false,
+            "jobIsUnion": false,
+            "jobGroup": "Office",
+            "socCode": "43-9061",
+            "workersCompCode": "8810",
+            "workLocationDashDescription": "HQ - Head office",
+            "organizations": [
+              {
+                "id": 1,
+                "organizationId": 10,
+                "displayOrder": 1,
+                "title": "Department",
+                "value": "FIN",
+                "valueDescription": "Finance"
+              }
+            ],
+            "assignedManager": {
+              "id": 70009,
+              "legalId": 6002,
+              "employeeName": "Other Legal Manager",
+              "employeeNumber": "E-9",
+              "jobTitle": "Lead",
+              "payrollEmploymentStatusCode": "A"
+            },
+            "assignedSupervisor": {
+              "id": 70002,
+              "legalId": 6001,
+              "employeeName": "Supervisor",
+              "employeeNumber": "E-1002"
+            },
+            "hourlyRate": 23.75,
+            "annualSalary": 49400.0,
+            "perPaySalary": 1900.0,
+            "normalHours": 80.0,
+            "salaryEffectiveDate": "2024-01-01T00:00:00",
+            "payRates": [
+              {
+                "payRateName": "Rate 2",
+                "rateValue": 30.0
+              }
+            ],
+            "taxes": {
+              "federal": {
+                "id": 101,
+                "taxCategoryId": "FEDWT",
+                "taxDescription": "Federal Withholding",
+                "additionalAmount": 15.0,
+                "additionalIncomeAmount": 100.0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 50.0,
+                "dependantExemptionAmount": 500.0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 1,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "FDS",
+                "taxState": ""
+              },
+              "residentState": {
+                "id": 102,
+                "taxCategoryId": "STATEWT",
+                "taxDescription": "Utah Withholding",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 1.5,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 0,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "UTS",
+                "taxState": "UT"
+              },
+              "nonResidentState": {
+                "id": 102,
+                "taxCategoryId": "STATEWT",
+                "taxDescription": "Oregon Withholding",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": true,
+                "primaryExemptions": 0,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "ORM",
+                "taxState": "OR"
+              },
+              "residentCity": {
+                "id": 103,
+                "taxCategoryId": "CITYWT",
+                "taxDescription": "Philadelphia Wage Tax",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 6.0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 6,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "",
+                "taxState": "PA"
+              }
+            },
+            "reciprocityRule": "UT-OR",
+            "i9Documents": {
+              "i9Completed": true,
+              "i9CompletedDate": "2019-04-03T13:45:00"
+            },
+            "directDeposits": [
+              {
+                "id": 1,
+                "accountNumber": "4400921387",
+                "accountType": "Checking",
+                "frequency": "Every Pay",
+                "routingNumber": "603100022",
+                "sequenceNumber": 1,
+                "status": "Active",
+                "bankName": "Cascade Bank",
+                "percent": 100
+              }
+            ],
+            "labors": [],
+            "miscFields": [
+              {
+                "title": "Shirt size",
+                "value": "M"
+              }
+            ],
+            "wotc": {
+              "applicationDate": "2019-04-01T00:00:00"
+            }
+          },
+          {
+            "employmentCategoryCode": "PT",
+            "employmentStatus": "Active",
+            "hireDate": "2022-01-10T00:00:00",
+            "idType": "",
+            "legalCode": "HSL",
+            "payFrequency": 26,
+            "payGroup": "Biweekly",
+            "payType": "Salary",
+            "ssn": "666-31-0002",
+            "workLocation": "ZZ",
+            "id": 70002,
+            "employeeNumber": "E-1002",
+            "nameAddress": {
+              "id": 3,
+              "firstName": "Harper",
+              "lastName": "Okafor",
+              "suffix": "Jr.",
+              "address1": "3550 Harbor Rd",
+              "city": "Salem",
+              "state": "OR",
+              "zipCode": "97301"
+            },
+            "personal": {
+              "id": 4,
+              "homePhone": "",
+              "mobilePhone": "503-555-1374"
+            },
+            "birthDate": "1975-09-09T00:00:00",
+            "gender": "Male",
+            "ethnicOrigin": "White (Not Hispanic or Latino)",
+            "maritalStatus": "Single",
+            "disabled": true,
+            "disabledEffectiveDate": "2020-06-01T00:00:00",
+            "disabledRequiresAccomodation": true,
+            "disabilityDescription": "Mobility",
+            "disabilityNotes": "Standing desk",
+            "tobaccoUse": null,
+            "statusDate": "2022-01-10T00:00:00",
+            "originalHireDate": "2010-05-03T00:00:00",
+            "rehireDate": "2022-01-10T00:00:00",
+            "adjustedServiceDate": "2014-02-01T00:00:00",
+            "terminationDate": "2021-06-30T00:00:00",
+            "terminationReason": "Relocation",
+            "terminationType": "Voluntary Termination",
+            "eligibleForRehire": true,
+            "jobId": 301,
+            "jobCode": "SUP",
+            "jobTitle": "Supervisor",
+            "jobEffectiveDate": "2022-01-10T00:00:00",
+            "jobEeoCategory": "First/Mid Level Officials and Managers",
+            "jobFLSAExempt": true,
+            "jobIsSeasonal": false,
+            "organizations": [],
+            "hourlyRate": 0,
+            "annualSalary": 62400.0,
+            "perPaySalary": 2400.0,
+            "normalHours": 80,
+            "salaryEffectiveDate": "2022-01-10T00:00:00",
+            "taxes": {
+              "federal": {
+                "id": 101,
+                "taxCategoryId": "FEDWT",
+                "taxDescription": "Federal Withholding",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": true,
+                "primaryExemptions": 3,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "FDM"
+              }
+            },
+            "i9Documents": {
+              "i9Completed": true,
+              "i9CompletedDate": "2022-01-12T00:00:00"
+            }
+          },
+          {
+            "employmentCategoryCode": "PT",
+            "employmentStatus": "Leave of Absence",
+            "hireDate": "2024-09-16T00:00:00",
+            "idType": "SSN",
+            "legalCode": "HSL",
+            "payFrequency": 26,
+            "payGroup": "Biweekly",
+            "payType": "1099",
+            "ssn": "*****9876",
+            "workLocation": "HQ",
+            "id": 70003,
+            "employeeNumber": "C-2001",
+            "nameAddress": {
+              "id": 5,
+              "firstName": "Morgan",
+              "lastName": "Moreau",
+              "address1": "",
+              "city": "",
+              "state": "",
+              "zipCode": "97035"
+            },
+            "overrideAddress": {
+              "address1": "PO Box 12",
+              "address2": "Unit 9",
+              "city": "Lake Oswego",
+              "state": "OR",
+              "zipCode": "97034",
+              "country": "USA",
+              "useForTaxForms": true,
+              "useForPaychecks": false,
+              "foreignPostalCode": "",
+              "militaryCity": ""
+            },
+            "personal": {
+              "id": 6,
+              "faxNumber": "503-555-0399"
+            },
+            "ethnicOrigin": "Prefer not to say",
+            "maritalStatus": "None",
+            "disabled": null,
+            "statusDate": "2025-02-01T00:00:00",
+            "originalHireDate": "2024-09-16T00:00:00",
+            "terminationDate": null,
+            "jobId": null,
+            "jobCode": "",
+            "organizations": [],
+            "hourlyRate": 55.0,
+            "salaryEffectiveDate": "2024-09-16T08:30:00",
+            "taxes": {
+              "federal": {
+                "id": 101,
+                "taxCategoryId": "FEDWT",
+                "taxDescription": "Federal Withholding",
+                "additionalAmount": 0,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": true,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 0,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "FDM2"
+              },
+              "nonResidentCity": {
+                "id": 103,
+                "taxCategoryId": "CITYWT",
+                "taxDescription": "City tax",
+                "additionalAmount": 2.5,
+                "additionalIncomeAmount": 0,
+                "additionalPercent": 0,
+                "deductionExemptionAmount": 0,
+                "dependantExemptionAmount": 0,
+                "exemptionAmount": 0,
+                "isBlocked": false,
+                "multipleJobsOrSpouseWorks": false,
+                "primaryExemptions": 0,
+                "secondaryExemptions": 0,
+                "alternateCalculation": "",
+                "filingStatus": "",
+                "taxState": "PA"
+              }
+            },
+            "i9Documents": {
+              "i9Completed": false
+            }
+          }
+        ],
+        "totalItems": 3,
+        "totalPages": 1
+      }
+    },
+    {
+      "route": "/api/clients",
+      "params": {
+        "page": "0",
+        "pageSize": "100"
+      },
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": 5001,
+            "clientCode": "HSG",
+            "clientName": "Harbor Supply Group"
+          }
+        ],
+        "totalItems": 1,
+        "totalPages": 1,
+        "nextPageUrl": null,
+        "previousPageUrl": null
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/miscellaneousFields",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "id": 1,
+          "value": "Region West"
+        },
+        {
+          "id": 2,
+          "value": ""
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/payItems",
+      "params": {
+        "clientId": "5001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [
+            {
+              "paramType": "Rate"
+            }
+          ],
+          "payees": [],
+          "id": 501,
+          "code": "REG",
+          "title": "Regular",
+          "description": "Regular hours",
+          "payItemType": "Earning",
+          "systemBenefitType": "None",
+          "systemPayItemType": "Regular",
+          "sequenceNumber": 1
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 502,
+          "code": "OT",
+          "title": "Overtime",
+          "payItemType": "Earning",
+          "systemBenefitType": "None",
+          "systemPayItemType": "Overtime",
+          "sequenceNumber": 2
+        },
+        {
+          "isInactive": true,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 503,
+          "code": "MILE",
+          "title": "Mileage",
+          "payItemType": "Earning",
+          "systemBenefitType": "None",
+          "systemPayItemType": "Reimbursement",
+          "sequenceNumber": 3
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 520,
+          "code": "401KM",
+          "title": "401k Match",
+          "payItemType": "Memo Calc",
+          "systemBenefitType": "401(k)",
+          "systemPayItemType": "Memo",
+          "sequenceNumber": 20
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 521,
+          "code": "ERMED",
+          "title": "ER Medical",
+          "payItemType": "Memo Calc",
+          "systemBenefitType": "Medical Pre-Tax 125",
+          "systemPayItemType": "Memo",
+          "sequenceNumber": 21
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 522,
+          "code": "HSAER",
+          "title": "HSA ER",
+          "payItemType": "Memo Calc",
+          "systemBenefitType": "Health Savings Account",
+          "systemPayItemType": "Memo",
+          "sequenceNumber": 22
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 523,
+          "code": null,
+          "title": "ER Life",
+          "payItemType": "Memo Calc",
+          "systemBenefitType": "Group Term Life",
+          "systemPayItemType": "Memo",
+          "sequenceNumber": 23
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [
+            {
+              "paramType": "Percent"
+            }
+          ],
+          "payees": [
+            {
+              "payeeName": "Harbor 401k Trust",
+              "legalCompanyName": "Harbor Supply LLC"
+            }
+          ],
+          "id": 601,
+          "code": "401K",
+          "title": "401(k)",
+          "payItemType": "Deduction",
+          "systemBenefitType": "401(k)",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 30
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [
+            {
+              "paramType": "Amount"
+            }
+          ],
+          "payees": [],
+          "id": 602,
+          "code": "MEDPT",
+          "title": "Medical",
+          "payItemType": "Deduction",
+          "systemBenefitType": "Medical Pre-Tax 125",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 31
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 603,
+          "code": "DENPT",
+          "title": "Dental",
+          "payItemType": "Deduction",
+          "systemBenefitType": "Dental Pre-Tax 125",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 32
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 604,
+          "code": "HSA",
+          "title": "HSA",
+          "payItemType": "Deduction",
+          "systemBenefitType": "Health Savings Account",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 33
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": true,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 605,
+          "code": "FSA",
+          "title": "Medical FSA",
+          "payItemType": "Deduction",
+          "systemBenefitType": "FSA Medical",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 34
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 606,
+          "code": "GTL",
+          "title": "Group term life",
+          "payItemType": "Deduction",
+          "systemBenefitType": "Group Term Life",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 35
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": true,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 607,
+          "code": "LOAN",
+          "title": "401K Loan",
+          "payItemType": "Deduction",
+          "systemBenefitType": "None",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 36
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 608,
+          "code": "PTO",
+          "title": "PTO buyback",
+          "payItemType": "Deduction",
+          "systemBenefitType": "Leave Accrual",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 37
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 609,
+          "code": "UNIF",
+          "title": "Uniform",
+          "payItemType": "Deduction",
+          "systemBenefitType": "Other Deduction",
+          "systemPayItemType": "Deduction",
+          "sequenceNumber": 38
+        },
+        {
+          "isInactive": false,
+          "hasDecliningBalance": false,
+          "scheduleDefault": "Every Pay",
+          "calcParams": [],
+          "payees": [],
+          "id": 610,
+          "code": "LEVY",
+          "title": "Federal Tax Levy",
+          "payItemType": "Deduction",
+          "systemBenefitType": "None",
+          "systemPayItemType": "Garnishment",
+          "sequenceNumber": 39
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "accountNumber": "88120045",
+          "accountType": "Savings",
+          "frequency": "Every Pay",
+          "routingNumber": "603100019",
+          "sequenceNumber": 1,
+          "status": "Active",
+          "amount": null,
+          "percent": 25.0,
+          "description": "Rainy day",
+          "id": 41,
+          "bankName": "Cascade Savings"
+        },
+        {
+          "accountNumber": "4400921387",
+          "accountType": "Checking",
+          "frequency": "Every Pay",
+          "routingNumber": "603100022",
+          "sequenceNumber": 0,
+          "status": "Active",
+          "amount": null,
+          "percent": null,
+          "description": "",
+          "id": 42,
+          "bankName": "Cascade Bank"
+        },
+        {
+          "accountNumber": "7712",
+          "accountType": "Checking",
+          "frequency": "Every Pay",
+          "routingNumber": "603100035",
+          "sequenceNumber": 2,
+          "status": "Inactive",
+          "amount": 100.0,
+          "percent": null,
+          "description": "",
+          "id": 43,
+          "bankName": "Old Town Bank"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": [
+        {
+          "accountNumber": "5500182211",
+          "accountType": "Checking",
+          "frequency": "Every Pay",
+          "routingNumber": "603100048",
+          "sequenceNumber": 0,
+          "status": "Inactive",
+          "amount": null,
+          "percent": null,
+          "description": "",
+          "id": 44,
+          "bankName": "Cascade Bank"
+        },
+        {
+          "accountNumber": "5500182212",
+          "accountType": "Savings",
+          "frequency": "Every Pay",
+          "routingNumber": "603100051",
+          "sequenceNumber": null,
+          "status": "Inactive",
+          "amount": 50.0,
+          "percent": null,
+          "description": "",
+          "id": 45,
+          "bankName": "Cascade Savings"
+        },
+        {
+          "accountNumber": "5500182213",
+          "accountType": "Checking",
+          "frequency": "Every Other Pay",
+          "routingNumber": "603100064",
+          "sequenceNumber": 1,
+          "status": "Active",
+          "amount": 200.0,
+          "percent": null,
+          "description": "",
+          "id": 46,
+          "bankName": "Cascade Bank"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 404,
+      "body": null
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/payItems",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "page": "0"
+      },
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "auditId": 909501,
+            "employeeNumber": "E-1001",
+            "firstName": "",
+            "lastName": "",
+            "payItemCode": "401K",
+            "payItemId": 601,
+            "payItemType": null,
+            "referenceNumber": "PLAN-401",
+            "scheduleOverride": "Every Pay",
+            "startDate": "2019-05-01T00:00:00",
+            "stopDate": null,
+            "calcParams": [],
+            "id": 9501,
+            "employeeId": 70001,
+            "payItemName": "401(k)"
+          },
+          {
+            "auditId": 909502,
+            "employeeNumber": "E-1001",
+            "firstName": "",
+            "lastName": "",
+            "payItemCode": "MEDPT",
+            "payItemId": 602,
+            "payItemType": null,
+            "referenceNumber": "",
+            "scheduleOverride": "",
+            "startDate": "2025-01-01T00:00:00",
+            "stopDate": "2025-12-31T00:00:00",
+            "calcParams": [
+              {
+                "paramType": "Amount",
+                "paramValue": 60.0
+              }
+            ],
+            "id": 9502,
+            "employeeId": 70001,
+            "payItemName": "Medical"
+          },
+          {
+            "auditId": 909505,
+            "employeeNumber": "E-1001",
+            "firstName": "",
+            "lastName": "",
+            "payItemCode": "REG",
+            "payItemId": 501,
+            "payItemType": null,
+            "referenceNumber": "",
+            "scheduleOverride": "",
+            "startDate": "2019-04-01T00:00:00",
+            "stopDate": null,
+            "calcParams": [],
+            "id": 9505,
+            "employeeId": 70001,
+            "payItemName": "Regular"
+          },
+          {
+            "auditId": 909503,
+            "employeeNumber": "E-1002",
+            "firstName": "",
+            "lastName": "",
+            "payItemCode": null,
+            "payItemId": null,
+            "payItemType": null,
+            "referenceNumber": "",
+            "scheduleOverride": "",
+            "startDate": "2023-03-01T00:00:00",
+            "stopDate": null,
+            "calcParams": [
+              {
+                "paramType": "Amount",
+                "paramValue": 15.0
+              }
+            ],
+            "id": 9503,
+            "employeeId": 70002,
+            "payItemName": "Garage parking"
+          },
+          {
+            "auditId": 909504,
+            "employeeNumber": "E-1002",
+            "firstName": "",
+            "lastName": "",
+            "payItemCode": "LOAN",
+            "payItemId": 607,
+            "payItemType": null,
+            "referenceNumber": "",
+            "scheduleOverride": "",
+            "startDate": "2024-06-07T00:00:00",
+            "stopDate": null,
+            "calcParams": [],
+            "id": 9504,
+            "employeeId": 70002,
+            "payItemName": "401K Loan",
+            "balance": 1200.0
+          }
+        ],
+        "totalItems": 5,
+        "totalPages": 1,
+        "nextPageUrl": null,
+        "previousPageUrl": null
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/payItems",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "auditId": 909501,
+          "employeeNumber": "E-1001",
+          "firstName": "",
+          "lastName": "",
+          "payItemCode": "401K",
+          "payItemId": 601,
+          "payItemType": "Deduction",
+          "referenceNumber": "PLAN-401",
+          "scheduleOverride": "Every Pay",
+          "startDate": "2019-05-01T00:00:00",
+          "stopDate": null,
+          "calcParams": [
+            {
+              "paramType": "Percent",
+              "paramValue": 6.0
+            }
+          ],
+          "id": 9501,
+          "employeeId": 70001,
+          "payItemName": "401(k)"
+        },
+        {
+          "auditId": 909502,
+          "employeeNumber": "E-1001",
+          "firstName": "",
+          "lastName": "",
+          "payItemCode": "MEDPT",
+          "payItemId": 602,
+          "payItemType": "Deduction",
+          "referenceNumber": "",
+          "scheduleOverride": "",
+          "startDate": "2025-01-01T00:00:00",
+          "stopDate": "2025-12-31T00:00:00",
+          "calcParams": [
+            {
+              "paramType": "Amount",
+              "paramValue": 60.0
+            }
+          ],
+          "id": 9502,
+          "employeeId": 70001,
+          "payItemName": "Medical"
+        },
+        {
+          "auditId": 909505,
+          "employeeNumber": "E-1001",
+          "firstName": "",
+          "lastName": "",
+          "payItemCode": "REG",
+          "payItemId": 501,
+          "payItemType": "Earning",
+          "referenceNumber": "",
+          "scheduleOverride": "",
+          "startDate": "2019-04-01T00:00:00",
+          "stopDate": null,
+          "calcParams": [
+            {
+              "paramType": "Rate",
+              "paramValue": 23.75
+            }
+          ],
+          "id": 9505,
+          "employeeId": 70001,
+          "payItemName": "Regular"
+        },
+        {
+          "auditId": 0,
+          "employeeNumber": "",
+          "firstName": "",
+          "lastName": "",
+          "payItemCode": "DENPT",
+          "payItemId": 603,
+          "payItemType": "Deduction",
+          "referenceNumber": "",
+          "scheduleOverride": "",
+          "startDate": null,
+          "stopDate": null,
+          "calcParams": [],
+          "id": -1,
+          "employeeId": 70001,
+          "payItemName": "Dental"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/payItems",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": [
+        {
+          "auditId": 909503,
+          "employeeNumber": "E-1002",
+          "firstName": "",
+          "lastName": "",
+          "payItemCode": null,
+          "payItemId": null,
+          "payItemType": "Deduction",
+          "referenceNumber": "",
+          "scheduleOverride": "",
+          "startDate": "2023-03-01T00:00:00",
+          "stopDate": null,
+          "calcParams": [
+            {
+              "paramType": "Amount",
+              "paramValue": 15.0
+            },
+            {
+              "paramType": "Amount2",
+              "paramValue": 5.0
+            }
+          ],
+          "id": 9503,
+          "employeeId": 70002,
+          "payItemName": "Garage parking"
+        },
+        {
+          "auditId": 909504,
+          "employeeNumber": "E-1002",
+          "firstName": "",
+          "lastName": "",
+          "payItemCode": "LOAN",
+          "payItemId": 607,
+          "payItemType": "Deduction",
+          "referenceNumber": "",
+          "scheduleOverride": "",
+          "startDate": "2024-06-07T00:00:00",
+          "stopDate": null,
+          "calcParams": [
+            {
+              "paramType": "Amount",
+              "paramValue": 50.0
+            }
+          ],
+          "id": 9504,
+          "employeeId": 70002,
+          "payItemName": "401K Loan",
+          "balance": 1200.0
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/payItems",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/garnishments",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001"
+      },
+      "status": 200,
+      "body": [
+        {
+          "additionalExemptionAmount": 0.0,
+          "dependentExemption": 0.0,
+          "blockSystemGarnishmentRule": false,
+          "resetNotTakenBalanceToZero": false,
+          "overrideFipsCode": "",
+          "stopDate": null,
+          "id": 77,
+          "garnishmentType": {
+            "id": "LF",
+            "typeDescription": "Federal Tax Levy"
+          },
+          "garnishmentDescription": "IRS levy",
+          "caseNumber": "IRS-2024-5521",
+          "garnishmentPayee": {
+            "id": 3,
+            "payeeName": "Internal Revenue Service acct 4410"
+          },
+          "thirdPartyPayee": {
+            "id": 4,
+            "nameDashPayeeDescription": "IRS - Levy processing"
+          },
+          "garnishmentSequence": 1,
+          "state": {
+            "id": "UT",
+            "stateName": "Utah"
+          },
+          "amount": 75.0,
+          "percent": 0.0,
+          "percentageOf": "DisposableIncome",
+          "maximumAmount": 3000.0,
+          "maximumPercent": 25.0,
+          "feeAmount": 0.0,
+          "arrearsBalance": 0.0,
+          "remainingBalance": 2925.0,
+          "applyArrears": false,
+          "isMedicalSupportRequired": false,
+          "limit": 0.0,
+          "ytdLimit": 0.0,
+          "newBalance": 2925.0,
+          "updatedArrearsBalance": 0.0,
+          "overrideTakeHomeFactor": 0.0,
+          "selectedDeductions": [
+            {
+              "id": 601,
+              "payItemTitle": "401(k)"
+            },
+            {
+              "id": 990,
+              "payItemTitle": "Old union dues"
+            }
+          ],
+          "startDate": "2024-09-01T00:00:00",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/garnishments",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002"
+      },
+      "status": 200,
+      "body": [
+        {
+          "additionalExemptionAmount": 0.0,
+          "dependentExemption": 0.0,
+          "blockSystemGarnishmentRule": false,
+          "resetNotTakenBalanceToZero": false,
+          "overrideFipsCode": "",
+          "stopDate": "2030-02-01T00:00:00",
+          "id": 78,
+          "garnishmentType": {
+            "id": "CS",
+            "typeDescription": "Child Support"
+          },
+          "garnishmentDescription": "Child support order",
+          "caseNumber": "OR-CS-88-1020",
+          "garnishmentPayee": {
+            "id": 5,
+            "payeeName": "Oregon DCS"
+          },
+          "garnishmentSequence": 2,
+          "state": {
+            "id": "OR",
+            "stateName": "Oregon"
+          },
+          "amount": 0.0,
+          "percent": 20.0,
+          "percentageOf": "NetPay",
+          "maximumAmount": 0.0,
+          "maximumPercent": 50.0,
+          "feeAmount": 1.5,
+          "arrearsBalance": 240.0,
+          "remainingBalance": 0.0,
+          "applyArrears": true,
+          "isMedicalSupportRequired": true,
+          "selectedDeductions": [],
+          "startDate": "2023-02-01T00:00:00",
+          "status": "Suspended"
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/garnishments",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003"
+      },
+      "status": 404,
+      "body": null
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/benefits",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001",
+        "includeDetails": "true"
+      },
+      "status": 200,
+      "body": [
+        {
+          "benefitType": {
+            "allowBeneficiary": false,
+            "allowPlanUpdates": true,
+            "allowPrimaryCarePhysician": false,
+            "allowProofOfInsurability": false,
+            "autoEnrollDefault": false,
+            "isAcaGroupHealthPlanDefault": false,
+            "requiresEligibleWages": false,
+            "calculation": {
+              "id": 2,
+              "description": "Flat amount"
+            },
+            "category": {
+              "id": 1,
+              "description": "Health"
+            }
+          },
+          "deductionSchedule": "Every Pay",
+          "displayOrder": 1,
+          "employeeBenefitStopDate": null,
+          "planStopDate": null,
+          "id": 301,
+          "employeeBenefitId": 8301,
+          "planName": "Medical PPO",
+          "planType": "Medical",
+          "planTypeId": 1,
+          "isActive": true,
+          "coverageName": "Employee + Spouse",
+          "employeeBenefitStartDate": "2025-01-01T00:00:00",
+          "effectiveDate": "2025-01-01T00:00:00",
+          "planStartDate": "2025-01-01T00:00:00",
+          "preTax": "Yes",
+          "annualCostContribution": "1560.00",
+          "employeeAnnualAmount": "1560.00",
+          "deductionAmount": [
+            "60.00"
+          ],
+          "calcParams": [
+            {
+              "calcParamId": 11,
+              "hasDefault": true,
+              "payItem": "MEDPT",
+              "value": 60.0
+            }
+          ],
+          "employeeBenefitPlanDetail": {
+            "planId": "MED-PPO",
+            "groupId": "G-1001",
+            "waiveReason": "",
+            "coverageLevel": [
+              "Employee",
+              "Spouse"
+            ],
+            "coveredEmployeeCode": "ES",
+            "deduction": "60.00",
+            "deductionFrequency": "Every Pay",
+            "employeePCP": "Dr. Lane, 1442",
+            "participantId": "PPO-77120",
+            "startDate": "2025-01-01T00:00:00",
+            "stopDate": null,
+            "calculatedStatus": "Approved",
+            "underwritingStatus": "",
+            "provider": {
+              "id": 9,
+              "code": "CASC",
+              "name": "Cascade Health",
+              "partnerId": 0,
+              "partnerName": ""
+            },
+            "dependents": [
+              {
+                "dependentLabel": "Spouse",
+                "dependentData": "Jamie, 1989-07-02",
+                "enrollmentBeginDate": "2025-01-01T00:00:00",
+                "enrollmentEndDate": null
+              }
+            ],
+            "beneficiaries": []
+          }
+        },
+        {
+          "benefitType": {
+            "allowBeneficiary": false,
+            "allowPlanUpdates": true,
+            "allowPrimaryCarePhysician": false,
+            "allowProofOfInsurability": false,
+            "autoEnrollDefault": false,
+            "isAcaGroupHealthPlanDefault": false,
+            "requiresEligibleWages": false,
+            "calculation": {
+              "id": 2,
+              "description": "Flat amount"
+            },
+            "category": {
+              "id": 1,
+              "description": "Health"
+            }
+          },
+          "deductionSchedule": "Every Pay",
+          "displayOrder": 1,
+          "employeeBenefitStopDate": null,
+          "planStopDate": null,
+          "id": 302,
+          "employeeBenefitId": 8302,
+          "planName": "HSA",
+          "planType": "Health Savings Account",
+          "planTypeId": 7,
+          "isActive": true,
+          "coverageName": "Employee Only",
+          "employeeBenefitStartDate": "2025-01-01T00:00:00",
+          "effectiveDate": "2025-01-01T00:00:00",
+          "preTax": "Yes",
+          "deductionAmount": [
+            "40.00"
+          ],
+          "employeeBenefitPlanDetail": {
+            "planId": "HSA-1",
+            "accountNumber": "HSA00442211",
+            "maskedAccountNumber": "*******2211",
+            "routingNumber": "603100077",
+            "accountType": "Checking",
+            "participantId": "HSA-5520",
+            "annualTargetAmount": "1040.00",
+            "startDate": "2025-01-01T00:00:00"
+          }
+        },
+        {
+          "benefitType": {
+            "allowBeneficiary": false,
+            "allowPlanUpdates": true,
+            "allowPrimaryCarePhysician": false,
+            "allowProofOfInsurability": false,
+            "autoEnrollDefault": false,
+            "isAcaGroupHealthPlanDefault": false,
+            "requiresEligibleWages": false,
+            "calculation": {
+              "id": 2,
+              "description": "Flat amount"
+            },
+            "category": {
+              "id": 1,
+              "description": "Health"
+            }
+          },
+          "deductionSchedule": "Every Pay",
+          "displayOrder": 1,
+          "employeeBenefitStopDate": "2025-01-01T00:00:00",
+          "planStopDate": null,
+          "id": 303,
+          "employeeBenefitId": 8303,
+          "planName": "Vision",
+          "planType": "Vision",
+          "planTypeId": 3,
+          "isActive": false,
+          "coverageName": "Waived",
+          "employeeBenefitStartDate": "2025-01-01T00:00:00",
+          "effectiveDate": "2025-01-01T00:00:00",
+          "deductionAmount": [],
+          "employeeBenefitPlanDetail": {
+            "planId": "VIS-1",
+            "waiveReason": "Covered elsewhere",
+            "coverageLevel": []
+          }
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/benefits",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002",
+        "includeDetails": "true"
+      },
+      "status": 200,
+      "body": []
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/benefits",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003",
+        "includeDetails": "true"
+      },
+      "status": 404,
+      "body": null
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/paygroupId/{paygroupId}/payrollRunHistory",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "paygroupId": "7625"
+      },
+      "status": 200,
+      "body": [
+        {
+          "inputMethod": "Manual",
+          "payOfTheMonth": "1",
+          "processedBy": "payroll.ops",
+          "processApprovedBy": "",
+          "regularCheckAutoPay": true,
+          "runTime": "14:05",
+          "submittedBy": "",
+          "submittedDate": null,
+          "submittedTime": "",
+          "suppressPayStubEmailAlert": false,
+          "impoundDate": null,
+          "id": 9001,
+          "runNumber": 5,
+          "payrollRunType": "Data Conversion",
+          "status": "Completed Payroll Run",
+          "payDate": "2018-06-15T00:00:00",
+          "scheduledPayDate": "2018-06-15T00:00:00",
+          "runDate": "2018-06-20T00:00:00",
+          "scheduledRunDate": null,
+          "periodBeginDate": "2018-06-01T00:00:00",
+          "periodEndDate": "2018-06-14T00:00:00",
+          "payPeriod": 12
+        },
+        {
+          "inputMethod": "Manual",
+          "payOfTheMonth": "1",
+          "processedBy": "payroll.ops",
+          "processApprovedBy": "",
+          "regularCheckAutoPay": true,
+          "runTime": "14:05",
+          "submittedBy": "",
+          "submittedDate": null,
+          "submittedTime": "",
+          "suppressPayStubEmailAlert": false,
+          "impoundDate": null,
+          "id": 9099,
+          "runNumber": 101,
+          "payrollRunType": "Regular Payroll",
+          "status": "Completed Payroll Run",
+          "payDate": "2024-01-12T00:00:00",
+          "scheduledPayDate": "2024-01-12T00:00:00",
+          "runDate": "2024-01-10T00:00:00",
+          "periodBeginDate": "2023-12-24T00:00:00",
+          "periodEndDate": "2024-01-06T00:00:00",
+          "payPeriod": 1
+        },
+        {
+          "inputMethod": "Manual",
+          "payOfTheMonth": "1",
+          "processedBy": "payroll.ops",
+          "processApprovedBy": "",
+          "regularCheckAutoPay": true,
+          "runTime": "14:05",
+          "submittedBy": "lee.admin",
+          "submittedDate": "2025-01-08T00:00:00",
+          "submittedTime": "09:12",
+          "suppressPayStubEmailAlert": false,
+          "impoundDate": "2025-01-09T00:00:00",
+          "id": 9101,
+          "runNumber": 101,
+          "payrollRunType": "Regular Payroll",
+          "status": "Completed Payroll Run",
+          "payDate": "2025-01-10T00:00:00",
+          "scheduledPayDate": "2025-01-10T00:00:00",
+          "runDate": "2025-01-08T00:00:00",
+          "scheduledRunDate": "2025-01-08T00:00:00",
+          "periodBeginDate": "2024-12-22T00:00:00",
+          "periodEndDate": "2025-01-04T00:00:00",
+          "payPeriod": 1
+        },
+        {
+          "inputMethod": "Manual",
+          "payOfTheMonth": "1",
+          "processedBy": "",
+          "processApprovedBy": "",
+          "regularCheckAutoPay": true,
+          "runTime": "14:05",
+          "submittedBy": "",
+          "submittedDate": null,
+          "submittedTime": "",
+          "suppressPayStubEmailAlert": false,
+          "impoundDate": null,
+          "id": 9102,
+          "runNumber": 102,
+          "payrollRunType": "Regular Payroll",
+          "status": "Payroll Not Processed",
+          "payDate": "2025-01-24T00:00:00",
+          "scheduledPayDate": "2025-01-24T00:00:00",
+          "runDate": null,
+          "periodBeginDate": "2025-01-05T00:00:00",
+          "periodEndDate": "2025-01-18T00:00:00",
+          "payPeriod": 2
+        },
+        {
+          "inputMethod": "Manual",
+          "payOfTheMonth": "1",
+          "processedBy": "payroll.ops",
+          "processApprovedBy": "",
+          "regularCheckAutoPay": true,
+          "runTime": "14:05",
+          "submittedBy": "",
+          "submittedDate": null,
+          "submittedTime": "",
+          "suppressPayStubEmailAlert": false,
+          "impoundDate": null,
+          "id": 9103,
+          "runNumber": 1,
+          "payrollRunType": "Off Cycle Payroll",
+          "status": "Completed Payroll Run",
+          "payDate": "2025-01-17T00:00:00",
+          "scheduledPayDate": null,
+          "runDate": "2025-01-16T00:00:00",
+          "periodBeginDate": "2025-01-05T00:00:00",
+          "periodEndDate": "2025-01-18T00:00:00",
+          "payPeriod": 2
+        }
+      ]
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/paygroupId/{paygroupId}/payrollRunHistory",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "paygroupId": "7626"
+      },
+      "status": 404,
+      "body": null
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/checks",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "filter.fromDate": "2024-01-19",
+        "filter.toDate": "2025-01-17",
+        "filter.pageSize": "4",
+        "filter.page": "0",
+        "includeDetails": "true"
+      },
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": 880001,
+            "employeeId": 70001,
+            "employeeNumber": "E-1001",
+            "employeeName": "Haddad, Reese",
+            "employeeSSN": "666-31-0001",
+            "employeeAddress1": "10 Cedar St",
+            "employeeAddress2": "",
+            "employeeCity": "Portland",
+            "employeeState": "OR",
+            "employeeZipCode": "97201",
+            "employeeFederalFilingStatus": "FDS",
+            "employeeFederalExemptions": 1,
+            "employeeFederalAddlAmountOrPercent": "15.00",
+            "employeeStateFilingStatus": "UTS",
+            "employeeStateExemptions": 0,
+            "employeeStateAddlAmountOrPercent": "",
+            "vertexResidentGeoCode": "380510000",
+            "vertexWorkGeoCode": "450351000",
+            "vertexSchoolDistrictCode": 0,
+            "legalCompanyName": "Harbor Supply LLC",
+            "checkNumber": 50001,
+            "checkSequence": 1,
+            "voucherNumber": "V880001",
+            "checkDate": "2025-01-10T00:00:00",
+            "periodBeginDate": "2024-12-22T00:00:00",
+            "periodEndDate": "2025-01-04T00:00:00",
+            "checkTypeDescription": "Regular",
+            "payrollRunNumber": 101,
+            "payrollRunType": "Regular Payroll",
+            "reissueCheckDate": null,
+            "reissueCheckNumber": null,
+            "isRemoteWorker": true,
+            "grossPay": 2006.88,
+            "grossWages": 1826.47,
+            "netPay": 1389.75,
+            "checkAmount": 0.0,
+            "directDepositAmount": 1389.75,
+            "directDeposits": [
+              {
+                "id": 1,
+                "account": "*****0045",
+                "depositAmount": 347.44,
+                "itemDescription": "Savings"
+              },
+              {
+                "id": 2,
+                "account": "******1387",
+                "depositAmount": 1042.31,
+                "itemDescription": "Checking"
+              }
+            ],
+            "earnings": [
+              {
+                "id": 501,
+                "itemCode": "REG",
+                "itemDescription": "Regular",
+                "sequence": 1,
+                "checkDollars": 1900.0,
+                "currentDollars": 1900.0,
+                "ptdDollars": 1900.0,
+                "mtdDollars": 1900.0,
+                "qtdDollars": 1900.0,
+                "ytdDollars": 1900.0,
+                "ftdDollars": 1900.0,
+                "isMemoEarning": false,
+                "checkHours": 80.0,
+                "checkUnits": 0.0,
+                "currentHours": 80.0,
+                "currentUnits": 0.0,
+                "ytdHours": 80.0,
+                "ytdUnits": 0.0
+              },
+              {
+                "id": 502,
+                "itemCode": "OT",
+                "itemDescription": "Overtime",
+                "sequence": 2,
+                "checkDollars": 106.88,
+                "currentDollars": 106.88,
+                "ptdDollars": 106.88,
+                "mtdDollars": 106.88,
+                "qtdDollars": 106.88,
+                "ytdDollars": 106.88,
+                "ftdDollars": 106.88,
+                "isMemoEarning": false,
+                "checkHours": 3.0,
+                "checkUnits": 0.0,
+                "currentHours": 3.0,
+                "currentUnits": 0.0,
+                "ytdHours": 3.0,
+                "ytdUnits": 0.0
+              },
+              {
+                "id": 520,
+                "itemCode": "401KM",
+                "itemDescription": "401k Match",
+                "sequence": 3,
+                "checkDollars": 57.0,
+                "currentDollars": 57.0,
+                "ptdDollars": 57.0,
+                "mtdDollars": 57.0,
+                "qtdDollars": 57.0,
+                "ytdDollars": 57.0,
+                "ftdDollars": 57.0,
+                "isMemoEarning": true,
+                "checkHours": 0.0,
+                "checkUnits": 0.0,
+                "currentHours": 0.0,
+                "currentUnits": 0.0,
+                "ytdHours": 0.0,
+                "ytdUnits": 0.0
+              },
+              {
+                "id": 521,
+                "itemCode": "ERMED",
+                "itemDescription": "ER Medical",
+                "sequence": 4,
+                "checkDollars": 310.0,
+                "currentDollars": 310.0,
+                "ptdDollars": 310.0,
+                "mtdDollars": 310.0,
+                "qtdDollars": 310.0,
+                "ytdDollars": 310.0,
+                "ftdDollars": 310.0,
+                "isMemoEarning": true,
+                "checkHours": 0.0,
+                "checkUnits": 0.0,
+                "currentHours": 0.0,
+                "currentUnits": 0.0,
+                "ytdHours": 0.0,
+                "ytdUnits": 0.0
+              },
+              {
+                "id": 523,
+                "itemCode": null,
+                "itemDescription": "ER Life",
+                "sequence": 5,
+                "checkDollars": 4.2,
+                "currentDollars": 4.2,
+                "ptdDollars": 4.2,
+                "mtdDollars": 4.2,
+                "qtdDollars": 4.2,
+                "ytdDollars": 4.2,
+                "ftdDollars": 4.2,
+                "isMemoEarning": true,
+                "checkHours": 0.0,
+                "checkUnits": 0.0,
+                "currentHours": 0.0,
+                "currentUnits": 0.0,
+                "ytdHours": 0.0,
+                "ytdUnits": 0.0
+              }
+            ],
+            "deductions": [
+              {
+                "id": 601,
+                "itemCode": "401K",
+                "itemDescription": "401(k)",
+                "sequence": 1,
+                "checkDollars": 120.41,
+                "currentDollars": 120.41,
+                "ptdDollars": 120.41,
+                "mtdDollars": 120.41,
+                "qtdDollars": 120.41,
+                "ytdDollars": 120.41,
+                "ftdDollars": 120.41
+              },
+              {
+                "id": 602,
+                "itemCode": "MEDPT",
+                "itemDescription": "Medical",
+                "sequence": 2,
+                "checkDollars": 60.0,
+                "currentDollars": 60.0,
+                "ptdDollars": 60.0,
+                "mtdDollars": 60.0,
+                "qtdDollars": 60.0,
+                "ytdDollars": 60.0,
+                "ftdDollars": 60.0
+              }
+            ],
+            "garnishments": [
+              {
+                "id": 77,
+                "itemCode": null,
+                "itemDescription": "Federal Tax Levy",
+                "sequence": 1,
+                "checkDollars": 75.0,
+                "currentDollars": 75.0,
+                "ptdDollars": 75.0,
+                "mtdDollars": 75.0,
+                "qtdDollars": 75.0,
+                "ytdDollars": 75.0,
+                "ftdDollars": 75.0
+              }
+            ],
+            "taxes": [],
+            "benefits": [
+              {
+                "benefitTitle": "401(k)",
+                "benefitDescription": "401(k)",
+                "checkEligibleWages": 2006.88,
+                "checkEmployeeCatchUp": 0,
+                "checkEmployeeDeduction": 120.41,
+                "checkEmployerContribution": 57.0,
+                "checkMatchEligibleWages": 2006.88,
+                "ytdEligibleWages": 2006.88,
+                "ytdEmployeeDeduction": 120.41,
+                "ytdEmployerContribution": 57.0
+              },
+              {
+                "benefitTitle": "Medical",
+                "benefitDescription": "Medical",
+                "checkEligibleWages": 2006.88,
+                "checkEmployeeCatchUp": 0,
+                "checkEmployeeDeduction": 60.0,
+                "checkEmployerContribution": 310.0,
+                "checkMatchEligibleWages": 2006.88,
+                "ytdEligibleWages": 2006.88,
+                "ytdEmployeeDeduction": 60.0,
+                "ytdEmployerContribution": 310.0
+              }
+            ],
+            "accruals": [
+              {
+                "id": 1,
+                "accrualName": "PTO",
+                "amountAccrued": 3.08,
+                "amountTaken": 0.0,
+                "availableBalance": 40.5,
+                "endingBalance": 40.5
+              }
+            ],
+            "employeeOrganizations": [
+              {
+                "id": 1,
+                "organizationId": 10,
+                "displayOrder": 1,
+                "title": "Department",
+                "value": "FIN",
+                "valueDescription": "Finance"
+              }
+            ]
+          },
+          {
+            "id": 880002,
+            "employeeId": 70002,
+            "employeeNumber": "E-1002",
+            "employeeName": "Okafor, Harper",
+            "employeeSSN": "666-31-0002",
+            "employeeAddress1": "10 Cedar St",
+            "employeeAddress2": "",
+            "employeeCity": "Portland",
+            "employeeState": "OR",
+            "employeeZipCode": "97201",
+            "employeeFederalFilingStatus": "FDS",
+            "employeeFederalExemptions": 1,
+            "employeeFederalAddlAmountOrPercent": "15.00",
+            "employeeStateFilingStatus": "UTS",
+            "employeeStateExemptions": 0,
+            "employeeStateAddlAmountOrPercent": "",
+            "vertexResidentGeoCode": "380510000",
+            "vertexWorkGeoCode": "450351000",
+            "vertexSchoolDistrictCode": 0,
+            "legalCompanyName": "Harbor Supply LLC",
+            "checkNumber": 50002,
+            "checkSequence": 1,
+            "voucherNumber": "V880002",
+            "checkDate": "2025-01-10T00:00:00",
+            "periodBeginDate": "2024-12-22T00:00:00",
+            "periodEndDate": "2025-01-04T00:00:00",
+            "checkTypeDescription": "Adjustment",
+            "payrollRunNumber": 101,
+            "payrollRunType": "Regular Payroll",
+            "reissueCheckDate": null,
+            "reissueCheckNumber": null,
+            "isRemoteWorker": false,
+            "grossPay": 2400.0,
+            "grossWages": 2400.0,
+            "netPay": 1889.2,
+            "checkAmount": 1889.2,
+            "directDepositAmount": 0.0,
+            "directDeposits": [],
+            "earnings": [
+              {
+                "id": 501,
+                "itemCode": "REG",
+                "itemDescription": "Regular",
+                "sequence": 1,
+                "checkDollars": 2400.0,
+                "currentDollars": 2400.0,
+                "ptdDollars": 2400.0,
+                "mtdDollars": 2400.0,
+                "qtdDollars": 2400.0,
+                "ytdDollars": 2400.0,
+                "ftdDollars": 2400.0,
+                "isMemoEarning": false,
+                "checkHours": 80.0,
+                "checkUnits": 0.0,
+                "currentHours": 80.0,
+                "currentUnits": 0.0,
+                "ytdHours": 80.0,
+                "ytdUnits": 0.0
+              }
+            ],
+            "deductions": [
+              {
+                "id": 607,
+                "itemCode": "LOAN",
+                "itemDescription": "401K Loan",
+                "sequence": 1,
+                "checkDollars": 50.0,
+                "currentDollars": 50.0,
+                "ptdDollars": 50.0,
+                "mtdDollars": 50.0,
+                "qtdDollars": 50.0,
+                "ytdDollars": 50.0,
+                "ftdDollars": 50.0
+              }
+            ],
+            "garnishments": [],
+            "taxes": [],
+            "benefits": [],
+            "accruals": [],
+            "employeeOrganizations": []
+          },
+          {
+            "id": 880003,
+            "employeeId": 70001,
+            "employeeNumber": "E-1001",
+            "employeeName": "Haddad, Reese",
+            "employeeSSN": "666-31-0001",
+            "employeeAddress1": "10 Cedar St",
+            "employeeAddress2": "",
+            "employeeCity": "Portland",
+            "employeeState": "OR",
+            "employeeZipCode": "97201",
+            "employeeFederalFilingStatus": "FDS",
+            "employeeFederalExemptions": 1,
+            "employeeFederalAddlAmountOrPercent": "15.00",
+            "employeeStateFilingStatus": "UTS",
+            "employeeStateExemptions": 0,
+            "employeeStateAddlAmountOrPercent": "",
+            "vertexResidentGeoCode": "380510000",
+            "vertexWorkGeoCode": "450351000",
+            "vertexSchoolDistrictCode": 0,
+            "legalCompanyName": "Harbor Supply LLC",
+            "checkNumber": 50003,
+            "checkSequence": 1,
+            "voucherNumber": "V880003",
+            "checkDate": "2025-01-24T00:00:00",
+            "periodBeginDate": "2025-01-05T00:00:00",
+            "periodEndDate": "2025-01-18T00:00:00",
+            "checkTypeDescription": "Regular",
+            "payrollRunNumber": 102,
+            "payrollRunType": "Regular Payroll",
+            "reissueCheckDate": null,
+            "reissueCheckNumber": null,
+            "isRemoteWorker": true,
+            "grossPay": 1900.0,
+            "grossWages": 1900.0,
+            "netPay": 1535.2,
+            "checkAmount": 1535.2,
+            "directDepositAmount": 0.0,
+            "directDeposits": [],
+            "earnings": [
+              {
+                "id": 501,
+                "itemCode": "REG",
+                "itemDescription": "Regular",
+                "sequence": 1,
+                "checkDollars": 1900.0,
+                "currentDollars": 1900.0,
+                "ptdDollars": 1900.0,
+                "mtdDollars": 1900.0,
+                "qtdDollars": 1900.0,
+                "ytdDollars": 1900.0,
+                "ftdDollars": 1900.0,
+                "isMemoEarning": false,
+                "checkHours": 80.0,
+                "checkUnits": 0.0,
+                "currentHours": 80.0,
+                "currentUnits": 0.0,
+                "ytdHours": 80.0,
+                "ytdUnits": 0.0
+              }
+            ],
+            "deductions": [],
+            "garnishments": [],
+            "taxes": [],
+            "benefits": [],
+            "accruals": [],
+            "employeeOrganizations": []
+          },
+          {
+            "id": 880004,
+            "employeeId": 70003,
+            "employeeNumber": "C-2001",
+            "employeeName": "Moreau, Morgan",
+            "employeeSSN": "666-31-0003",
+            "employeeAddress1": "10 Cedar St",
+            "employeeAddress2": "",
+            "employeeCity": "Portland",
+            "employeeState": "OR",
+            "employeeZipCode": "97201",
+            "employeeFederalFilingStatus": "FDS",
+            "employeeFederalExemptions": 1,
+            "employeeFederalAddlAmountOrPercent": "15.00",
+            "employeeStateFilingStatus": "UTS",
+            "employeeStateExemptions": 0,
+            "employeeStateAddlAmountOrPercent": "",
+            "vertexResidentGeoCode": "380510000",
+            "vertexWorkGeoCode": "450351000",
+            "vertexSchoolDistrictCode": 0,
+            "legalCompanyName": "Harbor Supply LLC",
+            "checkNumber": 50004,
+            "checkSequence": 1,
+            "voucherNumber": "V880004",
+            "checkDate": "2018-06-15T00:00:00",
+            "periodBeginDate": "2018-06-01T00:00:00",
+            "periodEndDate": "2018-06-14T00:00:00",
+            "checkTypeDescription": "Adjustment",
+            "payrollRunNumber": 5,
+            "payrollRunType": "Data Conversion",
+            "reissueCheckDate": null,
+            "reissueCheckNumber": null,
+            "isRemoteWorker": false,
+            "grossPay": 550.0,
+            "grossWages": 550.0,
+            "netPay": 550.0,
+            "checkAmount": 550.0,
+            "directDepositAmount": 0.0,
+            "directDeposits": [],
+            "earnings": [
+              {
+                "id": 501,
+                "itemCode": "REG",
+                "itemDescription": "Regular",
+                "sequence": 1,
+                "checkDollars": 550.0,
+                "currentDollars": 550.0,
+                "ptdDollars": 550.0,
+                "mtdDollars": 550.0,
+                "qtdDollars": 550.0,
+                "ytdDollars": 550.0,
+                "ftdDollars": 550.0,
+                "isMemoEarning": false,
+                "checkHours": 10.0,
+                "checkUnits": 0.0,
+                "currentHours": 10.0,
+                "currentUnits": 0.0,
+                "ytdHours": 10.0,
+                "ytdUnits": 0.0
+              }
+            ],
+            "deductions": [],
+            "garnishments": [],
+            "taxes": [],
+            "benefits": [],
+            "accruals": [],
+            "employeeOrganizations": []
+          }
+        ],
+        "totalItems": 6,
+        "totalPages": 2,
+        "nextPageUrl": "page=1",
+        "previousPageUrl": null
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/checks",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "filter.fromDate": "2024-01-19",
+        "filter.toDate": "2025-01-17",
+        "filter.pageSize": "4",
+        "filter.page": "1",
+        "includeDetails": "true"
+      },
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": 880005,
+            "employeeId": 70002,
+            "employeeNumber": "E-1002",
+            "employeeName": "Okafor, Harper",
+            "employeeSSN": "666-31-0002",
+            "employeeAddress1": "10 Cedar St",
+            "employeeAddress2": "",
+            "employeeCity": "Portland",
+            "employeeState": "OR",
+            "employeeZipCode": "97201",
+            "employeeFederalFilingStatus": "FDS",
+            "employeeFederalExemptions": 1,
+            "employeeFederalAddlAmountOrPercent": "15.00",
+            "employeeStateFilingStatus": "UTS",
+            "employeeStateExemptions": 0,
+            "employeeStateAddlAmountOrPercent": "",
+            "vertexResidentGeoCode": "380510000",
+            "vertexWorkGeoCode": "450351000",
+            "vertexSchoolDistrictCode": 0,
+            "legalCompanyName": "Harbor Supply LLC",
+            "checkNumber": 50005,
+            "checkSequence": 1,
+            "voucherNumber": "V880005",
+            "checkDate": "2025-02-07T00:00:00",
+            "periodBeginDate": "2025-01-19T00:00:00",
+            "periodEndDate": "2025-02-01T00:00:00",
+            "checkTypeDescription": "Regular",
+            "payrollRunNumber": 103,
+            "payrollRunType": "Regular Payroll",
+            "reissueCheckDate": null,
+            "reissueCheckNumber": null,
+            "isRemoteWorker": false,
+            "grossPay": 2400.0,
+            "grossWages": 2400.0,
+            "netPay": 1889.2,
+            "checkAmount": 1889.2,
+            "directDepositAmount": 0.0,
+            "directDeposits": [],
+            "earnings": [
+              {
+                "id": 501,
+                "itemCode": "REG",
+                "itemDescription": "Regular",
+                "sequence": 1,
+                "checkDollars": 2400.0,
+                "currentDollars": 2400.0,
+                "ptdDollars": 2400.0,
+                "mtdDollars": 2400.0,
+                "qtdDollars": 2400.0,
+                "ytdDollars": 2400.0,
+                "ftdDollars": 2400.0,
+                "isMemoEarning": false,
+                "checkHours": 80.0,
+                "checkUnits": 0.0,
+                "currentHours": 80.0,
+                "currentUnits": 0.0,
+                "ytdHours": 80.0,
+                "ytdUnits": 0.0
+              }
+            ],
+            "deductions": [
+              {
+                "id": 607,
+                "itemCode": "LOAN",
+                "itemDescription": "401K Loan",
+                "sequence": 1,
+                "checkDollars": 50.0,
+                "currentDollars": 50.0,
+                "ptdDollars": 50.0,
+                "mtdDollars": 50.0,
+                "qtdDollars": 50.0,
+                "ytdDollars": 50.0,
+                "ftdDollars": 50.0
+              }
+            ],
+            "garnishments": [],
+            "taxes": [],
+            "benefits": [],
+            "accruals": [],
+            "employeeOrganizations": []
+          },
+          {
+            "id": 880006,
+            "employeeId": 70002,
+            "employeeNumber": "E-1002",
+            "employeeName": "Okafor, Harper",
+            "employeeSSN": "666-31-0002",
+            "employeeAddress1": "10 Cedar St",
+            "employeeAddress2": "",
+            "employeeCity": "Portland",
+            "employeeState": "OR",
+            "employeeZipCode": "97201",
+            "employeeFederalFilingStatus": "FDS",
+            "employeeFederalExemptions": 1,
+            "employeeFederalAddlAmountOrPercent": "15.00",
+            "employeeStateFilingStatus": "UTS",
+            "employeeStateExemptions": 0,
+            "employeeStateAddlAmountOrPercent": "",
+            "vertexResidentGeoCode": "380510000",
+            "vertexWorkGeoCode": "450351000",
+            "vertexSchoolDistrictCode": 0,
+            "legalCompanyName": "Harbor Supply LLC",
+            "checkNumber": 50006,
+            "checkSequence": 1,
+            "voucherNumber": "V880006",
+            "checkDate": "2025-02-21T00:00:00",
+            "periodBeginDate": "2025-02-02T00:00:00",
+            "periodEndDate": "2025-02-15T00:00:00",
+            "checkTypeDescription": "Regular",
+            "payrollRunNumber": 104,
+            "payrollRunType": "Regular Payroll",
+            "reissueCheckDate": null,
+            "reissueCheckNumber": null,
+            "isRemoteWorker": false,
+            "grossPay": 2400.0,
+            "grossWages": 2400.0,
+            "netPay": 1889.2,
+            "checkAmount": 1889.2,
+            "directDepositAmount": 0.0,
+            "directDeposits": [],
+            "earnings": [
+              {
+                "id": 501,
+                "itemCode": "REG",
+                "itemDescription": "Regular",
+                "sequence": 1,
+                "checkDollars": 2400.0,
+                "currentDollars": 2400.0,
+                "ptdDollars": 2400.0,
+                "mtdDollars": 2400.0,
+                "qtdDollars": 2400.0,
+                "ytdDollars": 2400.0,
+                "ftdDollars": 2400.0,
+                "isMemoEarning": false,
+                "checkHours": 80.0,
+                "checkUnits": 0.0,
+                "currentHours": 80.0,
+                "currentUnits": 0.0,
+                "ytdHours": 80.0,
+                "ytdUnits": 0.0
+              }
+            ],
+            "deductions": [
+              {
+                "id": 607,
+                "itemCode": "LOAN",
+                "itemDescription": "401K Loan",
+                "sequence": 1,
+                "checkDollars": 50.0,
+                "currentDollars": 50.0,
+                "ptdDollars": 50.0,
+                "mtdDollars": 50.0,
+                "qtdDollars": 50.0,
+                "ytdDollars": 50.0,
+                "ftdDollars": 50.0
+              }
+            ],
+            "garnishments": [],
+            "taxes": [],
+            "benefits": [],
+            "accruals": [],
+            "employeeOrganizations": []
+          }
+        ],
+        "totalItems": 6,
+        "totalPages": 2,
+        "nextPageUrl": null,
+        "previousPageUrl": "page=0"
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/checks/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001",
+        "id": "880001",
+        "includeLaborDetails": "true"
+      },
+      "status": 200,
+      "body": {
+        "id": 880001,
+        "employeeId": 70001,
+        "employeeNumber": "E-1001",
+        "employeeName": "Haddad, Reese",
+        "employeeSSN": "666-31-0001",
+        "employeeAddress1": "10 Cedar St",
+        "employeeAddress2": "",
+        "employeeCity": "Portland",
+        "employeeState": "OR",
+        "employeeZipCode": "97201",
+        "employeeFederalFilingStatus": "FDS",
+        "employeeFederalExemptions": 1,
+        "employeeFederalAddlAmountOrPercent": "15.00",
+        "employeeStateFilingStatus": "UTS",
+        "employeeStateExemptions": 0,
+        "employeeStateAddlAmountOrPercent": "",
+        "vertexResidentGeoCode": "380510000",
+        "vertexWorkGeoCode": "450351000",
+        "vertexSchoolDistrictCode": 0,
+        "legalCompanyName": "Harbor Supply LLC",
+        "checkNumber": 50001,
+        "checkSequence": 1,
+        "voucherNumber": "V880001",
+        "checkDate": "2025-01-10T00:00:00",
+        "periodBeginDate": "2024-12-22T00:00:00",
+        "periodEndDate": "2025-01-04T00:00:00",
+        "checkTypeDescription": "Regular",
+        "payrollRunNumber": 101,
+        "payrollRunType": "Regular Payroll",
+        "reissueCheckDate": null,
+        "reissueCheckNumber": null,
+        "isRemoteWorker": true,
+        "grossPay": 2006.88,
+        "grossWages": 1826.47,
+        "netPay": 1389.75,
+        "checkAmount": 0.0,
+        "directDepositAmount": 1389.75,
+        "directDeposits": [
+          {
+            "id": 1,
+            "account": "*****0045",
+            "depositAmount": 347.44,
+            "itemDescription": "Savings"
+          },
+          {
+            "id": 2,
+            "account": "******1387",
+            "depositAmount": 1042.31,
+            "itemDescription": "Checking"
+          }
+        ],
+        "earnings": [
+          {
+            "id": 501,
+            "itemCode": "REG",
+            "itemDescription": "Regular",
+            "sequence": 1,
+            "checkDollars": 1900.0,
+            "currentDollars": 1900.0,
+            "ptdDollars": 1900.0,
+            "mtdDollars": 1900.0,
+            "qtdDollars": 1900.0,
+            "ytdDollars": 1900.0,
+            "ftdDollars": 1900.0,
+            "isMemoEarning": false,
+            "checkHours": 80.0,
+            "checkUnits": 0.0,
+            "currentHours": 80.0,
+            "currentUnits": 0.0,
+            "ytdHours": 80.0,
+            "ytdUnits": 0.0
+          },
+          {
+            "id": 502,
+            "itemCode": "OT",
+            "itemDescription": "Overtime",
+            "sequence": 2,
+            "checkDollars": 106.88,
+            "currentDollars": 106.88,
+            "ptdDollars": 106.88,
+            "mtdDollars": 106.88,
+            "qtdDollars": 106.88,
+            "ytdDollars": 106.88,
+            "ftdDollars": 106.88,
+            "isMemoEarning": false,
+            "checkHours": 3.0,
+            "checkUnits": 0.0,
+            "currentHours": 3.0,
+            "currentUnits": 0.0,
+            "ytdHours": 3.0,
+            "ytdUnits": 0.0
+          },
+          {
+            "id": 520,
+            "itemCode": "401KM",
+            "itemDescription": "401k Match",
+            "sequence": 3,
+            "checkDollars": 57.0,
+            "currentDollars": 57.0,
+            "ptdDollars": 57.0,
+            "mtdDollars": 57.0,
+            "qtdDollars": 57.0,
+            "ytdDollars": 57.0,
+            "ftdDollars": 57.0,
+            "isMemoEarning": true,
+            "checkHours": 0.0,
+            "checkUnits": 0.0,
+            "currentHours": 0.0,
+            "currentUnits": 0.0,
+            "ytdHours": 0.0,
+            "ytdUnits": 0.0
+          },
+          {
+            "id": 521,
+            "itemCode": "ERMED",
+            "itemDescription": "ER Medical",
+            "sequence": 4,
+            "checkDollars": 310.0,
+            "currentDollars": 310.0,
+            "ptdDollars": 310.0,
+            "mtdDollars": 310.0,
+            "qtdDollars": 310.0,
+            "ytdDollars": 310.0,
+            "ftdDollars": 310.0,
+            "isMemoEarning": true,
+            "checkHours": 0.0,
+            "checkUnits": 0.0,
+            "currentHours": 0.0,
+            "currentUnits": 0.0,
+            "ytdHours": 0.0,
+            "ytdUnits": 0.0
+          },
+          {
+            "id": 523,
+            "itemCode": null,
+            "itemDescription": "ER Life",
+            "sequence": 5,
+            "checkDollars": 4.2,
+            "currentDollars": 4.2,
+            "ptdDollars": 4.2,
+            "mtdDollars": 4.2,
+            "qtdDollars": 4.2,
+            "ytdDollars": 4.2,
+            "ftdDollars": 4.2,
+            "isMemoEarning": true,
+            "checkHours": 0.0,
+            "checkUnits": 0.0,
+            "currentHours": 0.0,
+            "currentUnits": 0.0,
+            "ytdHours": 0.0,
+            "ytdUnits": 0.0
+          }
+        ],
+        "deductions": [
+          {
+            "id": 601,
+            "itemCode": "401K",
+            "itemDescription": "401(k)",
+            "sequence": 1,
+            "checkDollars": 120.41,
+            "currentDollars": 120.41,
+            "ptdDollars": 120.41,
+            "mtdDollars": 120.41,
+            "qtdDollars": 120.41,
+            "ytdDollars": 120.41,
+            "ftdDollars": 120.41
+          },
+          {
+            "id": 602,
+            "itemCode": "MEDPT",
+            "itemDescription": "Medical",
+            "sequence": 2,
+            "checkDollars": 60.0,
+            "currentDollars": 60.0,
+            "ptdDollars": 60.0,
+            "mtdDollars": 60.0,
+            "qtdDollars": 60.0,
+            "ytdDollars": 60.0,
+            "ftdDollars": 60.0
+          }
+        ],
+        "garnishments": [
+          {
+            "id": 77,
+            "itemCode": null,
+            "itemDescription": "Federal Tax Levy",
+            "sequence": 1,
+            "checkDollars": 75.0,
+            "currentDollars": 75.0,
+            "ptdDollars": 75.0,
+            "mtdDollars": 75.0,
+            "qtdDollars": 75.0,
+            "ytdDollars": 75.0,
+            "ftdDollars": 75.0
+          }
+        ],
+        "taxes": [
+          {
+            "id": 701,
+            "itemCode": null,
+            "itemDescription": "FEDERAL WH",
+            "sequence": 1,
+            "isEmployeeTax": true,
+            "checkDollars": 127.85,
+            "checkTaxableWages": 1826.47,
+            "currentDollars": 127.85,
+            "currentTaxableWages": 1826.47,
+            "ytdDollars": 127.85,
+            "ytdTaxableWages": 1826.47
+          },
+          {
+            "id": 702,
+            "itemCode": null,
+            "itemDescription": "SOC SEC EE",
+            "sequence": 2,
+            "isEmployeeTax": true,
+            "checkDollars": 120.71,
+            "checkTaxableWages": 1946.88,
+            "currentDollars": 120.71,
+            "currentTaxableWages": 1946.88,
+            "ytdDollars": 120.71,
+            "ytdTaxableWages": 1946.88
+          },
+          {
+            "id": 703,
+            "itemCode": null,
+            "itemDescription": "MED EE",
+            "sequence": 3,
+            "isEmployeeTax": true,
+            "checkDollars": 28.23,
+            "checkTaxableWages": 1946.88,
+            "currentDollars": 28.23,
+            "currentTaxableWages": 1946.88,
+            "ytdDollars": 28.23,
+            "ytdTaxableWages": 1946.88
+          },
+          {
+            "id": 704,
+            "itemCode": null,
+            "itemDescription": "UTAH WH",
+            "sequence": 4,
+            "isEmployeeTax": true,
+            "checkDollars": 83.1,
+            "checkTaxableWages": 1826.47,
+            "currentDollars": 83.1,
+            "currentTaxableWages": 1826.47,
+            "ytdDollars": 83.1,
+            "ytdTaxableWages": 1826.47
+          },
+          {
+            "id": 705,
+            "itemCode": null,
+            "itemDescription": "OREGON TRANSIT EE",
+            "sequence": 5,
+            "isEmployeeTax": true,
+            "checkDollars": 1.83,
+            "checkTaxableWages": 1826.47,
+            "currentDollars": 1.83,
+            "currentTaxableWages": 1826.47,
+            "ytdDollars": 1.83,
+            "ytdTaxableWages": 1826.47
+          },
+          {
+            "id": 711,
+            "itemCode": null,
+            "itemDescription": "SOC SEC ER",
+            "sequence": 6,
+            "isEmployeeTax": false,
+            "checkDollars": 120.71,
+            "checkTaxableWages": 1946.88,
+            "currentDollars": 120.71,
+            "currentTaxableWages": 1946.88,
+            "ytdDollars": 120.71,
+            "ytdTaxableWages": 1946.88
+          },
+          {
+            "id": 712,
+            "itemCode": null,
+            "itemDescription": "MED ER",
+            "sequence": 7,
+            "isEmployeeTax": false,
+            "checkDollars": 28.23,
+            "checkTaxableWages": 1946.88,
+            "currentDollars": 28.23,
+            "currentTaxableWages": 1946.88,
+            "ytdDollars": 28.23,
+            "ytdTaxableWages": 1946.88
+          },
+          {
+            "id": 713,
+            "itemCode": null,
+            "itemDescription": "FUTA ER",
+            "sequence": 8,
+            "isEmployeeTax": false,
+            "checkDollars": 11.68,
+            "checkTaxableWages": 1946.88,
+            "currentDollars": 11.68,
+            "currentTaxableWages": 1946.88,
+            "ytdDollars": 11.68,
+            "ytdTaxableWages": 1946.88
+          },
+          {
+            "id": 714,
+            "itemCode": null,
+            "itemDescription": "UTAH SUI ER",
+            "sequence": 9,
+            "isEmployeeTax": false,
+            "checkDollars": 23.36,
+            "checkTaxableWages": 1946.88,
+            "currentDollars": 23.36,
+            "currentTaxableWages": 1946.88,
+            "ytdDollars": 23.36,
+            "ytdTaxableWages": 1946.88
+          }
+        ],
+        "benefits": [
+          {
+            "benefitTitle": "401(k)",
+            "benefitDescription": "401(k)",
+            "checkEligibleWages": 2006.88,
+            "checkEmployeeCatchUp": 0,
+            "checkEmployeeDeduction": 120.41,
+            "checkEmployerContribution": 57.0,
+            "checkMatchEligibleWages": 2006.88,
+            "ytdEligibleWages": 2006.88,
+            "ytdEmployeeDeduction": 120.41,
+            "ytdEmployerContribution": 57.0
+          },
+          {
+            "benefitTitle": "Medical",
+            "benefitDescription": "Medical",
+            "checkEligibleWages": 2006.88,
+            "checkEmployeeCatchUp": 0,
+            "checkEmployeeDeduction": 60.0,
+            "checkEmployerContribution": 310.0,
+            "checkMatchEligibleWages": 2006.88,
+            "ytdEligibleWages": 2006.88,
+            "ytdEmployeeDeduction": 60.0,
+            "ytdEmployerContribution": 310.0
+          }
+        ],
+        "accruals": [
+          {
+            "id": 1,
+            "accrualName": "PTO",
+            "amountAccrued": 3.08,
+            "amountTaken": 0.0,
+            "availableBalance": 40.5,
+            "endingBalance": 40.5
+          }
+        ],
+        "employeeOrganizations": [
+          {
+            "id": 1,
+            "organizationId": 10,
+            "displayOrder": 1,
+            "title": "Department",
+            "value": "FIN",
+            "valueDescription": "Finance"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/checks/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002",
+        "id": "880002",
+        "includeLaborDetails": "true"
+      },
+      "status": 200,
+      "body": {
+        "id": 880002,
+        "employeeId": 70002,
+        "employeeNumber": "E-1002",
+        "employeeName": "Okafor, Harper",
+        "employeeSSN": "666-31-0002",
+        "employeeAddress1": "10 Cedar St",
+        "employeeAddress2": "",
+        "employeeCity": "Portland",
+        "employeeState": "OR",
+        "employeeZipCode": "97201",
+        "employeeFederalFilingStatus": "FDS",
+        "employeeFederalExemptions": 1,
+        "employeeFederalAddlAmountOrPercent": "15.00",
+        "employeeStateFilingStatus": "UTS",
+        "employeeStateExemptions": 0,
+        "employeeStateAddlAmountOrPercent": "",
+        "vertexResidentGeoCode": "380510000",
+        "vertexWorkGeoCode": "450351000",
+        "vertexSchoolDistrictCode": 0,
+        "legalCompanyName": "Harbor Supply LLC",
+        "checkNumber": 50002,
+        "checkSequence": 1,
+        "voucherNumber": "V880002",
+        "checkDate": "2025-01-10T00:00:00",
+        "periodBeginDate": "2024-12-22T00:00:00",
+        "periodEndDate": "2025-01-04T00:00:00",
+        "checkTypeDescription": "Adjustment",
+        "payrollRunNumber": 101,
+        "payrollRunType": "Regular Payroll",
+        "reissueCheckDate": null,
+        "reissueCheckNumber": null,
+        "isRemoteWorker": false,
+        "grossPay": 2400.0,
+        "grossWages": 2400.0,
+        "netPay": 1889.2,
+        "checkAmount": 1889.2,
+        "directDepositAmount": 0.0,
+        "directDeposits": [],
+        "earnings": [
+          {
+            "id": 501,
+            "itemCode": "REG",
+            "itemDescription": "Regular",
+            "sequence": 1,
+            "checkDollars": 2400.0,
+            "currentDollars": 2400.0,
+            "ptdDollars": 2400.0,
+            "mtdDollars": 2400.0,
+            "qtdDollars": 2400.0,
+            "ytdDollars": 2400.0,
+            "ftdDollars": 2400.0,
+            "isMemoEarning": false,
+            "checkHours": 80.0,
+            "checkUnits": 0.0,
+            "currentHours": 80.0,
+            "currentUnits": 0.0,
+            "ytdHours": 80.0,
+            "ytdUnits": 0.0
+          }
+        ],
+        "deductions": [
+          {
+            "id": 607,
+            "itemCode": "LOAN",
+            "itemDescription": "401K Loan",
+            "sequence": 1,
+            "checkDollars": 50.0,
+            "currentDollars": 50.0,
+            "ptdDollars": 50.0,
+            "mtdDollars": 50.0,
+            "qtdDollars": 50.0,
+            "ytdDollars": 50.0,
+            "ftdDollars": 50.0
+          }
+        ],
+        "garnishments": [],
+        "taxes": [
+          {
+            "id": 701,
+            "itemCode": null,
+            "itemDescription": "FEDERAL WH",
+            "sequence": 1,
+            "isEmployeeTax": true,
+            "checkDollars": 168.0,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 168.0,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 168.0,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 702,
+            "itemCode": null,
+            "itemDescription": "SOC SEC EE",
+            "sequence": 2,
+            "isEmployeeTax": true,
+            "checkDollars": 148.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 148.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 148.8,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 703,
+            "itemCode": null,
+            "itemDescription": "MED EE",
+            "sequence": 3,
+            "isEmployeeTax": true,
+            "checkDollars": 34.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 34.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 34.8,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 704,
+            "itemCode": null,
+            "itemDescription": "UTAH WH",
+            "sequence": 4,
+            "isEmployeeTax": true,
+            "checkDollars": 109.2,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 109.2,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 109.2,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 711,
+            "itemCode": null,
+            "itemDescription": "SOC SEC ER",
+            "sequence": 6,
+            "isEmployeeTax": false,
+            "checkDollars": 148.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 148.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 148.8,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 712,
+            "itemCode": null,
+            "itemDescription": "MED ER",
+            "sequence": 7,
+            "isEmployeeTax": false,
+            "checkDollars": 34.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 34.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 34.8,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 713,
+            "itemCode": null,
+            "itemDescription": "FUTA ER",
+            "sequence": 8,
+            "isEmployeeTax": false,
+            "checkDollars": 14.4,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 14.4,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 14.4,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 714,
+            "itemCode": null,
+            "itemDescription": "UTAH SUI ER",
+            "sequence": 9,
+            "isEmployeeTax": false,
+            "checkDollars": 28.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 28.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 28.8,
+            "ytdTaxableWages": 2400.0
+          }
+        ],
+        "benefits": [],
+        "accruals": [],
+        "employeeOrganizations": []
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/checks/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70001",
+        "id": "880003",
+        "includeLaborDetails": "true"
+      },
+      "status": 200,
+      "body": {
+        "id": 880003,
+        "employeeId": 70001,
+        "employeeNumber": "E-1001",
+        "employeeName": "Haddad, Reese",
+        "employeeSSN": "666-31-0001",
+        "employeeAddress1": "10 Cedar St",
+        "employeeAddress2": "",
+        "employeeCity": "Portland",
+        "employeeState": "OR",
+        "employeeZipCode": "97201",
+        "employeeFederalFilingStatus": "FDS",
+        "employeeFederalExemptions": 1,
+        "employeeFederalAddlAmountOrPercent": "15.00",
+        "employeeStateFilingStatus": "UTS",
+        "employeeStateExemptions": 0,
+        "employeeStateAddlAmountOrPercent": "",
+        "vertexResidentGeoCode": "380510000",
+        "vertexWorkGeoCode": "450351000",
+        "vertexSchoolDistrictCode": 0,
+        "legalCompanyName": "Harbor Supply LLC",
+        "checkNumber": 50003,
+        "checkSequence": 1,
+        "voucherNumber": "V880003",
+        "checkDate": "2025-01-24T00:00:00",
+        "periodBeginDate": "2025-01-05T00:00:00",
+        "periodEndDate": "2025-01-18T00:00:00",
+        "checkTypeDescription": "Regular",
+        "payrollRunNumber": 102,
+        "payrollRunType": "Regular Payroll",
+        "reissueCheckDate": null,
+        "reissueCheckNumber": null,
+        "isRemoteWorker": true,
+        "grossPay": 1900.0,
+        "grossWages": 1900.0,
+        "netPay": 1535.2,
+        "checkAmount": 1535.2,
+        "directDepositAmount": 0.0,
+        "directDeposits": [],
+        "earnings": [
+          {
+            "id": 501,
+            "itemCode": "REG",
+            "itemDescription": "Regular",
+            "sequence": 1,
+            "checkDollars": 1900.0,
+            "currentDollars": 1900.0,
+            "ptdDollars": 1900.0,
+            "mtdDollars": 1900.0,
+            "qtdDollars": 1900.0,
+            "ytdDollars": 1900.0,
+            "ftdDollars": 1900.0,
+            "isMemoEarning": false,
+            "checkHours": 80.0,
+            "checkUnits": 0.0,
+            "currentHours": 80.0,
+            "currentUnits": 0.0,
+            "ytdHours": 80.0,
+            "ytdUnits": 0.0
+          }
+        ],
+        "deductions": [],
+        "garnishments": [],
+        "taxes": [
+          {
+            "id": 701,
+            "itemCode": null,
+            "itemDescription": "FEDERAL WH",
+            "sequence": 1,
+            "isEmployeeTax": true,
+            "checkDollars": 133.0,
+            "checkTaxableWages": 1900.0,
+            "currentDollars": 133.0,
+            "currentTaxableWages": 1900.0,
+            "ytdDollars": 133.0,
+            "ytdTaxableWages": 1900.0
+          },
+          {
+            "id": 702,
+            "itemCode": null,
+            "itemDescription": "SOC SEC EE",
+            "sequence": 2,
+            "isEmployeeTax": true,
+            "checkDollars": 117.8,
+            "checkTaxableWages": 1900.0,
+            "currentDollars": 117.8,
+            "currentTaxableWages": 1900.0,
+            "ytdDollars": 117.8,
+            "ytdTaxableWages": 1900.0
+          },
+          {
+            "id": 703,
+            "itemCode": null,
+            "itemDescription": "MED EE",
+            "sequence": 3,
+            "isEmployeeTax": true,
+            "checkDollars": 27.55,
+            "checkTaxableWages": 1900.0,
+            "currentDollars": 27.55,
+            "currentTaxableWages": 1900.0,
+            "ytdDollars": 27.55,
+            "ytdTaxableWages": 1900.0
+          },
+          {
+            "id": 704,
+            "itemCode": null,
+            "itemDescription": "UTAH WH",
+            "sequence": 4,
+            "isEmployeeTax": true,
+            "checkDollars": 86.45,
+            "checkTaxableWages": 1900.0,
+            "currentDollars": 86.45,
+            "currentTaxableWages": 1900.0,
+            "ytdDollars": 86.45,
+            "ytdTaxableWages": 1900.0
+          },
+          {
+            "id": 711,
+            "itemCode": null,
+            "itemDescription": "SOC SEC ER",
+            "sequence": 6,
+            "isEmployeeTax": false,
+            "checkDollars": 117.8,
+            "checkTaxableWages": 1900.0,
+            "currentDollars": 117.8,
+            "currentTaxableWages": 1900.0,
+            "ytdDollars": 117.8,
+            "ytdTaxableWages": 1900.0
+          },
+          {
+            "id": 712,
+            "itemCode": null,
+            "itemDescription": "MED ER",
+            "sequence": 7,
+            "isEmployeeTax": false,
+            "checkDollars": 27.55,
+            "checkTaxableWages": 1900.0,
+            "currentDollars": 27.55,
+            "currentTaxableWages": 1900.0,
+            "ytdDollars": 27.55,
+            "ytdTaxableWages": 1900.0
+          },
+          {
+            "id": 713,
+            "itemCode": null,
+            "itemDescription": "FUTA ER",
+            "sequence": 8,
+            "isEmployeeTax": false,
+            "checkDollars": 11.4,
+            "checkTaxableWages": 1900.0,
+            "currentDollars": 11.4,
+            "currentTaxableWages": 1900.0,
+            "ytdDollars": 11.4,
+            "ytdTaxableWages": 1900.0
+          },
+          {
+            "id": 714,
+            "itemCode": null,
+            "itemDescription": "UTAH SUI ER",
+            "sequence": 9,
+            "isEmployeeTax": false,
+            "checkDollars": 22.8,
+            "checkTaxableWages": 1900.0,
+            "currentDollars": 22.8,
+            "currentTaxableWages": 1900.0,
+            "ytdDollars": 22.8,
+            "ytdTaxableWages": 1900.0
+          }
+        ],
+        "benefits": [],
+        "accruals": [],
+        "employeeOrganizations": []
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/checks/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70003",
+        "id": "880004",
+        "includeLaborDetails": "true"
+      },
+      "status": 200,
+      "body": {
+        "id": 880004,
+        "employeeId": 70003,
+        "employeeNumber": "C-2001",
+        "employeeName": "Moreau, Morgan",
+        "employeeSSN": "666-31-0003",
+        "employeeAddress1": "10 Cedar St",
+        "employeeAddress2": "",
+        "employeeCity": "Portland",
+        "employeeState": "OR",
+        "employeeZipCode": "97201",
+        "employeeFederalFilingStatus": "FDS",
+        "employeeFederalExemptions": 1,
+        "employeeFederalAddlAmountOrPercent": "15.00",
+        "employeeStateFilingStatus": "UTS",
+        "employeeStateExemptions": 0,
+        "employeeStateAddlAmountOrPercent": "",
+        "vertexResidentGeoCode": "380510000",
+        "vertexWorkGeoCode": "450351000",
+        "vertexSchoolDistrictCode": 0,
+        "legalCompanyName": "Harbor Supply LLC",
+        "checkNumber": 50004,
+        "checkSequence": 1,
+        "voucherNumber": "V880004",
+        "checkDate": "2018-06-15T00:00:00",
+        "periodBeginDate": "2018-06-01T00:00:00",
+        "periodEndDate": "2018-06-14T00:00:00",
+        "checkTypeDescription": "Adjustment",
+        "payrollRunNumber": 5,
+        "payrollRunType": "Data Conversion",
+        "reissueCheckDate": null,
+        "reissueCheckNumber": null,
+        "isRemoteWorker": false,
+        "grossPay": 550.0,
+        "grossWages": 550.0,
+        "netPay": 550.0,
+        "checkAmount": 550.0,
+        "directDepositAmount": 0.0,
+        "directDeposits": [],
+        "earnings": [
+          {
+            "id": 501,
+            "itemCode": "REG",
+            "itemDescription": "Regular",
+            "sequence": 1,
+            "checkDollars": 550.0,
+            "currentDollars": 550.0,
+            "ptdDollars": 550.0,
+            "mtdDollars": 550.0,
+            "qtdDollars": 550.0,
+            "ytdDollars": 550.0,
+            "ftdDollars": 550.0,
+            "isMemoEarning": false,
+            "checkHours": 10.0,
+            "checkUnits": 0.0,
+            "currentHours": 10.0,
+            "currentUnits": 0.0,
+            "ytdHours": 10.0,
+            "ytdUnits": 0.0
+          }
+        ],
+        "deductions": [],
+        "garnishments": [],
+        "taxes": [],
+        "benefits": [],
+        "accruals": [],
+        "employeeOrganizations": []
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/checks/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002",
+        "id": "880005",
+        "includeLaborDetails": "true"
+      },
+      "status": 200,
+      "body": {
+        "id": 880005,
+        "employeeId": 70002,
+        "employeeNumber": "E-1002",
+        "employeeName": "Okafor, Harper",
+        "employeeSSN": "666-31-0002",
+        "employeeAddress1": "10 Cedar St",
+        "employeeAddress2": "",
+        "employeeCity": "Portland",
+        "employeeState": "OR",
+        "employeeZipCode": "97201",
+        "employeeFederalFilingStatus": "FDS",
+        "employeeFederalExemptions": 1,
+        "employeeFederalAddlAmountOrPercent": "15.00",
+        "employeeStateFilingStatus": "UTS",
+        "employeeStateExemptions": 0,
+        "employeeStateAddlAmountOrPercent": "",
+        "vertexResidentGeoCode": "380510000",
+        "vertexWorkGeoCode": "450351000",
+        "vertexSchoolDistrictCode": 0,
+        "legalCompanyName": "Harbor Supply LLC",
+        "checkNumber": 50005,
+        "checkSequence": 1,
+        "voucherNumber": "V880005",
+        "checkDate": "2025-02-07T00:00:00",
+        "periodBeginDate": "2025-01-19T00:00:00",
+        "periodEndDate": "2025-02-01T00:00:00",
+        "checkTypeDescription": "Regular",
+        "payrollRunNumber": 103,
+        "payrollRunType": "Regular Payroll",
+        "reissueCheckDate": null,
+        "reissueCheckNumber": null,
+        "isRemoteWorker": false,
+        "grossPay": 2400.0,
+        "grossWages": 2400.0,
+        "netPay": 1889.2,
+        "checkAmount": 1889.2,
+        "directDepositAmount": 0.0,
+        "directDeposits": [],
+        "earnings": [
+          {
+            "id": 501,
+            "itemCode": "REG",
+            "itemDescription": "Regular",
+            "sequence": 1,
+            "checkDollars": 2400.0,
+            "currentDollars": 2400.0,
+            "ptdDollars": 2400.0,
+            "mtdDollars": 2400.0,
+            "qtdDollars": 2400.0,
+            "ytdDollars": 2400.0,
+            "ftdDollars": 2400.0,
+            "isMemoEarning": false,
+            "checkHours": 80.0,
+            "checkUnits": 0.0,
+            "currentHours": 80.0,
+            "currentUnits": 0.0,
+            "ytdHours": 80.0,
+            "ytdUnits": 0.0
+          }
+        ],
+        "deductions": [
+          {
+            "id": 607,
+            "itemCode": "LOAN",
+            "itemDescription": "401K Loan",
+            "sequence": 1,
+            "checkDollars": 50.0,
+            "currentDollars": 50.0,
+            "ptdDollars": 50.0,
+            "mtdDollars": 50.0,
+            "qtdDollars": 50.0,
+            "ytdDollars": 50.0,
+            "ftdDollars": 50.0
+          }
+        ],
+        "garnishments": [],
+        "taxes": [
+          {
+            "id": 701,
+            "itemCode": null,
+            "itemDescription": "FEDERAL WH",
+            "sequence": 1,
+            "isEmployeeTax": true,
+            "checkDollars": 168.0,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 168.0,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 168.0,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 702,
+            "itemCode": null,
+            "itemDescription": "SOC SEC EE",
+            "sequence": 2,
+            "isEmployeeTax": true,
+            "checkDollars": 148.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 148.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 148.8,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 703,
+            "itemCode": null,
+            "itemDescription": "MED EE",
+            "sequence": 3,
+            "isEmployeeTax": true,
+            "checkDollars": 34.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 34.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 34.8,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 704,
+            "itemCode": null,
+            "itemDescription": "UTAH WH",
+            "sequence": 4,
+            "isEmployeeTax": true,
+            "checkDollars": 109.2,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 109.2,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 109.2,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 711,
+            "itemCode": null,
+            "itemDescription": "SOC SEC ER",
+            "sequence": 6,
+            "isEmployeeTax": false,
+            "checkDollars": 148.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 148.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 148.8,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 712,
+            "itemCode": null,
+            "itemDescription": "MED ER",
+            "sequence": 7,
+            "isEmployeeTax": false,
+            "checkDollars": 34.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 34.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 34.8,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 713,
+            "itemCode": null,
+            "itemDescription": "FUTA ER",
+            "sequence": 8,
+            "isEmployeeTax": false,
+            "checkDollars": 14.4,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 14.4,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 14.4,
+            "ytdTaxableWages": 2400.0
+          },
+          {
+            "id": 714,
+            "itemCode": null,
+            "itemDescription": "UTAH SUI ER",
+            "sequence": 9,
+            "isEmployeeTax": false,
+            "checkDollars": 28.8,
+            "checkTaxableWages": 2400.0,
+            "currentDollars": 28.8,
+            "currentTaxableWages": 2400.0,
+            "ytdDollars": 28.8,
+            "ytdTaxableWages": 2400.0
+          }
+        ],
+        "benefits": [],
+        "accruals": [],
+        "employeeOrganizations": []
+      }
+    },
+    {
+      "route": "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/checks/{id}",
+      "params": {
+        "clientId": "5001",
+        "legalId": "6001",
+        "employeeId": "70002",
+        "id": "880006",
+        "includeLaborDetails": "true"
+      },
+      "status": 200,
+      "body": []
+    }
+  ]
+}

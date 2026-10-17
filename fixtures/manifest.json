@@ -1,0 +1,556 @@
+{
+  "format": "normalization-bundle/1",
+  "generator": "normalization.fixtures",
+  "seed": 20261016,
+  "synthetic": true,
+  "providers": {
+    "prismhr": {
+      "file": "prismhr/bundle.json",
+      "tenant_id": "900001",
+      "responses": 71,
+      "routes": {
+        "/benefits/v1/getBenefitPlans": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/benefits/v1/getDependents": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/benefits/v1/getEmployeePremium": {
+          "statuses": {
+            "200": 2
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/benefits/v1/getPaidTimeOff": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/benefits/v1/getRetirementLoans": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/clientMaster/v1/getClientCodes": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/clientMaster/v1/getClientList": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/clientMaster/v1/getClientMaster": {
+          "statuses": {
+            "200": 2
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/clientMaster/v1/getPayrollSchedule": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/deductions/v1/getDeductionArrears": {
+          "statuses": {
+            "200": 1,
+            "404": 2
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/deductions/v1/getDeductions": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/deductions/v1/getEmployeeLoans": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/deductions/v1/getGarnishmentDetails": {
+          "statuses": {
+            "200": 1,
+            "403": 2
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/checkForGarnishments": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/getAddressInfo": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/getEmployee": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/getEmployeeList": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/getHistory": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/getPayRateHistory": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/getPositionRate": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/getScheduledDeductions": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/employee/v1/getStatusHistoryForAdjustment": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/payroll/v1/getBatchInfo": {
+          "statuses": {
+            "200": 5
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/payroll/v1/getBatchListByDate": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/payroll/v1/getEmployeeOverrideRates": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        },
+        "/payroll/v1/getPayrollVoucherForBatch": {
+          "statuses": {
+            "200": 8
+          },
+          "schema_source": "contracts/prismhr/openapi/prismhr-2025.09.openapi.json"
+        }
+      }
+    },
+    "isolved": {
+      "file": "isolved/bundle.json",
+      "tenant_id": "900002",
+      "responses": 75,
+      "routes": {
+        "/api/clients": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/checks": {
+          "statuses": {
+            "200": 2
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees": {
+          "statuses": {
+            "200": 2
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/accruals": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/benefits": {
+          "statuses": {
+            "200": 2,
+            "404": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/categories": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/certifications": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/checks/{id}": {
+          "statuses": {
+            "200": 6
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/contacts": {
+          "statuses": {
+            "200": 2,
+            "404": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/directdeposits": {
+          "statuses": {
+            "200": 2,
+            "404": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/education": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/garnishments": {
+          "statuses": {
+            "200": 2,
+            "404": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/i9/status": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/jobs": {
+          "statuses": {
+            "200": 2,
+            "404": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/payItems": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/payRates": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/priorEmployment": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/salaries": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/skills": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/statuses": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/training": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{employeeId}/veteranStatus": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employees/{id}": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/employeesWithSSN": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/miscellaneousFields": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/payItems": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/legals/{legalId}/paygroupId/{paygroupId}/payrollRunHistory": {
+          "statuses": {
+            "200": 1,
+            "404": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        },
+        "/api/clients/{clientId}/payItems": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/isolved/openapi/isolved-v6.swagger.json"
+        }
+      }
+    },
+    "ukg-ready": {
+      "file": "ukg-ready/bundle.json",
+      "tenant_id": "900003",
+      "responses": 75,
+      "routes": {
+        "/v2/companies/{cid}/config/cost-centers": {
+          "statuses": {
+            "200": 2,
+            "400": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__config__cost-centers.html"
+        },
+        "/v2/companies/{cid}/employees": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid).html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/accrual/1/balances": {
+          "statuses": {
+            "200": 2,
+            "403": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__accrual__1__balances.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/accrual/2/balances": {
+          "statuses": {
+            "200": 2,
+            "400": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__accrual__2__balances.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/badges": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__badges.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/benefits": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__benefits.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/compensation/additional": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__compensation__additional.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/compensation/history": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__compensation__history.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/compensation/total": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__compensation__total.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/contacts": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__contacts.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/demographics": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__demographics.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/direct-deposits": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/hr-custom-fields": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__hr-custom-fields.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/pay-info": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__pay-info.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/profiles": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__profiles.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/skills": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__skills.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/tax-info": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__tax-info.html"
+        },
+        "/v2/companies/{cid}/employees/{aid}/training/certifications": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__training__certifications.html"
+        },
+        "/v2/companies/{cid}/lookup/deduction-codes": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__lookup__deduction-codes.html"
+        },
+        "/v2/companies/{cid}/lookup/earning-codes": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__lookup__earning-codes.html"
+        },
+        "/v2/companies/{cid}/lookup/eins": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__lookup__eins.html"
+        },
+        "/v2/companies/{cid}/lookup/employee-types": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__lookup__employee-types.html"
+        },
+        "/v2/companies/{cid}/lookup/jobs": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__lookup__jobs.html"
+        },
+        "/v2/companies/{cid}/lookup/pay-period-profiles": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__lookup__pay-period-profiles.html"
+        },
+        "/v2/companies/{cid}/lookup/pay-types": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__lookup__pay-types.html"
+        },
+        "/v2/companies/{cid}/payrolls": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"
+        },
+        "/v2/companies/{cid}/payrolls/{id}": {
+          "statuses": {
+            "200": 3
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id).html"
+        },
+        "/v2/companies/{cid}/payrolls/{id}/batches": {
+          "statuses": {
+            "200": 1
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__batches.html"
+        },
+        "/v2/companies/{cid}/payrolls/{id}/pay-statements": {
+          "statuses": {
+            "200": 4
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements.html"
+        },
+        "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}": {
+          "statuses": {
+            "200": 4
+          },
+          "schema_source": "contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"
+        }
+      }
+    }
+  }
+}

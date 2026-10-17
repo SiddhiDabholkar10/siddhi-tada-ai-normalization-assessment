@@ -1,0 +1,1402 @@
+{
+  "$defs": {
+    "Coded_DeductionCalcMethod_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/DeductionCalcMethod"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[DeductionCalcMethod]",
+      "type": "object"
+    },
+    "Coded_DeductionCategory_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/DeductionCategory"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[DeductionCategory]",
+      "type": "object"
+    },
+    "Coded_GarnishmentBasis_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/GarnishmentBasis"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[GarnishmentBasis]",
+      "type": "object"
+    },
+    "Coded_GarnishmentType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/GarnishmentType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[GarnishmentType]",
+      "type": "object"
+    },
+    "Coded_LimitPeriod_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/LimitPeriod"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[LimitPeriod]",
+      "type": "object"
+    },
+    "Coded_MatchMethod_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/MatchMethod"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[MatchMethod]",
+      "type": "object"
+    },
+    "Coded_SetupStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/SetupStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[SetupStatus]",
+      "type": "object"
+    },
+    "Coded_TaxTreatment_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/TaxTreatment"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[TaxTreatment]",
+      "type": "object"
+    },
+    "DeductionCalcMethod": {
+      "enum": [
+        "fixed_amount",
+        "percent_of_gross_pay",
+        "percent_of_gross_earnings",
+        "percent_of_straight_pay",
+        "percent_of_pay_rate",
+        "percent_of_net_pay",
+        "rate_times_hours",
+        "garnishment_rule",
+        "retirement_plan_rule",
+        "unknown"
+      ],
+      "title": "DeductionCalcMethod",
+      "type": "string"
+    },
+    "DeductionCategory": {
+      "description": "Purpose of a deduction. Tax treatment is a separate dimension (TaxTreatment).",
+      "enum": [
+        "benefit",
+        "retirement",
+        "retirement_loan",
+        "loan",
+        "garnishment",
+        "flexible_spending",
+        "health_savings",
+        "voluntary",
+        "unknown"
+      ],
+      "title": "DeductionCategory",
+      "type": "string"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "description": "One finding about a record.\n\n``field`` is a path within the record (``deductions[2].category``); null means the finding\nis about the whole record. ``evidence`` cites a decision id or spec pointer; null means\nnone applies. These nulls are part of the type's meaning, so Diagnostic is a value type\nand is not subject to the field_status rule.",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/DiagnosticCode"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "Diagnostic",
+      "type": "object"
+    },
+    "DiagnosticCode": {
+      "enum": [
+        "unknown_code",
+        "inferred_mapping",
+        "value_redacted_in_source",
+        "sentinel_date",
+        "empty_via_404",
+        "source_unavailable",
+        "unparseable_value",
+        "reconciliation_mismatch",
+        "reconciliation_incomplete",
+        "conflicting_sources",
+        "unit_unverified",
+        "deprecated_source",
+        "unvalidated_source",
+        "unstable_id",
+        "reference_only"
+      ],
+      "title": "DiagnosticCode",
+      "type": "string"
+    },
+    "EmployerMatch": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "method": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_MatchMethod_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "percent": {
+          "anyOf": [
+            {
+              "description": "Percentage on a 0 to 100 scale: 1.5 means 1.5%.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string",
+              "x-scale": "percent"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Percent"
+        }
+      },
+      "title": "EmployerMatch",
+      "type": "object"
+    },
+    "GarnishmentBasis": {
+      "enum": [
+        "gross_pay",
+        "gross_wages",
+        "net_pay",
+        "disposable_income",
+        "unknown"
+      ],
+      "title": "GarnishmentBasis",
+      "type": "string"
+    },
+    "GarnishmentDetails": {
+      "additionalProperties": false,
+      "description": "Court or agency order details. ``linked_deductions`` keeps the provider's own\nreferences as sent; they are not required to join to a setup or code (isolved ids do not\nmatch the employee's pay item ids).",
+      "properties": {
+        "amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount"
+        },
+        "apply_arrears": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Apply Arrears"
+        },
+        "arrears_balance": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Arrears Balance"
+        },
+        "case_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Case Number",
+          "x-sensitive": true
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "exemption_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exemption Amount"
+        },
+        "fee_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fee Amount"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "issuing_state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Issuing State"
+        },
+        "linked_deductions": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Reference"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Linked Deductions"
+        },
+        "maximum_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximum Amount"
+        },
+        "maximum_percent": {
+          "anyOf": [
+            {
+              "description": "Percentage on a 0 to 100 scale: 1.5 means 1.5%.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string",
+              "x-scale": "percent"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximum Percent"
+        },
+        "medical_support_required": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Medical Support Required"
+        },
+        "order_sequence": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Order Sequence"
+        },
+        "payee": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Payee as sent; may embed account digits.",
+          "title": "Payee",
+          "x-sensitive": true
+        },
+        "per_period_limit": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Per Period Limit"
+        },
+        "percent": {
+          "anyOf": [
+            {
+              "description": "Percentage on a 0 to 100 scale: 1.5 means 1.5%.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string",
+              "x-scale": "percent"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Percent"
+        },
+        "percent_basis": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_GarnishmentBasis_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "remaining_balance": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Remaining Balance"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_GarnishmentType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "GarnishmentDetails",
+      "type": "object"
+    },
+    "GarnishmentType": {
+      "enum": [
+        "child_support",
+        "federal_tax_levy",
+        "state_tax_levy",
+        "creditor",
+        "student_loan",
+        "bankruptcy",
+        "unknown"
+      ],
+      "title": "GarnishmentType",
+      "type": "string"
+    },
+    "JsonValue": {},
+    "LimitPeriod": {
+      "enum": [
+        "month",
+        "quarter",
+        "year",
+        "lifetime",
+        "unknown"
+      ],
+      "title": "LimitPeriod",
+      "type": "string"
+    },
+    "LoanDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "deduction_start_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deduction Start Date"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "loan_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Loan Amount"
+        },
+        "loan_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Loan Date"
+        },
+        "loan_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Provider's loan id as sent.",
+          "title": "Loan Ref"
+        },
+        "paid_to_date": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Paid To Date"
+        },
+        "payback_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Payback Amount"
+        },
+        "payment_amount": {
+          "anyOf": [
+            {
+              "description": "Money amount in the record's `currency`.",
+              "pattern": "^-?\\d+(\\.\\d+)?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Payment Amount"
+        },
+        "plan_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Plan Code"
+        }
+      },
+      "title": "LoanDetails",
+      "type": "object"
+    },
+    "MappingBasis": {
+      "description": "What a canonical code value rests on.",
+      "enum": [
+        "documented",
+        "evidenced",
+        "inferred",
+        "configured",
+        "unmapped"
+      ],
+      "title": "MappingBasis",
+      "type": "string"
+    },
+    "MatchMethod": {
+      "enum": [
+        "flat",
+        "percent",
+        "unknown"
+      ],
+      "title": "MatchMethod",
+      "type": "string"
+    },
+    "Provider": {
+      "enum": [
+        "prismhr",
+        "isolved",
+        "ukg-ready"
+      ],
+      "title": "Provider",
+      "type": "string"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "description": "A provider code-table entry referred to by a record (a job, a pay code, a parent\norganization): the provider's id, code and name, whichever the source gives.",
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        }
+      },
+      "title": "Reference",
+      "type": "object"
+    },
+    "SetupSourceBasis": {
+      "description": "How strongly the source establishes a deduction setup (D-048).",
+      "enum": [
+        "documented_assignment",
+        "candidate_assignment",
+        "presence_only",
+        "unknown"
+      ],
+      "title": "SetupSourceBasis",
+      "type": "string"
+    },
+    "SetupStatus": {
+      "enum": [
+        "active",
+        "inactive",
+        "unknown"
+      ],
+      "title": "SetupStatus",
+      "type": "string"
+    },
+    "Severity": {
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "description": "Where a record's data came from.\n\n``endpoint`` is the method and route template as documented by the provider, e.g.\n``GET /api/clients/{clientId}/legals/{legalId}/employees/{employeeId}``. ``locator`` is a\nJSON Pointer to the record inside that response body (\"\" means the whole body). Together\nwith the run's input (the source file, or a retained response) it locates the raw value;\non its own it does not hold the value.",
+      "properties": {
+        "endpoint": {
+          "minLength": 1,
+          "title": "Endpoint",
+          "type": "string"
+        },
+        "locator": {
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "endpoint",
+        "locator"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "TaxTreatment": {
+      "enum": [
+        "pre_tax",
+        "post_tax",
+        "roth",
+        "unknown"
+      ],
+      "title": "TaxTreatment",
+      "type": "string"
+    },
+    "ValueStatus": {
+      "description": "Why a field is null. A field holding a value is \"present\" and is not listed.",
+      "enum": [
+        "hidden_by_source",
+        "not_provided",
+        "not_applicable"
+      ],
+      "title": "ValueStatus",
+      "type": "string"
+    }
+  },
+  "$id": "deduction_setup.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "amount": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Amount"
+    },
+    "balance": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Balance"
+    },
+    "benefit_enrollment_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Benefit Enrollment Id"
+    },
+    "calc_method": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_DeductionCalcMethod_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "category": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_DeductionCategory_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "company_id": {
+      "title": "Company Id",
+      "type": "string"
+    },
+    "currency": {
+      "anyOf": [
+        {
+          "description": "ISO 4217 currency code.",
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Currency"
+    },
+    "deduction_code": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Reference"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "The provider's code, id and name as sent."
+    },
+    "deduction_code_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Company deduction code, when the source gives a key that links to one.",
+      "title": "Deduction Code Id"
+    },
+    "diagnostics": {
+      "items": {
+        "$ref": "#/$defs/Diagnostic"
+      },
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "employee_id": {
+      "title": "Employee Id",
+      "type": "string"
+    },
+    "employer_match": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EmployerMatch"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "field_status": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ValueStatus"
+      },
+      "description": "Why each null field in this object is null. Lists null fields only.",
+      "title": "Field Status",
+      "type": "object"
+    },
+    "garnishment": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/GarnishmentDetails"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "goal_amount": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Goal Amount"
+    },
+    "id": {
+      "description": "Canonical id: provider:tenant:entity:source ids (see ids.py).",
+      "title": "Id",
+      "type": "string"
+    },
+    "is_catch_up": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Is Catch Up"
+    },
+    "loan": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/LoanDetails"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "maximum": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Maximum"
+    },
+    "maximum_period": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_LimitPeriod_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "per_period_limit": {
+      "anyOf": [
+        {
+          "description": "Money amount in the record's `currency`.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Per Period Limit"
+    },
+    "percent": {
+      "anyOf": [
+        {
+          "description": "Percentage on a 0 to 100 scale: 1.5 means 1.5%.",
+          "pattern": "^-?\\d+(\\.\\d+)?$",
+          "type": "string",
+          "x-scale": "percent"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Percent"
+    },
+    "period_numbers": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Pay periods within a month (1 to 5) in which the deduction is taken (PrismHR period).",
+      "title": "Period Numbers"
+    },
+    "provider": {
+      "$ref": "#/$defs/Provider"
+    },
+    "provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Provider-specific fields with no canonical meaning, keyed by source field path. Never used for anything the brief lists for the four data types (D-037).",
+      "title": "Provider Extensions",
+      "type": "object"
+    },
+    "sensitive_provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Like provider_extensions, for provider-specific data that is sensitive (e.g. PrismHR health screening results). Masked as a whole by default in output (D-036).",
+      "title": "Sensitive Provider Extensions",
+      "type": "object",
+      "x-sensitive": true
+    },
+    "source_basis": {
+      "$ref": "#/$defs/SetupSourceBasis"
+    },
+    "source_ids": {
+      "additionalProperties": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "description": "The provider's own identifiers needed to address this record, by provider field name.",
+      "minProperties": 1,
+      "title": "Source Ids",
+      "type": "object"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceRef"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "start_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Start Date"
+    },
+    "status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_SetupStatus_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "stop_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Stop Date"
+    },
+    "tax_treatment": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_TaxTreatment_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "tenant_id": {
+      "minLength": 1,
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "track_arrears": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Track Arrears"
+    }
+  },
+  "required": [
+    "id",
+    "provider",
+    "tenant_id",
+    "source_ids",
+    "sources",
+    "company_id",
+    "employee_id",
+    "source_basis"
+  ],
+  "title": "DeductionSetup",
+  "type": "object"
+}

@@ -1,0 +1,85 @@
+{
+  "provider": "prismhr",
+  "entity": "benefit_enrollment",
+  "notes": [
+    "One BenefitEnrollment per getBenefitPlans benefitPlan[] item (D-049), id from (client, employee, planId). Every planDetail[] row is kept in plan_details (11 of 53 sampled plans have several, up to 6). Premium amounts carry no stated period, so plan_details[].amount_period is null with not_provided. The enrollment's own coverage_level is null with not_provided: only detail rows carry planType.",
+    "getEmployeePremium is called per (employee, plan); its rates are kept raw in that enrollment's provider_extensions. Settled offline (D-084): getDeductions amount is the per-pay deduction (LTD 9.38 equals the voucher empContrib); billingRates.employeeAmount is documented only as the employee billing amount, with no period, and it is not the per-pay deduction; the samples do not fix its period (LTD 37.50 equals planDetail employeeContrib; LIFESAL equals employeePremium for one employee, 10.80, but not for another, 15.00 vs 9.00, unexplained), so it stays raw and fills no typed field. planDetail amounts read as monthly on one weekly employee (each voucher line is a quarter of them), too thin to fill amount_period."
+  ],
+  "fields": [
+    {"route": ["/benefits/v1/getBenefitPlans", "/benefits/v1/getEmployeePremium"], "field": "errorCode", "use": "excluded", "reason": "Response envelope; success is HTTP 200 with errorCode 0 (D-021)."},
+    {"route": ["/benefits/v1/getBenefitPlans", "/benefits/v1/getEmployeePremium"], "field": "errorMessage", "use": "excluded", "reason": "Response envelope (D-021)."},
+    {"route": ["/benefits/v1/getBenefitPlans", "/benefits/v1/getEmployeePremium"], "field": "extension.any", "use": "excluded", "reason": "Response envelope extension point; never filled in the samples."},
+
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planId", "use": "mapped", "target": "BenefitEnrollment.plan.code", "transform": "copy", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/planId"], "note": "Also the enrollment's source id."},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].description", "use": "mapped", "target": "BenefitEnrollment.plan.name", "transform": "copy", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/description"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].status", "use": "mapped", "target": "BenefitEnrollment.status", "transform": "code:prismhr.benefit_status", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/status", "live: E 34, A 11, T 6, C 2 (53 plans)"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].insClass", "use": "mapped", "target": "BenefitEnrollment.benefit_type", "transform": "code:prismhr.ins_class", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/insClass", "live: M 20, L 9, N 7, O 7, D 4, S 3, V 3"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].coverageStart", "use": "mapped", "target": "BenefitEnrollment.coverage_start", "transform": "date:period_start", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/coverageStart"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].coverageEnd", "use": "mapped", "target": "BenefitEnrollment.coverage_end", "transform": "date:period_end", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/coverageEnd"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].deductionStart", "use": "mapped", "target": "BenefitEnrollment.deduction_start", "transform": "date:period_start", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/deductionStart"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].deductionEnd", "use": "mapped", "target": "BenefitEnrollment.deduction_end", "transform": "date:period_end", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/deductionEnd"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].section125", "use": "mapped", "target": "BenefitEnrollment.is_section_125", "transform": "boolean", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/section125", "live: true 30, false 23"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].waiveReason", "use": "mapped", "target": "BenefitEnrollment.waive_reason", "transform": "copy", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/waiveReason"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].effectiveDate", "use": "mapped", "target": "BenefitEnrollment.plan_details[].effective_date", "transform": "date:event", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail/properties/effectiveDate"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].planType", "use": "mapped", "target": "BenefitEnrollment.plan_details[].coverage_level", "transform": "code:prismhr.plan_type", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail/properties/planType", "live: ES 9, E1 4, EE 2, blank 25 (40 detail rows)"], "note": "Described only as 'benefit plan type' (CANONICAL_MODEL 7)."},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].coverage", "use": "mapped", "target": "BenefitEnrollment.plan_details[].coverage_amount", "transform": "number", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail/properties/coverage"], "note": "Documented as 0 when the amount cannot be defined: 0 is kept as sent."},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].coverageBasis", "use": "mapped", "target": "BenefitEnrollment.plan_details[].coverage_basis_amount", "transform": "number", "live_only": true, "evidence": ["live: planDetail[].coverageBasis on 40 of 40 detail rows; not in the documented schema"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].employeePremium", "use": "mapped", "target": "BenefitEnrollment.plan_details[].employee_premium", "transform": "number", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail/properties/employeePremium"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].employeeContrib", "use": "mapped", "target": "BenefitEnrollment.plan_details[].employee_contribution", "transform": "number", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail/properties/employeeContrib"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].eePremiumContrib", "use": "mapped", "target": "BenefitEnrollment.plan_details[].employee_premium_contribution", "transform": "number", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail/properties/eePremiumContrib"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].peoPremium", "use": "mapped", "target": "BenefitEnrollment.plan_details[].provider_contribution", "transform": "number", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail/properties/peoPremium"], "note": "Documented as the service provider's premium contribution."},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].dependentPremium", "use": "mapped", "target": "BenefitEnrollment.plan_details[].dependent_premium", "transform": "number", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail/properties/dependentPremium"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].*", "use": "extension", "target": "BenefitEnrollment.provider_extensions", "reason": "Life coverage for spouse and dependents, COBRA fee and notices, Hawaii cap, guaranteed issue pending amounts, carrier update flag: no canonical field.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PlanDetail"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].dependent[].*", "use": "sensitive_extension", "target": "BenefitEnrollment.sensitive_provider_extensions", "reason": "Covered dependents (ids, doctor, network, coverage dates): health coverage data of other people. Empty in all samples.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan-PlanDetail-Dependent"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].planDetail[].beneficiary[].*", "use": "sensitive_extension", "target": "BenefitEnrollment.sensitive_provider_extensions", "reason": "Beneficiaries (ids, shares, precedence): personal data. Empty in all samples.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/Beneficiary"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].*", "use": "extension", "target": "BenefitEnrollment.provider_extensions", "reason": "Plan administration (carrier and network ids, COBRA dates and notices, reporting flags, refunds, overrides, auto-enroll, provider id, waive reason code).", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].carrierEmployeeId", "use": "sensitive_extension", "target": "BenefitEnrollment.sensitive_provider_extensions", "reason": "The carrier's identifier for the employee: a personal identifier.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/carrierEmployeeId"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].doctorId", "use": "sensitive_extension", "target": "BenefitEnrollment.sensitive_provider_extensions", "reason": "Doctor reported to the carrier: health data.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/doctorId"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].seenByDoctor", "use": "sensitive_extension", "target": "BenefitEnrollment.sensitive_provider_extensions", "reason": "Whether the employee has seen the doctor: health data.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/seenByDoctor"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].groupTermLife[].*", "use": "extension", "target": "BenefitEnrollment.provider_extensions", "reason": "Group term life taxable accruals per tax year.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/GroupTermLife"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].rateGuaranty[].*", "use": "extension", "target": "BenefitEnrollment.provider_extensions", "reason": "Rate guaranty periods of the plan.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/RateGuaranty"]},
+    {"route": "/benefits/v1/getBenefitPlans", "field": "benefitPlan[].gtlVoucherNumber[]", "use": "extension", "target": "BenefitEnrollment.provider_extensions", "reason": "Vouchers that carried group term life income.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/gtlVoucherNumber"]},
+
+    {"route": "/benefits/v1/getEmployeePremium", "field": "billingRates.*", "use": "extension", "target": "BenefitEnrollment.provider_extensions", "reason": "Calculated billing amounts for one plan, period not stated; not the per-pay deduction (notes, D-084).", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/EmployeePremiumResponse-BillingRates"]},
+    {"route": "/benefits/v1/getEmployeePremium", "field": "premiumRates.*", "use": "extension", "target": "BenefitEnrollment.provider_extensions", "reason": "Calculated premium rates for one plan (null in the samples).", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/PremiumRates"]},
+    {"route": "/benefits/v1/getEmployeePremium", "field": "contributionRates.*", "use": "extension", "target": "BenefitEnrollment.provider_extensions", "reason": "Calculated contribution rates for one plan.", "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/ContributionRates"]}
+  ],
+  "code_tables": [
+    {
+      "id": "prismhr.benefit_status",
+      "source": "getBenefitPlans status (documented values)",
+      "columns": {"value": "EnrollmentStatus"},
+      "codes": [
+        {"raw": "E", "label": "Eligible Unenrolled", "value": {"value": "eligible_unenrolled", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/status"]},
+        {"raw": "A", "label": "Active Enrollment", "value": {"value": "active", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/status"]},
+        {"raw": "T", "label": "Terminated Enrollment", "value": {"value": "terminated", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/status"]},
+        {"raw": "C", "label": "COBRA Enrollment", "value": {"value": "cobra", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/status"]},
+        {"raw": "W", "label": "Waived Enrollment", "value": {"value": "waived", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/status"]}
+      ]
+    },
+    {
+      "id": "prismhr.ins_class",
+      "source": "getBenefitPlans insClass (documented values)",
+      "columns": {"value": "BenefitType"},
+      "codes": [
+        {"raw": "M", "label": "Medical", "value": {"value": "medical", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/insClass"]},
+        {"raw": "N", "label": "Dental", "value": {"value": "dental", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/insClass"]},
+        {"raw": "V", "label": "Vision", "value": {"value": "vision", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/insClass"]},
+        {"raw": "L", "label": "Life", "value": {"value": "life", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/insClass"]},
+        {"raw": "D", "label": "Long-Term Disability", "value": {"value": "long_term_disability", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/insClass"]},
+        {"raw": "S", "label": "Short-Term Disability", "value": {"value": "short_term_disability", "basis": "documented"}, "evidence": ["contracts/prismhr/openapi/prismhr-2025.09.openapi.json#/components/schemas/BenefitPlan/properties/insClass"]},
+        {"raw": "O", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 7 of 53 plans"], "note": "Undocumented (D-049)."}
+      ]
+    },
+    {
+      "id": "prismhr.plan_type",
+      "source": "getBenefitPlans planDetail[].planType (described only as 'benefit plan type')",
+      "columns": {"value": "CoverageLevel"},
+      "codes": [
+        {"raw": "ES", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 9 detail rows"], "note": "The letters are not read (D-049, D-074)."},
+        {"raw": "EE", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 2 detail rows"]},
+        {"raw": "E1", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 4 detail rows"]}
+      ]
+    }
+  ]
+}

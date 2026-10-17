@@ -1,0 +1,1420 @@
+{
+  "$defs": {
+    "AddressType": {
+      "enum": [
+        "home",
+        "mailing",
+        "tax_form",
+        "work",
+        "unknown"
+      ],
+      "title": "AddressType",
+      "type": "string"
+    },
+    "Coded_CompanyStatus_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/CompanyStatus"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[CompanyStatus]",
+      "type": "object"
+    },
+    "Coded_DeductionCalcMethod_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/DeductionCalcMethod"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[DeductionCalcMethod]",
+      "type": "object"
+    },
+    "Coded_DeductionCategory_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/DeductionCategory"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[DeductionCategory]",
+      "type": "object"
+    },
+    "Coded_EarningClass_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/EarningClass"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[EarningClass]",
+      "type": "object"
+    },
+    "Coded_PayFrequency_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/PayFrequency"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[PayFrequency]",
+      "type": "object"
+    },
+    "Coded_QuantityType_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/QuantityType"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[QuantityType]",
+      "type": "object"
+    },
+    "Coded_RateClass_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/RateClass"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[RateClass]",
+      "type": "object"
+    },
+    "Coded_TaxTreatment_": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/MappingBasis"
+        },
+        "raw_code": {
+          "title": "Raw Code",
+          "type": "string"
+        },
+        "raw_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Label"
+        },
+        "value": {
+          "$ref": "#/$defs/TaxTreatment"
+        }
+      },
+      "required": [
+        "value",
+        "raw_code",
+        "basis"
+      ],
+      "title": "Coded[TaxTreatment]",
+      "type": "object"
+    },
+    "CompanyStatus": {
+      "enum": [
+        "active",
+        "inactive",
+        "terminated",
+        "unknown"
+      ],
+      "title": "CompanyStatus",
+      "type": "string"
+    },
+    "DeductionCalcMethod": {
+      "enum": [
+        "fixed_amount",
+        "percent_of_gross_pay",
+        "percent_of_gross_earnings",
+        "percent_of_straight_pay",
+        "percent_of_pay_rate",
+        "percent_of_net_pay",
+        "rate_times_hours",
+        "garnishment_rule",
+        "retirement_plan_rule",
+        "unknown"
+      ],
+      "title": "DeductionCalcMethod",
+      "type": "string"
+    },
+    "DeductionCategory": {
+      "description": "Purpose of a deduction. Tax treatment is a separate dimension (TaxTreatment).",
+      "enum": [
+        "benefit",
+        "retirement",
+        "retirement_loan",
+        "loan",
+        "garnishment",
+        "flexible_spending",
+        "health_savings",
+        "voluntary",
+        "unknown"
+      ],
+      "title": "DeductionCategory",
+      "type": "string"
+    },
+    "DeductionCode": {
+      "additionalProperties": false,
+      "description": "A deduction defined for the company (PrismHR client deduction code, UKG deduction code,\nisolved pay item catalog entry). Setups and paycheck lines refer to it, so a deduction is\nclassified once (D-047). Category and tax treatment are separate dimensions; either is\nunknown when the provider does not establish it.",
+      "properties": {
+        "calc_method": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_DeductionCalcMethod_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "category": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_DeductionCategory_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "is_active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Active"
+        },
+        "is_catch_up": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Catch Up"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "provider_extensions": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "description": "Provider-specific settings of this entry, keyed by source field path within the entry (D-063).",
+          "title": "Provider Extensions",
+          "type": "object"
+        },
+        "tax_treatment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_TaxTreatment_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "w2_box": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "W2 Box"
+        },
+        "w2_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "W2 Code"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "DeductionCode",
+      "type": "object"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "description": "One finding about a record.\n\n``field`` is a path within the record (``deductions[2].category``); null means the finding\nis about the whole record. ``evidence`` cites a decision id or spec pointer; null means\nnone applies. These nulls are part of the type's meaning, so Diagnostic is a value type\nand is not subject to the field_status rule.",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/DiagnosticCode"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "Diagnostic",
+      "type": "object"
+    },
+    "DiagnosticCode": {
+      "enum": [
+        "unknown_code",
+        "inferred_mapping",
+        "value_redacted_in_source",
+        "sentinel_date",
+        "empty_via_404",
+        "source_unavailable",
+        "unparseable_value",
+        "reconciliation_mismatch",
+        "reconciliation_incomplete",
+        "conflicting_sources",
+        "unit_unverified",
+        "deprecated_source",
+        "unvalidated_source",
+        "unstable_id",
+        "reference_only"
+      ],
+      "title": "DiagnosticCode",
+      "type": "string"
+    },
+    "EarningClass": {
+      "description": "What an earning is (PrismHR payClass). Cash vs non-cash is a separate flag (is_cash),\nbecause class alone does not decide it (PrismHR TAXREF is memo and cash, D-023).",
+      "enum": [
+        "wages",
+        "reimbursement",
+        "non_cash_fringe",
+        "reported_tips",
+        "memo",
+        "unknown"
+      ],
+      "title": "EarningClass",
+      "type": "string"
+    },
+    "EarningCode": {
+      "additionalProperties": false,
+      "description": "An earning defined for the company (PrismHR client pay code, UKG earning code, isolved pay\nitem catalog earning entry). Paycheck earning lines refer to it, so an earning is classified\nonce (D-054). PrismHR documents payClass, compensationType, rateClass and payReason; UKG and\nisolved codes carry no type, so their classification is unknown unless configured.",
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "is_active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Active"
+        },
+        "is_cash": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Monetary compensation (PrismHR compensationType C) vs non-cash (N).",
+          "title": "Is Cash"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "pay_class": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_EarningClass_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "provider_extensions": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "description": "Provider-specific settings of this entry, keyed by source field path within the entry (D-063).",
+          "title": "Provider Extensions",
+          "type": "object"
+        },
+        "quantity_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_QuantityType_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "rate_class": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_RateClass_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "w2_box": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "W2 Box"
+        },
+        "w2_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "W2 Code"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "EarningCode",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "MappingBasis": {
+      "description": "What a canonical code value rests on.",
+      "enum": [
+        "documented",
+        "evidenced",
+        "inferred",
+        "configured",
+        "unmapped"
+      ],
+      "title": "MappingBasis",
+      "type": "string"
+    },
+    "PayFrequency": {
+      "enum": [
+        "daily",
+        "weekly",
+        "biweekly",
+        "semimonthly",
+        "monthly",
+        "quarterly",
+        "semiannual",
+        "annual",
+        "unknown"
+      ],
+      "title": "PayFrequency",
+      "type": "string"
+    },
+    "PayGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "is_active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Active"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "pay_frequency": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coded_PayFrequency_"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "provider_extensions": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "description": "Provider-specific settings of this entry, keyed by source field path within the entry (D-063).",
+          "title": "Provider Extensions",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "PayGroup",
+      "type": "object"
+    },
+    "PostalAddress": {
+      "additionalProperties": false,
+      "description": "A business address (company, work location). Not sensitive.",
+      "properties": {
+        "city": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "City"
+        },
+        "country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Country as sent, e.g. 'USA'.",
+          "title": "Country"
+        },
+        "county": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "County"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "line1": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line1"
+        },
+        "line2": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line2"
+        },
+        "postal_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Postal Code"
+        },
+        "state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "State or province code as sent, e.g. 'UT'.",
+          "title": "State"
+        },
+        "type": {
+          "$ref": "#/$defs/AddressType"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "PostalAddress",
+      "type": "object"
+    },
+    "Provider": {
+      "enum": [
+        "prismhr",
+        "isolved",
+        "ukg-ready"
+      ],
+      "title": "Provider",
+      "type": "string"
+    },
+    "QuantityType": {
+      "description": "What an earning's quantity counts (PrismHR pay code payReason: H hours, U units). Decides\nwhether a line's quantity may enter an hours field (unit rule, D-036).",
+      "enum": [
+        "hours",
+        "units",
+        "unknown"
+      ],
+      "title": "QuantityType",
+      "type": "string"
+    },
+    "RateClass": {
+      "description": "PrismHR pay code rateClass: S straight, P premium, D doubletime, O other.",
+      "enum": [
+        "straight",
+        "premium",
+        "doubletime",
+        "other",
+        "unknown"
+      ],
+      "title": "RateClass",
+      "type": "string"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "description": "A provider code-table entry referred to by a record (a job, a pay code, a parent\norganization): the provider's id, code and name, whichever the source gives.",
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        }
+      },
+      "title": "Reference",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "description": "Where a record's data came from.\n\n``endpoint`` is the method and route template as documented by the provider, e.g.\n``GET /api/clients/{clientId}/legals/{legalId}/employees/{employeeId}``. ``locator`` is a\nJSON Pointer to the record inside that response body (\"\" means the whole body). Together\nwith the run's input (the source file, or a retained response) it locates the raw value;\non its own it does not hold the value.",
+      "properties": {
+        "endpoint": {
+          "minLength": 1,
+          "title": "Endpoint",
+          "type": "string"
+        },
+        "locator": {
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "endpoint",
+        "locator"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "TaxEntity": {
+      "additionalProperties": false,
+      "description": "A legal employer identity (EIN). The id is built from the provider's own id for the\nentity (UKG ein id, isolved legal id, PrismHR client id), never from the EIN, which\nPrismHR masks. The EIN is sensitive (D-044): masked by default like personal identifiers.",
+      "properties": {
+        "country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Country"
+        },
+        "ein": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ein",
+          "x-sensitive": true
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "provider_extensions": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "description": "Provider-specific settings of this entry, keyed by source field path within the entry (D-063).",
+          "title": "Provider Extensions",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "TaxEntity",
+      "type": "object"
+    },
+    "TaxTreatment": {
+      "enum": [
+        "pre_tax",
+        "post_tax",
+        "roth",
+        "unknown"
+      ],
+      "title": "TaxTreatment",
+      "type": "string"
+    },
+    "ValueStatus": {
+      "description": "Why a field is null. A field holding a value is \"present\" and is not listed.",
+      "enum": [
+        "hidden_by_source",
+        "not_provided",
+        "not_applicable"
+      ],
+      "title": "ValueStatus",
+      "type": "string"
+    },
+    "WorkLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PostalAddress"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Code"
+        },
+        "field_status": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ValueStatus"
+          },
+          "description": "Why each null field in this object is null. Lists null fields only.",
+          "title": "Field Status",
+          "type": "object"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "is_active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Active"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "provider_extensions": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "description": "Provider-specific settings of this entry, keyed by source field path within the entry (D-063).",
+          "title": "Provider Extensions",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "WorkLocation",
+      "type": "object"
+    }
+  },
+  "$id": "company.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "address": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PostalAddress"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "company_code": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Company Code"
+    },
+    "deduction_codes": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/DeductionCode"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Deduction Codes"
+    },
+    "diagnostics": {
+      "items": {
+        "$ref": "#/$defs/Diagnostic"
+      },
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "display_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Display Name"
+    },
+    "earning_codes": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/EarningCode"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Earning Codes"
+    },
+    "field_status": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ValueStatus"
+      },
+      "description": "Why each null field in this object is null. Lists null fields only.",
+      "title": "Field Status",
+      "type": "object"
+    },
+    "id": {
+      "description": "Canonical id: provider:tenant:entity:source ids (see ids.py).",
+      "title": "Id",
+      "type": "string"
+    },
+    "legal_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Legal Name"
+    },
+    "parent": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Reference"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "pay_groups": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/PayGroup"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pay Groups"
+    },
+    "phone": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Phone"
+    },
+    "provider": {
+      "$ref": "#/$defs/Provider"
+    },
+    "provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Provider-specific fields with no canonical meaning, keyed by source field path. Never used for anything the brief lists for the four data types (D-037).",
+      "title": "Provider Extensions",
+      "type": "object"
+    },
+    "sensitive_provider_extensions": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "description": "Like provider_extensions, for provider-specific data that is sensitive (e.g. PrismHR health screening results). Masked as a whole by default in output (D-036).",
+      "title": "Sensitive Provider Extensions",
+      "type": "object",
+      "x-sensitive": true
+    },
+    "source_ids": {
+      "additionalProperties": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "description": "The provider's own identifiers needed to address this record, by provider field name.",
+      "minProperties": 1,
+      "title": "Source Ids",
+      "type": "object"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceRef"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Coded_CompanyStatus_"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "status_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Status Date"
+    },
+    "tax_entities": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/TaxEntity"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tax Entities"
+    },
+    "tenant_id": {
+      "minLength": 1,
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "work_locations": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/WorkLocation"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Work Locations"
+    }
+  },
+  "required": [
+    "id",
+    "provider",
+    "tenant_id",
+    "source_ids",
+    "sources"
+  ],
+  "title": "Company",
+  "type": "object"
+}

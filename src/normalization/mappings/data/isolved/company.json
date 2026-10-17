@@ -1,0 +1,125 @@
+{
+  "provider": "isolved",
+  "entity": "company",
+  "notes": [
+    "One company per legal (D-034). The client is the parent (Company.parent). source_ids hold the client id and the legal id; the canonical id uses the legal id only (D-036).",
+    "Each legal has one tax entity: its id is built from the legal id (D-042), its name is the legal name and its EIN is federalEIN.",
+    "Deduction and earning codes come from the client pay item catalog (D-066): Deduction items become deduction_codes; Earning and Memo Calc items become earning_codes. Every legal of the client gets the same catalog, because the catalog is client-level.",
+    "Work location addresses are typed as work addresses (AddressType work); the company address as mailing.",
+    "No W-2 box or code is sent for pay items: w2_box and w2_code are null with not_provided. calc_method, rate_class and quantity_type likewise."
+  ],
+  "fields": [
+    {"route": "/api/clients", "field": "results[].id", "use": "mapped", "target": "Company.source_ids", "transform": "source_id", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientModel/properties/id"], "note": "Client id, used to address the client's legals; the client's code and name come from each legal's client object."},
+    {"route": "/api/clients", "field": "results[].**", "use": "excluded", "reason": "Client detail repeated in each legal's client object (id, code, name), or client configuration lists (contacts, jobs, labors, organizations, statuses, categories), empty in 1 of 1."},
+    {"route": "/api/clients", "field": "nextPageUrl", "use": "excluded", "reason": "Paging (D-013)."},
+    {"route": "/api/clients", "field": "previousPageUrl", "use": "excluded", "reason": "Paging (D-013)."},
+    {"route": "/api/clients", "field": "totalItems", "use": "excluded", "reason": "Paging (D-013)."},
+    {"route": "/api/clients", "field": "totalPages", "use": "excluded", "reason": "Paging (D-013)."},
+
+    {"route": "/api/clients/{clientId}/legals", "field": "[].id", "use": "mapped", "target": "Company.source_ids", "transform": "source_id", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/id", "D-042"], "note": "Legal id: the canonical company id and the id of the legal's tax entity."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalName", "use": "mapped", "target": "Company.legal_name", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/legalName"], "note": "Also the tax entity's name."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].dbaName", "use": "mapped", "target": "Company.display_name", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/dbaName"], "note": "Empty in 2 of 2."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalCode", "use": "mapped", "target": "Company.company_code", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/legalCode"], "note": "'Legal Code (Alternate Id)'; required to create an employee (D-043)."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].status", "use": "mapped", "target": "Company.status", "transform": "code:isolved.legal_status", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/status"], "note": "No status date is sent: status_date is null with not_provided."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].federalEIN", "use": "mapped", "target": "Company.tax_entities[].ein", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/federalEIN", "D-029", "D-044"], "note": "Returned in full (format-only check); sensitive, masked in output by default. Country is not sent: null with not_provided."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalAddress.streetAddress1", "use": "mapped", "target": "Company.address.line1", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/legalAddress"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalAddress.streetAddress2", "use": "mapped", "target": "Company.address.line2", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/legalAddress"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalAddress.city", "use": "mapped", "target": "Company.address.city", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/legalAddress"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalAddress.state", "use": "mapped", "target": "Company.address.state", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/legalAddress"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalAddress.zipCode", "use": "mapped", "target": "Company.address.postal_code", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/legalAddress"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalAddress.phoneNumber", "use": "mapped", "target": "Company.phone", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/legalAddress"], "note": "1 of 2 filled."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].legalAddress.addressDescription", "use": "extension", "target": "Company.provider_extensions", "reason": "Label of the address record ('UT1', 2 of 2); no canonical meaning.", "evidence": ["live: 2 of 2"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].client.id", "use": "mapped", "target": "Company.parent.source_id", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/client"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].client.clientCode", "use": "mapped", "target": "Company.parent.code", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientModel/properties/clientCode"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].client.clientName", "use": "mapped", "target": "Company.parent.name", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientModel/properties/clientName"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].client.**", "use": "excluded", "reason": "Client configuration lists (contacts, jobs, labors, organizations, statuses, categories, misc field definitions), empty in 2 of 2, the security group (platform access) and links. Employee records carry their own codes and labels."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].logoData", "use": "excluded", "reason": "Logo image bytes, not data."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].*", "use": "extension", "target": "Company.provider_extensions", "reason": "Legal settings: NAICS code, remote workers, direct deposit prenote, isolved time service.", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].services[].*", "use": "extension", "target": "Company.provider_extensions", "reason": "isolved services subscribed by the legal, with start and end dates (39 in 2 legals).", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/services"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].compensationPlans[].*", "use": "extension", "target": "Company.provider_extensions", "reason": "Compensation plan list of the legal (empty in 2 of 2).", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/compensationPlans"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workersComps[].**", "use": "extension", "target": "Company.provider_extensions", "reason": "Workers' compensation codes of the legal (empty in 2 of 2).", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalModel/properties/workersComps"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].links[].*", "use": "excluded", "reason": "API navigation links."},
+
+    {"route": "/api/clients/{clientId}/legals", "field": "[].payGroups[].id", "use": "mapped", "target": "Company.pay_groups[].id", "transform": "reference", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.PayGroupModel/properties/id", "D-042"], "note": "Pay groups have no code: pay_groups[].code is null with not_provided."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].payGroups[].payGroupName", "use": "mapped", "target": "Company.pay_groups[].name", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.PayGroupModel/properties/payGroupName"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].payGroups[].payFrequency", "use": "mapped", "target": "Company.pay_groups[].pay_frequency", "transform": "code:isolved.pay_group_frequency", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.PayGroupModel/properties/payFrequency", "D-018", "D-067"], "note": "An integer documented only as 'Pay Frequency'. Mapped through the labels isolved gives the same integers in salary history; inferred, with an inferred_mapping diagnostic on the company."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].payGroups[].isInactive", "use": "mapped", "target": "Company.pay_groups[].is_active", "transform": "boolean", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.PayGroupModel/properties/isInactive"], "note": "Negated."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].payGroups[].legal", "use": "excluded", "reason": "Back-reference to the parent legal (absent in 3 of 3)."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].payGroups[].links[].*", "use": "excluded", "reason": "API navigation links."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].payGroups[].printCenter.links[].*", "use": "excluded", "reason": "API navigation links."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].payGroups[].**", "use": "extension", "target": "Company.pay_groups[].provider_extensions", "reason": "Pay group settings: normal hours, input method, payroll type, isolved payroll and time flags, print center.", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.PayGroupModel"]},
+
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].id", "use": "mapped", "target": "Company.work_locations[].id", "transform": "reference", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/id", "D-012"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].workLocationCode", "use": "mapped", "target": "Company.work_locations[].code", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/workLocationCode"], "note": "'Location ID in the UI'; the code employees refer to."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].workLocationDescription", "use": "mapped", "target": "Company.work_locations[].name", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/workLocationDescription"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].address1", "use": "mapped", "target": "Company.work_locations[].address.line1", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/address1"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].address2", "use": "mapped", "target": "Company.work_locations[].address.line2", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/address2"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].city", "use": "mapped", "target": "Company.work_locations[].address.city", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/city"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].state", "use": "mapped", "target": "Company.work_locations[].address.state", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/state"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].zipCode", "use": "mapped", "target": "Company.work_locations[].address.postal_code", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/zipCode"]},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].isInactive", "use": "mapped", "target": "Company.work_locations[].is_active", "transform": "boolean", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel/properties/isInactive"], "note": "Negated."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].links[].*", "use": "excluded", "reason": "API navigation links."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].minimumWageRule.links[].*", "use": "excluded", "reason": "API navigation links."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].taxDistrict.links[].*", "use": "excluded", "reason": "API navigation links."},
+    {"route": "/api/clients/{clientId}/legals", "field": "[].workLocations[].**", "use": "extension", "target": "Company.work_locations[].provider_extensions", "reason": "Location tax and setup settings: Vertex geo code, worksite tax filing, remote-only flag, minimum wage rule, tax district, school district, override tax code, reporting unit, time zone, address description.", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.LegalWorkLocationModel"]},
+
+    {"route": "/api/clients/{clientId}/legals/{legalId}/miscellaneousFields", "field": "[].*", "use": "extension", "target": "Company.provider_extensions", "reason": "Legal-level custom field values by field id (424 ids in 2 legals, 4 values filled); no canonical meaning.", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/paths/~1api~1clients~1{clientId}~1legals~1{legalId}~1miscellaneousFields/get"]},
+    {"route": "/api/clients/{clientId}/legals/{legalId}/miscellaneousFields", "field": "[].links[].*", "use": "excluded", "reason": "API navigation links."},
+
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].id", "use": "mapped", "target": "Company.deduction_codes[].id", "transform": "reference", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientPayItemModel/properties/id", "D-066"], "note": "Deduction items: deduction_codes[].id; Earning and Memo Calc items: earning_codes[].id (payItemType). The same applies to code, title and isInactive. Check detail lines carry this id (150 of 150 earning and 55 of 55 deduction lines, D-066)."},
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].code", "use": "mapped", "target": "Company.deduction_codes[].code", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientPayItemModel/properties/code"], "note": "40 of 56 items have a code, all distinct. Per-employee pay items and legal-level assignments link to the catalog by this code (19 of 19 and 5 of 5 that have one); their ids are a different id space (D-066)."},
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].title", "use": "mapped", "target": "Company.deduction_codes[].name", "transform": "copy", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientPayItemModel/properties/title"]},
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].isInactive", "use": "mapped", "target": "Company.deduction_codes[].is_active", "transform": "boolean", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientPayItemModel/properties/isInactive"], "note": "Negated."},
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].payItemType", "use": "mapped", "target": "Company.earning_codes[].pay_class", "transform": "code:isolved.pay_item_type", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientPayItemModel/properties/payItemType", "D-054"], "note": "Also decides the list: Deduction (19 of 56) to deduction_codes, Earning (19) and Memo Calc (18) to earning_codes."},
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].systemBenefitType", "use": "mapped", "target": "Company.deduction_codes[].category", "transform": "code:isolved.system_benefit_type", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientPayItemModel/properties/systemBenefitType", "D-066"], "note": "The table also sets tax_treatment. For Earning and Memo Calc items the value is kept in the entry's provider_extensions."},
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].systemPayItemType", "use": "extension", "target": "Company.deduction_codes[].provider_extensions", "reason": "System pay item type label (56 of 56, 55 distinct). Kept raw: setups and lines inherit classification from the catalog code (D-047), and the label is not read to refine it (D-066, D-081).", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientPayItemModel/properties/systemPayItemType"]},
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].links[].*", "use": "excluded", "reason": "API navigation links."},
+    {"route": "/api/clients/{clientId}/payItems", "field": "[].**", "use": "extension", "target": "Company.deduction_codes[].provider_extensions", "reason": "Pay item settings: description, declining balance flag, default schedule, sequence number, calculation parameter types, payees (not requested).", "evidence": ["contracts/isolved/openapi/isolved-v6.swagger.json#/definitions/AOS.PayrollOffice.RestAPI.Models.ClientPayItemModel"], "note": "On earning_codes for Earning and Memo Calc items."}
+  ],
+  "code_tables": [
+    {
+      "id": "isolved.legal_status",
+      "source": "/api/clients/{clientId}/legals [].status ('Current Legal Company Status'; no documented list)",
+      "columns": {"value": "CompanyStatus"},
+      "codes": [
+        {"raw": "Active", "value": {"value": "active", "basis": "inferred"}, "evidence": ["live: 2 of 2 legals"]}
+      ]
+    },
+    {
+      "id": "isolved.pay_group_frequency",
+      "source": "/api/clients/{clientId}/legals [].payGroups[].payFrequency (integer, 'Pay Frequency')",
+      "columns": {"value": "PayFrequency"},
+      "codes": [
+        {"raw": "12", "note": "Salary history labels 12 as 'Monthly'; the pay group itself sends no label.", "value": {"value": "monthly", "basis": "inferred"}, "evidence": ["live: pay group 'Monthly' has 12 (1 of 1)", "D-067"]},
+        {"raw": "24", "note": "Salary history labels 24 as 'Semi-Monthly'; the pay group itself sends no label.", "value": {"value": "semimonthly", "basis": "inferred"}, "evidence": ["live: pay group 'Salary' has 24 (1 of 1); the name states no frequency", "D-067"]},
+        {"raw": "26", "note": "Salary history labels 26 as 'Bi-Weekly'; the pay group itself sends no label.", "value": {"value": "biweekly", "basis": "inferred"}, "evidence": ["live: pay group 'Biweekly' has 26 (1 of 1)", "D-067"]}
+      ]
+    },
+    {
+      "id": "isolved.pay_item_type",
+      "source": "/api/clients/{clientId}/payItems [].payItemType ('The type of the pay item (Earning, Deduction, etc...)')",
+      "columns": {"pay_class": "EarningClass"},
+      "codes": [
+        {"raw": "Memo Calc", "pay_class": {"value": "memo", "basis": "inferred"}, "evidence": ["live: 18 of 56 items", "D-055"]},
+        {"raw": "Earning", "pay_class": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 19 of 56 items; the type does not say wages, reimbursement or fringe (D-031)"]}
+      ]
+    },
+    {
+      "id": "isolved.system_benefit_type",
+      "source": "/api/clients/{clientId}/payItems [].systemBenefitType ('System Benefit Type'), on Deduction items",
+      "columns": {"category": "DeductionCategory", "tax_treatment": "TaxTreatment"},
+      "codes": [
+        {"raw": "401(k)", "category": {"value": "retirement", "basis": "inferred"}, "tax_treatment": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 4 Deduction items; pre-tax or Roth is not stated"]},
+        {"raw": "Medical Pre-Tax 125", "category": {"value": "benefit", "basis": "inferred"}, "tax_treatment": {"value": "pre_tax", "basis": "inferred"}, "evidence": ["live: 3 Deduction items"]},
+        {"raw": "Dental Pre-Tax 125", "category": {"value": "benefit", "basis": "inferred"}, "tax_treatment": {"value": "pre_tax", "basis": "inferred"}, "evidence": ["live: 2 Deduction items"]},
+        {"raw": "Vision Pre-Tax 125", "category": {"value": "benefit", "basis": "inferred"}, "tax_treatment": {"value": "pre_tax", "basis": "inferred"}, "evidence": ["live: 1 Deduction item"]},
+        {"raw": "FSA Medical", "category": {"value": "flexible_spending", "basis": "inferred"}, "tax_treatment": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 3 Deduction items"]},
+        {"raw": "FSA Dependent Care", "category": {"value": "flexible_spending", "basis": "inferred"}, "tax_treatment": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 2 Deduction items"]},
+        {"raw": "Health Savings Account", "category": {"value": "health_savings", "basis": "inferred"}, "tax_treatment": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 2 Deduction items"]},
+        {"raw": "Group Term Life", "category": {"value": "benefit", "basis": "inferred"}, "tax_treatment": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: on Earning and Memo Calc items only (5)"]},
+        {"raw": "Leave Accrual", "category": {"value": "unknown", "basis": "unmapped"}, "tax_treatment": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: on Earning items only (5); not a deduction"]},
+        {"raw": "None", "category": {"value": "unknown", "basis": "unmapped"}, "tax_treatment": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 17 items, 2 of them Deduction"]}
+      ]
+    }
+  ]
+}

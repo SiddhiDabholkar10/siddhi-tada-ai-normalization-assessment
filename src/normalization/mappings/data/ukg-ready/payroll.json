@@ -1,0 +1,180 @@
+{
+  "provider": "ukg-ready",
+  "entity": "payroll",
+  "notes": [
+    "PayrollRun per payroll (company, payroll id), Paycheck per pay statement (company, statement id), linked by the route the statement is read under (CANONICAL_MODEL 8.1). All live payrolls and statements are OPEN: calculated, not finalized (D-030).",
+    "The payrolls list is the run source; the payroll detail only adds date_finalized: its other fields equal the list entry (24 of 24 read both ways), so they are excluded (D-081). The statement list only enumerates statements; its fields equal the detail's (18 of 18), which is the record source.",
+    "Pay periods: one pay_periods entry from start_date and end_date; pay_group_id is null with not_provided (payrolls name no pay period profile). Paycheck pay_group_id likewise.",
+    "Tax lines: each taxes[] item gives one employee line (ee_ fields) and one employer line (er_ fields) that keep the same source_line_id; a side with wage figures but no amount keeps its wages with amount null (CANONICAL_MODEL 8.4). Tax type and level from the exact company_tax.name (ukg-ready.tax_label, inferred, D-056); partial names such as 'Wisconsin' are unknown. jurisdiction is null with not_provided.",
+    "Deduction er_amount is an employer contribution line linked to the same deduction code (CANONICAL_MODEL 8.4). Payments: type_name Check and Direct Deposit are cash; Fringe is non_cash and not part of net pay. net_pay is derived from Check and Direct Deposit amounts only when each has an amount, else null with reconciliation_incomplete; gross_pay, gross_wages and total_earnings are null with not_provided (D-052, D-053)."
+  ],
+  "fields": [
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].id", "use": "mapped", "target": "PayrollRun.source_ids", "transform": "source_id", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].name", "use": "mapped", "target": "PayrollRun.name", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].type.display_name", "use": "mapped", "target": "PayrollRun.run_type", "transform": "code:ukg-ready.payroll_type", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html", "live: Regular 67"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].type.id", "use": "extension", "target": "PayrollRun.provider_extensions", "reason": "Payroll type id (the label is mapped).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].status", "use": "mapped", "target": "PayrollRun.status", "transform": "code:ukg-ready.payroll_status", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html", "D-030", "live: OPEN 67"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].pay_date", "use": "mapped", "target": "PayrollRun.pay_date", "transform": "date:event", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].start_date", "use": "mapped", "target": "PayrollRun.pay_periods[].period_start", "transform": "date:period_start", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].end_date", "use": "mapped", "target": "PayrollRun.pay_periods[].period_end", "transform": "date:period_end", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].ein.id", "use": "mapped", "target": "PayrollRun.tax_entity_id", "transform": "reference", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html", "D-029"], "note": "Canonical tax entity id (company, ein id)."},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[].*", "use": "extension", "target": "PayrollRun.provider_extensions", "reason": "Payroll settings: direct deposit date, scheduled submit time, billable flag, invoice generator, default statement type and stub note, adjustment year-to-date source payroll.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+    {"route": "/v2/companies/{cid}/payrolls", "field": "payrolls[]._links.*", "use": "excluded", "reason": "Hypermedia links and counters (API navigation), not data."},
+
+    {"route": "/v2/companies/{cid}/payrolls/{id}", "field": "id", "use": "mapped", "target": "PayrollRun.source_ids", "transform": "join", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id).html"], "note": "Joins the payroll from the list."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}", "field": "date_finalized", "use": "mapped", "target": "PayrollRun.finalized_date", "transform": "date:event", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id).html"], "note": "Absent on 24 of 24 live details (all OPEN)."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}", "field": "*", "use": "excluded", "reason": "Equals the list entry (24 of 24); read from the list (D-081)."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}", "field": "type.*", "use": "excluded", "reason": "Equals the list entry (24 of 24); read from the list (D-081)."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}", "field": "ein.*", "use": "excluded", "reason": "Equals the list entry (24 of 24); read from the list (D-081)."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}", "field": "ein.ein_country_id", "use": "excluded", "live_only": true, "reason": "Equals the list entry; read from the list.", "evidence": ["live: not in the documented schema"]},
+
+    {"route": "/v2/companies/{cid}/payrolls/{id}/batches", "field": "batches[].**", "use": "extension", "target": "PayrollRun.provider_extensions", "reason": "Payroll batches (name, status, type, master flag): how input was grouped, not pay (live: 4 batches, Regular Earnings, CLOSED).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__batches.html"]},
+
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements", "field": "pay_statements[].id", "use": "mapped", "target": "Paycheck.source_ids", "transform": "join", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements.html"], "note": "Enumerates statements; each is read from the detail route."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements", "field": "pay_statements[].**", "use": "excluded", "reason": "Equal to the detail's fields (18 of 18); read from the detail (D-081)."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements", "field": "pay_statements[].employee.account_id", "use": "excluded", "live_only": true, "reason": "Equal to the detail's; read from the detail.", "evidence": ["live: not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements", "field": "pay_statements[].calcUpto", "use": "excluded", "live_only": true, "reason": "Equal to the detail's; read from the detail.", "evidence": ["live: not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements", "field": "pay_statements[].emptyEarning", "use": "excluded", "live_only": true, "reason": "Equal to the detail's; read from the detail.", "evidence": ["live: not in the documented schema"]},
+
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "id", "use": "mapped", "target": "Paycheck.source_ids", "transform": "source_id", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "employee.account_id", "use": "mapped", "target": "Paycheck.employee_id", "transform": "reference", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "status", "use": "mapped", "target": "Paycheck.status", "transform": "code:ukg-ready.statement_status", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-030", "live: OPEN 18 of 18"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "type.display_name", "use": "mapped", "target": "Paycheck.kind", "transform": "code:ukg-ready.statement_type", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "live: Regular 18 of 18"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "type.id", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Statement type id (the label is mapped).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "pay_date", "use": "mapped", "target": "Paycheck.pay_date", "transform": "date:event", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "pay_period_start", "use": "mapped", "target": "Paycheck.period_start", "transform": "date:period_start", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "pay_period_end", "use": "mapped", "target": "Paycheck.period_end", "transform": "date:period_end", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "calcUpto", "use": "extension", "target": "Paycheck.provider_extensions", "live_only": true, "reason": "Calculation state (undocumented).", "evidence": ["live: not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "emptyEarning", "use": "extension", "target": "Paycheck.provider_extensions", "live_only": true, "reason": "Calculation flag (undocumented).", "evidence": ["live: not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "messages[].**", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Calculation messages: they explain why a statement is not final (CANONICAL_MODEL 8.6).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].id", "use": "mapped", "target": "Paycheck.earnings[].source_line_id", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].earning.id", "use": "mapped", "target": "Paycheck.earnings[].earning_code_id", "transform": "reference", "live_only": true, "evidence": ["live: earning.id on every sampled line; not in the documented schema"], "note": "Canonical id of the lookup/earning-codes entry with this id."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].earning.code", "use": "mapped", "target": "Paycheck.earnings[].earning_code.code", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].earning.name", "use": "mapped", "target": "Paycheck.earnings[].earning_code.name", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].type_name", "use": "mapped", "target": "Paycheck.earnings[].pay_class", "transform": "code:ukg-ready.earning_type_name", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-031"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].hours", "use": "mapped", "target": "Paycheck.earnings[].hours", "transform": "ms_to_hours", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-028"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].base_rate", "use": "mapped", "target": "Paycheck.earnings[].rate", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].ee_amount", "use": "mapped", "target": "Paycheck.earnings[].amount", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-053"], "note": "Absent key: null with not_provided, never zero."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].quantity", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "No documented unit (unit rule, CANONICAL_MODEL 8.3).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].earning.external_id", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Integration id of the code.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "earnings[].**", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Line context: batch, cost centers, date range, shift, workers' comp code (CANONICAL_MODEL 8.6).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].id", "use": "mapped", "target": "Paycheck.deductions[].source_line_id", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].deduction.id", "use": "mapped", "target": "Paycheck.deductions[].deduction_code_id", "transform": "reference", "live_only": true, "evidence": ["live: deduction.id on every sampled line; not in the documented schema"], "note": "Canonical id of the lookup/deduction-codes entry with this id."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].deduction.code", "use": "mapped", "target": "Paycheck.deductions[].deduction_code.code", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].deduction.name", "use": "mapped", "target": "Paycheck.deductions[].deduction_code.name", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].ee_amount", "use": "mapped", "target": "Paycheck.deductions[].amount", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-053"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].er_amount", "use": "mapped", "target": "Paycheck.employer_contributions[].amount", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "live: 25 deduction lines"], "note": "One contribution line linked to the same deduction code (deduction_code_id)."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].type_name", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Line type label ('Deduction (Auto)' 41 of 41).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].quantity", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "No documented unit.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].base_rate", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Rate of the deduction line; DeductionLine has no rate.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].deduction.external_id", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Integration id of the code.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].vendor.*", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Deduction vendor.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].ee_gross_subject_wage", "use": "extension", "target": "Paycheck.provider_extensions", "live_only": true, "reason": "Wage figure on a deduction line; meaning undocumented (CANONICAL_MODEL 8.6).", "evidence": ["live: not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].ee_gross_wage", "use": "extension", "target": "Paycheck.provider_extensions", "live_only": true, "reason": "Wage figure on a deduction line; meaning undocumented (CANONICAL_MODEL 8.6).", "evidence": ["live: not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].ee_subject_wage", "use": "extension", "target": "Paycheck.provider_extensions", "live_only": true, "reason": "Wage figure on a deduction line; meaning undocumented (CANONICAL_MODEL 8.6).", "evidence": ["live: not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "deductions[].**", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Line context: batch, cost centers, date range, shift, workers' comp code (CANONICAL_MODEL 8.6).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].id", "use": "mapped", "target": "Paycheck.taxes[].source_line_id", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"], "note": "Shared by the employee and employer lines."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].company_tax.id", "use": "mapped", "target": "Paycheck.taxes[].tax_code.source_id", "transform": "copy", "live_only": true, "evidence": ["live: company_tax.id on every sampled line; not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].company_tax.code", "use": "mapped", "target": "Paycheck.taxes[].tax_code.code", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].company_tax.name", "use": "mapped", "target": "Paycheck.taxes[].tax_type", "transform": "code:ukg-ready.tax_label", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-056"], "note": "Also kept in tax_code.name; sets jurisdiction_level from the same table."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].company_tax.abbrev", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Abbreviation next to the code and name.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].company_tax.external_id", "use": "extension", "target": "Paycheck.provider_extensions", "live_only": true, "reason": "Integration id of the tax.", "evidence": ["live: not in the documented schema"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].ee_amount", "use": "mapped", "target": "Paycheck.taxes[].amount", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-053"], "note": "Employee line."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].er_amount", "use": "mapped", "target": "Paycheck.taxes[].amount", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-053"], "note": "Employer line."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].ee_subject_wage", "use": "mapped", "target": "Paycheck.taxes[].taxable_wages", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"], "note": "Employee line; subject wage read as the wages subject to the tax."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].er_subject_wage", "use": "mapped", "target": "Paycheck.taxes[].taxable_wages", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"], "note": "Employer line."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].ee_gross_wage", "use": "mapped", "target": "Paycheck.taxes[].gross_wages", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"], "note": "Employee line."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].er_gross_wage", "use": "mapped", "target": "Paycheck.taxes[].gross_wages", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"], "note": "Employer line."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].ee_gross_subject_wage", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Gross subject wage: no matching TaxLine field.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].er_gross_subject_wage", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Gross subject wage: no matching TaxLine field.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].type_name", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Line type label ('Tax').", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "taxes[].batch.*", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Line context: batch, cost centers, date range, shift, workers' comp code (CANONICAL_MODEL 8.6).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "payments[].id", "use": "mapped", "target": "Paycheck.payments[].source_line_id", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "payments[].type_name", "use": "mapped", "target": "Paycheck.payments[].method", "transform": "code:ukg-ready.payment_type", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "live: Check 18, Fringe 8, Direct Deposit 5 (18 statements)"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "payments[].ee_amount", "use": "mapped", "target": "Paycheck.payments[].amount", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-053", "live: absent on 5 of 18 Check payments"], "note": "Absent key: null with not_provided, never zero."},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "payments[].hours", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Hours on a payment line (meaning undocumented).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "payments[].quantity", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "No documented unit.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+    {"route": "/v2/companies/{cid}/payrolls/{id}/pay-statements/{id}", "field": "payments[].batch.*", "use": "extension", "target": "Paycheck.provider_extensions", "reason": "Line context: batch, cost centers, date range, shift, workers' comp code (CANONICAL_MODEL 8.6).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]}
+  ],
+  "code_tables": [
+    {
+      "id": "ukg-ready.payroll_type",
+      "source": "payrolls type.display_name (labels; lookup/payroll-types not called)",
+      "columns": {"value": "PayrollRunType"},
+      "codes": [
+        {"raw": "Regular", "label": "Regular", "value": {"value": "regular", "basis": "inferred"}, "evidence": ["live: 67 payrolls", "D-050"], "note": "Provider label with no documented list: read from the label, so inferred (CANONICAL_MODEL 1.7, D-081); other labels are unknown with unknown_code."}
+      ]
+    },
+    {
+      "id": "ukg-ready.payroll_status",
+      "source": "payrolls status (documented enum)",
+      "columns": {"value": "PayrollRunStatus"},
+      "codes": [
+        {"raw": "NEW", "value": {"value": "new", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+        {"raw": "OPEN", "value": {"value": "open", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html", "D-030", "live: 67"]},
+        {"raw": "CLOSED", "value": {"value": "closed", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+        {"raw": "SUBMITTED", "value": {"value": "submitted", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+        {"raw": "FINALIZED", "value": {"value": "finalized", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+        {"raw": "OPEN_FAILED", "value": {"value": "failed", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+        {"raw": "CLOSE_FAILED", "value": {"value": "failed", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+        {"raw": "ROLLBACK_FAILED", "value": {"value": "failed", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]},
+        {"raw": "FINALIZE_FAILED", "value": {"value": "failed", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls.html"]}
+      ]
+    },
+    {
+      "id": "ukg-ready.statement_status",
+      "source": "pay statement status (documented enum)",
+      "columns": {"value": "PaycheckStatus"},
+      "codes": [
+        {"raw": "INVALID", "value": {"value": "invalid", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+        {"raw": "NEW", "value": {"value": "new", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+        {"raw": "OPEN", "value": {"value": "open", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html", "D-030", "live: 18 of 18"]},
+        {"raw": "CLOSED", "value": {"value": "closed", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]},
+        {"raw": "FINALIZED", "value": {"value": "finalized", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__payrolls__(id)__pay-statements__(id).html"]}
+      ]
+    },
+    {
+      "id": "ukg-ready.statement_type",
+      "source": "pay statement type.display_name (labels)",
+      "columns": {"value": "PaycheckKind"},
+      "codes": [
+        {"raw": "Regular", "label": "Regular", "value": {"value": "regular", "basis": "inferred"}, "evidence": ["live: 18 of 18"], "note": "Provider label with no documented list: read from the label, so inferred (CANONICAL_MODEL 1.7, D-081); other labels are unknown with unknown_code."}
+      ]
+    },
+    {
+      "id": "ukg-ready.earning_type_name",
+      "source": "pay statement earnings[].type_name (labels)",
+      "columns": {"value": "EarningClass"},
+      "codes": [
+        {"raw": "Earning (Fringe, Auto)", "value": {"value": "non_cash_fringe", "basis": "inferred"}, "evidence": ["live: 8 lines", "D-031"], "note": "Provisional (D-031): offset by Fringe payment lines."},
+        {"raw": "Earning", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 19 lines"], "note": "Does not say wages or another class."},
+        {"raw": "Earning (Auto)", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 7 lines"]},
+        {"raw": "Earning (Auto Reduce)", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["live: 4 lines"]}
+      ]
+    },
+    {
+      "id": "ukg-ready.payment_type",
+      "source": "pay statement payments[].type_name (labels)",
+      "columns": {"value": "PaymentMethod"},
+      "codes": [
+        {"raw": "Check", "label": "Check", "value": {"value": "check", "basis": "inferred"}, "evidence": ["live: 18 lines"]},
+        {"raw": "Direct Deposit", "label": "Direct Deposit", "value": {"value": "direct_deposit", "basis": "inferred"}, "evidence": ["live: 5 lines"]},
+        {"raw": "Fringe", "label": "Fringe", "value": {"value": "non_cash", "basis": "inferred"}, "evidence": ["live: 8 lines", "D-052"], "note": "Offsets non-cash earnings; not part of net pay."}
+      ]
+    },
+    {
+      "id": "ukg-ready.tax_label",
+      "source": "pay statement taxes[].company_tax.name: exact names only (D-056, D-081); other names are unknown with unknown_code",
+      "columns": {"tax_type": "TaxType", "jurisdiction_level": "TaxJurisdictionLevel"},
+      "codes": [
+        {"raw": "Federal Income Tax", "tax_type": {"value": "federal_income", "basis": "inferred"}, "jurisdiction_level": {"value": "federal", "basis": "inferred"}, "evidence": ["live: 18 lines", "D-056"]},
+        {"raw": "Social Security", "tax_type": {"value": "social_security", "basis": "inferred"}, "jurisdiction_level": {"value": "federal", "basis": "inferred"}, "evidence": ["live: 10 lines", "D-056"]},
+        {"raw": "OASDI", "tax_type": {"value": "social_security", "basis": "inferred"}, "jurisdiction_level": {"value": "federal", "basis": "inferred"}, "evidence": ["live: 8 lines", "D-056"], "note": "Old-Age, Survivors and Disability Insurance: Social Security (code FICA)."},
+        {"raw": "Medicare", "tax_type": {"value": "medicare", "basis": "inferred"}, "jurisdiction_level": {"value": "federal", "basis": "inferred"}, "evidence": ["live: 18 lines", "D-056"]},
+        {"raw": "Additional Medicare", "tax_type": {"value": "additional_medicare", "basis": "inferred"}, "jurisdiction_level": {"value": "federal", "basis": "inferred"}, "evidence": ["live: 18 lines", "D-056"]},
+        {"raw": "Federal Unemployment Tax", "tax_type": {"value": "federal_unemployment", "basis": "inferred"}, "jurisdiction_level": {"value": "federal", "basis": "inferred"}, "evidence": ["live: 8 lines", "D-056"]},
+        {"raw": "ER SUTA Wisconsin", "tax_type": {"value": "state_unemployment", "basis": "inferred"}, "jurisdiction_level": {"value": "state", "basis": "inferred"}, "evidence": ["live: 8 lines", "D-056"]}
+      ]
+    }
+  ]
+}

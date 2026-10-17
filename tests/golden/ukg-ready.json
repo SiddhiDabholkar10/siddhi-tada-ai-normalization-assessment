@@ -1,0 +1,5331 @@
+{
+  "run": {
+    "provider": "ukg-ready",
+    "tenant_id": "900003",
+    "input": "bundle.json",
+    "sensitive_values": "shown",
+    "counts": {
+      "companies": 1,
+      "employees": 3,
+      "direct_deposits": 6,
+      "deduction_setups": 0,
+      "benefit_enrollments": 5,
+      "payroll_runs": 4,
+      "paychecks": 4
+    },
+    "not_normalized": {
+      "deduction_setups": "no deduction_setup mapping table: the provider has no source"
+    },
+    "unusable_responses": [],
+    "link_problems": []
+  },
+  "companies": [
+    {
+      "field_status": {
+        "address": "not_provided",
+        "company_code": "not_provided",
+        "display_name": "not_provided",
+        "legal_name": "not_provided",
+        "parent": "not_provided",
+        "phone": "not_provided",
+        "status": "not_provided",
+        "status_date": "not_provided",
+        "work_locations": "not_provided"
+      },
+      "id": "ukg-ready:900003:company:7001",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/lookup/eins",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/lookup/deduction-codes",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/lookup/earning-codes",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/lookup/pay-period-profiles",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "source_unavailable",
+          "severity": "warning",
+          "message": "UKG Ready has no company resource: name, code, status, address and parent are not provided.",
+          "field": null,
+          "evidence": "D-029"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'every_n_weeks:3' is not in the code table; value unknown.",
+          "field": "pay_groups[2].pay_frequency",
+          "evidence": "ukg-ready.period_type"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'user_defined' is listed without a canonical value; value unknown.",
+          "field": "pay_groups[3].pay_frequency",
+          "evidence": "ukg-ready.period_type"
+        }
+      ],
+      "provider_extensions": {},
+      "sensitive_provider_extensions": {},
+      "legal_name": null,
+      "display_name": null,
+      "company_code": null,
+      "status": null,
+      "status_date": null,
+      "address": null,
+      "phone": null,
+      "parent": null,
+      "tax_entities": [
+        {
+          "field_status": {},
+          "id": "ukg-ready:900003:tax_entity:7001:501",
+          "provider_extensions": {
+            "lookup/eins:items[0].ein_currency_code": "USD"
+          },
+          "name": "Harbor Kitchens Inc",
+          "ein": "84-2210457",
+          "country": "USA"
+        },
+        {
+          "field_status": {},
+          "id": "ukg-ready:900003:tax_entity:7001:502",
+          "provider_extensions": {
+            "lookup/eins:items[1].ein_currency_code": "USD"
+          },
+          "name": "Harbor Catering LLC",
+          "ein": "84-2210458",
+          "country": "USA"
+        }
+      ],
+      "work_locations": null,
+      "pay_groups": [
+        {
+          "field_status": {
+            "code": "not_provided"
+          },
+          "id": "ukg-ready:900003:pay_group:7001:9001",
+          "provider_extensions": {
+            "lookup/pay-period-profiles:items[0].description": "Kitchen staff",
+            "lookup/pay-period-profiles:items[0].effective_from": "1900-12-31",
+            "lookup/pay-period-profiles:items[0].effective_to": "2099-12-31",
+            "lookup/pay-period-profiles:items[0].is_user_profile": false,
+            "lookup/pay-period-profiles:items[0].period_type.params.start_date": "2024-01-05"
+          },
+          "code": null,
+          "name": "Biweekly",
+          "pay_frequency": {
+            "value": "biweekly",
+            "raw_code": "every_n_weeks:2",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "is_active": true
+        },
+        {
+          "field_status": {
+            "code": "not_provided"
+          },
+          "id": "ukg-ready:900003:pay_group:7001:9002",
+          "provider_extensions": {
+            "lookup/pay-period-profiles:items[1].period_type.params.week_day": "FRIDAY"
+          },
+          "code": null,
+          "name": "Weekly",
+          "pay_frequency": {
+            "value": "weekly",
+            "raw_code": "weekly",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "is_active": true
+        },
+        {
+          "field_status": {
+            "code": "not_provided"
+          },
+          "id": "ukg-ready:900003:pay_group:7001:9003",
+          "provider_extensions": {
+            "lookup/pay-period-profiles:items[2].effective_from": "2020-01-01",
+            "lookup/pay-period-profiles:items[2].effective_to": "2022-12-31",
+            "lookup/pay-period-profiles:items[2].is_user_profile": false,
+            "lookup/pay-period-profiles:items[2].period_type.params.start_date": "2020-01-03"
+          },
+          "code": null,
+          "name": "Three-weekly (retired)",
+          "pay_frequency": {
+            "value": "unknown",
+            "raw_code": "every_n_weeks:3",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "is_active": false
+        },
+        {
+          "field_status": {
+            "code": "not_provided"
+          },
+          "id": "ukg-ready:900003:pay_group:7001:9004",
+          "provider_extensions": {
+            "lookup/pay-period-profiles:items[3].is_user_profile": true
+          },
+          "code": null,
+          "name": "Seasonal calendar",
+          "pay_frequency": {
+            "value": "unknown",
+            "raw_code": "user_defined",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "is_active": true
+        },
+        {
+          "field_status": {
+            "code": "not_provided"
+          },
+          "id": "ukg-ready:900003:pay_group:7001:9005",
+          "provider_extensions": {
+            "lookup/pay-period-profiles:items[4].period_type.params.starting_on_first": 1,
+            "lookup/pay-period-profiles:items[4].period_type.params.starting_on_sec": 16
+          },
+          "code": null,
+          "name": "Semi-monthly",
+          "pay_frequency": {
+            "value": "semimonthly",
+            "raw_code": "semi_monthly",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "is_active": true
+        }
+      ],
+      "deduction_codes": [
+        {
+          "field_status": {
+            "calc_method": "not_provided",
+            "category": "not_provided",
+            "is_active": "not_provided",
+            "is_catch_up": "not_provided",
+            "tax_treatment": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:deduction_code:7001:801",
+          "provider_extensions": {
+            "lookup/deduction-codes:items[0].external_id": "D-401K"
+          },
+          "code": "401K",
+          "name": "401(k)",
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "calc_method": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "calc_method": "not_provided",
+            "category": "not_provided",
+            "is_active": "not_provided",
+            "is_catch_up": "not_provided",
+            "tax_treatment": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:deduction_code:7001:802",
+          "provider_extensions": {
+            "lookup/deduction-codes:items[1].external_id": "D-MED"
+          },
+          "code": "MED",
+          "name": "Medical",
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "calc_method": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "calc_method": "not_provided",
+            "category": "not_provided",
+            "is_active": "not_provided",
+            "is_catch_up": "not_provided",
+            "tax_treatment": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:deduction_code:7001:803",
+          "provider_extensions": {
+            "lookup/deduction-codes:items[2].external_id": "D-DEN"
+          },
+          "code": "DEN",
+          "name": "Dental",
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "calc_method": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "calc_method": "not_provided",
+            "category": "not_provided",
+            "is_active": "not_provided",
+            "is_catch_up": "not_provided",
+            "tax_treatment": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:deduction_code:7001:804",
+          "provider_extensions": {
+            "lookup/deduction-codes:items[3].external_id": "D-401KL1"
+          },
+          "code": "401KL1",
+          "name": "401K Loan 1",
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "calc_method": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "calc_method": "not_provided",
+            "category": "not_provided",
+            "is_active": "not_provided",
+            "is_catch_up": "not_provided",
+            "tax_treatment": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:deduction_code:7001:805",
+          "provider_extensions": {},
+          "code": "GARN",
+          "name": "Garnishment",
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "calc_method": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        }
+      ],
+      "earning_codes": [
+        {
+          "field_status": {
+            "is_active": "not_provided",
+            "is_cash": "not_provided",
+            "pay_class": "not_provided",
+            "quantity_type": "not_provided",
+            "rate_class": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:earning_code:7001:701",
+          "provider_extensions": {
+            "lookup/earning-codes:items[0].external_id": "E-REG"
+          },
+          "code": "REG",
+          "name": "Regular",
+          "pay_class": null,
+          "is_cash": null,
+          "rate_class": null,
+          "quantity_type": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "is_active": "not_provided",
+            "is_cash": "not_provided",
+            "pay_class": "not_provided",
+            "quantity_type": "not_provided",
+            "rate_class": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:earning_code:7001:702",
+          "provider_extensions": {
+            "lookup/earning-codes:items[1].external_id": "E-OT"
+          },
+          "code": "OT",
+          "name": "Overtime",
+          "pay_class": null,
+          "is_cash": null,
+          "rate_class": null,
+          "quantity_type": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "is_active": "not_provided",
+            "is_cash": "not_provided",
+            "pay_class": "not_provided",
+            "quantity_type": "not_provided",
+            "rate_class": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:earning_code:7001:703",
+          "provider_extensions": {},
+          "code": "GTL",
+          "name": "Group Term Life",
+          "pay_class": null,
+          "is_cash": null,
+          "rate_class": null,
+          "quantity_type": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "is_active": "not_provided",
+            "is_cash": "not_provided",
+            "pay_class": "not_provided",
+            "quantity_type": "not_provided",
+            "rate_class": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:earning_code:7001:704",
+          "provider_extensions": {},
+          "code": "TIPS",
+          "name": "Tips",
+          "pay_class": null,
+          "is_cash": null,
+          "rate_class": null,
+          "quantity_type": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "is_active": "not_provided",
+            "is_cash": "not_provided",
+            "pay_class": "not_provided",
+            "quantity_type": "not_provided",
+            "rate_class": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:earning_code:7001:705",
+          "provider_extensions": {},
+          "code": "SAL",
+          "name": "Salary",
+          "pay_class": null,
+          "is_cash": null,
+          "rate_class": null,
+          "quantity_type": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        },
+        {
+          "field_status": {
+            "is_active": "not_provided",
+            "is_cash": "not_provided",
+            "pay_class": "not_provided",
+            "quantity_type": "not_provided",
+            "rate_class": "not_provided",
+            "w2_box": "not_provided",
+            "w2_code": "not_provided"
+          },
+          "id": "ukg-ready:900003:earning_code:7001:706",
+          "provider_extensions": {},
+          "code": "FEE",
+          "name": "Contractor fee",
+          "pay_class": null,
+          "is_cash": null,
+          "rate_class": null,
+          "quantity_type": null,
+          "w2_box": null,
+          "w2_code": null,
+          "is_active": null
+        }
+      ]
+    }
+  ],
+  "employees": [
+    {
+      "field_status": {
+        "employment_history": "not_provided",
+        "job_history": "not_provided",
+        "tax_withholding": "not_provided"
+      },
+      "id": "ukg-ready:900003:employee:7001:1101",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1101"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees",
+          "locator": "/employees/0"
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/history",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/pay-info",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/demographics",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/tax-info",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/profiles",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/accrual/1/balances",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/accrual/2/balances",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/contacts",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/skills",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/training/certifications",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/total",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/additional",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/badges",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/hr-custom-fields",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Active' has an inferred canonical value.",
+          "field": "employment.status",
+          "evidence": "ukg-ready.employee_status"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Worker type employee is inferred from tax type flags W2=true;_1099=false.",
+          "field": "employment.worker_type",
+          "evidence": "D-041"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Client-defined code '61' is read from its label 'FT Non-Exempt' as full_time.",
+          "field": "employment.employment_type",
+          "evidence": "D-099"
+        },
+        {
+          "code": "source_unavailable",
+          "severity": "warning",
+          "message": "The cost center lookup for tree 1 returned HTTP 400; code and name are unknown.",
+          "field": "job.org_units[1]",
+          "evidence": "D-076"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Hourly' has an inferred canonical value.",
+          "field": "compensation.pay_type",
+          "evidence": "ukg-ready.pay_type"
+        },
+        {
+          "code": "sentinel_date",
+          "severity": "warning",
+          "message": "Placeholder date '1900-12-31' where a real date is required.",
+          "field": "compensation_history[0].effective_date",
+          "evidence": "D-025"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Spouse' has an inferred canonical value.",
+          "field": "related_people[0].relationship",
+          "evidence": "ukg-ready.contact_relationship"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Uncle' is not in the code table; value unknown.",
+          "field": "related_people[1].relationship",
+          "evidence": "ukg-ready.contact_relationship"
+        }
+      ],
+      "provider_extensions": {
+        "detail:managers[0].empl_ref.account_id": 1999,
+        "compensation/history:compensations[0].time": 288000000,
+        "compensation/history:compensations[0].time_period": "PAY_PERIOD",
+        "compensation/history:compensations[0].num_pp_in_year": 26,
+        "compensation/history:compensations[1].num_pp_in_year": 26,
+        "accrual/1/balances:accrual_balances[0].regular_day_time": 28800000,
+        "accrual/1/balances:accrual_balances[0].scheduled": 0,
+        "accrual/1/balances:accrual_balances[0].pending_approval": 14400000,
+        "accrual/2/balances:accrual_balances[0].category.type": "ACCRUAL_CATEGORY",
+        "accrual/2/balances:accrual_balances[0].current_balance.days": "1.5625",
+        "accrual/2/balances:accrual_balances[0].previous_carry_over.days": "0.5",
+        "accrual/2/balances:accrual_balances[0].current_accrued.hours": 7200000,
+        "accrual/2/balances:accrual_balances[0].taken.hours": 0,
+        "accrual/2/balances:accrual_balances[0].projected_balance.hours": 50400000,
+        "accrual/2/balances:accrual_balances[0].period.start": "2026-09-01",
+        "accrual/2/balances:accrual_balances[0].period.end": "2026-09-30",
+        "accrual/2/balances:accrual_balances[0].expiring_date.date": "2026-12-31",
+        "contacts:contacts[0].work_phone.code": 1,
+        "contacts:contacts[0].cell_phone.code": 1,
+        "contacts:contacts[0].primary": true,
+        "contacts:contacts[0].is_in_any_benefit_plan": true,
+        "contacts:contacts[1].home_phone.code": 1,
+        "skills:employee_skills[0].primary": true,
+        "training/certifications:employee_training_course_history[0].description": "<p>State certificate</p>",
+        "training/certifications:employee_training_course_history[0].is_expired": false,
+        "training/certifications:employee_training_course_history[0].is_schedulable": true,
+        "detail:username": "quinn.moreau",
+        "detail:external_id": "EXT-1101",
+        "detail:isPhotoUploaded": false,
+        "detail:use_separate_mailing_address": true,
+        "detail:force_change_password": false,
+        "detail:locked": false,
+        "detail:timezone": "America/Denver",
+        "detail:address.state": "CO",
+        "detail:phones.cell_phone_country_id": "US",
+        "detail:phones.cell_phone_country_code": "1",
+        "detail:dates.started": "2019-06-03",
+        "detail:dates.review": "2025-06-03",
+        "detail:dates.custom_dates[0].index": 0,
+        "detail:dates.custom_dates[0].date": "2025-01-01",
+        "detail:account_extra_fields[0].index": 0,
+        "detail:account_extra_fields[0].values[0].value": "Blue",
+        "detail:account_extra_fields[0].values[0].effective_from": "2024-01-01",
+        "detail:hardware_settings.in_touch.security_level": "EMPLOYEE",
+        "detail:locale.id": 1,
+        "detail:cost_centers_info.limits[0].index": 0,
+        "detail:cost_centers_info.limits[0].values[0].type": "LIST",
+        "detail:cost_centers_info.limits[0].values[0].id": 8101,
+        "detail:cost_centers_info.limits[0].values[0].effective_from": "2024-01-01",
+        "demographics:full_time_student": false,
+        "demographics:referral.id": 3,
+        "demographics:recruiter.account_id": 1999,
+        "demographics:recruiter.display_name": "Recruiter One",
+        "pay-info:job_change_reason_code.display_name": "Promotion",
+        "pay-info:standard_work_day": 28800000,
+        "pay-info:payroll_classification": "REGULAR",
+        "pay-info:medical_eligibility": "ELIGIBLE",
+        "pay-info:pay_grade.id": 5,
+        "pay-info:pay_grade.parent.id": 1,
+        "pay-info:pay_grade.parent.code": 2,
+        "pay-info:pay_grade.parent.name": "Kitchen",
+        "pay-info:gl_codes[0].index": 0,
+        "pay-info:gl_codes[0].value": "5100",
+        "pay-info:shift_premium.id": 9,
+        "profiles:pay_period[0].effective_from": "2023-01-01",
+        "profiles:security[0].id": 3,
+        "profiles:security[0].effective_from": "2019-06-03",
+        "compensation/total:total_compensations[0].amount": "40560.0",
+        "compensation/total:total_compensations[0].effective_from": "2023-04-01",
+        "compensation/total:total_compensations[0].currency": "USD",
+        "tax-info:employee-tax-type.DRAW": false,
+        "tax-info:pension-box-type": "SYSTEM_RULES",
+        "tax-info:dba-company-name": "Harbor Kitchens",
+        "badges:badges[0].badge_type": "SIMPLE_1",
+        "badges:badges[0].effective_from": "2019-06-03",
+        "hr-custom-fields:hr_custom_fields[0].index": 0,
+        "hr-custom-fields:hr_custom_fields[0].value": "Night shift"
+      },
+      "sensitive_provider_extensions": {
+        "contacts:contacts[0].comments": "Call after 6pm",
+        "detail:social_security": "666-45-1101",
+        "detail:address.address_line_3": "Rear door",
+        "detail:address.number": "12",
+        "detail:address.number_addition": "B",
+        "demographics:visa.number": "V-77881",
+        "demographics:eye_color": "Brown",
+        "demographics:height": "180cm",
+        "tax-info:fein": "12-3456789",
+        "badges:badges[0].badge_number": "B-1101",
+        "badges:badges[0].short_id": "S11"
+      },
+      "company_id": "ukg-ready:900003:company:7001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:501",
+      "person_ref": "1101",
+      "employee_number": "U-1101",
+      "currency": "USD",
+      "name": {
+        "field_status": {
+          "suffix": "not_provided"
+        },
+        "first": "Quinn",
+        "middle": "Ray",
+        "last": "Moreau",
+        "prefix": "Mr.",
+        "suffix": null,
+        "preferred_first": "Ray"
+      },
+      "demographics": {
+        "field_status": {
+          "deceased_date": "not_provided",
+          "disability": "not_provided",
+          "is_deceased": "not_provided",
+          "marital_status": "not_provided",
+          "preferred_pronouns": "not_provided",
+          "tobacco_user": "not_provided",
+          "veteran": "not_provided"
+        },
+        "birth_date": "1992-12-01",
+        "gender": {
+          "value": "male",
+          "raw_code": "MALE",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "ethnicity": {
+          "value": "hispanic_or_latino",
+          "raw_code": "HISPANIC_OR_LATINO",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "marital_status": null,
+        "citizenship": {
+          "value": "permanent_resident",
+          "raw_code": "PERMANENT_RESIDENT",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "preferred_pronouns": null,
+        "veteran": null,
+        "disability": null,
+        "tobacco_user": null,
+        "is_deceased": null,
+        "deceased_date": null
+      },
+      "national_ids": [
+        {
+          "field_status": {
+            "value_last4": "not_applicable"
+          },
+          "type": {
+            "value": "ssn",
+            "raw_code": "SSN",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "value": "666-45-1101",
+          "value_last4": null,
+          "is_primary": true
+        }
+      ],
+      "work_contact": {
+        "field_status": {
+          "email": "not_provided",
+          "phone_extension": "not_provided"
+        },
+        "email": null,
+        "phone": "303-555-0400",
+        "phone_extension": null
+      },
+      "personal_contact": {
+        "field_status": {},
+        "addresses": [
+          {
+            "field_status": {
+              "county": "not_provided"
+            },
+            "type": "home",
+            "line1": "9016 Harbor Rd",
+            "line2": "Unit 5",
+            "city": "Denver",
+            "county": null,
+            "state": "CO",
+            "postal_code": "80202",
+            "country": "USA"
+          },
+          {
+            "field_status": {
+              "county": "not_provided"
+            },
+            "type": "mailing",
+            "line1": "PO Box 300",
+            "line2": "Box B",
+            "city": "Denver",
+            "county": null,
+            "state": "CO",
+            "postal_code": "80201",
+            "country": "USA"
+          }
+        ],
+        "phones": [
+          {
+            "field_status": {
+              "extension": "not_provided"
+            },
+            "type": "mobile",
+            "number": "303-555-1182",
+            "extension": null,
+            "is_preferred": true
+          },
+          {
+            "field_status": {
+              "extension": "not_provided"
+            },
+            "type": "home",
+            "number": "303-555-1500",
+            "extension": null,
+            "is_preferred": false
+          }
+        ],
+        "emails": [
+          {
+            "field_status": {},
+            "type": "unknown",
+            "address": "ray.home@example.org",
+            "is_primary": true
+          },
+          {
+            "field_status": {},
+            "type": "unknown",
+            "address": "ray.alt@example.org",
+            "is_primary": false
+          }
+        ]
+      },
+      "employment": {
+        "field_status": {
+          "eligible_for_rehire": "not_provided",
+          "flsa_status": "not_provided",
+          "rehire_date": "not_provided",
+          "status_effective_date": "not_provided",
+          "termination_date": "not_applicable",
+          "termination_reason": "not_applicable",
+          "termination_type": "not_applicable"
+        },
+        "status": {
+          "value": "active",
+          "raw_code": "Active",
+          "raw_label": null,
+          "basis": "inferred"
+        },
+        "status_effective_date": null,
+        "worker_type": {
+          "value": "employee",
+          "raw_code": "W2=true;_1099=false",
+          "raw_label": null,
+          "basis": "inferred"
+        },
+        "employment_type": {
+          "value": "full_time",
+          "raw_code": "61",
+          "raw_label": "FT Non-Exempt",
+          "basis": "inferred"
+        },
+        "is_seasonal": false,
+        "flsa_status": null,
+        "original_hire_date": "2019-06-03",
+        "hire_date": "2019-06-03",
+        "rehire_date": null,
+        "seniority_date": "2019-06-03",
+        "termination_date": null,
+        "termination_type": null,
+        "termination_reason": null,
+        "eligible_for_rehire": null
+      },
+      "employment_history": null,
+      "job": {
+        "field_status": {
+          "supervisor_employee_id": "not_provided",
+          "work_location_id": "not_provided"
+        },
+        "job": {
+          "field_status": {},
+          "source_id": "501",
+          "code": "COOK1",
+          "name": "Line Cook"
+        },
+        "effective_date": "2023-04-01",
+        "org_units": [
+          {
+            "field_status": {},
+            "type": {
+              "value": "cost_center",
+              "raw_code": "0",
+              "raw_label": null,
+              "basis": "documented"
+            },
+            "source_id": "8100",
+            "code": "KIT",
+            "name": "Kitchen"
+          },
+          {
+            "field_status": {
+              "code": "not_provided",
+              "name": "not_provided"
+            },
+            "type": {
+              "value": "cost_center",
+              "raw_code": "1",
+              "raw_label": null,
+              "basis": "documented"
+            },
+            "source_id": "8200",
+            "code": null,
+            "name": null
+          }
+        ],
+        "work_location_id": null,
+        "manager_employee_id": "ukg-ready:900003:employee:7001:1103",
+        "supervisor_employee_id": null,
+        "eeo_category": {
+          "value": "service_workers",
+          "raw_code": "SERVICE_WORKERS",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "union_code": "44",
+        "workers_comp_code": "9079"
+      },
+      "job_history": null,
+      "compensation": {
+        "field_status": {
+          "additional_rates": "not_provided",
+          "annual_salary": "not_provided",
+          "per_period_amount": "not_provided"
+        },
+        "pay_type": {
+          "value": "hourly",
+          "raw_code": "71",
+          "raw_label": "Hourly",
+          "basis": "inferred"
+        },
+        "pay_frequency": {
+          "value": "biweekly",
+          "raw_code": "every_n_weeks:2",
+          "raw_label": "Biweekly",
+          "basis": "documented"
+        },
+        "pay_group_id": "ukg-ready:900003:pay_group:7001:9001",
+        "base_rate": "19.5",
+        "base_rate_period": {
+          "value": "hour",
+          "raw_code": "HOUR",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "hourly_rate": "19.5",
+        "annual_salary": null,
+        "per_period_amount": null,
+        "standard_hours": "75.5",
+        "standard_hours_period": {
+          "value": "pay_period",
+          "raw_code": "PAY_PERIOD",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "effective_date": "2023-04-01",
+        "additional_rates": null
+      },
+      "compensation_history": [
+        {
+          "field_status": {
+            "annual_amount": "not_provided",
+            "change_amount": "not_provided",
+            "change_percent": "not_provided",
+            "effective_date": "not_provided",
+            "pay_type": "not_provided",
+            "reason": "not_provided"
+          },
+          "effective_date": null,
+          "pay_type": null,
+          "amount": "15.0",
+          "amount_period": {
+            "value": "hour",
+            "raw_code": "HOUR",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "hourly_rate": "15.0",
+          "annual_amount": null,
+          "change_amount": null,
+          "change_percent": null,
+          "reason": null
+        },
+        {
+          "field_status": {
+            "annual_amount": "not_provided",
+            "change_amount": "not_provided",
+            "change_percent": "not_provided",
+            "pay_type": "not_provided",
+            "reason": "not_provided"
+          },
+          "effective_date": "2023-04-01",
+          "pay_type": null,
+          "amount": "19.5",
+          "amount_period": {
+            "value": "hour",
+            "raw_code": "HOUR",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "hourly_rate": "19.5",
+          "annual_amount": null,
+          "change_amount": null,
+          "change_percent": null,
+          "reason": null
+        }
+      ],
+      "tax_withholding": null,
+      "pto_balances": [
+        {
+          "field_status": {
+            "plan_code": "not_provided"
+          },
+          "plan_source_id": "41",
+          "plan_code": null,
+          "plan_name": "PTO",
+          "balance": "40",
+          "accrued_ytd": "48",
+          "used_ytd": "16",
+          "carryover": "8",
+          "as_of_date": "2026-09-30",
+          "period_start": "2026-01-01",
+          "period_end": "2026-12-31"
+        },
+        {
+          "field_status": {
+            "accrued_ytd": "not_provided",
+            "as_of_date": "not_provided",
+            "period_end": "not_provided",
+            "period_start": "not_provided",
+            "plan_code": "not_provided",
+            "used_ytd": "not_provided"
+          },
+          "plan_source_id": "51",
+          "plan_code": null,
+          "plan_name": "Sick",
+          "balance": "12.5",
+          "accrued_ytd": null,
+          "used_ytd": null,
+          "carryover": "4",
+          "as_of_date": null,
+          "period_start": null,
+          "period_end": null
+        }
+      ],
+      "related_people": [
+        {
+          "field_status": {
+            "address": "not_provided",
+            "email": "not_provided",
+            "full_name": "not_applicable",
+            "gender": "not_provided",
+            "national_id": "not_provided"
+          },
+          "source_id": "31",
+          "relationship": {
+            "value": "spouse",
+            "raw_code": "Spouse",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "name": {
+            "field_status": {
+              "middle": "not_provided",
+              "preferred_first": "not_provided",
+              "suffix": "not_provided"
+            },
+            "first": "Lena",
+            "middle": null,
+            "last": "Moreau",
+            "prefix": "Ms.",
+            "suffix": null,
+            "preferred_first": null
+          },
+          "full_name": null,
+          "birth_date": "1993-03-03",
+          "gender": null,
+          "national_id": null,
+          "address": null,
+          "phones": [
+            {
+              "field_status": {
+                "extension": "not_provided"
+              },
+              "type": "work",
+              "number": "303-555-0450",
+              "extension": null,
+              "is_preferred": false
+            },
+            {
+              "field_status": {
+                "extension": "not_provided"
+              },
+              "type": "mobile",
+              "number": "303-555-1908",
+              "extension": null,
+              "is_preferred": true
+            }
+          ],
+          "email": null,
+          "is_dependent": true,
+          "is_emergency_contact": true,
+          "is_beneficiary": false,
+          "is_active": true
+        },
+        {
+          "field_status": {
+            "address": "not_provided",
+            "birth_date": "not_provided",
+            "email": "not_provided",
+            "full_name": "not_applicable",
+            "gender": "not_provided",
+            "national_id": "not_provided"
+          },
+          "source_id": "32",
+          "relationship": {
+            "value": "unknown",
+            "raw_code": "Uncle",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "name": {
+            "field_status": {
+              "preferred_first": "not_provided",
+              "prefix": "not_provided"
+            },
+            "first": "Omar",
+            "middle": "Ann",
+            "last": "Ruiz",
+            "prefix": null,
+            "suffix": "II",
+            "preferred_first": null
+          },
+          "full_name": null,
+          "birth_date": null,
+          "gender": null,
+          "national_id": null,
+          "address": null,
+          "phones": [
+            {
+              "field_status": {
+                "extension": "not_provided"
+              },
+              "type": "home",
+              "number": "719-555-1861",
+              "extension": null,
+              "is_preferred": true
+            }
+          ],
+          "email": null,
+          "is_dependent": false,
+          "is_emergency_contact": true,
+          "is_beneficiary": true,
+          "is_active": false
+        }
+      ],
+      "qualifications": [
+        {
+          "field_status": {
+            "code": "not_provided",
+            "completed_date": "not_provided",
+            "expiration_date": "not_provided",
+            "institution": "not_provided",
+            "name": "not_provided"
+          },
+          "type": "skill",
+          "source_id": "1201",
+          "code": null,
+          "name": null,
+          "level": "4",
+          "institution": null,
+          "completed_date": null,
+          "expiration_date": null,
+          "years_experience": "6"
+        },
+        {
+          "field_status": {
+            "code": "not_provided",
+            "institution": "not_provided",
+            "level": "not_provided",
+            "source_id": "not_provided",
+            "years_experience": "not_provided"
+          },
+          "type": "training",
+          "source_id": null,
+          "code": null,
+          "name": "Food Handler",
+          "level": null,
+          "institution": null,
+          "completed_date": "2024-02-10",
+          "expiration_date": "2027-02-10",
+          "years_experience": null
+        }
+      ],
+      "work_authorization": {
+        "field_status": {
+          "i9_completed": "not_provided",
+          "i9_completed_date": "not_provided",
+          "i9_on_file": "not_provided",
+          "is_nonresident_alien": "not_provided"
+        },
+        "i9_on_file": null,
+        "i9_completed": null,
+        "i9_completed_date": null,
+        "document_expiration_date": "2027-08-31",
+        "is_nonresident_alien": null,
+        "visa_type": "H-1B"
+      }
+    },
+    {
+      "field_status": {
+        "employment_history": "not_provided",
+        "job_history": "not_provided",
+        "pto_balances": "not_provided",
+        "tax_withholding": "not_provided"
+      },
+      "id": "ukg-ready:900003:employee:7001:1102",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1102"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees",
+          "locator": "/employees/1"
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/history",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/pay-info",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/demographics",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/tax-info",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/profiles",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/accrual/2/balances",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/contacts",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/skills",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/training/certifications",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/total",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/additional",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/badges",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/hr-custom-fields",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Active' has an inferred canonical value.",
+          "field": "employment.status",
+          "evidence": "ukg-ready.employee_status"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Worker type employee is inferred from tax type flags W2=true;_1099=false.",
+          "field": "employment.worker_type",
+          "evidence": "D-041"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Client-defined code '61' is read from its label 'FT Non-Exempt' as full_time.",
+          "field": "employment.employment_type",
+          "evidence": "D-099"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Salaried' has an inferred canonical value.",
+          "field": "compensation.pay_type",
+          "evidence": "ukg-ready.pay_type"
+        },
+        {
+          "code": "source_unavailable",
+          "severity": "warning",
+          "message": "accrual/1/balances returned HTTP 403; the data is not available.",
+          "field": "pto_balances",
+          "evidence": null
+        }
+      ],
+      "provider_extensions": {
+        "detail:dates.terminated": "2020-10-31",
+        "compensation/history:compensations[0].num_pp_in_year": 26,
+        "detail:username": "ray.second",
+        "detail:use_separate_mailing_address": false,
+        "pay-info:payroll_classification": "REGULAR",
+        "pay-info:standard_work_day": 0,
+        "profiles:pay_period[0].effective_from": "2024-03-04",
+        "compensation/additional:additional_compensations[0].id": 7,
+        "compensation/additional:additional_compensations[0].type.id": 3,
+        "compensation/additional:additional_compensations[0].effective_from": "2024-03-04",
+        "compensation/additional:additional_compensations[0].period": "YEAR",
+        "compensation/additional:additional_compensations[0].active": true,
+        "compensation/additional:additional_compensations[0].value": "5.0"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:502",
+      "person_ref": "1101",
+      "employee_number": "U-1102",
+      "currency": "USD",
+      "name": {
+        "field_status": {
+          "middle": "not_provided",
+          "preferred_first": "not_provided",
+          "prefix": "not_provided"
+        },
+        "first": "Ray",
+        "middle": null,
+        "last": "Account",
+        "prefix": null,
+        "suffix": "Sr.",
+        "preferred_first": null
+      },
+      "demographics": {
+        "field_status": {
+          "birth_date": "not_provided",
+          "citizenship": "not_provided",
+          "deceased_date": "not_provided",
+          "disability": "not_provided",
+          "ethnicity": "not_provided",
+          "is_deceased": "not_provided",
+          "marital_status": "not_provided",
+          "preferred_pronouns": "not_provided",
+          "tobacco_user": "not_provided",
+          "veteran": "not_provided"
+        },
+        "birth_date": null,
+        "gender": {
+          "value": "male",
+          "raw_code": "MALE",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "ethnicity": null,
+        "marital_status": null,
+        "citizenship": null,
+        "preferred_pronouns": null,
+        "veteran": null,
+        "disability": null,
+        "tobacco_user": null,
+        "is_deceased": null,
+        "deceased_date": null
+      },
+      "national_ids": [
+        {
+          "field_status": {
+            "value_last4": "not_applicable"
+          },
+          "type": {
+            "value": "ssn",
+            "raw_code": "SSN",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "value": "666-45-1101",
+          "value_last4": null,
+          "is_primary": true
+        }
+      ],
+      "work_contact": {
+        "field_status": {
+          "email": "not_provided",
+          "phone": "not_provided",
+          "phone_extension": "not_provided"
+        },
+        "email": null,
+        "phone": null,
+        "phone_extension": null
+      },
+      "personal_contact": {
+        "field_status": {},
+        "addresses": [
+          {
+            "field_status": {
+              "county": "not_provided",
+              "line2": "not_provided"
+            },
+            "type": "home",
+            "line1": "9041 Juniper Way",
+            "line2": null,
+            "city": "Denver",
+            "county": null,
+            "state": "CO",
+            "postal_code": "80202",
+            "country": "USA"
+          }
+        ],
+        "phones": [
+          {
+            "field_status": {
+              "extension": "not_provided"
+            },
+            "type": "mobile",
+            "number": "303-555-1821",
+            "extension": null,
+            "is_preferred": false
+          }
+        ],
+        "emails": []
+      },
+      "employment": {
+        "field_status": {
+          "eligible_for_rehire": "not_provided",
+          "flsa_status": "not_provided",
+          "is_seasonal": "not_provided",
+          "status_effective_date": "not_provided",
+          "termination_date": "not_applicable",
+          "termination_reason": "not_applicable",
+          "termination_type": "not_applicable"
+        },
+        "status": {
+          "value": "active",
+          "raw_code": "Active",
+          "raw_label": null,
+          "basis": "inferred"
+        },
+        "status_effective_date": null,
+        "worker_type": {
+          "value": "employee",
+          "raw_code": "W2=true;_1099=false",
+          "raw_label": null,
+          "basis": "inferred"
+        },
+        "employment_type": {
+          "value": "full_time",
+          "raw_code": "61",
+          "raw_label": "FT Non-Exempt",
+          "basis": "inferred"
+        },
+        "is_seasonal": null,
+        "flsa_status": null,
+        "original_hire_date": "2015-02-01",
+        "hire_date": "2024-03-04",
+        "rehire_date": "2024-03-04",
+        "seniority_date": "2015-02-01",
+        "termination_date": null,
+        "termination_type": null,
+        "termination_reason": null,
+        "eligible_for_rehire": null
+      },
+      "employment_history": null,
+      "job": {
+        "field_status": {
+          "eeo_category": "not_provided",
+          "manager_employee_id": "not_provided",
+          "supervisor_employee_id": "not_provided",
+          "union_code": "not_provided",
+          "work_location_id": "not_provided",
+          "workers_comp_code": "not_provided"
+        },
+        "job": {
+          "field_status": {
+            "code": "not_provided"
+          },
+          "source_id": "502",
+          "code": null,
+          "name": "Shift Manager"
+        },
+        "effective_date": "2024-03-04",
+        "org_units": [],
+        "work_location_id": null,
+        "manager_employee_id": null,
+        "supervisor_employee_id": null,
+        "eeo_category": null,
+        "union_code": null,
+        "workers_comp_code": null
+      },
+      "job_history": null,
+      "compensation": {
+        "field_status": {
+          "additional_rates": "not_provided",
+          "annual_salary": "not_provided",
+          "per_period_amount": "not_provided"
+        },
+        "pay_type": {
+          "value": "salary",
+          "raw_code": "72",
+          "raw_label": "Salaried",
+          "basis": "inferred"
+        },
+        "pay_frequency": {
+          "value": "biweekly",
+          "raw_code": "every_n_weeks:2",
+          "raw_label": "Biweekly",
+          "basis": "documented"
+        },
+        "pay_group_id": "ukg-ready:900003:pay_group:7001:9001",
+        "base_rate": "58000.0",
+        "base_rate_period": {
+          "value": "year",
+          "raw_code": "YEAR",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "hourly_rate": "27.8846",
+        "annual_salary": null,
+        "per_period_amount": null,
+        "standard_hours": "40",
+        "standard_hours_period": {
+          "value": "week",
+          "raw_code": "WEEK",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "effective_date": "2024-03-04",
+        "additional_rates": null
+      },
+      "compensation_history": [
+        {
+          "field_status": {
+            "annual_amount": "not_provided",
+            "change_amount": "not_provided",
+            "change_percent": "not_provided",
+            "pay_type": "not_provided",
+            "reason": "not_provided"
+          },
+          "effective_date": "2024-03-04",
+          "pay_type": null,
+          "amount": "58000.0",
+          "amount_period": {
+            "value": "year",
+            "raw_code": "YEAR",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "hourly_rate": "27.8846",
+          "annual_amount": null,
+          "change_amount": null,
+          "change_percent": null,
+          "reason": null
+        }
+      ],
+      "tax_withholding": null,
+      "pto_balances": null,
+      "related_people": [],
+      "qualifications": [],
+      "work_authorization": {
+        "field_status": {
+          "document_expiration_date": "not_provided",
+          "i9_completed": "not_provided",
+          "i9_completed_date": "not_provided",
+          "i9_on_file": "not_provided",
+          "is_nonresident_alien": "not_provided",
+          "visa_type": "not_provided"
+        },
+        "i9_on_file": null,
+        "i9_completed": null,
+        "i9_completed_date": null,
+        "document_expiration_date": null,
+        "is_nonresident_alien": null,
+        "visa_type": null
+      }
+    },
+    {
+      "field_status": {
+        "employment_history": "not_provided",
+        "job_history": "not_provided",
+        "person_ref": "not_provided",
+        "pto_balances": "not_provided",
+        "tax_withholding": "not_provided"
+      },
+      "id": "ukg-ready:900003:employee:7001:1103",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1103"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees",
+          "locator": "/employees/2"
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/history",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/pay-info",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/demographics",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/tax-info",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/profiles",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/accrual/1/balances",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/contacts",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/skills",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/training/certifications",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/total",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/compensation/additional",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/badges",
+          "locator": ""
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/hr-custom-fields",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Terminated' has an inferred canonical value.",
+          "field": "employment.status",
+          "evidence": "ukg-ready.employee_status"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "The provider code is listed without a canonical value; value unknown.",
+          "field": "demographics.gender",
+          "evidence": "ukg-ready.gender"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Worker type contractor is inferred from tax type flags W2=false;_1099=true.",
+          "field": "employment.worker_type",
+          "evidence": "D-041"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Client-defined code '62' has no documented meaning; value unknown.",
+          "field": "employment.employment_type",
+          "evidence": "D-074"
+        },
+        {
+          "code": "source_unavailable",
+          "severity": "warning",
+          "message": "Job 599 is not in lookup/jobs in the input; code and name are unknown.",
+          "field": "job.job",
+          "evidence": null
+        },
+        {
+          "code": "source_unavailable",
+          "severity": "warning",
+          "message": "The cost center lookup for tree 2 does not list this id; code and name are unknown.",
+          "field": "job.org_units[0]",
+          "evidence": "D-076"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Commission' is not in the code table; value unknown.",
+          "field": "compensation.pay_type",
+          "evidence": "ukg-ready.pay_type"
+        },
+        {
+          "code": "source_unavailable",
+          "severity": "warning",
+          "message": "accrual/2/balances returned HTTP 400; the data is not available.",
+          "field": "pto_balances",
+          "evidence": null
+        }
+      ],
+      "provider_extensions": {
+        "compensation/history:compensations[0].num_pp_in_year": 26,
+        "detail:username": "riley.c",
+        "pay-info:payroll_classification": "REGULAR",
+        "tax-info:employee-tax-type.DRAW": false
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:501",
+      "person_ref": null,
+      "employee_number": "U-1103",
+      "currency": "USD",
+      "name": {
+        "field_status": {
+          "middle": "not_provided",
+          "preferred_first": "not_provided",
+          "prefix": "not_provided",
+          "suffix": "not_provided"
+        },
+        "first": "Riley",
+        "middle": null,
+        "last": "Brennan",
+        "prefix": null,
+        "suffix": null,
+        "preferred_first": null
+      },
+      "demographics": {
+        "field_status": {
+          "citizenship": "not_provided",
+          "disability": "not_provided",
+          "ethnicity": "not_provided",
+          "marital_status": "not_provided",
+          "preferred_pronouns": "not_provided",
+          "tobacco_user": "not_provided",
+          "veteran": "not_provided"
+        },
+        "birth_date": "1980-01-31",
+        "gender": {
+          "value": "unknown",
+          "raw_code": "UNDEFINED",
+          "raw_label": null,
+          "basis": "unmapped"
+        },
+        "ethnicity": null,
+        "marital_status": null,
+        "citizenship": null,
+        "preferred_pronouns": null,
+        "veteran": null,
+        "disability": null,
+        "tobacco_user": null,
+        "is_deceased": true,
+        "deceased_date": "2025-08-20"
+      },
+      "national_ids": [
+        {
+          "field_status": {
+            "value": "not_applicable",
+            "value_last4": "not_applicable"
+          },
+          "type": {
+            "value": "not_required",
+            "raw_code": "NO_ID_NEEDED",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "value": null,
+          "value_last4": null,
+          "is_primary": true
+        }
+      ],
+      "work_contact": {
+        "field_status": {
+          "email": "not_provided",
+          "phone": "not_provided",
+          "phone_extension": "not_provided"
+        },
+        "email": null,
+        "phone": null,
+        "phone_extension": null
+      },
+      "personal_contact": {
+        "field_status": {},
+        "addresses": [
+          {
+            "field_status": {
+              "county": "not_provided",
+              "line2": "not_provided"
+            },
+            "type": "home",
+            "line1": "3513 Juniper Way",
+            "line2": null,
+            "city": "Boulder",
+            "county": null,
+            "state": "CO",
+            "postal_code": "80301",
+            "country": "USA"
+          }
+        ],
+        "phones": [
+          {
+            "field_status": {
+              "extension": "not_provided"
+            },
+            "type": "mobile",
+            "number": "720-555-1371",
+            "extension": null,
+            "is_preferred": false
+          },
+          {
+            "field_status": {
+              "extension": "not_provided"
+            },
+            "type": "home",
+            "number": "720-555-1202",
+            "extension": null,
+            "is_preferred": true
+          }
+        ],
+        "emails": []
+      },
+      "employment": {
+        "field_status": {
+          "eligible_for_rehire": "not_provided",
+          "flsa_status": "not_provided",
+          "is_seasonal": "not_provided",
+          "rehire_date": "not_provided",
+          "seniority_date": "not_provided",
+          "status_effective_date": "not_provided",
+          "termination_reason": "not_provided",
+          "termination_type": "not_provided"
+        },
+        "status": {
+          "value": "terminated",
+          "raw_code": "Terminated",
+          "raw_label": null,
+          "basis": "inferred"
+        },
+        "status_effective_date": null,
+        "worker_type": {
+          "value": "contractor",
+          "raw_code": "W2=false;_1099=true",
+          "raw_label": null,
+          "basis": "inferred"
+        },
+        "employment_type": {
+          "value": "unknown",
+          "raw_code": "62",
+          "raw_label": "Consultant",
+          "basis": "unmapped"
+        },
+        "is_seasonal": null,
+        "flsa_status": null,
+        "original_hire_date": "2022-05-02",
+        "hire_date": "2022-05-02",
+        "rehire_date": null,
+        "seniority_date": null,
+        "termination_date": "2025-08-15",
+        "termination_type": null,
+        "termination_reason": null,
+        "eligible_for_rehire": null
+      },
+      "employment_history": null,
+      "job": {
+        "field_status": {
+          "eeo_category": "not_provided",
+          "effective_date": "not_provided",
+          "manager_employee_id": "not_provided",
+          "supervisor_employee_id": "not_provided",
+          "union_code": "not_provided",
+          "work_location_id": "not_provided",
+          "workers_comp_code": "not_provided"
+        },
+        "job": {
+          "field_status": {
+            "code": "not_provided",
+            "name": "not_provided"
+          },
+          "source_id": "599",
+          "code": null,
+          "name": null
+        },
+        "effective_date": null,
+        "org_units": [
+          {
+            "field_status": {
+              "code": "not_provided",
+              "name": "not_provided"
+            },
+            "type": {
+              "value": "cost_center",
+              "raw_code": "2",
+              "raw_label": null,
+              "basis": "documented"
+            },
+            "source_id": "8399",
+            "code": null,
+            "name": null
+          }
+        ],
+        "work_location_id": null,
+        "manager_employee_id": null,
+        "supervisor_employee_id": null,
+        "eeo_category": null,
+        "union_code": null,
+        "workers_comp_code": null
+      },
+      "job_history": null,
+      "compensation": {
+        "field_status": {
+          "additional_rates": "not_provided",
+          "annual_salary": "not_provided",
+          "pay_frequency": "not_provided",
+          "pay_group_id": "not_provided",
+          "per_period_amount": "not_provided"
+        },
+        "pay_type": {
+          "value": "unknown",
+          "raw_code": "73",
+          "raw_label": "Commission",
+          "basis": "unmapped"
+        },
+        "pay_frequency": null,
+        "pay_group_id": null,
+        "base_rate": "4000.0",
+        "base_rate_period": {
+          "value": "month",
+          "raw_code": "MONTH",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "hourly_rate": "23.0769",
+        "annual_salary": null,
+        "per_period_amount": null,
+        "standard_hours": "0",
+        "standard_hours_period": {
+          "value": "month",
+          "raw_code": "MONTH",
+          "raw_label": null,
+          "basis": "documented"
+        },
+        "effective_date": "2022-05-02",
+        "additional_rates": null
+      },
+      "compensation_history": [
+        {
+          "field_status": {
+            "annual_amount": "not_provided",
+            "change_amount": "not_provided",
+            "change_percent": "not_provided",
+            "pay_type": "not_provided",
+            "reason": "not_provided"
+          },
+          "effective_date": "2022-05-02",
+          "pay_type": null,
+          "amount": "4000.0",
+          "amount_period": {
+            "value": "month",
+            "raw_code": "MONTH",
+            "raw_label": null,
+            "basis": "documented"
+          },
+          "hourly_rate": "23.0769",
+          "annual_amount": null,
+          "change_amount": null,
+          "change_percent": null,
+          "reason": null
+        }
+      ],
+      "tax_withholding": null,
+      "pto_balances": null,
+      "related_people": [],
+      "qualifications": [],
+      "work_authorization": {
+        "field_status": {
+          "document_expiration_date": "not_provided",
+          "i9_completed": "not_provided",
+          "i9_completed_date": "not_provided",
+          "i9_on_file": "not_provided",
+          "is_nonresident_alien": "not_provided",
+          "visa_type": "not_provided"
+        },
+        "i9_on_file": null,
+        "i9_completed": null,
+        "i9_completed_date": null,
+        "document_expiration_date": null,
+        "is_nonresident_alien": null,
+        "visa_type": null
+      }
+    }
+  ],
+  "direct_deposits": [
+    {
+      "field_status": {
+        "account_last4": "not_applicable",
+        "applies_to_paycheck_kinds": "not_provided",
+        "bank_name": "not_provided",
+        "effective_to": "not_applicable",
+        "percent": "not_applicable",
+        "percent_basis": "not_applicable",
+        "routing_last4": "not_applicable",
+        "skip_if_insufficient": "not_provided"
+      },
+      "id": "ukg-ready:900003:direct_deposit:7001:61",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1101",
+        "id": "61"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/direct-deposits",
+          "locator": "/deposits/0"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "deprecated_source",
+          "severity": "warning",
+          "message": "UKG marks the employee direct-deposits route deprecated; it is the only deposit list (D-030).",
+          "field": null,
+          "evidence": "D-030"
+        }
+      ],
+      "provider_extensions": {
+        "direct-deposits:deposits[0].name": "Rent",
+        "direct-deposits:deposits[0].type": "DIRECT_DEPOSIT",
+        "direct-deposits:deposits[0].routing_type": "ABA",
+        "direct-deposits:deposits[0].cancel_pre_note": false,
+        "direct-deposits:deposits[0].used_in_pay_statement": true,
+        "direct-deposits:deposits[0].visible": true,
+        "direct-deposits:deposits[0].is_paypal": false,
+        "direct-deposits:deposits[0].arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+        "direct-deposits:deposits[0].pre_note_sent_date": "2023-01-03",
+        "direct-deposits:deposits[0].last_payroll": "100.0",
+        "direct-deposits:deposits[0].year_to_date": "100.0"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "sequence": 1,
+      "allocation_type": {
+        "value": "fixed_amount",
+        "raw_code": "FLAT_AMOUNT",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "percent_basis": null,
+      "amount": "100.0",
+      "percent": null,
+      "skip_if_insufficient": null,
+      "account_type": {
+        "value": "checking",
+        "raw_code": "CHECKING",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "bank_name": null,
+      "routing_number": "604100018",
+      "routing_last4": null,
+      "account_number": "330011",
+      "account_last4": null,
+      "status": {
+        "value": "active",
+        "raw_code": "true",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "prenote_status": {
+        "value": "verified",
+        "raw_code": "COMPLETE_OK",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "frequency": {
+        "value": "every_pay",
+        "raw_code": "EVERY_PAY",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "applies_to_paycheck_kinds": null,
+      "effective_from": "2023-01-01",
+      "effective_to": null,
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "account_last4": "not_applicable",
+        "amount": "not_applicable",
+        "applies_to_paycheck_kinds": "not_provided",
+        "bank_name": "not_provided",
+        "effective_from": "not_applicable",
+        "effective_to": "not_applicable",
+        "routing_last4": "not_applicable",
+        "skip_if_insufficient": "not_provided"
+      },
+      "id": "ukg-ready:900003:direct_deposit:7001:62",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1101",
+        "id": "62"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/direct-deposits",
+          "locator": "/deposits/1"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "deprecated_source",
+          "severity": "warning",
+          "message": "UKG marks the employee direct-deposits route deprecated; it is the only deposit list (D-030).",
+          "field": null,
+          "evidence": "D-030"
+        }
+      ],
+      "provider_extensions": {
+        "direct-deposits:deposits[1].type": "DIRECT_DEPOSIT",
+        "direct-deposits:deposits[1].routing_type": "ABA",
+        "direct-deposits:deposits[1].cancel_pre_note": false,
+        "direct-deposits:deposits[1].used_in_pay_statement": true,
+        "direct-deposits:deposits[1].visible": true,
+        "direct-deposits:deposits[1].is_paypal": false,
+        "direct-deposits:deposits[1].arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+        "direct-deposits:deposits[1].pre_note_expiration_date": "2025-02-01"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "sequence": 2,
+      "allocation_type": {
+        "value": "percent",
+        "raw_code": "NET_PAY",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "percent_basis": {
+        "value": "net_pay",
+        "raw_code": "NET_PAY",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "amount": null,
+      "percent": "15.0",
+      "skip_if_insufficient": null,
+      "account_type": {
+        "value": "savings",
+        "raw_code": "SAVINGS",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "bank_name": null,
+      "routing_number": "604100021",
+      "routing_last4": null,
+      "account_number": "330012",
+      "account_last4": null,
+      "status": {
+        "value": "active",
+        "raw_code": "true",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "prenote_status": {
+        "value": "pending",
+        "raw_code": "READY_TO_SEND",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "frequency": {
+        "value": "every_scheduled_pay",
+        "raw_code": "EVERY_SCHEDULED_PAY",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "applies_to_paycheck_kinds": null,
+      "effective_from": null,
+      "effective_to": null,
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "account_last4": "not_applicable",
+        "amount": "not_applicable",
+        "applies_to_paycheck_kinds": "not_provided",
+        "bank_name": "not_provided",
+        "effective_to": "not_applicable",
+        "percent": "not_applicable",
+        "percent_basis": "not_applicable",
+        "routing_last4": "not_applicable",
+        "skip_if_insufficient": "not_provided"
+      },
+      "id": "ukg-ready:900003:direct_deposit:7001:63",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1101",
+        "id": "63"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/direct-deposits",
+          "locator": "/deposits/2"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "deprecated_source",
+          "severity": "warning",
+          "message": "UKG marks the employee direct-deposits route deprecated; it is the only deposit list (D-030).",
+          "field": null,
+          "evidence": "D-030"
+        }
+      ],
+      "provider_extensions": {
+        "direct-deposits:deposits[2].type": "DIRECT_DEPOSIT",
+        "direct-deposits:deposits[2].routing_type": "ABA",
+        "direct-deposits:deposits[2].cancel_pre_note": false,
+        "direct-deposits:deposits[2].used_in_pay_statement": true,
+        "direct-deposits:deposits[2].visible": true,
+        "direct-deposits:deposits[2].is_paypal": false,
+        "direct-deposits:deposits[2].arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "sequence": 3,
+      "allocation_type": {
+        "value": "remainder",
+        "raw_code": "FULL",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "percent_basis": null,
+      "amount": null,
+      "percent": null,
+      "skip_if_insufficient": null,
+      "account_type": {
+        "value": "checking",
+        "raw_code": "CHECKING",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "bank_name": null,
+      "routing_number": "604100034",
+      "routing_last4": null,
+      "account_number": "7",
+      "account_last4": null,
+      "status": {
+        "value": "active",
+        "raw_code": "true",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "prenote_status": {
+        "value": "verified",
+        "raw_code": "COMPLETE_OK",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "frequency": {
+        "value": "every_pay",
+        "raw_code": "EVERY_PAY",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "applies_to_paycheck_kinds": null,
+      "effective_from": "2023-01-01",
+      "effective_to": null,
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "account_last4": "not_applicable",
+        "amount": "not_applicable",
+        "applies_to_paycheck_kinds": "not_provided",
+        "bank_name": "not_provided",
+        "routing_last4": "not_applicable",
+        "skip_if_insufficient": "not_provided"
+      },
+      "id": "ukg-ready:900003:direct_deposit:7001:64",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1102",
+        "id": "64"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/direct-deposits",
+          "locator": "/deposits/0"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "deprecated_source",
+          "severity": "warning",
+          "message": "UKG marks the employee direct-deposits route deprecated; it is the only deposit list (D-030).",
+          "field": null,
+          "evidence": "D-030"
+        }
+      ],
+      "provider_extensions": {
+        "direct-deposits:deposits[0].type": "DIRECT_DEPOSIT",
+        "direct-deposits:deposits[0].routing_type": "ABA",
+        "direct-deposits:deposits[0].cancel_pre_note": false,
+        "direct-deposits:deposits[0].used_in_pay_statement": true,
+        "direct-deposits:deposits[0].visible": true,
+        "direct-deposits:deposits[0].is_paypal": false,
+        "direct-deposits:deposits[0].arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1102",
+      "sequence": 1,
+      "allocation_type": {
+        "value": "percent",
+        "raw_code": "GROSS_EARNING",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "percent_basis": {
+        "value": "gross_pay",
+        "raw_code": "GROSS_EARNING",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "amount": null,
+      "percent": "10.0",
+      "skip_if_insufficient": null,
+      "account_type": {
+        "value": "checking",
+        "raw_code": "CHECKING",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "bank_name": null,
+      "routing_number": "604100047",
+      "routing_last4": null,
+      "account_number": "990041",
+      "account_last4": null,
+      "status": {
+        "value": "inactive",
+        "raw_code": "false",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "prenote_status": {
+        "value": "canceled",
+        "raw_code": "CANCELED",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "frequency": {
+        "value": "monthly",
+        "raw_code": "MONTHLY",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "applies_to_paycheck_kinds": null,
+      "effective_from": "2023-01-01",
+      "effective_to": "2024-12-31",
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "account_last4": "not_applicable",
+        "amount": "not_applicable",
+        "applies_to_paycheck_kinds": "not_provided",
+        "bank_name": "not_provided",
+        "effective_to": "not_applicable",
+        "routing_last4": "not_applicable",
+        "skip_if_insufficient": "not_provided"
+      },
+      "id": "ukg-ready:900003:direct_deposit:7001:65",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1102",
+        "id": "65"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/direct-deposits",
+          "locator": "/deposits/1"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "deprecated_source",
+          "severity": "warning",
+          "message": "UKG marks the employee direct-deposits route deprecated; it is the only deposit list (D-030).",
+          "field": null,
+          "evidence": "D-030"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'NA' is listed without a canonical value; value unknown.",
+          "field": "prenote_status",
+          "evidence": "ukg-ready.prenote_status"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'HOLIDAY_TABLE' is listed without a canonical value; value unknown.",
+          "field": "frequency",
+          "evidence": "ukg-ready.deposit_frequency"
+        }
+      ],
+      "provider_extensions": {
+        "direct-deposits:deposits[1].payroll_frequency.holiday_type": "SPECIFIC_HOLIDAY_PROFILE",
+        "direct-deposits:deposits[1].payroll_frequency.holiday_profile.id": 12,
+        "direct-deposits:deposits[1].payroll_frequency.holiday_profile.display_name": "Company holidays",
+        "direct-deposits:deposits[1].type": "DIRECT_DEPOSIT",
+        "direct-deposits:deposits[1].routing_type": "ABA",
+        "direct-deposits:deposits[1].cancel_pre_note": false,
+        "direct-deposits:deposits[1].used_in_pay_statement": true,
+        "direct-deposits:deposits[1].visible": true,
+        "direct-deposits:deposits[1].is_paypal": false,
+        "direct-deposits:deposits[1].arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1102",
+      "sequence": 2,
+      "allocation_type": {
+        "value": "percent",
+        "raw_code": "DIRECT_DEPOSIT_PER_OF_REMAINDER",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "percent_basis": {
+        "value": "remainder_after_fixed",
+        "raw_code": "DIRECT_DEPOSIT_PER_OF_REMAINDER",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "amount": null,
+      "percent": "50.0",
+      "skip_if_insufficient": null,
+      "account_type": {
+        "value": "savings",
+        "raw_code": "SAVINGS",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "bank_name": null,
+      "routing_number": "604100050",
+      "routing_last4": null,
+      "account_number": "990042",
+      "account_last4": null,
+      "status": {
+        "value": "active",
+        "raw_code": "true",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "prenote_status": {
+        "value": "unknown",
+        "raw_code": "NA",
+        "raw_label": null,
+        "basis": "unmapped"
+      },
+      "frequency": {
+        "value": "unknown",
+        "raw_code": "HOLIDAY_TABLE",
+        "raw_label": null,
+        "basis": "unmapped"
+      },
+      "applies_to_paycheck_kinds": null,
+      "effective_from": "2023-01-01",
+      "effective_to": null,
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "account_last4": "not_applicable",
+        "amount": "not_applicable",
+        "applies_to_paycheck_kinds": "not_provided",
+        "bank_name": "not_provided",
+        "effective_to": "not_applicable",
+        "percent": "not_applicable",
+        "percent_basis": "not_applicable",
+        "routing_last4": "not_applicable",
+        "skip_if_insufficient": "not_provided"
+      },
+      "id": "ukg-ready:900003:direct_deposit:7001:66",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1102",
+        "id": "66"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/direct-deposits",
+          "locator": "/deposits/2"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "deprecated_source",
+          "severity": "warning",
+          "message": "UKG marks the employee direct-deposits route deprecated; it is the only deposit list (D-030).",
+          "field": null,
+          "evidence": "D-030"
+        }
+      ],
+      "provider_extensions": {
+        "direct-deposits:deposits[2].type": "DIRECT_DEPOSIT",
+        "direct-deposits:deposits[2].routing_type": "ABA",
+        "direct-deposits:deposits[2].cancel_pre_note": false,
+        "direct-deposits:deposits[2].used_in_pay_statement": true,
+        "direct-deposits:deposits[2].visible": true,
+        "direct-deposits:deposits[2].is_paypal": false,
+        "direct-deposits:deposits[2].arrearage_function": "DISCARD_UNDERFUNDED_AMOUNT",
+        "direct-deposits:deposits[2].pre_note_sent_date": "2025-01-02"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1102",
+      "sequence": 3,
+      "allocation_type": {
+        "value": "remainder",
+        "raw_code": "FULL",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "percent_basis": null,
+      "amount": null,
+      "percent": null,
+      "skip_if_insufficient": null,
+      "account_type": {
+        "value": "checking",
+        "raw_code": "CHECKING",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "bank_name": null,
+      "routing_number": "604100063",
+      "routing_last4": null,
+      "account_number": "990043",
+      "account_last4": null,
+      "status": {
+        "value": "active",
+        "raw_code": "true",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "prenote_status": {
+        "value": "sent",
+        "raw_code": "SENT",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "frequency": {
+        "value": "every_pay",
+        "raw_code": "EVERY_PAY",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "applies_to_paycheck_kinds": null,
+      "effective_from": "2023-01-01",
+      "effective_to": null,
+      "currency": "USD"
+    }
+  ],
+  "deduction_setups": [],
+  "benefit_enrollments": [
+    {
+      "field_status": {
+        "benefit_type": "not_provided",
+        "coverage_end": "not_applicable",
+        "deduction_end": "not_provided",
+        "deduction_start": "not_provided",
+        "is_section_125": "not_provided",
+        "plan_details": "not_provided",
+        "status": "not_provided",
+        "waive_reason": "not_provided"
+      },
+      "id": "ukg-ready:900003:benefit_enrollment:7001:71",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1101",
+        "id": "71"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/benefits",
+          "locator": "/benefits/0"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Employee' has an inferred canonical value.",
+          "field": "coverage_level",
+          "evidence": "ukg-ready.coverage_level"
+        }
+      ],
+      "provider_extensions": {},
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "plan": {
+        "field_status": {
+          "code": "not_provided"
+        },
+        "source_id": "91",
+        "code": null,
+        "name": "Medical PPO"
+      },
+      "benefit_type": null,
+      "status": null,
+      "coverage_level": {
+        "value": "employee_only",
+        "raw_code": "Employee",
+        "raw_label": null,
+        "basis": "inferred"
+      },
+      "coverage_start": "2025-01-01",
+      "coverage_end": null,
+      "deduction_start": null,
+      "deduction_end": null,
+      "is_section_125": null,
+      "waive_reason": null,
+      "plan_details": null,
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "benefit_type": "not_provided",
+        "deduction_end": "not_provided",
+        "deduction_start": "not_provided",
+        "is_section_125": "not_provided",
+        "plan_details": "not_provided",
+        "waive_reason": "not_provided"
+      },
+      "id": "ukg-ready:900003:benefit_enrollment:7001:72",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1101",
+        "id": "72"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/benefits",
+          "locator": "/benefits/1"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Waived' has an inferred canonical value.",
+          "field": "status",
+          "evidence": "ukg-ready.coverage_level"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Waived' is listed without a canonical value; value unknown.",
+          "field": "coverage_level",
+          "evidence": "ukg-ready.coverage_level"
+        }
+      ],
+      "provider_extensions": {},
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "plan": {
+        "field_status": {
+          "code": "not_provided"
+        },
+        "source_id": "92",
+        "code": null,
+        "name": "Dental"
+      },
+      "benefit_type": null,
+      "status": {
+        "value": "waived",
+        "raw_code": "Waived",
+        "raw_label": null,
+        "basis": "inferred"
+      },
+      "coverage_level": {
+        "value": "unknown",
+        "raw_code": "Waived",
+        "raw_label": null,
+        "basis": "unmapped"
+      },
+      "coverage_start": "2025-01-01",
+      "coverage_end": "2025-12-31",
+      "deduction_start": null,
+      "deduction_end": null,
+      "is_section_125": null,
+      "waive_reason": null,
+      "plan_details": null,
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "benefit_type": "not_provided",
+        "coverage_end": "not_applicable",
+        "currency": "not_provided",
+        "deduction_end": "not_provided",
+        "deduction_start": "not_provided",
+        "is_section_125": "not_provided",
+        "plan_details": "not_provided",
+        "status": "not_provided",
+        "waive_reason": "not_provided"
+      },
+      "id": "ukg-ready:900003:benefit_enrollment:7001:73",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1101",
+        "id": "73"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/benefits",
+          "locator": "/benefits/2"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Enter total annual contribution' is listed without a canonical value; value unknown.",
+          "field": "coverage_level",
+          "evidence": "ukg-ready.coverage_level"
+        }
+      ],
+      "provider_extensions": {},
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "plan": {
+        "field_status": {
+          "code": "not_provided"
+        },
+        "source_id": "93",
+        "code": null,
+        "name": "401k"
+      },
+      "benefit_type": null,
+      "status": null,
+      "coverage_level": {
+        "value": "unknown",
+        "raw_code": "Enter total annual contribution",
+        "raw_label": null,
+        "basis": "unmapped"
+      },
+      "coverage_start": "2023-01-01",
+      "coverage_end": null,
+      "deduction_start": null,
+      "deduction_end": null,
+      "is_section_125": null,
+      "waive_reason": null,
+      "plan_details": null,
+      "currency": null
+    },
+    {
+      "field_status": {
+        "benefit_type": "not_provided",
+        "coverage_end": "not_applicable",
+        "deduction_end": "not_provided",
+        "deduction_start": "not_provided",
+        "is_section_125": "not_provided",
+        "plan_details": "not_provided",
+        "status": "not_provided",
+        "waive_reason": "not_provided"
+      },
+      "id": "ukg-ready:900003:benefit_enrollment:7001:74",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1101",
+        "id": "74"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/benefits",
+          "locator": "/benefits/3"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Employee + Family' is not in the code table; value unknown.",
+          "field": "coverage_level",
+          "evidence": "ukg-ready.coverage_level"
+        }
+      ],
+      "provider_extensions": {},
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "plan": {
+        "field_status": {
+          "code": "not_provided"
+        },
+        "source_id": "94",
+        "code": null,
+        "name": "Vision"
+      },
+      "benefit_type": null,
+      "status": null,
+      "coverage_level": {
+        "value": "unknown",
+        "raw_code": "Employee + Family",
+        "raw_label": null,
+        "basis": "unmapped"
+      },
+      "coverage_start": "2025-01-01",
+      "coverage_end": null,
+      "deduction_start": null,
+      "deduction_end": null,
+      "is_section_125": null,
+      "waive_reason": null,
+      "plan_details": null,
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "benefit_type": "not_provided",
+        "coverage_end": "not_applicable",
+        "deduction_end": "not_provided",
+        "deduction_start": "not_provided",
+        "is_section_125": "not_provided",
+        "plan_details": "not_provided",
+        "status": "not_provided",
+        "waive_reason": "not_provided"
+      },
+      "id": "ukg-ready:900003:benefit_enrollment:7001:75",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "accountId": "1102",
+        "id": "75"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/employees/{aid}/benefits",
+          "locator": "/benefits/0"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code '75% Option' is listed without a canonical value; value unknown.",
+          "field": "coverage_level",
+          "evidence": "ukg-ready.coverage_level"
+        }
+      ],
+      "provider_extensions": {},
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1102",
+      "plan": {
+        "field_status": {
+          "code": "not_provided"
+        },
+        "source_id": "95",
+        "code": null,
+        "name": "Life"
+      },
+      "benefit_type": null,
+      "status": null,
+      "coverage_level": {
+        "value": "unknown",
+        "raw_code": "75% Option",
+        "raw_label": null,
+        "basis": "unmapped"
+      },
+      "coverage_start": "2024-03-04",
+      "coverage_end": null,
+      "deduction_start": null,
+      "deduction_end": null,
+      "is_section_125": null,
+      "waive_reason": null,
+      "plan_details": null,
+      "currency": "USD"
+    }
+  ],
+  "payroll_runs": [
+    {
+      "field_status": {
+        "finalized_date": "not_provided",
+        "run_date": "not_provided",
+        "run_number": "not_provided",
+        "scheduled_pay_date": "not_provided"
+      },
+      "id": "ukg-ready:900003:payroll_run:7001:3001",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "payrollId": "3001"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls",
+          "locator": "/payrolls/0"
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls/{id}",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Regular' has an inferred canonical value.",
+          "field": "run_type",
+          "evidence": "ukg-ready.payroll_type"
+        }
+      ],
+      "provider_extensions": {
+        "payrolls:payrolls[0].type.id": 1,
+        "payrolls:payrolls[0].billable": true,
+        "payrolls:payrolls[0].direct_deposit_date": "2025-01-10",
+        "payrolls:payrolls[0].dflt_pay_statement_type_id": 18432,
+        "batches:batches[0].id": 4001,
+        "batches:batches[0].display_name": "Main batch",
+        "batches:batches[0].status": "OPEN",
+        "batches:batches[0].master": true,
+        "batches:batches[0].type.id": 1,
+        "batches:batches[0].type.display_name": "Regular",
+        "batches:batches[0].type.active": true,
+        "batches:batches[1].id": 4002,
+        "batches:batches[1].display_name": "Tips import",
+        "batches:batches[1].status": "CLOSED",
+        "batches:batches[1].master": false,
+        "batches:batches[1].type.id": 3,
+        "batches:batches[1].type.display_name": "Import",
+        "batches:batches[1].type.active": true
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:501",
+      "name": "Biweekly 2025-01",
+      "run_type": {
+        "value": "regular",
+        "raw_code": "Regular",
+        "raw_label": null,
+        "basis": "inferred"
+      },
+      "status": {
+        "value": "open",
+        "raw_code": "OPEN",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "pay_date": "2025-01-10",
+      "scheduled_pay_date": null,
+      "run_number": null,
+      "run_date": null,
+      "finalized_date": null,
+      "pay_periods": [
+        {
+          "field_status": {
+            "pay_group_id": "not_provided",
+            "period_number": "not_provided"
+          },
+          "pay_group_id": null,
+          "period_start": "2024-12-22",
+          "period_end": "2025-01-04",
+          "period_number": null
+        }
+      ]
+    },
+    {
+      "field_status": {
+        "run_date": "not_provided",
+        "run_number": "not_provided",
+        "scheduled_pay_date": "not_provided"
+      },
+      "id": "ukg-ready:900003:payroll_run:7001:3002",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "payrollId": "3002"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls",
+          "locator": "/payrolls/1"
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls/{id}",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Regular' has an inferred canonical value.",
+          "field": "run_type",
+          "evidence": "ukg-ready.payroll_type"
+        }
+      ],
+      "provider_extensions": {
+        "payrolls:payrolls[1].type.id": 1,
+        "payrolls:payrolls[1].billable": true,
+        "payrolls:payrolls[1].direct_deposit_date": "2024-12-27",
+        "payrolls:payrolls[1].dflt_pay_statement_type_id": 18432
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:501",
+      "name": "Biweekly 2024-26",
+      "run_type": {
+        "value": "regular",
+        "raw_code": "Regular",
+        "raw_label": null,
+        "basis": "inferred"
+      },
+      "status": {
+        "value": "finalized",
+        "raw_code": "FINALIZED",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "pay_date": "2024-12-27",
+      "scheduled_pay_date": null,
+      "run_number": null,
+      "run_date": null,
+      "finalized_date": "2024-12-26",
+      "pay_periods": [
+        {
+          "field_status": {
+            "pay_group_id": "not_provided",
+            "period_number": "not_provided"
+          },
+          "pay_group_id": null,
+          "period_start": "2024-12-08",
+          "period_end": "2024-12-21",
+          "period_number": null
+        }
+      ]
+    },
+    {
+      "field_status": {
+        "finalized_date": "not_provided",
+        "run_date": "not_provided",
+        "run_number": "not_provided",
+        "scheduled_pay_date": "not_provided"
+      },
+      "id": "ukg-ready:900003:payroll_run:7001:3003",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "payrollId": "3003"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls",
+          "locator": "/payrolls/2"
+        },
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls/{id}",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Regular' has an inferred canonical value.",
+          "field": "run_type",
+          "evidence": "ukg-ready.payroll_type"
+        }
+      ],
+      "provider_extensions": {
+        "payrolls:payrolls[2].type.id": 1,
+        "payrolls:payrolls[2].billable": true,
+        "payrolls:payrolls[2].direct_deposit_date": "2025-01-10",
+        "payrolls:payrolls[2].dflt_pay_statement_type_id": 18432
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:502",
+      "name": "Catering 2025-01",
+      "run_type": {
+        "value": "regular",
+        "raw_code": "Regular",
+        "raw_label": null,
+        "basis": "inferred"
+      },
+      "status": {
+        "value": "failed",
+        "raw_code": "OPEN_FAILED",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "pay_date": "2025-01-10",
+      "scheduled_pay_date": null,
+      "run_number": null,
+      "run_date": null,
+      "finalized_date": null,
+      "pay_periods": [
+        {
+          "field_status": {
+            "pay_group_id": "not_provided",
+            "period_number": "not_provided"
+          },
+          "pay_group_id": null,
+          "period_start": "2024-12-22",
+          "period_end": "2025-01-04",
+          "period_number": null
+        }
+      ]
+    },
+    {
+      "field_status": {
+        "finalized_date": "not_provided",
+        "run_date": "not_provided",
+        "run_number": "not_provided",
+        "scheduled_pay_date": "not_provided"
+      },
+      "id": "ukg-ready:900003:payroll_run:7001:3004",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "payrollId": "3004"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls",
+          "locator": "/payrolls/3"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "source_unavailable",
+          "severity": "warning",
+          "message": "The payroll detail is not in the input or did not succeed: the finalized date is unknown.",
+          "field": "finalized_date",
+          "evidence": null
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Bonus' is not in the code table; value unknown.",
+          "field": "run_type",
+          "evidence": "ukg-ready.payroll_type"
+        }
+      ],
+      "provider_extensions": {
+        "payrolls:payrolls[3].type.id": 4,
+        "payrolls:payrolls[3].billable": true,
+        "payrolls:payrolls[3].direct_deposit_date": "2025-01-15",
+        "payrolls:payrolls[3].dflt_pay_statement_type_id": 18432
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:502",
+      "name": "Year-end bonus",
+      "run_type": {
+        "value": "unknown",
+        "raw_code": "Bonus",
+        "raw_label": null,
+        "basis": "unmapped"
+      },
+      "status": {
+        "value": "new",
+        "raw_code": "NEW",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "pay_date": "2025-01-15",
+      "scheduled_pay_date": null,
+      "run_number": null,
+      "run_date": null,
+      "finalized_date": null,
+      "pay_periods": [
+        {
+          "field_status": {
+            "pay_group_id": "not_provided",
+            "period_number": "not_provided"
+          },
+          "pay_group_id": null,
+          "period_start": "2024-12-01",
+          "period_end": "2024-12-31",
+          "period_number": null
+        }
+      ]
+    }
+  ],
+  "paychecks": [
+    {
+      "field_status": {
+        "benefit_lines": "not_provided",
+        "check_number": "not_provided",
+        "gross_pay": "not_provided",
+        "gross_wages": "not_provided",
+        "is_manual_check": "not_provided",
+        "pay_group_id": "not_provided",
+        "processed_date": "not_provided",
+        "retirement": "not_provided",
+        "reverses_paycheck_id": "not_provided",
+        "total_earnings": "not_provided",
+        "void_date": "not_provided"
+      },
+      "id": "ukg-ready:900003:paycheck:7001:5001",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "payrollId": "3001",
+        "payStatementId": "5001"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls/{id}/pay-statements/{id}",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Direct Deposit' has an inferred canonical value.",
+          "field": "payments[0].method",
+          "evidence": "ukg-ready.payment_type"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Direct Deposit' has an inferred canonical value.",
+          "field": "payments[1].method",
+          "evidence": "ukg-ready.payment_type"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Fringe' has an inferred canonical value.",
+          "field": "payments[2].method",
+          "evidence": "ukg-ready.payment_type"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Regular' has an inferred canonical value.",
+          "field": "kind",
+          "evidence": "ukg-ready.statement_type"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Earning' is listed without a canonical value; value unknown.",
+          "field": "earnings[0].pay_class",
+          "evidence": "ukg-ready.earning_type_name"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Earning (Auto)' is listed without a canonical value; value unknown.",
+          "field": "earnings[1].pay_class",
+          "evidence": "ukg-ready.earning_type_name"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Earning (Fringe, Auto)' has an inferred canonical value.",
+          "field": "earnings[2].pay_class",
+          "evidence": "ukg-ready.earning_type_name"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Earning (Auto Reduce)' is listed without a canonical value; value unknown.",
+          "field": "earnings[3].pay_class",
+          "evidence": "ukg-ready.earning_type_name"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Federal Income Tax' has an inferred canonical value.",
+          "field": "taxes[0].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Federal Income Tax' has an inferred canonical value.",
+          "field": "taxes[0].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Social Security' has an inferred canonical value.",
+          "field": "taxes[1].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Social Security' has an inferred canonical value.",
+          "field": "taxes[1].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Social Security' has an inferred canonical value.",
+          "field": "taxes[2].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Social Security' has an inferred canonical value.",
+          "field": "taxes[2].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[3].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[3].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[4].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[4].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Additional Medicare' has an inferred canonical value.",
+          "field": "taxes[5].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Additional Medicare' has an inferred canonical value.",
+          "field": "taxes[5].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Federal Unemployment Tax' has an inferred canonical value.",
+          "field": "taxes[6].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Federal Unemployment Tax' has an inferred canonical value.",
+          "field": "taxes[6].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Wisconsin' is not in the code table; value unknown.",
+          "field": "taxes[7].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Wisconsin' is not in the code table; value unknown.",
+          "field": "taxes[7].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'ER SUTA Wisconsin' has an inferred canonical value.",
+          "field": "taxes[8].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'ER SUTA Wisconsin' has an inferred canonical value.",
+          "field": "taxes[8].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        }
+      ],
+      "provider_extensions": {
+        "statement:type.id": 18432,
+        "statement:calcUpto": "NET",
+        "statement:emptyEarning": false,
+        "statement:deductions[0].type_name": "Deduction",
+        "statement:deductions[0].batch.id": 4001,
+        "statement:deductions[0].batch.display_name": "Main batch",
+        "statement:deductions[0].workers_comp_code.external_id": "9079",
+        "statement:deductions[0].quantity": 0,
+        "statement:deductions[0].base_rate": 0,
+        "statement:deductions[0].vendor.id": 7,
+        "statement:deductions[0].vendor.name": "Harbor 401k Trust",
+        "statement:deductions[1].type_name": "Deduction",
+        "statement:deductions[1].batch.id": 4001,
+        "statement:deductions[1].batch.display_name": "Main batch",
+        "statement:deductions[1].workers_comp_code.external_id": "9079",
+        "statement:deductions[1].quantity": 0,
+        "statement:deductions[1].base_rate": 0,
+        "statement:deductions[2].type_name": "Deduction",
+        "statement:deductions[2].batch.id": 4001,
+        "statement:deductions[2].batch.display_name": "Main batch",
+        "statement:deductions[2].workers_comp_code.external_id": "9079",
+        "statement:deductions[2].quantity": 0,
+        "statement:deductions[2].base_rate": 0,
+        "statement:deductions[3].type_name": "Garnishment",
+        "statement:deductions[3].batch.id": 4001,
+        "statement:deductions[3].batch.display_name": "Main batch",
+        "statement:deductions[3].workers_comp_code.external_id": "9079",
+        "statement:deductions[3].quantity": 0,
+        "statement:deductions[3].base_rate": 0,
+        "statement:payments[0].batch.id": 4001,
+        "statement:payments[0].batch.display_name": "Main batch",
+        "statement:payments[0].hours": 0,
+        "statement:payments[0].quantity": 0,
+        "statement:payments[1].batch.id": 4001,
+        "statement:payments[1].batch.display_name": "Main batch",
+        "statement:payments[1].hours": 0,
+        "statement:payments[1].quantity": 0,
+        "statement:payments[2].batch.id": 4001,
+        "statement:payments[2].batch.display_name": "Main batch",
+        "statement:payments[2].hours": 0,
+        "statement:payments[2].quantity": 0,
+        "statement:earnings[0].batch.id": 4001,
+        "statement:earnings[0].batch.display_name": "Main batch",
+        "statement:earnings[0].workers_comp_code.external_id": "9079",
+        "statement:earnings[0].shift.id": 1,
+        "statement:earnings[0].shift.name": "Day",
+        "statement:earnings[0].cost_centers[0].index": 0,
+        "statement:earnings[0].cost_centers[0].value.id": 8100,
+        "statement:earnings[0].quantity": 0,
+        "statement:earnings[1].batch.id": 4001,
+        "statement:earnings[1].batch.display_name": "Main batch",
+        "statement:earnings[1].workers_comp_code.external_id": "9079",
+        "statement:earnings[1].shift.id": 1,
+        "statement:earnings[1].shift.name": "Day",
+        "statement:earnings[1].cost_centers[0].index": 0,
+        "statement:earnings[1].cost_centers[0].value.id": 8100,
+        "statement:earnings[1].quantity": 0,
+        "statement:earnings[2].batch.id": 4001,
+        "statement:earnings[2].batch.display_name": "Main batch",
+        "statement:earnings[2].workers_comp_code.external_id": "9079",
+        "statement:earnings[2].shift.id": 1,
+        "statement:earnings[2].shift.name": "Day",
+        "statement:earnings[2].cost_centers[0].index": 0,
+        "statement:earnings[2].cost_centers[0].value.id": 8100,
+        "statement:earnings[3].batch.id": 4001,
+        "statement:earnings[3].batch.display_name": "Main batch",
+        "statement:earnings[3].workers_comp_code.external_id": "9079",
+        "statement:earnings[3].shift.id": 1,
+        "statement:earnings[3].shift.name": "Day",
+        "statement:earnings[3].cost_centers[0].index": 0,
+        "statement:earnings[3].cost_centers[0].value.id": 8100,
+        "statement:earnings[3].quantity": 0,
+        "statement:taxes[0].company_tax.abbrev": "FIT",
+        "statement:taxes[0].company_tax.external_id": "T-FIT",
+        "statement:taxes[0].type_name": "Tax",
+        "statement:taxes[0].batch.id": 4001,
+        "statement:taxes[0].batch.display_name": "Main batch",
+        "statement:taxes[0].ee_gross_subject_wage": "1476.39",
+        "statement:taxes[1].company_tax.abbrev": "SS",
+        "statement:taxes[1].company_tax.external_id": "T-SS",
+        "statement:taxes[1].type_name": "Tax",
+        "statement:taxes[1].batch.id": 4001,
+        "statement:taxes[1].batch.display_name": "Main batch",
+        "statement:taxes[1].ee_gross_subject_wage": "1573.5",
+        "statement:taxes[1].er_gross_subject_wage": "1573.5",
+        "statement:taxes[2].company_tax.abbrev": "MED",
+        "statement:taxes[2].company_tax.external_id": "T-MED",
+        "statement:taxes[2].type_name": "Tax",
+        "statement:taxes[2].batch.id": 4001,
+        "statement:taxes[2].batch.display_name": "Main batch",
+        "statement:taxes[2].ee_gross_subject_wage": "1573.5",
+        "statement:taxes[2].er_gross_subject_wage": "1573.5",
+        "statement:taxes[3].company_tax.abbrev": "AMED",
+        "statement:taxes[3].company_tax.external_id": "T-AMED",
+        "statement:taxes[3].type_name": "Tax",
+        "statement:taxes[3].batch.id": 4001,
+        "statement:taxes[3].batch.display_name": "Main batch",
+        "statement:taxes[3].ee_gross_subject_wage": "1573.5",
+        "statement:taxes[4].company_tax.abbrev": "FUTA",
+        "statement:taxes[4].company_tax.external_id": "T-FUTA",
+        "statement:taxes[4].type_name": "Tax",
+        "statement:taxes[4].batch.id": 4001,
+        "statement:taxes[4].batch.display_name": "Main batch",
+        "statement:taxes[4].er_gross_subject_wage": "1573.5",
+        "statement:taxes[5].company_tax.abbrev": "WI",
+        "statement:taxes[5].company_tax.external_id": "T-WI",
+        "statement:taxes[5].type_name": "Tax",
+        "statement:taxes[5].batch.id": 4001,
+        "statement:taxes[5].batch.display_name": "Main batch",
+        "statement:taxes[5].ee_gross_subject_wage": "1476.39",
+        "statement:taxes[6].company_tax.abbrev": "WISUI",
+        "statement:taxes[6].company_tax.external_id": "T-WISUI",
+        "statement:taxes[6].type_name": "Tax",
+        "statement:taxes[6].batch.id": 4001,
+        "statement:taxes[6].batch.display_name": "Main batch",
+        "statement:taxes[6].er_gross_subject_wage": "1573.5"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "payroll_run_id": "ukg-ready:900003:payroll_run:7001:3001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:501",
+      "pay_group_id": null,
+      "check_number": null,
+      "kind": {
+        "value": "regular",
+        "raw_code": "Regular",
+        "raw_label": null,
+        "basis": "inferred"
+      },
+      "status": {
+        "value": "open",
+        "raw_code": "OPEN",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "is_manual_check": null,
+      "pay_date": "2025-01-10",
+      "period_start": "2024-12-22",
+      "period_end": "2025-01-04",
+      "processed_date": null,
+      "reverses_paycheck_id": null,
+      "void_date": null,
+      "earnings": [
+        {
+          "field_status": {
+            "hours_worked": "not_provided",
+            "is_cash": "not_provided",
+            "rate_class": "not_provided",
+            "units": "not_provided"
+          },
+          "source_line_id": "1",
+          "earning_code_id": "ukg-ready:900003:earning_code:7001:701",
+          "earning_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "REG",
+            "name": "Regular"
+          },
+          "pay_class": {
+            "value": "unknown",
+            "raw_code": "Earning",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "is_cash": null,
+          "rate_class": null,
+          "hours": "80",
+          "hours_worked": null,
+          "units": null,
+          "rate": "19.5",
+          "amount": "1560.0"
+        },
+        {
+          "field_status": {
+            "hours_worked": "not_provided",
+            "is_cash": "not_provided",
+            "rate_class": "not_provided",
+            "units": "not_provided"
+          },
+          "source_line_id": "2",
+          "earning_code_id": "ukg-ready:900003:earning_code:7001:702",
+          "earning_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "OT",
+            "name": "Overtime"
+          },
+          "pay_class": {
+            "value": "unknown",
+            "raw_code": "Earning (Auto)",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "is_cash": null,
+          "rate_class": null,
+          "hours": "2",
+          "hours_worked": null,
+          "units": null,
+          "rate": "29.25",
+          "amount": "58.5"
+        },
+        {
+          "field_status": {
+            "hours": "not_provided",
+            "hours_worked": "not_provided",
+            "is_cash": "not_provided",
+            "rate": "not_provided",
+            "rate_class": "not_provided",
+            "units": "not_provided"
+          },
+          "source_line_id": "3",
+          "earning_code_id": "ukg-ready:900003:earning_code:7001:703",
+          "earning_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "GTL",
+            "name": "Group Term Life"
+          },
+          "pay_class": {
+            "value": "non_cash_fringe",
+            "raw_code": "Earning (Fringe, Auto)",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "is_cash": null,
+          "rate_class": null,
+          "hours": null,
+          "hours_worked": null,
+          "units": null,
+          "rate": null,
+          "amount": "3.1"
+        },
+        {
+          "field_status": {
+            "amount": "not_provided",
+            "hours_worked": "not_provided",
+            "is_cash": "not_provided",
+            "rate": "not_provided",
+            "rate_class": "not_provided",
+            "units": "not_provided"
+          },
+          "source_line_id": "4",
+          "earning_code_id": "ukg-ready:900003:earning_code:7001:704",
+          "earning_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "TIPS",
+            "name": "Tips"
+          },
+          "pay_class": {
+            "value": "unknown",
+            "raw_code": "Earning (Auto Reduce)",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "is_cash": null,
+          "rate_class": null,
+          "hours": "0",
+          "hours_worked": null,
+          "units": null,
+          "rate": null,
+          "amount": null
+        }
+      ],
+      "deductions": [
+        {
+          "field_status": {
+            "category": "not_provided",
+            "is_catch_up": "not_provided",
+            "plan": "not_provided",
+            "tax_treatment": "not_provided"
+          },
+          "source_line_id": "11",
+          "deduction_code_id": "ukg-ready:900003:deduction_code:7001:801",
+          "deduction_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "401K",
+            "name": "401(k)"
+          },
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "plan": null,
+          "amount": "97.11"
+        },
+        {
+          "field_status": {
+            "category": "not_provided",
+            "is_catch_up": "not_provided",
+            "plan": "not_provided",
+            "tax_treatment": "not_provided"
+          },
+          "source_line_id": "12",
+          "deduction_code_id": "ukg-ready:900003:deduction_code:7001:802",
+          "deduction_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "MED",
+            "name": "Medical"
+          },
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "plan": null,
+          "amount": "45.0"
+        },
+        {
+          "field_status": {
+            "category": "not_provided",
+            "is_catch_up": "not_provided",
+            "plan": "not_provided",
+            "tax_treatment": "not_provided"
+          },
+          "source_line_id": "13",
+          "deduction_code_id": "ukg-ready:900003:deduction_code:7001:804",
+          "deduction_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "401KL1",
+            "name": "401K Loan 1"
+          },
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "plan": null,
+          "amount": "25.0"
+        },
+        {
+          "field_status": {
+            "category": "not_provided",
+            "is_catch_up": "not_provided",
+            "plan": "not_provided",
+            "tax_treatment": "not_provided"
+          },
+          "source_line_id": "14",
+          "deduction_code_id": "ukg-ready:900003:deduction_code:7001:805",
+          "deduction_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "GARN",
+            "name": "Garnishment"
+          },
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "plan": null,
+          "amount": "50.0"
+        }
+      ],
+      "taxes": [
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "21",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "601",
+            "code": "FIT",
+            "name": "Federal Income Tax"
+          },
+          "tax_type": {
+            "value": "federal_income",
+            "raw_code": "Federal Income Tax",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Federal Income Tax",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "120.0",
+          "taxable_wages": "1476.39",
+          "gross_wages": "1476.39",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "22",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "602",
+            "code": "SS",
+            "name": "Social Security"
+          },
+          "tax_type": {
+            "value": "social_security",
+            "raw_code": "Social Security",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Social Security",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "97.56",
+          "taxable_wages": "1573.5",
+          "gross_wages": "1573.5",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "22",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "602",
+            "code": "SS",
+            "name": "Social Security"
+          },
+          "tax_type": {
+            "value": "social_security",
+            "raw_code": "Social Security",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Social Security",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employer",
+          "amount": "97.56",
+          "taxable_wages": "1573.5",
+          "gross_wages": "1573.5",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "23",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "603",
+            "code": "MED",
+            "name": "Medicare"
+          },
+          "tax_type": {
+            "value": "medicare",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "22.82",
+          "taxable_wages": "1573.5",
+          "gross_wages": "1573.5",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "23",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "603",
+            "code": "MED",
+            "name": "Medicare"
+          },
+          "tax_type": {
+            "value": "medicare",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employer",
+          "amount": "22.82",
+          "taxable_wages": "1573.5",
+          "gross_wages": "1573.5",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "amount": "not_provided",
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "24",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "604",
+            "code": "AMED",
+            "name": "Additional Medicare"
+          },
+          "tax_type": {
+            "value": "additional_medicare",
+            "raw_code": "Additional Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Additional Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": null,
+          "taxable_wages": "1573.5",
+          "gross_wages": "1573.5",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "25",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "605",
+            "code": "FUTA",
+            "name": "Federal Unemployment Tax"
+          },
+          "tax_type": {
+            "value": "federal_unemployment",
+            "raw_code": "Federal Unemployment Tax",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Federal Unemployment Tax",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employer",
+          "amount": "9.44",
+          "taxable_wages": "1573.5",
+          "gross_wages": "1573.5",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "26",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "606",
+            "code": "WI",
+            "name": "Wisconsin"
+          },
+          "tax_type": {
+            "value": "unknown",
+            "raw_code": "Wisconsin",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "jurisdiction_level": {
+            "value": "unknown",
+            "raw_code": "Wisconsin",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "78.25",
+          "taxable_wages": "1476.39",
+          "gross_wages": "1476.39",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "27",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "607",
+            "code": "WISUI",
+            "name": "ER SUTA Wisconsin"
+          },
+          "tax_type": {
+            "value": "state_unemployment",
+            "raw_code": "ER SUTA Wisconsin",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "state",
+            "raw_code": "ER SUTA Wisconsin",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employer",
+          "amount": "48.78",
+          "taxable_wages": "1573.5",
+          "gross_wages": "1573.5",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        }
+      ],
+      "employer_contributions": [
+        {
+          "field_status": {
+            "earning_code_id": "not_provided"
+          },
+          "source_line_id": "11",
+          "plan": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "401K",
+            "name": "401(k)"
+          },
+          "deduction_code_id": "ukg-ready:900003:deduction_code:7001:801",
+          "earning_code_id": null,
+          "amount": "48.56"
+        },
+        {
+          "field_status": {
+            "earning_code_id": "not_provided"
+          },
+          "source_line_id": "12",
+          "plan": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "MED",
+            "name": "Medical"
+          },
+          "deduction_code_id": "ukg-ready:900003:deduction_code:7001:802",
+          "earning_code_id": null,
+          "amount": "150.0"
+        }
+      ],
+      "benefit_lines": null,
+      "retirement": null,
+      "payments": [
+        {
+          "field_status": {
+            "account_last4": "not_provided",
+            "direct_deposit_id": "not_provided",
+            "routing_last4": "not_provided"
+          },
+          "source_line_id": "31",
+          "method": {
+            "value": "direct_deposit",
+            "raw_code": "Direct Deposit",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "amount": "100.0",
+          "direct_deposit_id": null,
+          "routing_last4": null,
+          "account_last4": null
+        },
+        {
+          "field_status": {
+            "account_last4": "not_provided",
+            "direct_deposit_id": "not_provided",
+            "routing_last4": "not_provided"
+          },
+          "source_line_id": "32",
+          "method": {
+            "value": "direct_deposit",
+            "raw_code": "Direct Deposit",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "amount": "982.76",
+          "direct_deposit_id": null,
+          "routing_last4": null,
+          "account_last4": null
+        },
+        {
+          "field_status": {
+            "account_last4": "not_provided",
+            "direct_deposit_id": "not_provided",
+            "routing_last4": "not_provided"
+          },
+          "source_line_id": "33",
+          "method": {
+            "value": "non_cash",
+            "raw_code": "Fringe",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "amount": "3.1",
+          "direct_deposit_id": null,
+          "routing_last4": null,
+          "account_last4": null
+        }
+      ],
+      "gross_pay": null,
+      "gross_wages": null,
+      "total_earnings": null,
+      "net_pay": "1082.76",
+      "derived_totals": [
+        "net_pay"
+      ],
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "benefit_lines": "not_provided",
+        "check_number": "not_provided",
+        "gross_pay": "not_provided",
+        "gross_wages": "not_provided",
+        "is_manual_check": "not_provided",
+        "net_pay": "not_provided",
+        "pay_group_id": "not_provided",
+        "processed_date": "not_provided",
+        "retirement": "not_provided",
+        "reverses_paycheck_id": "not_provided",
+        "total_earnings": "not_provided",
+        "void_date": "not_provided"
+      },
+      "id": "ukg-ready:900003:paycheck:7001:5002",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "payrollId": "3001",
+        "payStatementId": "5002"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls/{id}/pay-statements/{id}",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Check' has an inferred canonical value.",
+          "field": "payments[0].method",
+          "evidence": "ukg-ready.payment_type"
+        },
+        {
+          "code": "reconciliation_incomplete",
+          "severity": "warning",
+          "message": "Net pay not derived: a Check or Direct Deposit line has no amount.",
+          "field": "net_pay",
+          "evidence": "D-052"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Regular' has an inferred canonical value.",
+          "field": "kind",
+          "evidence": "ukg-ready.statement_type"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Earning' is listed without a canonical value; value unknown.",
+          "field": "earnings[0].pay_class",
+          "evidence": "ukg-ready.earning_type_name"
+        }
+      ],
+      "provider_extensions": {
+        "statement:type.id": 18432,
+        "statement:calcUpto": "NET",
+        "statement:emptyEarning": false,
+        "statement:payments[0].batch.id": 4001,
+        "statement:payments[0].batch.display_name": "Main batch",
+        "statement:payments[0].hours": 0,
+        "statement:payments[0].quantity": 0,
+        "statement:earnings[0].batch.id": 4001,
+        "statement:earnings[0].batch.display_name": "Main batch",
+        "statement:earnings[0].workers_comp_code.external_id": "9079",
+        "statement:earnings[0].shift.id": 1,
+        "statement:earnings[0].shift.name": "Day",
+        "statement:earnings[0].cost_centers[0].index": 0,
+        "statement:earnings[0].cost_centers[0].value.id": 8100
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1103",
+      "payroll_run_id": "ukg-ready:900003:payroll_run:7001:3001",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:501",
+      "pay_group_id": null,
+      "check_number": null,
+      "kind": {
+        "value": "regular",
+        "raw_code": "Regular",
+        "raw_label": null,
+        "basis": "inferred"
+      },
+      "status": {
+        "value": "open",
+        "raw_code": "OPEN",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "is_manual_check": null,
+      "pay_date": "2025-01-10",
+      "period_start": "2024-12-22",
+      "period_end": "2025-01-04",
+      "processed_date": null,
+      "reverses_paycheck_id": null,
+      "void_date": null,
+      "earnings": [
+        {
+          "field_status": {
+            "hours": "not_provided",
+            "hours_worked": "not_provided",
+            "is_cash": "not_provided",
+            "rate": "not_provided",
+            "rate_class": "not_provided",
+            "units": "not_provided"
+          },
+          "source_line_id": "1",
+          "earning_code_id": "ukg-ready:900003:earning_code:7001:706",
+          "earning_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "FEE",
+            "name": "Contractor fee"
+          },
+          "pay_class": {
+            "value": "unknown",
+            "raw_code": "Earning",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "is_cash": null,
+          "rate_class": null,
+          "hours": null,
+          "hours_worked": null,
+          "units": null,
+          "rate": null,
+          "amount": "1000.0"
+        }
+      ],
+      "deductions": [],
+      "taxes": [],
+      "employer_contributions": [],
+      "benefit_lines": null,
+      "retirement": null,
+      "payments": [
+        {
+          "field_status": {
+            "account_last4": "not_provided",
+            "amount": "not_provided",
+            "direct_deposit_id": "not_provided",
+            "routing_last4": "not_provided"
+          },
+          "source_line_id": "31",
+          "method": {
+            "value": "check",
+            "raw_code": "Check",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "amount": null,
+          "direct_deposit_id": null,
+          "routing_last4": null,
+          "account_last4": null
+        }
+      ],
+      "gross_pay": null,
+      "gross_wages": null,
+      "total_earnings": null,
+      "net_pay": null,
+      "derived_totals": [],
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "benefit_lines": "not_provided",
+        "check_number": "not_provided",
+        "gross_pay": "not_provided",
+        "gross_wages": "not_provided",
+        "is_manual_check": "not_provided",
+        "pay_group_id": "not_provided",
+        "processed_date": "not_provided",
+        "retirement": "not_provided",
+        "reverses_paycheck_id": "not_provided",
+        "total_earnings": "not_provided",
+        "void_date": "not_provided"
+      },
+      "id": "ukg-ready:900003:paycheck:7001:5003",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "payrollId": "3002",
+        "payStatementId": "5003"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls/{id}/pay-statements/{id}",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Direct Deposit' has an inferred canonical value.",
+          "field": "payments[0].method",
+          "evidence": "ukg-ready.payment_type"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Manual' is not in the code table; value unknown.",
+          "field": "kind",
+          "evidence": "ukg-ready.statement_type"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Earning' is listed without a canonical value; value unknown.",
+          "field": "earnings[0].pay_class",
+          "evidence": "ukg-ready.earning_type_name"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Federal Income Tax' has an inferred canonical value.",
+          "field": "taxes[0].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Federal Income Tax' has an inferred canonical value.",
+          "field": "taxes[0].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'OASDI' has an inferred canonical value.",
+          "field": "taxes[1].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'OASDI' has an inferred canonical value.",
+          "field": "taxes[1].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'OASDI' has an inferred canonical value.",
+          "field": "taxes[2].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'OASDI' has an inferred canonical value.",
+          "field": "taxes[2].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[3].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[3].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[4].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[4].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        }
+      ],
+      "provider_extensions": {
+        "statement:type.id": 18433,
+        "statement:calcUpto": "NET",
+        "statement:emptyEarning": false,
+        "statement:payments[0].batch.id": 4001,
+        "statement:payments[0].batch.display_name": "Main batch",
+        "statement:payments[0].hours": 0,
+        "statement:payments[0].quantity": 0,
+        "statement:earnings[0].batch.id": 4001,
+        "statement:earnings[0].batch.display_name": "Main batch",
+        "statement:earnings[0].workers_comp_code.external_id": "9079",
+        "statement:earnings[0].shift.id": 1,
+        "statement:earnings[0].shift.name": "Day",
+        "statement:earnings[0].cost_centers[0].index": 0,
+        "statement:earnings[0].cost_centers[0].value.id": 8100,
+        "statement:earnings[0].quantity": 0,
+        "statement:taxes[0].company_tax.abbrev": "FIT",
+        "statement:taxes[0].company_tax.external_id": "T-FIT",
+        "statement:taxes[0].type_name": "Tax",
+        "statement:taxes[0].batch.id": 4001,
+        "statement:taxes[0].batch.display_name": "Main batch",
+        "statement:taxes[0].ee_gross_subject_wage": "1482.0",
+        "statement:taxes[1].company_tax.abbrev": "OASDI",
+        "statement:taxes[1].company_tax.external_id": "T-OASDI",
+        "statement:taxes[1].type_name": "Tax",
+        "statement:taxes[1].batch.id": 4001,
+        "statement:taxes[1].batch.display_name": "Main batch",
+        "statement:taxes[1].ee_gross_subject_wage": "1482.0",
+        "statement:taxes[1].er_gross_subject_wage": "1482.0",
+        "statement:taxes[2].company_tax.abbrev": "MED",
+        "statement:taxes[2].company_tax.external_id": "T-MED",
+        "statement:taxes[2].type_name": "Tax",
+        "statement:taxes[2].batch.id": 4001,
+        "statement:taxes[2].batch.display_name": "Main batch",
+        "statement:taxes[2].ee_gross_subject_wage": "1482.0",
+        "statement:taxes[2].er_gross_subject_wage": "1482.0"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1101",
+      "payroll_run_id": "ukg-ready:900003:payroll_run:7001:3002",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:501",
+      "pay_group_id": null,
+      "check_number": null,
+      "kind": {
+        "value": "unknown",
+        "raw_code": "Manual",
+        "raw_label": null,
+        "basis": "unmapped"
+      },
+      "status": {
+        "value": "finalized",
+        "raw_code": "FINALIZED",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "is_manual_check": null,
+      "pay_date": "2024-12-27",
+      "period_start": "2024-12-08",
+      "period_end": "2024-12-21",
+      "processed_date": null,
+      "reverses_paycheck_id": null,
+      "void_date": null,
+      "earnings": [
+        {
+          "field_status": {
+            "hours_worked": "not_provided",
+            "is_cash": "not_provided",
+            "rate_class": "not_provided",
+            "units": "not_provided"
+          },
+          "source_line_id": "1",
+          "earning_code_id": "ukg-ready:900003:earning_code:7001:701",
+          "earning_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "REG",
+            "name": "Regular"
+          },
+          "pay_class": {
+            "value": "unknown",
+            "raw_code": "Earning",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "is_cash": null,
+          "rate_class": null,
+          "hours": "76",
+          "hours_worked": null,
+          "units": null,
+          "rate": "19.5",
+          "amount": "1482.0"
+        }
+      ],
+      "deductions": [],
+      "taxes": [
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "21",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "601",
+            "code": "FIT",
+            "name": "Federal Income Tax"
+          },
+          "tax_type": {
+            "value": "federal_income",
+            "raw_code": "Federal Income Tax",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Federal Income Tax",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "110.0",
+          "taxable_wages": "1482.0",
+          "gross_wages": "1482.0",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "22",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "608",
+            "code": "OASDI",
+            "name": "OASDI"
+          },
+          "tax_type": {
+            "value": "social_security",
+            "raw_code": "OASDI",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "OASDI",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "91.88",
+          "taxable_wages": "1482.0",
+          "gross_wages": "1482.0",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "22",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "608",
+            "code": "OASDI",
+            "name": "OASDI"
+          },
+          "tax_type": {
+            "value": "social_security",
+            "raw_code": "OASDI",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "OASDI",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employer",
+          "amount": "91.88",
+          "taxable_wages": "1482.0",
+          "gross_wages": "1482.0",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "23",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "603",
+            "code": "MED",
+            "name": "Medicare"
+          },
+          "tax_type": {
+            "value": "medicare",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "21.49",
+          "taxable_wages": "1482.0",
+          "gross_wages": "1482.0",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "23",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "603",
+            "code": "MED",
+            "name": "Medicare"
+          },
+          "tax_type": {
+            "value": "medicare",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employer",
+          "amount": "21.49",
+          "taxable_wages": "1482.0",
+          "gross_wages": "1482.0",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        }
+      ],
+      "employer_contributions": [],
+      "benefit_lines": null,
+      "retirement": null,
+      "payments": [
+        {
+          "field_status": {
+            "account_last4": "not_provided",
+            "direct_deposit_id": "not_provided",
+            "routing_last4": "not_provided"
+          },
+          "source_line_id": "31",
+          "method": {
+            "value": "direct_deposit",
+            "raw_code": "Direct Deposit",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "amount": "1258.63",
+          "direct_deposit_id": null,
+          "routing_last4": null,
+          "account_last4": null
+        }
+      ],
+      "gross_pay": null,
+      "gross_wages": null,
+      "total_earnings": null,
+      "net_pay": "1258.63",
+      "derived_totals": [
+        "net_pay"
+      ],
+      "currency": "USD"
+    },
+    {
+      "field_status": {
+        "benefit_lines": "not_provided",
+        "check_number": "not_provided",
+        "gross_pay": "not_provided",
+        "gross_wages": "not_provided",
+        "is_manual_check": "not_provided",
+        "pay_group_id": "not_provided",
+        "processed_date": "not_provided",
+        "retirement": "not_provided",
+        "reverses_paycheck_id": "not_provided",
+        "total_earnings": "not_provided",
+        "void_date": "not_provided"
+      },
+      "id": "ukg-ready:900003:paycheck:7001:5004",
+      "provider": "ukg-ready",
+      "tenant_id": "900003",
+      "source_ids": {
+        "companyId": "7001",
+        "payrollId": "3003",
+        "payStatementId": "5004"
+      },
+      "sources": [
+        {
+          "endpoint": "GET /v2/companies/{cid}/payrolls/{id}/pay-statements/{id}",
+          "locator": ""
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Direct Deposit' has an inferred canonical value.",
+          "field": "payments[0].method",
+          "evidence": "ukg-ready.payment_type"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Regular' has an inferred canonical value.",
+          "field": "kind",
+          "evidence": "ukg-ready.statement_type"
+        },
+        {
+          "code": "unknown_code",
+          "severity": "warning",
+          "message": "Provider code 'Earning' is listed without a canonical value; value unknown.",
+          "field": "earnings[0].pay_class",
+          "evidence": "ukg-ready.earning_type_name"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Federal Income Tax' has an inferred canonical value.",
+          "field": "taxes[0].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Federal Income Tax' has an inferred canonical value.",
+          "field": "taxes[0].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Social Security' has an inferred canonical value.",
+          "field": "taxes[1].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Social Security' has an inferred canonical value.",
+          "field": "taxes[1].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Social Security' has an inferred canonical value.",
+          "field": "taxes[2].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Social Security' has an inferred canonical value.",
+          "field": "taxes[2].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[3].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[3].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[4].tax_type",
+          "evidence": "ukg-ready.tax_label"
+        },
+        {
+          "code": "inferred_mapping",
+          "severity": "info",
+          "message": "Provider code 'Medicare' has an inferred canonical value.",
+          "field": "taxes[4].jurisdiction_level",
+          "evidence": "ukg-ready.tax_label"
+        }
+      ],
+      "provider_extensions": {
+        "statement:type.id": 18432,
+        "statement:calcUpto": "NET",
+        "statement:emptyEarning": false,
+        "statement:messages[0].id": 1,
+        "statement:messages[0].type_name": "Warning",
+        "statement:messages[0].message.text": "Payroll failed to open for one EIN",
+        "statement:messages[0].message.severity": "WARNING",
+        "statement:messages[0].batch.id": 4001,
+        "statement:messages[0].batch.display_name": "Main batch",
+        "statement:deductions[0].type_name": "Deduction",
+        "statement:deductions[0].batch.id": 4001,
+        "statement:deductions[0].batch.display_name": "Main batch",
+        "statement:deductions[0].workers_comp_code.external_id": "9079",
+        "statement:deductions[0].quantity": 0,
+        "statement:deductions[0].base_rate": 0,
+        "statement:payments[0].batch.id": 4001,
+        "statement:payments[0].batch.display_name": "Main batch",
+        "statement:payments[0].hours": 0,
+        "statement:payments[0].quantity": 0,
+        "statement:earnings[0].batch.id": 4001,
+        "statement:earnings[0].batch.display_name": "Main batch",
+        "statement:earnings[0].workers_comp_code.external_id": "9079",
+        "statement:earnings[0].shift.id": 1,
+        "statement:earnings[0].shift.name": "Day",
+        "statement:earnings[0].cost_centers[0].index": 0,
+        "statement:earnings[0].cost_centers[0].value.id": 8100,
+        "statement:taxes[0].company_tax.abbrev": "FIT",
+        "statement:taxes[0].company_tax.external_id": "T-FIT",
+        "statement:taxes[0].type_name": "Tax",
+        "statement:taxes[0].batch.id": 4001,
+        "statement:taxes[0].batch.display_name": "Main batch",
+        "statement:taxes[0].ee_gross_subject_wage": "1833.65",
+        "statement:taxes[1].company_tax.abbrev": "SS",
+        "statement:taxes[1].company_tax.external_id": "T-SS",
+        "statement:taxes[1].type_name": "Tax",
+        "statement:taxes[1].batch.id": 4001,
+        "statement:taxes[1].batch.display_name": "Main batch",
+        "statement:taxes[1].ee_gross_subject_wage": "1833.65",
+        "statement:taxes[1].er_gross_subject_wage": "1833.65",
+        "statement:taxes[2].company_tax.abbrev": "MED",
+        "statement:taxes[2].company_tax.external_id": "T-MED",
+        "statement:taxes[2].type_name": "Tax",
+        "statement:taxes[2].batch.id": 4001,
+        "statement:taxes[2].batch.display_name": "Main batch",
+        "statement:taxes[2].ee_gross_subject_wage": "1833.65",
+        "statement:taxes[2].er_gross_subject_wage": "1833.65"
+      },
+      "sensitive_provider_extensions": {},
+      "company_id": "ukg-ready:900003:company:7001",
+      "employee_id": "ukg-ready:900003:employee:7001:1102",
+      "payroll_run_id": "ukg-ready:900003:payroll_run:7001:3003",
+      "tax_entity_id": "ukg-ready:900003:tax_entity:7001:502",
+      "pay_group_id": null,
+      "check_number": null,
+      "kind": {
+        "value": "regular",
+        "raw_code": "Regular",
+        "raw_label": null,
+        "basis": "inferred"
+      },
+      "status": {
+        "value": "open",
+        "raw_code": "OPEN",
+        "raw_label": null,
+        "basis": "documented"
+      },
+      "is_manual_check": null,
+      "pay_date": "2025-01-10",
+      "period_start": "2024-12-22",
+      "period_end": "2025-01-04",
+      "processed_date": null,
+      "reverses_paycheck_id": null,
+      "void_date": null,
+      "earnings": [
+        {
+          "field_status": {
+            "hours": "not_provided",
+            "hours_worked": "not_provided",
+            "is_cash": "not_provided",
+            "rate_class": "not_provided",
+            "units": "not_provided"
+          },
+          "source_line_id": "1",
+          "earning_code_id": "ukg-ready:900003:earning_code:7001:705",
+          "earning_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "SAL",
+            "name": "Salary"
+          },
+          "pay_class": {
+            "value": "unknown",
+            "raw_code": "Earning",
+            "raw_label": null,
+            "basis": "unmapped"
+          },
+          "is_cash": null,
+          "rate_class": null,
+          "hours": null,
+          "hours_worked": null,
+          "units": null,
+          "rate": "1846.15",
+          "amount": "1846.15"
+        }
+      ],
+      "deductions": [
+        {
+          "field_status": {
+            "category": "not_provided",
+            "is_catch_up": "not_provided",
+            "plan": "not_provided",
+            "tax_treatment": "not_provided"
+          },
+          "source_line_id": "11",
+          "deduction_code_id": "ukg-ready:900003:deduction_code:7001:803",
+          "deduction_code": {
+            "field_status": {
+              "source_id": "not_provided"
+            },
+            "source_id": null,
+            "code": "DEN",
+            "name": "Dental"
+          },
+          "category": null,
+          "tax_treatment": null,
+          "is_catch_up": null,
+          "plan": null,
+          "amount": "12.5"
+        }
+      ],
+      "taxes": [
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "21",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "601",
+            "code": "FIT",
+            "name": "Federal Income Tax"
+          },
+          "tax_type": {
+            "value": "federal_income",
+            "raw_code": "Federal Income Tax",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Federal Income Tax",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "190.0",
+          "taxable_wages": "1833.65",
+          "gross_wages": "1833.65",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "22",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "602",
+            "code": "SS",
+            "name": "Social Security"
+          },
+          "tax_type": {
+            "value": "social_security",
+            "raw_code": "Social Security",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Social Security",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "113.69",
+          "taxable_wages": "1833.65",
+          "gross_wages": "1833.65",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "22",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "602",
+            "code": "SS",
+            "name": "Social Security"
+          },
+          "tax_type": {
+            "value": "social_security",
+            "raw_code": "Social Security",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Social Security",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employer",
+          "amount": "113.69",
+          "taxable_wages": "1833.65",
+          "gross_wages": "1833.65",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "23",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "603",
+            "code": "MED",
+            "name": "Medicare"
+          },
+          "tax_type": {
+            "value": "medicare",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employee",
+          "amount": "26.59",
+          "taxable_wages": "1833.65",
+          "gross_wages": "1833.65",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        },
+        {
+          "field_status": {
+            "exempt_wages": "not_provided",
+            "jurisdiction": "not_provided",
+            "over_limit_wages": "not_provided",
+            "rate": "not_provided"
+          },
+          "source_line_id": "23",
+          "tax_code": {
+            "field_status": {},
+            "source_id": "603",
+            "code": "MED",
+            "name": "Medicare"
+          },
+          "tax_type": {
+            "value": "medicare",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction_level": {
+            "value": "federal",
+            "raw_code": "Medicare",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "jurisdiction": null,
+          "paid_by": "employer",
+          "amount": "26.59",
+          "taxable_wages": "1833.65",
+          "gross_wages": "1833.65",
+          "exempt_wages": null,
+          "over_limit_wages": null,
+          "rate": null
+        }
+      ],
+      "employer_contributions": [],
+      "benefit_lines": null,
+      "retirement": null,
+      "payments": [
+        {
+          "field_status": {
+            "account_last4": "not_provided",
+            "direct_deposit_id": "not_provided",
+            "routing_last4": "not_provided"
+          },
+          "source_line_id": "31",
+          "method": {
+            "value": "direct_deposit",
+            "raw_code": "Direct Deposit",
+            "raw_label": null,
+            "basis": "inferred"
+          },
+          "amount": "1503.37",
+          "direct_deposit_id": null,
+          "routing_last4": null,
+          "account_last4": null
+        }
+      ],
+      "gross_pay": null,
+      "gross_wages": null,
+      "total_earnings": null,
+      "net_pay": "1503.37",
+      "derived_totals": [
+        "net_pay"
+      ],
+      "currency": "USD"
+    }
+  ]
+}

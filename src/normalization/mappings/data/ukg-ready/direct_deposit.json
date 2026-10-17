@@ -1,0 +1,91 @@
+{
+  "provider": "ukg-ready",
+  "entity": "direct_deposit",
+  "notes": [
+    "One DirectDeposit per deposits[] item (id from company and deposit id). The route is deprecated and the only deposit list (D-030): every record carries a deprecated_source diagnostic.",
+    "allocation_type from calc_method.type; percent_basis from the same code: NET_PAY net_pay, GROSS_EARNING gross_pay, DIRECT_DEPOSIT_PER_OF_REMAINDER remainder_after_fixed (documented names), not_applicable for FULL and FLAT_AMOUNT.",
+    "status from active (true active, false inactive); pre-note progress is prenote_status. Numbers are returned in full (some 1 to 4 characters in the demo data); routing_last4 and account_last4 are null with not_applicable next to a full value (CANONICAL_MODEL 1.4)."
+  ],
+  "fields": [
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].id", "use": "mapped", "target": "DirectDeposit.source_ids", "transform": "source_id", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].sequence", "use": "mapped", "target": "DirectDeposit.sequence", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 1..n"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].calc_method.type", "use": "mapped", "target": "DirectDeposit.allocation_type", "transform": "code:ukg-ready.deposit_calc_method", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "D-032", "live: FULL 14, FLAT_AMOUNT 2, NET_PAY 2 (18 accounts)"], "note": "Also sets percent_basis (notes)."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].calc_method.display_name", "use": "excluded", "reason": "Label of calc_method.type."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].amount", "use": "mapped", "target": "DirectDeposit.amount", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 2 of 19"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].percentage", "use": "mapped", "target": "DirectDeposit.percent", "transform": "number", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 15.0 in a 3-way split"], "note": "0 to 100 (live split)."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].account_type", "use": "mapped", "target": "DirectDeposit.account_type", "transform": "code:ukg-ready.deposit_account_type", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: CHECKING 16, SAVINGS 2"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].routing_number", "use": "mapped", "target": "DirectDeposit.routing_number", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "Full value; sensitive, masked in output by default."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].account_number", "use": "mapped", "target": "DirectDeposit.account_number", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "Full value; sensitive, masked in output by default."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].active", "use": "mapped", "target": "DirectDeposit.status", "transform": "derive", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: true 16, false 2"], "note": "true active, false inactive."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].pre_note_status", "use": "mapped", "target": "DirectDeposit.prenote_status", "transform": "code:ukg-ready.prenote_status", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: READY_TO_SEND 9, CANCELED 5, COMPLETE_EXPIRED 4"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].payroll_frequency.type", "use": "mapped", "target": "DirectDeposit.frequency", "transform": "code:ukg-ready.deposit_frequency", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: EVERY_PAY 18"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].active_from", "use": "mapped", "target": "DirectDeposit.effective_from", "transform": "date:period_start", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].active_to", "use": "mapped", "target": "DirectDeposit.effective_to", "transform": "date:period_end", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "D-025", "live: 2099 sentinel on 16 of 18"], "note": "The 2099 sentinel means open-ended."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].currency", "use": "mapped", "target": "DirectDeposit.currency", "transform": "copy", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].*", "use": "extension", "target": "DirectDeposit.provider_extensions", "reason": "Deposit settings with no canonical field: type (DIRECT_DEPOSIT or RESERVE_LIVE_CHECK; 18 of 18 DIRECT_DEPOSIT), free-text name ('test') and description, routing type, arrearage function, PayPal flag, pre-note dates and cancel flag, last payroll, use and visibility flags, month, quarter and year to date amounts.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].payroll_frequency.*", "use": "extension", "target": "DirectDeposit.provider_extensions", "reason": "Frequency parameters (month, payroll number, block last, holiday type).", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[].payroll_frequency.holiday_profile.*", "use": "extension", "target": "DirectDeposit.provider_extensions", "reason": "Holiday profile of the frequency.", "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[]._links.*", "use": "excluded", "reason": "Hypermedia links and counters (API navigation), not data."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[]._documents_count", "use": "excluded", "reason": "Hypermedia links and counters (API navigation), not data."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "deposits[]._notes_count", "use": "excluded", "reason": "Hypermedia links and counters (API navigation), not data."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "_links.*", "use": "excluded", "reason": "Hypermedia links and counters (API navigation), not data."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "_total_count", "use": "excluded", "reason": "Hypermedia links and counters (API navigation), not data."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "_routing_type", "use": "excluded", "reason": "Response-level routing type setting, repeated per deposit."},
+    {"route": "/v2/companies/{cid}/employees/{aid}/direct-deposits", "field": "is_eligible_for_paypal", "use": "excluded", "reason": "Response-level PayPal eligibility; not deposit data."}
+  ],
+  "code_tables": [
+    {
+      "id": "ukg-ready.deposit_calc_method",
+      "source": "direct-deposits calc_method.type (documented enum)",
+      "columns": {"value": "AllocationType"},
+      "codes": [
+        {"raw": "FULL", "value": {"value": "remainder", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 14"]},
+        {"raw": "FLAT_AMOUNT", "value": {"value": "fixed_amount", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 2"]},
+        {"raw": "NET_PAY", "value": {"value": "percent", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 2"], "note": "percent_basis net_pay."},
+        {"raw": "GROSS_EARNING", "value": {"value": "percent", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "percent_basis gross_pay."},
+        {"raw": "DIRECT_DEPOSIT_PER_OF_REMAINDER", "value": {"value": "percent", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "percent_basis remainder_after_fixed."}
+      ]
+    },
+    {
+      "id": "ukg-ready.deposit_account_type",
+      "source": "direct-deposits account_type (documented enum)",
+      "columns": {"value": "AccountType"},
+      "codes": [
+        {"raw": "CHECKING", "value": {"value": "checking", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 16"]},
+        {"raw": "SAVINGS", "value": {"value": "savings", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 2"]}
+      ]
+    },
+    {
+      "id": "ukg-ready.prenote_status",
+      "source": "direct-deposits pre_note_status (documented enum)",
+      "columns": {"value": "PrenoteStatus"},
+      "codes": [
+        {"raw": "READY_TO_SEND", "value": {"value": "pending", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 9"]},
+        {"raw": "SENT", "value": {"value": "sent", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "COMPLETE_OK", "value": {"value": "verified", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "COMPLETE_EXPIRED", "value": {"value": "expired", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 4"]},
+        {"raw": "CANCELED", "value": {"value": "canceled", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 5"]},
+        {"raw": "INVALID", "value": {"value": "invalid", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "NA", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "Not applicable: no pre-note state."}
+      ]
+    },
+    {
+      "id": "ukg-ready.deposit_frequency",
+      "source": "direct-deposits payroll_frequency.type (documented enum)",
+      "columns": {"value": "DepositFrequency"},
+      "codes": [
+        {"raw": "EVERY_PAY", "value": {"value": "every_pay", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html", "live: 18"]},
+        {"raw": "EVERY_SCHEDULED_PAY", "value": {"value": "every_scheduled_pay", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "EVERY_OTHER_SCHEDULED_PAY", "value": {"value": "every_other_scheduled_pay", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "MONTHLY", "value": {"value": "monthly", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "QUARTERLY", "value": {"value": "quarterly", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "ANNUAL", "value": {"value": "annual", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "MANUAL", "value": {"value": "manual", "basis": "documented"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"]},
+        {"raw": "EVERY_SCHEDULED_MONTH_ODD_PAY", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "No canonical value."},
+        {"raw": "EVERY_SCHEDULED_MONTH_EVEN_PAY", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "No canonical value."},
+        {"raw": "HOLIDAY_TABLE", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "No canonical value."},
+        {"raw": "BENEFIT_PLAN", "value": {"value": "unknown", "basis": "unmapped"}, "evidence": ["contracts/ukg-ready/reference-docs/res/__v2__companies__(cid)__employees__(aid)__direct-deposits.html"], "note": "No canonical value."}
+      ]
+    }
+  ]
+}
